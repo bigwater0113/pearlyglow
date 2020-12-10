@@ -7,6 +7,7 @@
 	}
 	#w_wrap {
 		width: 1200px;
+		height:1700px;
 		margin: 0 auto;
 		text-align: center;
 	}

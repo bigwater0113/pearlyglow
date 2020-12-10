@@ -16,21 +16,28 @@
  	*{margin:0px;padding:0px;}
  	div#wrap{margin:auto;width:1200px;overflow:hidden;} 
  	#header{width:100%;height:100px;} 
- 	#main{width:100%;} 
+ 	#main{width:100%;
  	#footer{width:100%;height:400px;} 
 </style>
 </head>
 <body>
+<%
+	String spage=request.getParameter("spage");
+	String mpage=request.getParameter("mpage");
+	if(spage==null){
+		spage="myPage.jsp";
+	}
+	if(mpage==null){
+		mpage="info.jsp";
+	}
+%>
 <div id="wrap">
 	<div id="header">
 		<%@include file="header.jsp" %>
 	</div>
 	<div id="main">
-		<%-- <%@include file="main.jsp" %> --%>
-<%-- 		<%@include file="detailinfo.jsp" %> --%>
-<%-- 		<%@include file="home.jsp" %> --%>
-<%-- 		<%@include file="home1.jsp" %> --%>
-		<%@include file="Woman.jsp"%>
+<%-- 	${pageContext.request.contextPath }/index.jsp?spage=myPage.jsp&mpage=info.jsp --%>
+		<jsp:include page="<%=spage %>"/>
 	</div>
 	<div id="footer">
 		<%@include file="footer.jsp" %>
