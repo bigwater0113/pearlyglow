@@ -4,7 +4,7 @@
 <%
 	String mpage=request.getParameter("mpage");
 	if(mpage==null){
-		mpage="info.jsp";
+		mpage="testinfo.jsp";
 	}
 %>
 <style>

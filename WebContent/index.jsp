@@ -28,7 +28,7 @@
 		spage="myPage.jsp";
 	}
 	if(mpage==null){
-		mpage="info.jsp";
+		mpage="testinfo.jsp";
 	}
 %>
 <div id="wrap">
