@@ -15,7 +15,7 @@
 	#main #middle #core{width:100%;height:65%; background-color: white; text-align: center;}
 	#main #middle #bottom{width:100%;height:15% ;background-color: white;}
 	#main #middle #top #image1{width: 50%;height: 100%;float: left; text-align: center;background-color: white;}
-	#main #middle #top #detail{width: 50%;height: 100%; background-color: blue;float: right;}
+	#main #middle #top #detail{width: 50%;height: 100%; background-color: white;float: right;}
 	#main #middle #top #image1 #img1{ width: 460px; height: 460px; } 
  	#main #middle #top #detail #title{width: 100%;height: 5%; background-color: white;} 
  	#main #middle #top #detail #nbso{width: 100%;height: 5%; background-color: white;} 
@@ -79,7 +79,7 @@
 							<input type="button" value="-"onclick="changeM(event);"id="minus"><input type="text" name="count" value="1" id="count"><input type="button" value="+" onclick="changeP(event);" id="plus">
 							<br><br>
 							<input type="button" value="구매하기" id="buy">
-							<input type="button" value="장바구니" id="wish"><br>
+							<input type="button" value="장바구니" id="wish" onclick="location.href='${pageContext.request.contextPath}/basketController'"><br>
 						</div>
 					</div>
 				</div>
