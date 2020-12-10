@@ -1,6 +1,7 @@
 package kr.co.pearlyglow.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import kr.co.pearlyglow.vo.join.ShoppingBasket_ItemsVo;
 import kr.co.peralyglow.DAO.basketDAO;
@@ -35,15 +38,24 @@ public class basketController extends HttpServlet{
 		
 		// 장바구니 담기
 		if (iNumNullCheck != null) {
-			
 			int iNum = Integer.parseInt(req.getParameter("iNum"));
 			int sbCnt = Integer.parseInt(req.getParameter("sbCnt"));
 			int n = dao.insert(id, iNum, sbCnt);
+			
+			JSONObject json = new JSONObject();
+			
+			// 장바구니 담기 성공
 			if (n > 0) {
-				// 장바구니 담기 성공
-			} else {
-				// 장바구니 담기 실패
+				json.put("result", "true");
 			}
+			// 장바구니 담기 실패
+			else {
+				json.put("result", "false");
+			}
+			
+			resp.setContentType("text/plain; charset=utf-8");
+			PrintWriter pw = resp.getWriter();
+			pw.print(json);
 		}
 		// 장바구니 조회
 		else {

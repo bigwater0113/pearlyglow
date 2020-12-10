@@ -27,6 +27,7 @@
 					<th>ÃÑ±Ý¾× </th>
 				</tr>
 				<c:forEach var="list" items="${list }">
+				<tr>
 					<td width="30"><input type="checkbox" id="s_selectAll"> </td>
 					<td width="150" height="150"><img alt="" src="${list.imgName }" width="150" height="150"> </td>
 					<td width="400">
@@ -37,6 +38,7 @@
 					<td width="100" style="text-align: center">${list.price } </td>
 					<td width="50" style="text-align: center">${list.sbCnt } </td>
 					<td width="100" style="text-align: center">${list.price * list.sbCnt } </td>
+				</tr>
 				</c:forEach>
 			</table>
 		</div>

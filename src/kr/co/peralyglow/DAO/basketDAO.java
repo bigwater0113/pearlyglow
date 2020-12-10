@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import kr.co.pearlyglow.db.DBCPBean;
+import kr.co.pearlyglow.db.DBConnection;
 import kr.co.pearlyglow.vo.join.ShoppingBasket_ItemsVo;
 
 public class basketDAO {
@@ -24,7 +25,7 @@ public class basketDAO {
 		
 		int n = 0;
 		try {
-			con = DBCPBean.getConn();
+			con = DBConnection.getConn();
 			ps = con.prepareStatement("insert into shoppingbasket values(shoppingbasket_seq.nextval, ?, ?, ?)");
 			ps.setString(1, id);
 			ps.setInt(2, iNum);
@@ -33,7 +34,7 @@ public class basketDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBCPBean.close(con, ps, rs);
+			DBConnection.close(con, ps, rs);
 		}
 		
 		return n;
@@ -46,7 +47,7 @@ public class basketDAO {
 		ArrayList<ShoppingBasket_ItemsVo> ShoppingBasket_ItemsVo = new ArrayList<ShoppingBasket_ItemsVo>();
 		
 		try {
-			con = DBCPBean.getConn();
+			con = DBConnection.getConn();
 			ps = con.prepareStatement("select * from shoppingbasket s, items i, items_image ii where id = ? and s.inum = i.inum and i.inum = ii.inum");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
@@ -69,7 +70,7 @@ public class basketDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBCPBean.close(con, ps, rs);
+			DBConnection.close(con, ps, rs);
 		}
 		
 		return ShoppingBasket_ItemsVo;

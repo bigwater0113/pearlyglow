@@ -11,7 +11,7 @@
 	#main #left {width:200px;height:100%;background-color: white;float:left;}
 	#main #middle {width:800px;height:100%;float:left;}
 	#main #right {width:200px;height:100%;background-color: white;float:right;}
-	#main #middle #top{width:100%;height:20%;}
+	#main #middle #top{width:100%;height:20%; margin-bottom: 70px;}
 	#main #middle #core{width:100%;height:65%; background-color: white; text-align: center;}
 	#main #middle #bottom{width:100%;height:15% ;background-color: white;}
 	#main #middle #top #image1{width: 50%;height: 100%;float: left; text-align: center;background-color: white;}
@@ -79,7 +79,8 @@
 							<input type="button" value="-"onclick="changeM(event);"id="minus"><input type="text" name="count" value="1" id="count"><input type="button" value="+" onclick="changeP(event);" id="plus">
 							<br><br>
 							<input type="button" value="구매하기" id="buy">
-							<input type="button" value="장바구니" id="wish" onclick="location.href='${pageContext.request.contextPath}/basketController'"><br>
+							<input type="button" value="장바구니" id="wish" onclick="putBasketResult()"><br>
+							<span id="resultSpan"></span>
 						</div>
 					</div>
 				</div>
@@ -124,6 +125,25 @@
 			i--;
 			count.value=i;
 		}
+	}
+	
+	
+	// 장바구니 json
+	function putBasketResult() {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var json = JSON.parse(xhr.responseText);
+				var resultSpan = document.getElementById("resultSpan");
+				if (json.result == 'true') {
+					resultSpan.innerHTML = "장바구니에 담기 성공!";
+				} else {
+					resultSpan.innerHTML = "내부 오류로 인해 장바구니에 담기 실패..";
+				}
+			}
+		}
+		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=1&sbCnt=4', true);
+		xhr.send();
 	}
 </script>
 </body>

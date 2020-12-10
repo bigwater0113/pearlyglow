@@ -39,7 +39,7 @@
 	padding: 0px;
 }
 
-#h_wrap a {
+#h_wap a {
 	color: black;
 	text-decoration: none;
 	font-weight: bold;
@@ -142,13 +142,13 @@
 		</div>
 		<div id="h_right">
 			<input type="text" id="h_searchBox" placeholder="SEARCH"> <a
-				href="" id="h_bag">BAG(0)</a> <a href="" id="h_login">LOGIN</a>
+				href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(0)</a> <a href="" id="h_login">LOGIN</a>
 		</div>
 	</div>
 	<div id="h_menu">
 		<div id="h_moreMenu1">
 			<h2>
-				<a href="${pageContext.request.contextPath }/index.jsp?spage=main.jsp">PEARLYGLOW</a>
+				<a href="">PEARLYGLOW</a>
 			</h2>
 			<a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
 		</div>
@@ -156,14 +156,12 @@
 			<h2>
 				<a href="">CAMPAIGN</a>
 			</h2>
-			<a href="${pageContext.request.contextPath }/index.jsp?spage=2020FW.jsp">2020.FW</a>
-			<a href="">2020.SS</a>
-			<a href="">2019.FW</a>
+			<a href="">2020.FW</a> <a href="">2020.SS</a> <a href="">2019.FW</a>
 			<a href="">2019.SS</a>
 		</div>
 		<div id="h_moreMenu3">
 			<h2>
-				<a href="${pageContext.request.contextPath }/index.jsp?spage=WM.jsp">WO/MAN</a>
+				<a href="">WO/MAN</a>
 			</h2>
 		</div>
 		<div id="h_moreMenu4">
