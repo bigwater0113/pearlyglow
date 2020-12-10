@@ -2,42 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
-	body{
-		text-align: center;
+	#w_textArea p{
+		line-height: 0.em;
 	}
-	#textArea p{
-		line-height: 0.2em;
-	}
-	#wrap2 {
+	#w_wrap {
 		width: 1200px;
 		margin: 0 auto;
+		text-align: center;
 	}
-	#itemsArea img{
+	#w_itemsArea img{
 		width: 200px;
 		height: 200px;
 		border: 1px solid gray;
 		display: block;
-		margin-top: 30%;
+		margin-top: 20%;
 	}
 	
-	#itemsArea div{
+	#w_itemsArea div{
 		display: inline-block;
 		margin: 5px;
+		margin-top: 50px;
 		width: 210px;
 		height: 300px;
 		vertical-align: middle;
 	}
 	
-	#itemsArea span{
+	#w_itemsArea span{
 		border: 1px solid black;
 	}
 	
-	#textArea{
+	#w_textArea{
 		margin-bottom: 50px;
 	}
 </style>
-<div id="wrap2">
-	<div id="textArea">
+<div id="w_wrap">
+	<div id="w_textArea">
 		<h3>Woman</h3>
 		<p>Over the course of the last five years,</p>
 		<p>we have been telling the stories of Dante's</p>
@@ -47,9 +46,9 @@
 		<p>to the Other Side of the World Necklace,</p>
 		<p>a tale of adventure and pursuit.</p>
 	</div>
-	<div id="itemsArea">
+	<div id="w_itemsArea">
 		<c:forEach var="i" begin="1" end="12">
-			<div id="item${i }">
+			<div id="w_item${i }">
 				<img alt="" src="images/${i }.jpg"> <br>
 				<a href="">item</a> <br>
 				<p>150,000원 </p>
