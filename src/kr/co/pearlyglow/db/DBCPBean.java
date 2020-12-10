@@ -1,22 +1,17 @@
 package kr.co.pearlyglow.db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-/*
-Context initContext = new InitialContext();
-Context envContext  = (Context)initContext.lookup("java:/comp/env");
-DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
- */
-
 public class DBCPBean {
 	private static DataSource ds;
-	//static블록 - static멤버변수를 초기화할때 사용
 	static {
 		try {
 			System.out.println("static블록실행...");
@@ -31,5 +26,47 @@ public class DBCPBean {
 	public static Connection getConn() throws SQLException{
 		Connection con=ds.getConnection();
 		return con;
+	}
+	public static void close(Connection con) {
+		try {
+			if(con != null) {
+				con.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	public static void close(Statement stmt) {
+		try {
+			if(stmt != null) {
+				stmt.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	public static void close(ResultSet rs) {
+		try {
+			if(rs != null) {
+				rs.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	public static void close(Connection con, Statement stmt, ResultSet rs) {
+		try {
+			if(rs != null) {
+				rs.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
 	}
 }

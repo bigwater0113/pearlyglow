@@ -82,7 +82,7 @@ create table purchase
 );
 
 -- 배송정보/delevery
-create table delevery
+create table delivery
 (
 	dNum number primary key,	--배송번호
 	pnum number references purchase(pnum),	--구매번호
