@@ -1,121 +1,121 @@
 -- 회원/MEMBER
 create table members
 (
-	id varchar2(30) primary key,
-	pwd varchar2(30) not null,
-	name varchar2(30) not null,
-	birth date not null,
-	gender varchar2(10) not null check(gender in('M', 'W')),
-	email varchar2(30) not null unique,
-	phone varchar2(20) not null unique,
-	address varchar2(50) not null,
-	issleep varchar2(20),
-	recentAcc date not null
+	id varchar2(30) primary key,	--아이디
+	pwd varchar2(30) not null,	--비밀번호
+	name varchar2(30) not null,	--이름
+	birth date not null,	--생년월일
+	gender varchar2(10) not null check(gender in('M', 'W')),	--성별
+	email varchar2(30) not null unique,	--이메일
+	phone varchar2(20) not null unique,	--핸드폰
+	address varchar2(50) not null,	--주소
+	issleep varchar2(20),	--휴면계정
+	recentAcc date not null	--최근접속
 );
 
 -- 상품/ITEMS
 create table items
 (
-	inum number(5,0) primary key,
-	iname varchar2(30) not null,
-	price number(12,2),
-	igender varchar2(10),
-	iCategory varchar(20) not null,
-	color varchar2(10),
-	iSize varchar2(10),
-	weight number,
-	material varchar2(20),
-	kDetail varchar2(4000),
-	eDetail varchar2(4000)
+	inum number(5,0) primary key,	-- 품번
+	iname varchar2(30) not null,	--상품명
+	price number(12,2),	--가격
+	igender varchar2(10),	--성별
+	iCategory varchar(20) not null,	--카테고리
+	color varchar2(10),	--색상
+	iSize varchar2(10),	--사이즈
+	weight number,	--무게
+	material varchar2(20),	--재질
+	kDetail varchar2(4000),	--한글설명
+	eDetail varchar2(4000)	--영어설명
 );
 
 -- 장바구니/ShoppingBasket
 create table shoppingBasket
 (
-	sbNum number primary key,
-	id varchar2(30) references members(id),
-	inum number(5,0) references items(inum),
-	sbCnt number
+	sbNum number primary key,	--번호
+	id varchar2(30) references members(id),	--아이디
+	inum number(5,0) references items(inum),	--품번
+	sbCnt number	--수량
 );
 
 -- 상품 이미지/Items_Image
 create table items_image
 (
-	imgNum number primary key,
-	inum number(5,0) references items(inum),
-	imgName varchar2(100)
+	imgNum number primary key,	--이미지 번호
+	inum number(5,0) references items(inum),	--품번
+	imgName varchar2(100)	--상품 이미지파일명
 );
 
 -- 문의 게시판/QNAboard
 create table qnaBoard
 (
-	ibnum number primary key,
-	id varchar2(30) references members(id),
-	inum number(5,0) references items(inum),
-	ibPwd varchar2(10),
-	ibContent varchar2(1000),
-	ibDate date,
-	answer varchar2(4000),
-	answerDate date
+	ibnum number primary key,	--게시글번호
+	id varchar2(30) references members(id), --아이디
+	inum number(5,0) references items(inum),	--품번
+	ibPwd varchar2(10),	--게시글비밀번호
+	ibContent varchar2(1000),	--내용
+	ibDate date,	--작성날짜	
+	answer varchar2(4000),	--답글
+	answerDate date	--답글날짜
 );
 
 -- 재고/Stock
 create table stock
 (
-	snum number primary key,
-	inum number(5,0) references items(inum),
-	rs number check(rs in('1', '2')),
-	cnt number,
-	total number,
-	sDate date
+	snum number primary key,	--재고번호
+	inum number(5,0) references items(inum),	--품번
+	rs number check(rs in('1', '2')),	--입출고
+	cnt number,	--입출고수량
+	total number,	--총수량
+	sDate date	--입출고날짜
 );
 
 -- 구매내역/purchase
 create table purchase
 (
-	pNum number primary key,
-	id varchar2(30) references members(id),
-	pAddress varchar2(400),
-	pWay varchar2(20) check(pway in('카드', '현금')),
-	pDate date,
-	pStatus varchar(20) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정'))
+	pNum number primary key,	--구매번호
+	id varchar2(30) references members(id),	--아이디	
+	pAddress varchar2(400),		--배송지
+	pWay varchar2(20) check(pway in('카드', '현금')),	--결제수단
+	pDate date,	--구매날짜	
+	pStatus varchar(20) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정'))	--제품출고상태
 );
 
 -- 배송정보/delevery
 create table delevery
 (
-	dNum number primary key,
-	pnum number references purchase(pnum),
-	dCompany varchar2(20),
-	trackingNum number,
-	dStatus varchar2(400)
+	dNum number primary key,	--배송번호
+	pnum number references purchase(pnum),	--구매번호
+	dCompany varchar2(20),	--택배사
+	trackingNum number,	--송장번호
+	dStatus varchar2(400)	--배송상태
 );
 
 -- 구매내역 상세/pDetail
 create table pDetail
 (
-	pdNum number primary key,
-	inum number(5,0) references items(inum),
-	pnum number references purchase(pnum),
-	pCnt number,
-	pSale number,
-	pPay number
+	pdNum number primary key,	--구매상세번호
+	inum number(5,0) references items(inum),	--품번
+	pnum number references purchase(pnum),	--구매번호
+	pCnt number,	--구매상품갯수
+	pSale number,	--할인율
+	pPay number	--상품별 금액
 );
 
 -- 리뷰게시판/reviewBoard
 create table reviewBoard
 (
-	rbNum number primary key,
-	pdNum number references pDetail(pdNum),
-	score number,
-	rbContent varchar2(1000),
-	orgName varchar2(30),
-	saveName varchar2(30)
+	rbNum number primary key,	--리뷰번호
+	pdNum number references pDetail(pdNum),	--구매상세번호
+	score number,	--평가점수
+	rbContent varchar2(1000),	--리뷰내용
+	orgName varchar2(30),	--원본사진명
+	saveName varchar2(30)	--저장이미지명
 );
 
 -- 접속자수/access
 create table accessr
 (
-	aDate date primary key,
-	aCnt number
+	aDate date primary key,	--날짜
+	aCnt number	--접속자 수
 );
