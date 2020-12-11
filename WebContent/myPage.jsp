@@ -9,7 +9,7 @@
 %>
 <style>
 	*{margin:0px;padding:0px;}
-	a{color:black;text-decoration: none; font-weight:bold;}
+	#myPage_wrap a{color:black;text-decoration: none; font-weight:bold;}
 	#myPage_wrap{width:1200px; margin:auto;}
 	#myPage_Menu{width:260px;height:1000px;background-color: red;float:left;padding:20px;}
 	#myPage_section{width:900px;height:1000px;background-color: blue;float:left;}
