@@ -9,10 +9,10 @@
 %>
 <style>
 	*{margin:0px;padding:0px;}
-	#sellerPage_wrap a{color:black;text-decoration: none; font-weight:bold;}
 	#sellerPage_wrap{width:1200px; margin:auto;}
-	#sellerPage_Menu{width:260px;height:1000px;background-color: red;float:left;padding:20px;}
-	#sellerPage_section{width:900px;height:1000px;background-color: blue;float:left;}
+	#sellerPage_Menu{width:260px;height:400px;float:left;padding:20px;}
+	#sellerPage_Menu a{color:black;text-decoration: none; font-weight:bold;}
+	#sellerPage_section{width:900px;height:1000px;float:left;}
 	
 </style>
 <div id="sellerPage_wrap">
