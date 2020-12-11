@@ -79,6 +79,7 @@ create table purchase
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	
 	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정'))	--제품출고상태
+	pTotal number --총금액
 );
 
 -- 배송정보/delevery
@@ -111,6 +112,7 @@ create table reviewBoard
 	rbContent varchar2(1000),	--리뷰내용
 	orgName varchar2(50),	--원본사진명
 	saveName varchar2(50)	--저장이미지명
+	rDate date --작성날짜
 );
 
 -- 접속자수/access

@@ -9,10 +9,11 @@ public class PurchaseVo {
 	private String pWay;
 	private Date pDate;
 	private String pStatus;
+	private int pTotal;
 	public PurchaseVo() {
 		super();
 	}
-	public PurchaseVo(int pNum, String id, String pAddress, String pWay, Date pDate, String pStatus) {
+	public PurchaseVo(int pNum, String id, String pAddress, String pWay, Date pDate, String pStatus, int pTotal) {
 		super();
 		this.pNum = pNum;
 		this.id = id;
@@ -20,6 +21,8 @@ public class PurchaseVo {
 		this.pWay = pWay;
 		this.pDate = pDate;
 		this.pStatus = pStatus;
+		this.pTotal = pTotal;
+		
 	}
 	public int getpNum() {
 		return pNum;
@@ -56,6 +59,12 @@ public class PurchaseVo {
 	}
 	public void setpStatus(String pStatus) {
 		this.pStatus = pStatus;
+	}
+	public int getpTotal() {
+		return pTotal;
+	}
+	public void setpTotal(int pTotal) {
+		this.pTotal = pTotal;
 	}
 	
 	
