@@ -63,7 +63,5 @@ public class basketController extends HttpServlet{
 			req.setAttribute("list", list);
 			req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
 		}
-		
-		
 	}
 }

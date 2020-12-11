@@ -9,6 +9,24 @@
 </head>
 <body>
 <%
+	int cookieCnt=0;
+	String[] names=new String[5];
+	Cookie[] cooks=request.getCookies();
+	if(cooks!=null){
+	for(Cookie cook:cooks){
+		String name=cook.getName();
+		if(name.startsWith("item")){
+			names[cookieCnt++]=name;
+		}
+	}
+	System.out.print(cookieCnt);
+	if(cookieCnt==5){
+		Cookie c=new Cookie(names[0],null);
+		c.setPath("/");
+		c.setMaxAge(0);
+		response.addCookie(c);
+	}
+	}
 	String item=URLEncoder.encode("품번1","utf-8");
 	Cookie cookie=new Cookie("item1",item);
 	cookie.setPath("/");
@@ -16,6 +34,7 @@
 	response.addCookie(cookie);
 %>
 
-<a href="${pageContext.request.contextPath }/index.jsp?spage=myPage.jsp&mpage=recentView.jsp">최근본상품</a>
+<a href="${pageContext.request.contextPath}/recentView">최근본상품</a>
+<a href="testview2.jsp">2</a>
 </body>
 </html>
