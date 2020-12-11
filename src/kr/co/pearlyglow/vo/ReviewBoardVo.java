@@ -1,5 +1,7 @@
 package kr.co.pearlyglow.vo;
 
+import java.sql.Date;
+
 public class ReviewBoardVo {
 	private int rbNum;
 	private int pdNum;
@@ -7,10 +9,11 @@ public class ReviewBoardVo {
 	private String rbContent;
 	private String orgName;
 	private String saveName;
+	private Date rDate;
 	public ReviewBoardVo() {
 		super();
 	}
-	public ReviewBoardVo(int rbNum, int pdNum, int score, String rbContent, String orgName, String saveName) {
+	public ReviewBoardVo(int rbNum, int pdNum, int score, String rbContent, String orgName, String saveName, Date rDate) {
 		super();
 		this.rbNum = rbNum;
 		this.pdNum = pdNum;
@@ -18,6 +21,7 @@ public class ReviewBoardVo {
 		this.rbContent = rbContent;
 		this.orgName = orgName;
 		this.saveName = saveName;
+		this.rDate = rDate;
 	}
 	public int getRbNum() {
 		return rbNum;
@@ -54,6 +58,12 @@ public class ReviewBoardVo {
 	}
 	public void setSaveName(String saveName) {
 		this.saveName = saveName;
+	}
+	public Date getRDate() {
+		return rDate;
+	}
+	public void setRDate(Date rDate) {
+		this.rDate = rDate;
 	}
 	
 }
