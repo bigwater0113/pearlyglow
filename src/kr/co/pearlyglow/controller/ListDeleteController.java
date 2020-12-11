@@ -12,27 +12,18 @@ import javax.servlet.http.HttpSession;
 import kr.co.peralyglow.DAO.MembersDao;
 
 
-@WebServlet("/Member/delete")
-public class DeleteController extends HttpServlet{
+@WebServlet("/Member/listDelete")
+public class ListDeleteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		MembersDao dao=new MembersDao();
 		int n=dao.delete(id);
 		if(n>0) {
-			HttpSession session = req.getSession();
-			session.setAttribute("id", id);
-			resp.sendRedirect(req.getContextPath()+"/Member/logout");
+			resp.sendRedirect(req.getContextPath()+"/Member/list");
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/Member/result.jsp").forward(req, resp);
 		}
 	}
 }
-
-
-
-
-
-
-
