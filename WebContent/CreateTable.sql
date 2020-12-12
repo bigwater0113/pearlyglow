@@ -43,7 +43,7 @@ create table items_image
 (
 	imgNum number primary key,	--이미지 번호
 	iNum number(5,0) references items(inum),	--품번
-	imgName varchar2(100)	--상품 이미지파일명
+	imgName varchar2(500)	--상품 이미지파일명
 );
 
 -- 문의 게시판/QNAboard
