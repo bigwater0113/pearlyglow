@@ -11,14 +11,29 @@
 		border: 1px solid gray;
 		width: 900px;
 	}
+	#s_itemArea {
+		display: flex;
+		justify-content: center;
+	}
+	#s_tableHeader {
+		background-color: #d3d3d3;
+	}
+	#s_itemTable td{
+		border-bottom: 1px solid gray;
+		border-top: 1px soild gray;
+	}
+	#s_itemTable th{
+		border-bottom: 1px solid gray;
+		border-top: 1px soild gray;
+	}
 </style>
 </head>
 <body>
 	<div id="s_wrap">
-		<p>상품 목록 </p>
+		<h2>상품 목록 </h2>
 		<div id="s_itemArea">
-			<table id="s_itemTable" border="1">
-				<tr>
+			<table id="s_itemTable">
+				<tr id="s_tableHeader">
 					<th><input type="checkbox" id="s_selectAll"> </th>
 					<th>이미지 </th>
 					<th>상품정보 </th>
