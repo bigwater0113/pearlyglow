@@ -135,15 +135,15 @@
 <div id="h_wrap">
 	<div id="h_header">
 		<div id="h_left">
-			<img alt="" src="images/menuIcon.png" id="h_menuBtn" onclick="slide()">
+			<img alt="" src="${pageContext.request.contextPath}/images/menuIcon.png" id="h_menuBtn" onclick="slide()">
 		</div>
 		<div id="h_center">
-			<img alt="" src="images/logo.PNG" id="h_logo">
+			<img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo">
 		</div>
 		<div id="h_right">
 			<input type="text" id="h_searchBox" placeholder="SEARCH">
 			<a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(0)</a>
-			<a href="" id="h_login">LOGIN</a>
+			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>
 		</div>
 	</div>
 	<div id="h_menu">

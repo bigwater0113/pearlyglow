@@ -20,6 +20,6 @@ public class ListController extends HttpServlet{
 		ArrayList<MembersVo> list=dao.list();
 		
 		req.setAttribute("list",list);
-		req.getRequestDispatcher("/Member/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/list.jsp").forward(req, resp);
 	}
 }

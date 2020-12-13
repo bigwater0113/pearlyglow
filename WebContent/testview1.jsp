@@ -19,7 +19,6 @@
 			names[cookieCnt++]=name;
 		}
 	}
-	System.out.print(cookieCnt);
 	if(cookieCnt==5){
 		Cookie c=new Cookie(names[0],null);
 		c.setPath("/");

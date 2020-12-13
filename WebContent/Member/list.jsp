@@ -42,7 +42,7 @@
 		</tr>
 	</c:forEach>
 </table>
-<a href="${pageContext.request.contextPath}/Member/main.jsp">홈</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>
 </body>
 </html>
 

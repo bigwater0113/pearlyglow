@@ -23,7 +23,7 @@ public class ListDeleteController extends HttpServlet{
 			resp.sendRedirect(req.getContextPath()+"/Member/list");
 		}else {
 			req.setAttribute("code","fail");
-			req.getRequestDispatcher("/Member/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
 		}
 	}
 }

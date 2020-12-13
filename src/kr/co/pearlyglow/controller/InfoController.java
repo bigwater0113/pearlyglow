@@ -20,6 +20,6 @@ public class InfoController extends HttpServlet{
 		String id = req.getParameter("id");
 		MembersVo vo=dao.getinfo(id);
 		req.setAttribute("vo",vo);
-		req.getRequestDispatcher("/Member/mypage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/mypage.jsp").forward(req, resp);
 	}
 }

@@ -16,6 +16,6 @@
 		<h1>오류로 인해 요청작업을 수행하지 못했습니다...</h1>
 	</c:otherwise>
 </c:choose>
-<a href="${pageContext.request.contextPath}/Member/main.jsp">홈</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>
 </body>
 </html>

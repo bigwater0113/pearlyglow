@@ -29,9 +29,13 @@ public class EncodingFilter implements Filter{
 			throws IOException, ServletException {
 		if(encoding!=null) {
 			request.setCharacterEncoding(encoding);
+			response.setContentType("text/html;charset="+encoding);
+			response.setContentType("text/xml;charset="+encoding);
 		}else {
 			//인코딩하기
 			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			response.setContentType("text/xml;charset=utf-8");
 		}
 		//다음에 실행할 필터가 있으면 수행하고 없으면 클라이언트가 요청한 페이지로 이동
 		chain.doFilter(request, response);

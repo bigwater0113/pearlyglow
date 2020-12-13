@@ -25,7 +25,7 @@ public class DeleteController extends HttpServlet{
 			resp.sendRedirect(req.getContextPath()+"/Member/logout");
 		}else {
 			req.setAttribute("code","fail");
-			req.getRequestDispatcher("/Member/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
 		}
 	}
 }
