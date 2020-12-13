@@ -44,7 +44,8 @@ public class InsertItemController extends HttpServlet {
 		while(e.hasMoreElements()){
 			String file = e.nextElement();
 			String saveFileName = mr.getFilesystemName(file);
-			String savePath = saveDir = saveDir + saveFileName;
+			System.out.println(saveFileName);
+			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
 			dao.insertImg(savePath, items_seq_nextval);
 		}
 	}

@@ -43,7 +43,7 @@
 				</tr>
 				<c:forEach var="list" items="${list }">
 				<tr>
-					<td width="30"><input type="checkbox" id="s_selectAll"> </td>
+					<td width="30"><input type="checkbox" id="${list.sbNum }" class="ck"> </td>
 					<td width="150" height="150"><img alt="" src="${list.imgName }" width="150" height="150"> </td>
 					<td width="400">
 						<p>${list.iCategory } </p>
@@ -57,9 +57,27 @@
 				</c:forEach>
 			</table>
 		</div>
-		<input type="button" value="선택삭제">
-		<input type="button" value="전체삭제"> <br>
+		<input type="button" value="선택삭제" id="deleteChoose">
+		<input type="button" value="전체삭제" id="deleteAll"> <br>
 		<input type="button" value="주문하기">
 	</div>
 </body>
+<script type="text/javascript">
+	document.getElementById("deleteChoose").addEventListener('click', function(e) {
+		var xhr = new XMLHttpRequest();
+		var deleteList = document.getElementsByClassName("ck");
+		var param = "";
+		for (let i=0; i<deleteList.length; i++) {
+			param += "&item=" + deleteList[i].id;
+		}
+		
+		xhr.onreadystatechange = function() {
+			
+		}
+		xhr.open('post', '${pageContext.request.contextPath}/basketController', true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}, true)
+	
+</script>
 </html>

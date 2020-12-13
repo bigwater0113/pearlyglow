@@ -1,5 +1,6 @@
 package kr.co.pearlyglow.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class basketController extends HttpServlet{
 		
 		basketDAO dao = basketDAO.getInstance();
 		String id = (String) session.getAttribute("id");
-		
+
 		
 		if (id == null) {
 			// 로그인 페이지로 이동
@@ -62,6 +63,15 @@ public class basketController extends HttpServlet{
 			ArrayList<ShoppingBasket_ItemsVo> list = dao.selectAll(id);
 			req.setAttribute("list", list);
 			req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
+		}
+	}
+	
+	// 장바구니 삭제
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] params = req.getParameterValues("item");
+		for (String i : params) {
+			System.out.println(i);
 		}
 	}
 }

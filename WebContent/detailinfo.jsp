@@ -143,7 +143,7 @@
 				}
 			}
 		}
-		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=1&sbCnt=' + sbCnt, true);
+		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=16&sbCnt=' + sbCnt, true);
 		xhr.send();
 	}
 </script>
