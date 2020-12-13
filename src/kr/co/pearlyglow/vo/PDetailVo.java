@@ -5,18 +5,16 @@ public class PDetailVo {
 	private int iNum;
 	private int pNum;
 	private int pCnt;
-	private int pSale;
 	private int pPay;
 	public PDetailVo() {
 		super();
 	}
-	public PDetailVo(int pdNum, int iNum, int pNum, int pCnt, int pSale, int pPay) {
+	public PDetailVo(int pdNum, int iNum, int pNum, int pCnt, int pPay) {
 		super();
 		this.pdNum = pdNum;
 		this.iNum = iNum;
 		this.pNum = pNum;
 		this.pCnt = pCnt;
-		this.pSale = pSale;
 		this.pPay = pPay;
 	}
 	public int getPdNum() {
@@ -42,12 +40,6 @@ public class PDetailVo {
 	}
 	public void setpCnt(int pCnt) {
 		this.pCnt = pCnt;
-	}
-	public int getpSale() {
-		return pSale;
-	}
-	public void setpSale(int pSale) {
-		this.pSale = pSale;
 	}
 	public int getpPay() {
 		return pPay;

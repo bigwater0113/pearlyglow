@@ -4,6 +4,7 @@ public class ItemsVo {
 	private int iNum;
 	private String iName;
 	private int price;
+	private int iSale;
 	private String iGender;
 	private String iCategory;
 	private String color;
@@ -15,12 +16,13 @@ public class ItemsVo {
 	public ItemsVo() {
 		super();
 	}
-	public ItemsVo(int iNum, String iName, int price, String iGender, String iCategory, String color, String iSize,
+	public ItemsVo(int iNum, String iName, int price, int iSale,String iGender, String iCategory, String color, String iSize,
 			int weight, String material, String kDetail, String eDetail) {
 		super();
 		this.iNum = iNum;
 		this.iName = iName;
 		this.price = price;
+		this.iSale = iSale;
 		this.iGender = iGender;
 		this.iCategory = iCategory;
 		this.color = color;
@@ -95,6 +97,12 @@ public class ItemsVo {
 	}
 	public void seteDetail(String eDetail) {
 		this.eDetail = eDetail;
+	}
+	public int getiSale() {
+		return iSale;
+	}
+	public void setiSale(int iSale) {
+		this.iSale = iSale;
 	}
 	
 }

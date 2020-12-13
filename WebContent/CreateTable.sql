@@ -19,6 +19,7 @@ create table items
 	iNum number(5,0) primary key,	-- 품번
 	iName varchar2(30) not null,	--상품명
 	price number(12,2),	--가격
+	iSale number, --할인율
 	iGender varchar2(10),	--성별
 	iCategory varchar2(50) not null,	--카테고리
 	color varchar2(20),	--색상
@@ -99,7 +100,6 @@ create table pDetail
 	iNum number(5,0) references items(inum),	--품번
 	pNum number references purchase(pnum),	--구매번호
 	pCnt number,	--구매상품갯수
-	pSale number,	--할인율
 	pPay number	--상품별 금액
 );
 
