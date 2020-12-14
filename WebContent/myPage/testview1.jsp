@@ -26,14 +26,14 @@
 		response.addCookie(c);
 	}
 	}
-	String item=URLEncoder.encode("품번2","utf-8");
-	Cookie cookie=new Cookie("item2",item);
+	String item=URLEncoder.encode("품번1","utf-8");
+	Cookie cookie=new Cookie("item1",item);
 	cookie.setPath("/");
 	cookie.setMaxAge(30);//쿠키유지시간 30초 text용
 	response.addCookie(cookie);
 %>
 
-<a href="${pageContext.request.contextPath}/recentView">최근본상품</a>
-<a href="testview3.jsp">3</a>
+<a href="${pageContext.request.contextPath}/myPage/recentView">최근본상품</a>
+<a href="testview2.jsp">2</a>
 </body>
 </html>

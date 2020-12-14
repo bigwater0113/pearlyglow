@@ -20,7 +20,7 @@ public class UpdateController extends HttpServlet{
 		MembersVo vo = dao.getinfo(id);
 		
 		req.setAttribute("member", vo);
-		req.getRequestDispatcher("/index.jsp?spage=Member/updateForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Member/updateForm.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -35,6 +35,6 @@ public class UpdateController extends HttpServlet{
 		}else {
 			req.setAttribute("code","fail");
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Member/result.jsp").forward(req, resp);
 	}
 }

@@ -30,7 +30,7 @@ public class RecentViewController extends HttpServlet {
 			}
 			req.setAttribute("values", values);
 			req.setAttribute("find", find);
-			req.getRequestDispatcher("index.jsp?spage=myPage.jsp&mpage=recentView.jsp").forward(req, resp);
+			req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=recentView.jsp").forward(req, resp);
 		}
 	}
 }
