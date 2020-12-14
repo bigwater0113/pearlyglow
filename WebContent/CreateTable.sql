@@ -28,6 +28,7 @@ create table items
 	material varchar2(30),	--재질
 	kDetail varchar2(4000),	--한글설명
 	eDetail varchar2(4000)	--영어설명
+	iThumbnail varchar2(300) -- 썸네일
 );
 
 -- 장바구니/ShoppingBasket
@@ -125,3 +126,46 @@ create table accessr
 	aDate date primary key,	--날짜
 	aCnt number	--접속자 수
 );
+
+---------- drop table ---------- 
+drop table accessr;
+drop table reviewBoard;
+drop table pDetail;
+drop table delivery;
+drop table purchase;
+drop table stock;
+drop table QnABoard;
+drop table items_image;
+drop table shoppingBasket;
+drop table items;
+drop table members;
+
+
+
+---------- create sequence -----------
+create SEQUENCE accessr_seq;
+create SEQUENCE reviewBoard_seq;
+create SEQUENCE pDetail_seq;
+create SEQUENCE delevery_seq;
+create SEQUENCE purchase_seq;
+create SEQUENCE stock_seq;
+create SEQUENCE QnABoard_seq;
+create SEQUENCE items_image_seq;
+create SEQUENCE shoppingBasket_seq;
+create SEQUENCE items_seq;
+create SEQUENCE members_seq;
+
+
+
+---------- drop sequence -------------
+drop SEQUENCE accessr_seq;
+drop SEQUENCE reviewBoard_seq;
+drop SEQUENCE pDetail_seq;
+drop SEQUENCE delevery_seq;
+drop SEQUENCE purchase_seq;
+drop SEQUENCE stock_seq;
+drop SEQUENCE QnABoard_seq;
+drop SEQUENCE items_image_seq;
+drop SEQUENCE shoppingBasket_seq;
+drop SEQUENCE items_seq;
+drop SEQUENCE members_seq;  
