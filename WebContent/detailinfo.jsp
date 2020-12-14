@@ -131,7 +131,6 @@
 	// 장바구니 json
 	function putBasketResult() {
 		var sbCnt = document.getElementById("count").value;
-		console.log(sbCnt);
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
@@ -144,7 +143,7 @@
 				}
 			}
 		}
-		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=3&sbCnt=' + sbCnt, true);
+		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=16&sbCnt=' + sbCnt, true);
 		xhr.send();
 	}
 </script>

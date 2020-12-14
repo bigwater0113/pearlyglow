@@ -3,7 +3,6 @@ package kr.co.pearlyglow.controller;
 import java.io.IOException;
 import java.util.Enumeration;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,42 +37,16 @@ public class InsertItemController extends HttpServlet {
 		String iMaterial = mr.getParameter("i_material");
 		String iKdetail = mr.getParameter("i_kdetail");
 		String iEdetail = mr.getParameter("i_edetail");
+
+		int items_seq_nextval = dao.insert(new ItemsVo(0, iName, iPrice, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail));
 		
-		int items_seq_nextval = 0;
-		
-		if (mr.getOriginalFileName("thumbnail") != null) {
-			String saveFileName = mr.getFilesystemName("thumbnail");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			items_seq_nextval = dao.insert(new ItemsVo(0, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, savePath));
-		}
-		
-		if (mr.getOriginalFileName("file1") != null) {
-			String saveFileName = mr.getFilesystemName("file1");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
-		}
-		
-		if (mr.getOriginalFileName("file2") != null) {
-			String saveFileName = mr.getFilesystemName("file2");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
-		}
-		
-		if (mr.getOriginalFileName("file3") != null) {
-			String saveFileName = mr.getFilesystemName("file3");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
-		}
-		
-		/*
 		Enumeration<String> e = mr.getFileNames();
 		while(e.hasMoreElements()){
 			String file = e.nextElement();
 			String saveFileName = mr.getFilesystemName(file);
+			System.out.println(saveFileName);
 			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			System.out.println("몇번도는지 확인");
 			dao.insertImg(savePath, items_seq_nextval);
 		}
-		*/
 	}
 }

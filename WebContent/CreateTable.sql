@@ -28,7 +28,6 @@ create table items
 	material varchar2(30),	--재질
 	kDetail varchar2(4000),	--한글설명
 	eDetail varchar2(4000)	--영어설명
-	iThumbnail varchar2(300) -- 썸네일
 );
 
 -- 장바구니/ShoppingBasket
@@ -54,12 +53,8 @@ create table QnABoard
 	ibNum number primary key,	--게시글번호
 	id varchar2(30) references members(id), --아이디
 	iNum number(5,0) references items(inum),	--품번
-	qCategory varchar2(100),	--카테고리
-	qTitle varchar2(100),	--제목
 	ibPwd varchar2(20),	--게시글비밀번호
 	ibContent varchar2(1000),	--내용
-	orgName varchar2(100),	--원본사진명
-	saveName varchar2(100),	--저장이미지명
 	ibDate date,	--작성날짜	
 	ans varchar2(4000),	--답글
 	ansDate date	--답글날짜
@@ -102,7 +97,7 @@ create table delivery
 create table pDetail
 (
 	pdNum number primary key,	--구매상세번호
-	iNum number(5,0) references items(inum),	--품번 
+	iNum number(5,0) references items(inum),	--품번
 	pNum number references purchase(pnum),	--구매번호
 	pCnt number,	--구매상품갯수
 	pPay number	--상품별 금액
@@ -126,46 +121,3 @@ create table accessr
 	aDate date primary key,	--날짜
 	aCnt number	--접속자 수
 );
-
----------- drop table ---------- 
-drop table accessr;
-drop table reviewBoard;
-drop table pDetail;
-drop table delivery;
-drop table purchase;
-drop table stock;
-drop table QnABoard;
-drop table items_image;
-drop table shoppingBasket;
-drop table items;
-drop table members;
-
-
-
----------- create sequence -----------
-create SEQUENCE accessr_seq;
-create SEQUENCE reviewBoard_seq;
-create SEQUENCE pDetail_seq;
-create SEQUENCE delevery_seq;
-create SEQUENCE purchase_seq;
-create SEQUENCE stock_seq;
-create SEQUENCE QnABoard_seq;
-create SEQUENCE items_image_seq;
-create SEQUENCE shoppingBasket_seq;
-create SEQUENCE items_seq;
-create SEQUENCE members_seq;
-
-
-
----------- drop sequence -------------
-drop SEQUENCE accessr_seq;
-drop SEQUENCE reviewBoard_seq;
-drop SEQUENCE pDetail_seq;
-drop SEQUENCE delevery_seq;
-drop SEQUENCE purchase_seq;
-drop SEQUENCE stock_seq;
-drop SEQUENCE QnABoard_seq;
-drop SEQUENCE items_image_seq;
-drop SEQUENCE shoppingBasket_seq;
-drop SEQUENCE items_seq;
-drop SEQUENCE members_seq;  

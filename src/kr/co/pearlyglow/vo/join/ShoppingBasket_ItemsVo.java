@@ -5,7 +5,6 @@ public class ShoppingBasket_ItemsVo {
 	private String id;
 	private int iNum;
 	private int sbCnt;
-	private int iSale;
 	
 	private String iName;
 	private int price;
@@ -13,22 +12,25 @@ public class ShoppingBasket_ItemsVo {
 	private String iCategory;
 	private String color;
 	private String iSize;
-	private String iThumbnail;
-	public ShoppingBasket_ItemsVo(int sbNum, String id, int iNum, int sbCnt, int iSale, String iName, int price,
-			String iGender, String iCategory, String color, String iSize, String iThumbnail) {
+	private int imgNum;
+	private String imgName;
+	
+	
+	public ShoppingBasket_ItemsVo(int sbNum, String id, int iNum, int sbCnt, String iName, int price, String iGender,
+			String iCategory, String color, String iSize, int imgNum, String imgName) {
 		super();
 		this.sbNum = sbNum;
 		this.id = id;
 		this.iNum = iNum;
 		this.sbCnt = sbCnt;
-		this.iSale = iSale;
 		this.iName = iName;
 		this.price = price;
 		this.iGender = iGender;
 		this.iCategory = iCategory;
 		this.color = color;
 		this.iSize = iSize;
-		this.iThumbnail = iThumbnail;
+		this.imgNum = imgNum;
+		this.imgName = imgName;
 	}
 	public int getSbNum() {
 		return sbNum;
@@ -53,12 +55,6 @@ public class ShoppingBasket_ItemsVo {
 	}
 	public void setSbCnt(int sbCnt) {
 		this.sbCnt = sbCnt;
-	}
-	public int getiSale() {
-		return iSale;
-	}
-	public void setiSale(int iSale) {
-		this.iSale = iSale;
 	}
 	public String getiName() {
 		return iName;
@@ -96,12 +92,18 @@ public class ShoppingBasket_ItemsVo {
 	public void setiSize(String iSize) {
 		this.iSize = iSize;
 	}
-	public String getiThumbnail() {
-		return iThumbnail;
+	public int getImgNum() {
+		return imgNum;
 	}
-	public void setiThumbnail(String iThumbnail) {
-		this.iThumbnail = iThumbnail;
+	public void setImgNum(int imgNum) {
+		this.imgNum = imgNum;
 	}
-
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+	
 	
 }
