@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.co.pearlyglow.db.DBCPBean;
-import kr.co.pearlyglow.vo.join.myOrder_Purchase_ItemsVo;
+import kr.co.pearlyglow.vo.join.MyOrder_Purchase_ItemsVo;
 
 public class myOrderDao {
 	private static myOrderDao instance=new myOrderDao();
@@ -17,11 +17,11 @@ public class myOrderDao {
 	public static myOrderDao getInstance() {
 		return instance;
 	}
-	public ArrayList<myOrder_Purchase_ItemsVo> PI_list(){
+	public ArrayList<MyOrder_Purchase_ItemsVo> PI_list(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		ArrayList<myOrder_Purchase_ItemsVo> list=new ArrayList<myOrder_Purchase_ItemsVo>();
+		ArrayList<MyOrder_Purchase_ItemsVo> list=new ArrayList<MyOrder_Purchase_ItemsVo>();
 		try {
 			String sql="select p.id,p.pnum,d.inum,ii.imgName,i.iname,p.ptotal,p.pstatus,p.pdate " + 
 					"from purchase p join pdetail d " + 
@@ -34,7 +34,7 @@ public class myOrderDao {
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new myOrder_Purchase_ItemsVo(
+				list.add(new MyOrder_Purchase_ItemsVo(
 						rs.getString("id"), 
 						rs.getInt("pNum"), 
 						rs.getInt("iNum"), 

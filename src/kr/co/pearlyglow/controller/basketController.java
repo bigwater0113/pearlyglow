@@ -19,6 +19,9 @@ import kr.co.peralyglow.DAO.basketDAO;
 
 @WebServlet("/basketController")
 public class basketController extends HttpServlet{
+	
+	basketDAO dao = basketDAO.getInstance();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -26,8 +29,7 @@ public class basketController extends HttpServlet{
 		
 		// test
 		session.setAttribute("id", "dlgmlrnjs09");
-		
-		basketDAO dao = basketDAO.getInstance();
+	
 		String id = (String) session.getAttribute("id");
 
 		
@@ -63,6 +65,7 @@ public class basketController extends HttpServlet{
 			ArrayList<ShoppingBasket_ItemsVo> list = dao.selectAll(id);
 			req.setAttribute("list", list);
 			req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
+			System.out.println("장바구니 조회");
 		}
 	}
 	
@@ -70,8 +73,13 @@ public class basketController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] params = req.getParameterValues("item");
+		int n = 0;
+		
 		for (String i : params) {
 			System.out.println(i);
+			n = dao.delete(Integer.parseInt(i));
 		}
+		
+		resp.sendRedirect(req.getContextPath() + "/basketController");
 	}
 }

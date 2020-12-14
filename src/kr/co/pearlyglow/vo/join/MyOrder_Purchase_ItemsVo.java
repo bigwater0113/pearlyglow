@@ -2,7 +2,7 @@ package kr.co.pearlyglow.vo.join;
 
 import java.sql.Date;
 
-public class myOrder_Purchase_ItemsVo {
+public class MyOrder_Purchase_ItemsVo {
 	private String id;
 	private int pNum;
 	private int iNum;
@@ -11,10 +11,10 @@ public class myOrder_Purchase_ItemsVo {
 	private int pTotal;
 	private String pStatus;
 	private Date pDate;
-	public myOrder_Purchase_ItemsVo() {
+	public MyOrder_Purchase_ItemsVo() {
 		super();
 	}
-	public myOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String imgName, String iName, int pTotal,
+	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String imgName, String iName, int pTotal,
 			String pStatus, Date pDate) {
 		super();
 		this.id = id;
