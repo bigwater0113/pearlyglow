@@ -27,8 +27,9 @@ create table items
 	weight number,	--무게
 	material varchar2(30),	--재질
 	kDetail varchar2(4000),	--한글설명
-	eDetail varchar2(4000)	--영어설명
-	iThumbnail varchar2(300) -- 썸네일
+	eDetail varchar2(4000),	--영어설명
+	iThumbnail varchar2(300), -- 썸네일
+	total number	--총수량
 );
 
 -- 장바구니/ShoppingBasket
@@ -72,7 +73,6 @@ create table stock
 	iNum number(5,0) references items(inum),	--품번
 	rs number check(rs in('1', '2')),	--입출고
 	cnt number,	--입출고수량
-	total number,	--총수량
 	sDate date	--입출고날짜
 );
 
@@ -84,7 +84,7 @@ create table purchase
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	
-	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정'))	--제품출고상태
+	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정')),	--제품출고상태
 	pTotal number --총금액
 );
 
@@ -116,7 +116,7 @@ create table reviewBoard
 	score number,	--평가점수
 	rbContent varchar2(1000),	--리뷰내용
 	orgName varchar2(50),	--원본사진명
-	saveName varchar2(50)	--저장이미지명
+	saveName varchar2(50),	--저장이미지명
 	rDate date --작성날짜
 );
 

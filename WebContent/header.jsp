@@ -25,6 +25,7 @@
 				if (positionTop > -110) {
 					positionTop -= 2;
 				} else {
+					
 					clearInterval(upInterval);
 				}
 			}, 5)

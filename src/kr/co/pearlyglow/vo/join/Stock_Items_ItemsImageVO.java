@@ -1,6 +1,8 @@
-package kr.co.pearlyglow.vo;
+package kr.co.pearlyglow.vo.join;
 
-public class ItemsVo {
+import java.util.Date;
+
+public class Stock_Items_ItemsImageVO {
 	private int iNum;
 	private String iName;
 	private int price;
@@ -9,14 +11,19 @@ public class ItemsVo {
 	private String iCategory;
 	private String color;
 	private String iSize;
-	private int weight;
+	private int whight;
 	private String material;
 	private String kDetail;
 	private String eDetail;
 	private String iThumbnail;
+	
+	private int rs;
+	private int cnt;
 	private int total;
-	public ItemsVo(int iNum, String iName, int price, int iSale, String iGender, String iCategory, String color,
-			String iSize, int weight, String material, String kDetail, String eDetail, String iThumbnail, int total) {
+	private Date sDate;
+	public Stock_Items_ItemsImageVO(int iNum, String iName, int price, int iSale, String iGender, String iCategory,
+			String color, String iSize, int whight, String material, String kDetail, String eDetail, String iThumbnail,
+			int rs, int cnt, int total, Date sDate) {
 		super();
 		this.iNum = iNum;
 		this.iName = iName;
@@ -26,12 +33,15 @@ public class ItemsVo {
 		this.iCategory = iCategory;
 		this.color = color;
 		this.iSize = iSize;
-		this.weight = weight;
+		this.whight = whight;
 		this.material = material;
 		this.kDetail = kDetail;
 		this.eDetail = eDetail;
 		this.iThumbnail = iThumbnail;
+		this.rs = rs;
+		this.cnt = cnt;
 		this.total = total;
+		this.sDate = sDate;
 	}
 	public int getiNum() {
 		return iNum;
@@ -81,11 +91,11 @@ public class ItemsVo {
 	public void setiSize(String iSize) {
 		this.iSize = iSize;
 	}
-	public int getWeight() {
-		return weight;
+	public int getWhight() {
+		return whight;
 	}
-	public void setWeight(int weight) {
-		this.weight = weight;
+	public void setWhight(int whight) {
+		this.whight = whight;
 	}
 	public String getMaterial() {
 		return material;
@@ -111,13 +121,30 @@ public class ItemsVo {
 	public void setiThumbnail(String iThumbnail) {
 		this.iThumbnail = iThumbnail;
 	}
+	public int getRs() {
+		return rs;
+	}
+	public void setRs(int rs) {
+		this.rs = rs;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getTotal() {
 		return total;
 	}
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	
+	public Date getsDate() {
+		return sDate;
+	}
+	public void setsDate(Date sDate) {
+		this.sDate = sDate;
+	}
 	
 	
 }

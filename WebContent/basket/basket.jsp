@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div id="s_wrap">
-		<h2 style="text-align: center;">상품 목록</h2>
+		<h2 style="text-align: center;">장바구니 목록</h2>
 		<form action="${pageContext.request.contextPath }/basketController"
 			method="post">
 			<div id="s_itemArea">

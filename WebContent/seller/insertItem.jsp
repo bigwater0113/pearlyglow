@@ -37,9 +37,10 @@
 	width: 200px;
 }
 
-#line3 #i_weight {
-	width: 85px;
+#line3 input {
+	width: 80px;
 }
+
 </style>
 </head>
 <body>
@@ -76,11 +77,12 @@
 						<td><input type="text" id="i_weight" name="i_weight">
 						</td>
 						<th>사이즈</th>
-						<td colspan="2"><input type="text" id="i_size" name="i_size">
+						<td><input type="text" id="i_size" name="i_size">
 						</td>
 						<th>재질</th>
-						<td colspan="2"><input type="text" id="i_material"
-							name="i_material"></td>
+						<td><input type="text" id="i_material" name="i_material"></td>
+						<th>재고 </th>
+						<td><input type="text" id="total" name="total"></td>
 					</tr>
 					<tr>
 						<th>한국어 설명</th>

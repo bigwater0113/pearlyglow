@@ -144,7 +144,7 @@
 				}
 			}
 		}
-		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=3&sbCnt=' + sbCnt, true);
+		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=2&sbCnt=' + sbCnt, true);
 		xhr.send();
 	}
 </script>
