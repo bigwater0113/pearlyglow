@@ -23,7 +23,7 @@
 			var upInterval = setInterval(function() {
 				menu.style.top = positionTop + "px";
 				if (positionTop > -110) {
-					positionTop -= 2;
+					positionTop -= 2; 
 				} else {
 					
 					clearInterval(upInterval);
