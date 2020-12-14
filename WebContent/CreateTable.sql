@@ -101,7 +101,7 @@ create table delivery
 create table pDetail
 (
 	pdNum number primary key,	--구매상세번호
-	iNum number(5,0) references items(inum),	--품번
+	iNum number(5,0) references items(inum),	--품번 
 	pNum number references purchase(pnum),	--구매번호
 	pCnt number,	--구매상품갯수
 	pPay number	--상품별 금액
