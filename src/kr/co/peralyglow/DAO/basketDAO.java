@@ -64,8 +64,9 @@ public class basketDAO {
 				String color = rs.getString("color");
 				String iSize = rs.getString("iSize");
 				String iThumbnail = rs.getString("iThumbnail");
+				int total = rs.getInt("total");
 				
-				ShoppingBasket_ItemsVo.add(new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iSale, iName, price, iGender, iCategory, color, iSize, iThumbnail));
+				ShoppingBasket_ItemsVo.add(new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iSale, iName, price, iGender, iCategory, color, iSize, iThumbnail, total));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

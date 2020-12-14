@@ -14,8 +14,9 @@ public class ShoppingBasket_ItemsVo {
 	private String color;
 	private String iSize;
 	private String iThumbnail;
+	private int total;
 	public ShoppingBasket_ItemsVo(int sbNum, String id, int iNum, int sbCnt, int iSale, String iName, int price,
-			String iGender, String iCategory, String color, String iSize, String iThumbnail) {
+			String iGender, String iCategory, String color, String iSize, String iThumbnail, int total) {
 		super();
 		this.sbNum = sbNum;
 		this.id = id;
@@ -29,6 +30,7 @@ public class ShoppingBasket_ItemsVo {
 		this.color = color;
 		this.iSize = iSize;
 		this.iThumbnail = iThumbnail;
+		this.total = total;
 	}
 	public int getSbNum() {
 		return sbNum;
@@ -102,6 +104,12 @@ public class ShoppingBasket_ItemsVo {
 	public void setiThumbnail(String iThumbnail) {
 		this.iThumbnail = iThumbnail;
 	}
-
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
 	
 }

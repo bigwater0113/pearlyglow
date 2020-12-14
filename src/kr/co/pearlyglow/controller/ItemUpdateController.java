@@ -1,7 +1,7 @@
 package kr.co.pearlyglow.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,26 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.pearlyglow.vo.ItemsVo;
-import kr.co.peralyglow.DAO.StockDAO;
 import kr.co.peralyglow.DAO.itemsDAO;
 
-@WebServlet("/stockController")
-public class StockController extends HttpServlet{
-	
-	itemsDAO dao = itemsDAO.getInstance();
-	
+@WebServlet("/itemUpdateController")
+public class ItemUpdateController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = (String) req.getSession().getAttribute("id");
 		
-		/*
-		if (!id.equals("admin")) {
-			// 되돌아가기
-		}
-		*/
+		int iNum = Integer.parseInt(req.getParameter("iNum"));
+		itemsDAO dao = itemsDAO.getInstance();
 		
-		ArrayList<ItemsVo> list = dao.selectAll();
-		req.setAttribute("list", list);
-		req.getRequestDispatcher("/seller/stockControll.jsp").forward(req, resp);
+		ItemsVo vo = dao.select(iNum);
+		req.setAttribute("vo", vo);
+		req.setAttribute("work", "update");
+		req.getRequestDispatcher("/seller/insertItem.jsp").forward(req, resp);
 	}
 }

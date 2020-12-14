@@ -41,7 +41,7 @@
 				<table id="s_itemTable">
 					<tr id="s_tableHeader">
 						<th width="32" height="24"><input type="checkbox" id="s_selectAll"></th>
-						<th width="152" height="24">이미지</th>
+						<th width="100" height="24">이미지</th>
 						<th width="402" height="24">상품정보</th>
 						<th width="102" height="24">판매가</th>
 						<th width="52" height="24">수량</th>
@@ -51,13 +51,14 @@
 						<tr>
 							<td width="30"><input type="checkbox" id="${list.sbNum }"
 								class="ck" name="item" value="${list.sbNum }"></td>
-							<td width="150" height="150"><img alt=""
+							<td width="100" height="100"><img alt=""
 								src="${list.iThumbnail }" width="150" height="150"></td>
 							<td width="400">
-								<p>분류 : ${list.iCategory }</p> <a href="#">${list.iName }</a>
-								<p>성별 : ${list.iGender } </p> 
-								<p>색상 : ${list.color } </p> 
-								<p>사이즈 : ${list.iSize } </p>
+								<span>분류 : ${list.iCategory }</span>
+								<p><a href="#">${list.iName }</a> </p>
+								<span>성별 : ${list.iGender } </span> <br>
+								<span>색상 : ${list.color } </span> <br>
+								<span>사이즈 : ${list.iSize } </span>
 							</td>
 							<td width="100" style="text-align: center">${list.price } \</td>
 							<td width="50" style="text-align: center">${list.sbCnt }</td>

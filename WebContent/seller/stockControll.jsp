@@ -6,40 +6,52 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#st_wrap {
+		width: 900px;
+		border: 1px solid gray;
+		text-align: center;
+	}
+	#st_itemArea {
+		display: flex;
+		justify-content: center;
+	}
+</style>
 </head>
 <body>
 	<div id="st_wrap">
 		<h2 style="text-align: center;">상품 목록</h2>
 		<form action="${pageContext.request.contextPath }/stockController" method="post">
 			<div id="st_itemArea">
-				<table id="st_itemTable">
+				<table id="st_itemTable" border="1">
 					<tr id="st_tableHeader">
-						<th>상품명</th>
-						<th>썸네일</th>
-						<th>가격</th>
-						<th>할인</th>
+						<th width="150px">상품명</th>
+						<th width="100px">썸네일</th>
+						<th width="80px">가격</th>
+						<th width="50px">할인</th>
 						<th>성별</th>
 						<th>카테고리</th>
-						<th>색상</th>
+						<th width="100px">색상</th>
 						<th>사이즈</th>
 						<th>무게</th>
-						<th>재질</th>
-						<th>재고</th>
+						<th width="50px">재질</th>
+						<th width="50px">재고</th>
 						<th>관리</th>
 					</tr>
 					<c:forEach var="list" items="${list }">
 						<tr>
 							<td>${list.iName }</td>
-							<td><img alt="" src="${list.iThumbnail }" width="150" height="150"></td>
-							<td>${list.iPrice }</td>
-							<td>${list.iSale }></td>
-							<td>${list.iGender }></td>
-							<td>${list.iCategory }></td>
-							<td>${list.color }></td>
-							<td>${list.iSize }></td>
-							<td>${list.weight }></td>
-							<td>${list.meterial }></td>
-							<td>${list.iName }></td>
+							<td><img alt="" src="${list.iThumbnail }" width="100" height="100"></td>
+							<td>${list.price } \</td>
+							<td>${list.iSale } %</td>
+							<td>${list.iGender }</td>
+							<td>${list.iCategory }</td>
+							<td>${list.color }</td>
+							<td>${list.iSize }</td>
+							<td>${list.weight }</td>
+							<td>${list.material }</td>
+							<td>${list.total }</td>
+							<td><a href="${pageContext.request.contextPath }/itemUpdateController?iNum=${list.iNum}">수정</a></td>
 						</tr>
 					</c:forEach>
 				</table>
