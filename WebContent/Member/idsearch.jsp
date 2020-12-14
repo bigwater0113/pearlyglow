@@ -12,7 +12,7 @@
 		var email = document.getElementById("i_email").value;
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange=callback;
-		xhr.open('get','id.jsp?name='+name+'&email='+email,true);
+		xhr.open('get','${pageContext.request.contextPath}/Member/id.jsp?name='+name+'&email='+email,true);
 		xhr.send();
 	}
 	function callback() {

@@ -13,7 +13,7 @@
 		var email = document.getElementById("p_email").value;
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange=callback;
-		xhr.open('get','pwd.jsp?id='+id+'&name='+name+'&email='+email,true);
+		xhr.open('get','${pageContext.request.contextPath}/Member/pwd.jsp?id='+id+'&name='+name+'&email='+email,true);
 		xhr.send();
 	}
 	function callback() {
