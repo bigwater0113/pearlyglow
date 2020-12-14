@@ -53,8 +53,12 @@ create table QnABoard
 	ibNum number primary key,	--게시글번호
 	id varchar2(30) references members(id), --아이디
 	iNum number(5,0) references items(inum),	--품번
+	qCategory varchar2(100),	--카테고리
+	qTitle varchar2(100),	--제목
 	ibPwd varchar2(20),	--게시글비밀번호
 	ibContent varchar2(1000),	--내용
+	orgName varchar2(100),	--원본사진명
+	saveName varchar2(100),	--저장이미지명
 	ibDate date,	--작성날짜	
 	ans varchar2(4000),	--답글
 	ansDate date	--답글날짜
