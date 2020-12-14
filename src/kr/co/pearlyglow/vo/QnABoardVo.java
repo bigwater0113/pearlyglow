@@ -6,22 +6,30 @@ public class QnABoardVo {
 	private int ibNum;
 	private String id;
 	private int iNum;
+	private String qCategory;
+	private String qTitle;
 	private String ibPwd;
 	private String ibContent;
+	private String orgName;
+	private String saveName;
 	private Date ibDate;
 	private String ans;
 	private Date ansDate;
 	public QnABoardVo() {
 		super();
 	}
-	public QnABoardVo(int ibNum, String id, int iNum, String ibPwd, String ibContent, Date ibDate, String ans,
+	public QnABoardVo(int ibNum, String id, int iNum, String qCategory, String qTitle, String ibPwd, String ibContent, String orgName, String saveName, Date ibDate, String ans,
 			Date ansDate) {
 		super();
 		this.ibNum = ibNum;
 		this.id = id;
 		this.iNum = iNum;
+		this.qCategory = qCategory;
+		this.qTitle = qTitle;
 		this.ibPwd = ibPwd;
 		this.ibContent = ibContent;
+		this.orgName  =orgName;
+		this.saveName = saveName;
 		this.ibDate = ibDate;
 		this.ans = ans;
 		this.ansDate = ansDate;
@@ -44,6 +52,18 @@ public class QnABoardVo {
 	public void setiNum(int iNum) {
 		this.iNum = iNum;
 	}
+	public String getqCategory() {
+		return qCategory;
+	}
+	public void setqCategory(String qCategory) {
+		this.qCategory = qCategory;
+	}
+	public String getqTitle() {
+		return qTitle;
+	}
+	public void setqTitle(String qTitle) {
+		this.qTitle = qTitle;
+	}
 	public String getIbPwd() {
 		return ibPwd;
 	}
@@ -55,6 +75,18 @@ public class QnABoardVo {
 	}
 	public void setIbContent(String ibContent) {
 		this.ibContent = ibContent;
+	}
+	public String getOrgName() {
+		return orgName;
+	}
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+	public String getSaveName() {
+		return saveName;
+	}
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
 	}
 	public Date getIbDate() {
 		return ibDate;
