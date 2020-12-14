@@ -45,7 +45,7 @@ public class StockDAO {
 				String eDetail = rs.getString("eDetail");
 				String iThumbnail = rs.getString("iThumbnail");
 				
-				String imgName = rs.getString("imgName")
+				String imgName = rs.getString("imgName");
 				
 				vo.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail, eDetail, iThumbnail));
 			}

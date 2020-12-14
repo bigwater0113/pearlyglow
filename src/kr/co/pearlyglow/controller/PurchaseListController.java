@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import kr.co.pearlyglow.vo.Items_purchase_pdetailVo;
 import kr.co.peralyglow.DAO.PurchaseListDao;
 
 @WebServlet("/purchaselist")

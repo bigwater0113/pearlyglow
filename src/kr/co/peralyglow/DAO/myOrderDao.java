@@ -23,12 +23,12 @@ public class myOrderDao {
 		ResultSet rs=null;
 		ArrayList<MyOrder_Purchase_ItemsVo> list=new ArrayList<MyOrder_Purchase_ItemsVo>();
 		try {
-			String sql="select p.id,p.pnum,d.inum,ii.imgName,i.iname,p.ptotal,p.pstatus,p.pdate " + 
-					"from purchase p join pdetail d " + 
-					"on p.pnum=d.pnum " + 
-					"join items i  " + 
-					"on d.inum=i.inum " + 
-					"join items_image ii " + 
+			String sql="select p.id,p.pnum,d.inum,ii.imgName,i.iname,p.ptotal,p.pstatus,p.pdate   " + 
+					"from purchase p join pdetail d  " + 
+					"on p.pnum=d.pnum  " + 
+					"join items i   " + 
+					"on d.inum=i.inum  " + 
+					"join items_image ii  " + 
 					"on i.inum=ii.inum";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);

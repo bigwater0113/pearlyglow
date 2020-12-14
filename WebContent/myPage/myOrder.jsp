@@ -36,14 +36,16 @@
 				<th>상세정보</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
-				<td>${vo.id }</td>
-				<td>${vo.pNum }</td>
-				<td>${vo.iNum }</td>
-				<td>${vo.imgName }</td>
-				<td>${vo.iName }</td>
-				<td>${vo.pTotal }</td>
-				<td>${vo.pStatus }</td>
-				<td>${vo.pDate }</td>
+				<tr>
+					<td>${vo.id }</td>
+					<td>${vo.pNum }</td>
+					<td>${vo.iNum }</td>
+					<td>${vo.imgName }</td>
+					<td>${vo.iName }</td>
+					<td>${vo.pTotal }</td>
+					<td>${vo.pStatus }</td>
+					<td>${vo.pDate }</td>
+				</tr>
 			</c:forEach>
 		</table>
 	</div>
