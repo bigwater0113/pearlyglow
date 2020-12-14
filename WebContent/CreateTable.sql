@@ -168,4 +168,4 @@ drop SEQUENCE QnABoard_seq;
 drop SEQUENCE items_image_seq;
 drop SEQUENCE shoppingBasket_seq;
 drop SEQUENCE items_seq;
-drop SEQUENCE members_seq;
+drop SEQUENCE members_seq;  
