@@ -12,6 +12,7 @@
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
 			<li><a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp">회원로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/index.jsp?spage=Member/join.jsp">회원가입</a></li>
 		</c:when>
 		<c:otherwise>
 			<li>
@@ -21,7 +22,6 @@
 			</li>
 		</c:otherwise>
 	</c:choose>
-	<li><a href="${pageContext.request.contextPath}/index.jsp?spage=Member/join.jsp">회원가입</a></li>
 	<li><a href="${pageContext.request.contextPath}/Member/list">회원목록</a></li>
 </ul>
 </body>

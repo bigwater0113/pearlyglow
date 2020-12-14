@@ -25,10 +25,10 @@
 	String spage=request.getParameter("spage");
 	String mpage=request.getParameter("mpage");
 	if(spage==null){
-		spage="myPage.jsp";
+		spage="myPage/myPage.jsp";
 	}
 	if(mpage==null){
-		mpage="testinfo.jsp";
+		mpage="myPage/testinfo.jsp";
 	}
 %>
 <div id="wrap">

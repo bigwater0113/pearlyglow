@@ -18,6 +18,6 @@ public class MyOrderController extends HttpServlet{
 		myOrderDao dao=myOrderDao.getInstance();
 		ArrayList<MyOrder_Purchase_ItemsVo> list=dao.PI_list();
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("index.jsp?spage=myPage.jsp&mpage=myOrder.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=myOrder.jsp").forward(req, resp);
 	}
 }

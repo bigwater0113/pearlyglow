@@ -23,6 +23,9 @@
 			div.innerHTML=html;
 		}
 	}
+	function backPage(){
+		history.go(-1);
+	}
 </script>
 </head>
 <body>
