@@ -13,11 +13,10 @@ public class ItemsVo {
 	private String material;
 	private String kDetail;
 	private String eDetail;
-	public ItemsVo() {
-		super();
-	}
-	public ItemsVo(int iNum, String iName, int price, int iSale,String iGender, String iCategory, String color, String iSize,
-			int weight, String material, String kDetail, String eDetail) {
+	private String iThumbnail;
+	
+	public ItemsVo(int iNum, String iName, int price, int iSale, String iGender, String iCategory, String color,
+			String iSize, int weight, String material, String kDetail, String eDetail, String iThumbnail) {
 		super();
 		this.iNum = iNum;
 		this.iName = iName;
@@ -31,6 +30,7 @@ public class ItemsVo {
 		this.material = material;
 		this.kDetail = kDetail;
 		this.eDetail = eDetail;
+		this.iThumbnail = iThumbnail;
 	}
 	public int getiNum() {
 		return iNum;
@@ -49,6 +49,12 @@ public class ItemsVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getiSale() {
+		return iSale;
+	}
+	public void setiSale(int iSale) {
+		this.iSale = iSale;
 	}
 	public String getiGender() {
 		return iGender;
@@ -98,11 +104,13 @@ public class ItemsVo {
 	public void seteDetail(String eDetail) {
 		this.eDetail = eDetail;
 	}
-	public int getiSale() {
-		return iSale;
+	public String getiThumbnail() {
+		return iThumbnail;
 	}
-	public void setiSale(int iSale) {
-		this.iSale = iSale;
+	public void setiThumbnail(String iThumbnail) {
+		this.iThumbnail = iThumbnail;
 	}
+	
+	
 	
 }

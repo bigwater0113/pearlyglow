@@ -35,18 +35,20 @@ public class insertItemDAO {
 			}
 			
 			
-			ps = con.prepareStatement("insert into items values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			ps = con.prepareStatement("insert into items values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, items_seq_nextval);
 			ps.setString(2, vo.getiName());
 			ps.setInt(3, vo.getPrice());
-			ps.setString(4, vo.getiGender());
-			ps.setString(5, vo.getiCategory());
-			ps.setString(6, vo.getColor());
-			ps.setString(7, vo.getiSize());
-			ps.setInt(8, vo.getWeight());
-			ps.setString(9, vo.getMaterial());
-			ps.setString(10, vo.getkDetail());
-			ps.setString(11, vo.geteDetail());
+			ps.setInt(4, vo.getiSale());
+			ps.setString(5, vo.getiGender());
+			ps.setString(6, vo.getiCategory());
+			ps.setString(7, vo.getColor());
+			ps.setString(8, vo.getiSize());
+			ps.setInt(9, vo.getWeight());
+			ps.setString(10, vo.getMaterial());
+			ps.setString(11, vo.getkDetail());
+			ps.setString(12, vo.geteDetail());
+			ps.setString(13, vo.getiThumbnail());
 			
 			n = ps.executeUpdate();
 		} catch (SQLException e) {

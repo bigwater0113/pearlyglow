@@ -48,7 +48,7 @@ public class basketDAO {
 		
 		try {
 			con = DBConnection.getConn();
-			ps = con.prepareStatement("select * from shoppingbasket s, items i, items_image ii where id = ? and s.inum = i.inum and i.inum = ii.inum");
+			ps = con.prepareStatement("select * from shoppingbasket s, items i where id = ? and s.inum = i.inum");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			
@@ -56,16 +56,16 @@ public class basketDAO {
 				int sbNum = rs.getInt("sbNum");
 				int sbCnt = rs.getInt("sbCnt");
 				int iNum = rs.getInt("iNum");
+				int iSale = rs.getInt("iSale");
 				String iName = rs.getString("iName");
 				int price = rs.getInt("price");
 				String iGender = rs.getString("iGender");
 				String iCategory = rs.getString("iCategory");
 				String color = rs.getString("color");
 				String iSize = rs.getString("iSize");
-				int imgNum = rs.getInt("imgNum");
-				String imgName = rs.getString("imgName");
+				String iThumbnail = rs.getString("iThumbnail");
 				
-				ShoppingBasket_ItemsVo.add(new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iName, price, iGender, iCategory, color, iSize, imgNum, imgName));
+				ShoppingBasket_ItemsVo.add(new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iSale, iName, price, iGender, iCategory, color, iSize, iThumbnail));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,6 +74,26 @@ public class basketDAO {
 		}
 		
 		return ShoppingBasket_ItemsVo;
+	}
+	
+	public int delete (int sbNum) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int n = 0;
+		try {
+			con = DBConnection.getConn();
+			ps = con.prepareStatement("delete from shoppingbasket where sbnum = ?");
+			ps.setInt(1, sbNum);
+			n = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(con, ps, null);
+		}
+		
+		return n;
 	}
 }
 

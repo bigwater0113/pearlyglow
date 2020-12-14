@@ -27,7 +27,8 @@ create table items
 	weight number,	--무게
 	material varchar2(30),	--재질
 	kDetail varchar2(4000),	--한글설명
-	eDetail varchar2(4000)	--영어설명
+	eDetail varchar2(4000),	--영어설명
+	iThumbnail varchar2(300) -- 썸네일
 );
 
 -- 장바구니/ShoppingBasket
@@ -79,7 +80,7 @@ create table purchase
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	
-	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정'))	--제품출고상태
+	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정')),	--제품출고상태
 	pTotal number --총금액
 );
 
@@ -111,7 +112,7 @@ create table reviewBoard
 	score number,	--평가점수
 	rbContent varchar2(1000),	--리뷰내용
 	orgName varchar2(50),	--원본사진명
-	saveName varchar2(50)	--저장이미지명
+	saveName varchar2(50),	--저장이미지명
 	rDate date --작성날짜
 );
 
@@ -121,3 +122,50 @@ create table accessr
 	aDate date primary key,	--날짜
 	aCnt number	--접속자 수
 );
+
+
+
+
+
+---------- drop table ---------- 
+drop table accessr;
+drop table reviewBoard;
+drop table pDetail;
+drop table delivery;
+drop table purchase;
+drop table stock;
+drop table QnABoard;
+drop table items_image;
+drop table shoppingBasket;
+drop table items;
+drop table members;
+
+
+
+---------- create sequence -----------
+create SEQUENCE accessr_seq;
+create SEQUENCE reviewBoard_seq;
+create SEQUENCE pDetail_seq;
+create SEQUENCE delevery_seq;
+create SEQUENCE purchase_seq;
+create SEQUENCE stock_seq;
+create SEQUENCE QnABoard_seq;
+create SEQUENCE items_image_seq;
+create SEQUENCE shoppingBasket_seq;
+create SEQUENCE items_seq;
+create SEQUENCE members_seq;
+
+
+
+---------- drop sequence -------------
+drop SEQUENCE accessr_seq;
+drop SEQUENCE reviewBoard_seq;
+drop SEQUENCE pDetail_seq;
+drop SEQUENCE delevery_seq;
+drop SEQUENCE purchase_seq;
+drop SEQUENCE stock_seq;
+drop SEQUENCE QnABoard_seq;
+drop SEQUENCE items_image_seq;
+drop SEQUENCE shoppingBasket_seq;
+drop SEQUENCE items_seq;
+drop SEQUENCE members_seq;

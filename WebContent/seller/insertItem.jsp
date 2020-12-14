@@ -94,9 +94,16 @@
 					</tr>
 				</table>
 			</div>
-			<div id="i_fileArea">
+			<fieldset>
+				<legend>썸네일 이미지</legend>
+				<input type="file" name="thumbnail" multiple="multiple">
+			</fieldset>
+			<fieldset id="i_fileArea">
+				<legend>본문 이미지</legend>
 				<input type="file" name="file1" multiple="multiple">
-			</div>
+				<input type="file" name="file2" multiple="multiple">
+				<input type="file" name="file3" multiple="multiple">
+			</fieldset>
 			<input type="submit" value="작성완료">
 		</form>
 	</div>
