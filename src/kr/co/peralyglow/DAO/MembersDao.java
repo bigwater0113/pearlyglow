@@ -10,14 +10,46 @@ import kr.co.pearlyglow.db.DBCPBean;
 import kr.co.pearlyglow.vo.MembersVo;
 
 public class MembersDao {
-	public ArrayList<MembersVo> list(){
+	public ArrayList<MembersVo> list(int startRowNum, int endRowNum,String field,String keyword){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		String sql="";
+		if(field!=null && !field.equals("")) {
+			if(field.equals("gender") || field.equals("issleep")) {
+				sql="select * from " + 
+				        "(" + 
+				           "  select aa.*,rownum rnum from" + 
+				           "  ( " + 
+				           "    select * from members  where "+ field + "= '" + keyword.toUpperCase() + "'"+ 
+				           "    order by recentAcc desc " + 
+				           "  )aa " + 
+				           ") where rnum>=? and rnum<=?"; 
+			}else {
+				sql="select * from " + 
+			        "(" + 
+			           "  select aa.*,rownum rnum from" + 
+			           "  ( " + 
+			           "    select * from members  where "+ field + " like '%" + keyword +"%'" + 
+			           "    order by recentAcc desc " + 
+			           "  )aa " + 
+			           ") where rnum>=? and rnum<=?";   
+			}
+		}else {
+			sql= "select * from " + 
+		         "(" + 
+		          "  select aa.*,rownum rnum from" + 
+		          "  ( " + 
+		          "    select * from members " + 
+		          "    order by recentAcc desc " + 
+		          "  )aa " + 
+		          ") where rnum>=? and rnum<=?";   
+		}
 		try {
-			String sql="select * from members";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,startRowNum);
+			pstmt.setInt(2, endRowNum);
 			rs=pstmt.executeQuery();
 			ArrayList<MembersVo> memberlist=new ArrayList<MembersVo>();
 			while(rs.next()) {
@@ -41,6 +73,29 @@ public class MembersDao {
 		}finally {
 			DBCPBean.close(con, pstmt, rs);
 		}
+	}
+	
+	public int getCount(String field,String keyword) {
+		Connection con=null;
+	    PreparedStatement pstmt=null;
+	    ResultSet rs=null;
+	    try {
+	       con=DBCPBean.getConn();
+	       String sql="select NVL(count(id),0) cnt from members";
+	       if(field!=null && !field.equals("")) {
+	          sql += " where "+ field + " like '%"+ keyword + "%'";
+	       }
+	       pstmt=con.prepareStatement(sql);
+	       rs=pstmt.executeQuery();
+	       rs.next();
+	       int cnt=rs.getInt(1);
+	       return cnt;
+	    }catch(SQLException se) {
+	       se.printStackTrace();
+	       return -1;
+	    }finally {
+	       DBCPBean.close(con, pstmt, rs);
+	    }
 	}
 	
 	public int insert(MembersVo vo) {

@@ -26,4 +26,15 @@ public class ListDeleteController extends HttpServlet{
 			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
 		}
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] check = req.getParameterValues("mem");
+		int n = 0;
+		MembersDao dao=new MembersDao();
+		for(int i=0 ; i<check.length; i++) {
+			n=dao.delete(check[i]);
+		}
+		req.getRequestDispatcher("/index.jsp?spage=Member/list.jsp").forward(req, resp);
+	}
 }

@@ -93,6 +93,23 @@
 				return;
 		}
 	}
+	
+	function sendEmail(){
+		var email = document.getElementById("j_email").value;
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange=ecallback;
+		xhr.open('get','${pageContext.request.contextPath}/Member/emailSendAction.jsp?email='+email,true);
+		xhr.send();
+	}
+	function ecallback() {
+		if(xhr.readyState==4 && xhr.status==200){
+			var div=document.getElementById("j_emailcheck");
+			div.innerHTML="이메일 인증이 완료되었습니다.";
+		}else{
+			var div=document.getElementById("j_emailcheck");
+			div.innerHTML="이메일 인증에 실패했습니다.";
+		}
+	}
 </script>
 
 
@@ -207,7 +224,8 @@
 	        <span>
 	            <input type="email" id="j_email" name="j_email" maxlength="100">
 	        </span>
-	        <button type="button" id="j_btnEmail"><span>이메일 인증</span></button>
+	      	<button type="button" id="j_btnEmail", onclick="sendEmail()"><span>이메일 인증</span></button>
+	    	<span id="j_emailcheck"></span>
 	    </div><br><br>
 	
 	    <!-- MOBILE -->

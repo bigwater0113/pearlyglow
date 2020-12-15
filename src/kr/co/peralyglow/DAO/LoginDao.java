@@ -15,7 +15,8 @@ public class LoginDao {
 		ResultSet rs=null;
 		try {
 			con=DBCPBean.getConn();
-			String sql="select * from members where id=? and pwd=?";
+			//String sql="select * from members where id=? and pwd=?";
+			String sql="update members set recentacc=sysdate where id=? and pwd=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,map.get("id"));
 			pstmt.setString(2,map.get("pwd"));

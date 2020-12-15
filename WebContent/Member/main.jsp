@@ -23,6 +23,9 @@
 		</c:otherwise>
 	</c:choose>
 	<li><a href="${pageContext.request.contextPath}/Member/list">회원목록</a></li>
+	
+	<li><a href="${pageContext.request.contextPath }/Board/insert.jsp">문의등록</a></li>
+	<li><a href="${pageContext.request.contextPath }/Board/list">문의목록</a></li>
 </ul>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,5 +23,45 @@
 	<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/Member/update?id=${vo.id}'">
 	<input type="button" value="회원탈퇴" onclick="location.href='${pageContext.request.contextPath}/Member/delete?id=${vo.id}'">
 </form>
+
+<h1>나의 문의글</h1>
+<table border="1" width="1000">
+	<tr style="text-align: center">
+		<th>문의글 번호</th>
+		<th>작성자</th>
+		<th>문의 제품 </th>
+		<th>문의 종류 </th>
+		<th>문의 제목 </th>
+		<th>문의글 비밀번호 </th>
+		<th width="200">문의 내용 </th>
+		<th>수정</th>
+		<th>삭제</th>
+		<th>답변</th>
+	</tr>
+	
+<c:forEach var="qvo" items="${list }">
+	<tr>
+		<th>${qvo.ibNum }</th>
+		<th>${qvo.id }</th>
+		<th>${qvo.iNum }</th>
+		<th>${qvo.qCategory }</th>
+		<th>${qvo.qTitle }</th>
+		<th>${qvo.ibPwd }</th>
+		<th><a href="${pageContext.request.contextPath}/Board/detail?ibnum=${qvo.ibNum}">${qvo.ibContent }</a></th>
+		<th><a href="${pageContext.request.contextPath}/Board/update?ibnum=${qvo.ibNum}">수정</a></th>
+		<th><a href="${pageContext.request.contextPath}/Board/delete?ibnum=${qvo.ibNum}">삭제</a></th>
+		<c:choose>
+			<c:when test="${empty qvo.ans }">
+				<th>답변대기중</th>
+			</c:when>
+			<c:otherwise>
+				<th>${qvo.ans }</th>
+			</c:otherwise>
+		</c:choose>
+	</tr>
+</c:forEach>
+</table>
+<a href="${pageContext.request.contextPath}/Member/main.jsp">홈</a>
+
 </body>
 </html>
