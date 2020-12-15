@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index.jsp</title>ㄹ
+<title>index.jsp</title>
 <style>
 /*
  	*{margin:0px;padding:0px;} 
