@@ -32,7 +32,7 @@
 			
 			<!-- 구매상세내역테이블 >> 구매상세번호 받아오기 -->
 			<div id="insert_num">
-				<label for="insert_pdnum" class="insert_label">구매상세번호</label><input type="text" id="insert_pdnum" name="insert_pdnum" value="${purchaselist_pdnum }" readonly="readonly">
+				<label for="insert_pdnum" class="insert_label">구매상세번호</label><input type="text" id="insert_pdnum" name="insert_pdnum" value="${mypage_pdnum }" readonly="readonly">
 			</div>
 			<label for="insert_score" class="insert_label">평가점수</label><input type="text" id="insert_score" name="insert_score"><br>
 			<label class="insert_label">첨부파일</label>
@@ -40,8 +40,8 @@
 			
 			<label for="insert_content" class="insert_label1">내용</label><textarea id="insert_content" name="insert_content" rows="70" cols="90"></textarea><br>
 			
-			<!-- 마이페이지 구매내역 페이지로 -->
-			<input type="button" value="취소" onclick="location.href ='${pageContext.request.contextPath}/purchase_list/purchaselist.jsp'" id="insert_back" name="insert_back" class="insert_btn">
+			<!-- 마이페이지 구매내역 페이지로 x -> 태수 마이리뷰 > 작성하지 않은 리뷰 파트로 -->
+			<input type="button" value="취소" onclick="location.href ='${pageContext.request.contextPath}/~~~~~~~~'" id="insert_back" name="insert_back" class="insert_btn">
 			
 			<!-- /insert.do 컨트롤러로 -->
 			<input type="submit" value="저장" id="insert_save" name="insert_save" class="insert_btn">
