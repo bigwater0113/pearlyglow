@@ -53,7 +53,7 @@ create table items_image
 create table QnABoard
 (
 	ibNum number primary key,	--게시글번호
-	id varchar2(30) references members(id), --아이디
+	id varchar2(30) references members(id) on delete cascade, --아이디
 	iNum number(5,0) references items(inum),	--품번
 	qCategory varchar2(100),	--카테고리
 	qTitle varchar2(100),	--제목
