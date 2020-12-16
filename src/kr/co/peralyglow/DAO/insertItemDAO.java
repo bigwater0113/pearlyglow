@@ -62,16 +62,18 @@ public class insertItemDAO {
 		return items_seq_nextval;
 	}
 	
-	public int insertImg (String saveFileName, int items_seq_nextval) {
+	public int insertImg (String saveFile1Name, String saveFile2Name, String saveFile3Name, int items_seq_nextval) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
 		int n = 0;
 		try {
 			con = DBConnection.getConn();
-			ps = con.prepareStatement("insert into items_image values(items_image_seq.nextval, ?, ?)");
+			ps = con.prepareStatement("insert into items_image values(items_image_seq.nextval, ?, ?, ?, ?)");
 			ps.setInt(1, items_seq_nextval);
-			ps.setString(2, saveFileName);
+			ps.setString(2, saveFile1Name);
+			ps.setString(3, saveFile2Name);
+			ps.setString(4, saveFile3Name);
 			n = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

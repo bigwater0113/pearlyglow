@@ -46,6 +46,6 @@
 		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibnum }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
 	</tr>
 </table>
-<a href="${pageContext.request.contextPath }/Member/main.jsp">홈으로</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>
 </body>
 </html>

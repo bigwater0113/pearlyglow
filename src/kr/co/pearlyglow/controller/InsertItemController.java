@@ -48,23 +48,23 @@ public class InsertItemController extends HttpServlet {
 			items_seq_nextval = dao.insert(new ItemsVo(0, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, savePath, total));
 		}
 		
+		String file1SavePath = null;
+		String file2SavePath = null;
+		String file3SavePath = null;
+		
 		if (mr.getOriginalFileName("file1") != null) {
-			String saveFileName = mr.getFilesystemName("file1");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
+			file1SavePath = saveDir = req.getContextPath() + "/basket/upload/" + mr.getFilesystemName("file1");
 		}
 		
 		if (mr.getOriginalFileName("file2") != null) {
-			String saveFileName = mr.getFilesystemName("file2");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
+			file2SavePath = saveDir = req.getContextPath() + "/basket/upload/" + mr.getFilesystemName("file2");
 		}
 		
 		if (mr.getOriginalFileName("file3") != null) {
-			String saveFileName = mr.getFilesystemName("file3");
-			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			dao.insertImg(savePath, items_seq_nextval);
+			file3SavePath = saveDir = req.getContextPath() + "/basket/upload/" + mr.getFilesystemName("file3");
 		}
+		
+		dao.insertImg(file1SavePath, file2SavePath, file3SavePath, items_seq_nextval);
 		
 		/*
 		Enumeration<String> e = mr.getFileNames();

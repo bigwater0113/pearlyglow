@@ -20,6 +20,6 @@ public class BoardDetailController extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		QnABoardVo vo = dao.detail(Integer.parseInt(num));
 		req.setAttribute("vo", vo);
-		req.getRequestDispatcher("/Board/detail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Board/detail.jsp").forward(req, resp);
 	}
 }

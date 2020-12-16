@@ -46,7 +46,9 @@ create table items_image
 (
 	imgNum number primary key,	--이미지 번호
 	iNum number(5,0) references items(inum),	--품번
-	imgName varchar2(500)	--상품 이미지파일명
+	file1 varchar2(500)	--상품 이미지파일명
+	file2 varchar2(500)	--상품 이미지파일명
+	file3 varchar2(500)	--상품 이미지파일명
 );
 
 -- 문의 게시판/QNAboard
@@ -64,6 +66,9 @@ create table QnABoard
 	ibDate date,	--작성날짜	
 	ans varchar2(4000),	--답글
 	ansDate date	--답글날짜
+	ref number(5), -- 그룹번호
+	lev number(5), -- 레벨(새글인지,답글인지,답글의 답글 표현)
+	step number(5) -- 출력순서
 );
 
 -- 재고/Stock

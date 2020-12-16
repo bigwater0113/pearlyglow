@@ -38,5 +38,6 @@ public class BoardA_UpdateController extends HttpServlet{
 		}
 		req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 		//req.getRequestDispatcher("/Board/result.jsp").forward(req, resp);
+
 	}
 }

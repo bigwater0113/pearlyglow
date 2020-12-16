@@ -64,7 +64,8 @@ public class basketController extends HttpServlet{
 		else {
 			ArrayList<ShoppingBasket_ItemsVo> list = dao.selectAll(id);
 			req.setAttribute("list", list);
-			req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
+			req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../basket/basket.jsp").forward(req, resp);
 			System.out.println("장바구니 조회");
 		}
 	}

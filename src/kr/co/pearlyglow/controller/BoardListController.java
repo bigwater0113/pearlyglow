@@ -41,7 +41,7 @@ public class BoardListController extends HttpServlet{
 		req.setAttribute("pageNum",pageNum);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword",keyword);
-		req.getRequestDispatcher("/Board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
 	}
 }
 

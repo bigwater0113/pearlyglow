@@ -1,3 +1,4 @@
+<%@page import="kr.co.peralyglow.DAO.Gmail"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Message"%>
@@ -5,10 +6,10 @@
 <%@page import="javax.mail.Address"%>
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Session"%>
-<%@page import="kr.co.pearlyglow.dao.Gmail"%>
+
 <%@page import="javax.mail.Authenticator"%>
 <%@page import="java.util.Properties"%>
-<%@page import="kr.co.pearlyglow.dao.SHA256"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
