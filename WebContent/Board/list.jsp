@@ -23,10 +23,11 @@
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>
 		<th>문의글 비밀번호 </th>
-		<th width="200">문의 내용 </th>
+		<th width="100">문의 내용 </th>
 		<th>수정</th>
 		<th>삭제</th>
 		<th>답변</th>
+		<th width="100">답변 확인</th>
 		<th>답변 수정</th>
 	</tr>
 	
@@ -50,6 +51,7 @@
 				<th><a href="${pageContext.request.contextPath}/Board/A_delete?ibnum=${vo.ibNum}">답변삭제</a></th>
 			</c:otherwise>
 		</c:choose>
+		<th>${vo.ans }</th>
 		<c:choose>
 			<c:when test="${!empty vo.ans }">
 				<th><a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답변 수정</a></th>
@@ -76,6 +78,7 @@
 		<select name="field">
 			<option value="id" <c:if test="${field=='id' }">selected</c:if>>작성자</option>
 			<option value="iNum" <c:if test="${field=='iNum' }">selected</c:if>>제품번호</option>
+			<option value="qCategory" <c:if test="${field=='qCategory' }">selected</c:if>>문의종류</option>
 			<option value="ibDate" <c:if test="${field=='ibDate' }">selected</c:if>>작성날짜</option>
 		</select>
 		<input type="text" name="keyword" value="${keyword }">

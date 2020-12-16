@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	var state = 0; // 닫힌상태 = 0
 	var positionTop = -110;
@@ -144,7 +145,14 @@
 		<div id="h_right">
 			<input type="text" id="h_searchBox" placeholder="SEARCH">
 			<a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(0)</a>
+		<c:choose>
+			<c:when test="${empty sessionScope.id }">
 			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>
+			</c:when>
+			<c:otherwise>
+			<a href="${pageContext.request.contextPath}/index.jsp?spage=/Member/logout" id="h_login">LOGOUT</a>
+			</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 	<div id="h_menu">
