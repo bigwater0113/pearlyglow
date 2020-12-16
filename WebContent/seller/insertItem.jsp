@@ -49,7 +49,7 @@
 	<div id="i_wrap">
 		<c:choose>
 			<c:when test="${work == 'update' }">
-				<form action="${pageContext.request.contextPath }/itemUpdateController?iNum=${vo.iNum}" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath }/itemUpdateController?iNum=${vo.iNum}" method="post">
 			</c:when>
 			<c:otherwise>
 				<form action="${pageContext.request.contextPath }/insertItemController" method="post" enctype="multipart/form-data">

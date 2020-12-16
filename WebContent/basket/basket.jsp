@@ -9,7 +9,7 @@
 <style type="text/css">
 #s_wrap {
 	border: 1px solid gray;
-	width: 900px;
+	width: 898px;
 }
 
 #s_itemArea {
