@@ -13,7 +13,7 @@
 <form method="post" action="${pageContext.request.contextPath }/Board/A_update">
 	문의 답글<textarea name="a_content" rows="5" cols="50">${requestScope.board.ans}</textarea><br>
 	<input type="hidden" name="a_num" value="${requestScope.board.ibNum}"><br>
-	<input type="submit" value="확인 ">
+	<input type="submit" value="수정 ">
 </form>
 </body>
 </html>

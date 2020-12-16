@@ -37,6 +37,6 @@ public class BoardAnsController extends HttpServlet{
 		req.setAttribute("startPageNum",startPageNum);
 		req.setAttribute("endPageNum",endPageNum);
 		req.setAttribute("pageNum",pageNum);
-		req.getRequestDispatcher("/Board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
 	}
 }

@@ -21,7 +21,7 @@ public class BoardA_UpdateController extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		QnABoardVo vo = dao.getinfo(num);
 		req.setAttribute("board", vo);
-		req.getRequestDispatcher("/Board/A_updateForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Board/A_updateForm.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -35,6 +35,6 @@ public class BoardA_UpdateController extends HttpServlet{
 		}else {
 			req.setAttribute("code","fail");
 		}
-		req.getRequestDispatcher("/Board/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 	}
 }
