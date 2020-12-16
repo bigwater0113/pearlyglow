@@ -23,14 +23,10 @@
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>
 		<th>문의글 비밀번호 </th>
-		<th width="100">문의 내용 </th>
+		<th width="400">문의 내용 </th>
 		<th>수정</th>
 		<th>삭제</th>
-		<th>답변</th>
-		<th width="100">답변 확인</th>
-		<th>답변 수정</th>
 	</tr>
-	
 	
 <c:forEach var="vo" items="${list }">
 	<tr>
@@ -40,23 +36,17 @@
 		<th>${vo.qCategory }</th>
 		<th>${vo.qTitle }</th>
 		<th>${vo.ibPwd }</th>
-		<th><a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a></th>
+		<th style="text-align: left;">
+			<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
+				<c:forEach var="i" begin="1" end="${vo.lev }">
+					&nbsp;&nbsp;
+				</c:forEach>
+				[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
+			</c:if>
+			<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
+		</th>
 		<th><a href="${pageContext.request.contextPath}/Board/update?ibnum=${vo.ibNum}">수정</a></th>
 		<th><a href="${pageContext.request.contextPath}/Board/delete?ibnum=${vo.ibNum}">삭제</a></th>
-		<c:choose>
-			<c:when test="${empty vo.ans }">
-				<th><a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답변</a></th>
-			</c:when>
-			<c:otherwise>
-				<th><a href="${pageContext.request.contextPath}/Board/A_delete?ibnum=${vo.ibNum}">답변삭제</a></th>
-			</c:otherwise>
-		</c:choose>
-		<th>${vo.ans }</th>
-		<c:choose>
-			<c:when test="${!empty vo.ans }">
-				<th><a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답변 수정</a></th>
-			</c:when>
-		</c:choose>
 	</tr>
 </c:forEach>
 </table>

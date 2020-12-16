@@ -43,7 +43,7 @@
 		<th> ${vo.ansDate }</th>
 	</tr>
 	<tr>
-		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibnum }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibNum }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
 	</tr>
 </table>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>

@@ -65,7 +65,7 @@ create table QnABoard
 	saveName varchar2(100),	--저장이미지명
 	ibDate date,	--작성날짜	
 	ans varchar2(4000),	--답글
-	ansDate date	--답글날짜
+	ansDate date,	--답글날짜
 	ref number(5), -- 그룹번호
 	lev number(5), -- 레벨(새글인지,답글인지,답글의 답글 표현)
 	step number(5) -- 출력순서
