@@ -44,9 +44,10 @@ public class BoardInsertController extends HttpServlet{
 		if(req.getParameter("pwd")!=null) {
 			pwd = mr.getParameter("pwd");
 		}
-		
-		QnABoardVo vo = new QnABoardVo(0, id, inum, qCategory, qTitle, pwd, content, orgfileName, savefileName, null, null, null);
-		System.out.println(id+ inum+ qCategory+ qTitle+ pwd+ content+ orgfileName+ savefileName);
+		int ref=0;
+		int lev=0;
+		int step=0;
+		QnABoardVo vo = new QnABoardVo(0, id, inum, qCategory, qTitle, pwd, content, orgfileName, savefileName, null, null, null, ref, lev, step);
 		BoardDao dao = new BoardDao();
 		int n = dao.insert(vo);
 		if(n>0) {
@@ -55,5 +56,32 @@ public class BoardInsertController extends HttpServlet{
 			req.setAttribute("code", "fail");
 		}
 		req.getRequestDispatcher("/Board/result.jsp").forward(req, resp);
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		String ibnum = req.getParameter("ibnum");
+		String id = req.getParameter("id");
+		String ans = req.getParameter("ans");
+		int num=0;
+		int ref=0;
+		int lev=0;
+		int step=0;
+		if(ibnum!=null && !ibnum.equals("")) { // 답글인경우
+			num=Integer.parseInt(ibnum);
+			ref=Integer.parseInt(req.getParameter("ref"));
+			lev=Integer.parseInt(req.getParameter("lev"));
+			step=Integer.parseInt(req.getParameter("step"));
+		}
+		QnABoardVo vo = new QnABoardVo(num, id, 0, null, null, null, null, null, null, null, ans, null, ref, lev, step);
+		BoardDao dao=new BoardDao();
+		int n = dao.insert(vo);
+		if(n>0) {
+			req.setAttribute("code", "success");
+		}else {
+			req.setAttribute("code", "fail");
+		}
+		req.getRequestDispatcher("/board/result.jsp").forward(req, resp);
 	}
 }

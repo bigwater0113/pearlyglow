@@ -35,7 +35,10 @@ public class BoardDao {
 						rs.getString("saveName"), 
 						rs.getDate("ibDate"),
 						rs.getString("ans"),
-						rs.getDate("ansDate"));
+						rs.getDate("ansDate"),
+						rs.getInt("ref"),
+						rs.getInt("lev"),
+						rs.getInt("step"));
 				list.add(vo);
 			}
 			return list;
@@ -70,7 +73,10 @@ public class BoardDao {
 						rs.getString("saveName"), 
 						rs.getDate("ibDate"),
 						rs.getString("ans"),
-						rs.getDate("ansDate"));
+						rs.getDate("ansDate"),
+						rs.getInt("ref"),
+						rs.getInt("lev"),
+						rs.getInt("step"));
 				return vo;
 			}
 			return null;
@@ -127,32 +133,55 @@ public class BoardDao {
 	
 	public int insert(QnABoardVo vo) {
 		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql = "insert into QnABoard values(?,?,?,?,?,?,?,?,?,sysdate,?,null)";
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
 		try {
 			con = DBCPBean.getConn();
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, getMaxNum()+1);
-			pstmt.setString(2, vo.getId());
-			if(vo.getiNum()==0) {
-				pstmt.setString(3, null);
-			}else {
-				pstmt.setInt(3, vo.getiNum());
+			int ibnum=getMaxNum()+1; //등록될 글번호
+			int num = vo.getIbNum();
+			int ref = vo.getRef();
+			int lev = vo.getLev();
+			int step = vo.getStep();
+			if(num==0) { //새글인경우
+				ref=ibnum;
+			}else { //답글인경우
+				String sql1="update QnABoard set step=step+1 where ref=? and step>?";
+				pstmt1=con.prepareStatement(sql1);
+				pstmt1.setInt(1, ref);
+				pstmt1.setInt(2, step);
+				pstmt1.executeUpdate();
+				lev += 1;
+				step += 1;
 			}
-			pstmt.setString(4, vo.getqCategory());
-			pstmt.setString(5, vo.getqTitle());
-			pstmt.setString(6, vo.getIbPwd());
-			pstmt.setString(7, vo.getIbContent());
-			pstmt.setString(8, vo.getOrgName());
-			pstmt.setString(9, vo.getSaveName());
-			pstmt.setString(10, vo.getAns());
-			pstmt.executeUpdate();
+			num = ibnum;
+			
+			String sql = "insert into QnABoard values(?,?,?,?,?,?,?,?,?,sysdate,?,null,?,?,?)";
+			pstmt2=con.prepareStatement(sql);
+			pstmt2.setInt(1, ibnum);
+			pstmt2.setString(2, vo.getId());
+			if(vo.getiNum()==0) {
+				pstmt2.setString(3, null);
+			}else {
+				pstmt2.setInt(3, vo.getiNum());
+			}
+			pstmt2.setString(4, vo.getqCategory());
+			pstmt2.setString(5, vo.getqTitle());
+			pstmt2.setString(6, vo.getIbPwd());
+			pstmt2.setString(7, vo.getIbContent());
+			pstmt2.setString(8, vo.getOrgName());
+			pstmt2.setString(9, vo.getSaveName());
+			pstmt2.setString(10, vo.getAns());
+			pstmt2.setInt(11, ref);
+			pstmt2.setInt(12, lev);
+			pstmt2.setInt(13, step);
+			pstmt2.executeUpdate();
 			return 1;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			DBCPBean.close(con, pstmt, null);
+			DBCPBean.close(pstmt1);
+			DBCPBean.close(con, pstmt2, null);
 		}
 	}
 	
@@ -202,7 +231,10 @@ public class BoardDao {
 				Date ibDate = rs.getDate("ibDate");
 				String ans = rs.getString("ans");
 				Date ansDate = rs.getDate("ansDate");
-				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName,ibDate, ans, ansDate);
+				int ref=rs.getInt("ref");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName,ibDate, ans, ansDate,ref,lev,step);
 				list.add(vo);
 			}
 			return list;
@@ -279,7 +311,10 @@ public class BoardDao {
 				Date ibDate = rs.getDate("ibDate");
 				String ans = rs.getString("ans");
 				Date ansDate = rs.getDate("ansDate");
-				QnABoardVo vo = new QnABoardVo(num, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate);
+				int ref=rs.getInt("ref");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				QnABoardVo vo = new QnABoardVo(num, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate, ref, lev, step);
 				return vo;
 			}else {
 				return null;
@@ -363,7 +398,10 @@ public class BoardDao {
 				Date ibDate = rs.getDate("ibDate");
 				String ans = rs.getString("ans");
 				Date ansDate = rs.getDate("ansDate");
-				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate);
+				int ref=rs.getInt("ref");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate, ref, lev, step);
 				list.add(vo);
 			}
 			return list;
@@ -409,7 +447,10 @@ public class BoardDao {
 				Date ibDate = rs.getDate("ibDate");
 				String ans = rs.getString("ans");
 				Date ansDate = rs.getDate("ansDate");
-				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate);
+				int ref=rs.getInt("ref");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				QnABoardVo vo = new QnABoardVo(ibNum, id, iNum, qCategory, qTitle, ibPwd, ibContent, orgName, saveName, ibDate, ans, ansDate, ref, lev, step);
 				list.add(vo);
 			}
 			return list;

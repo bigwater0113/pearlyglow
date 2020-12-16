@@ -42,6 +42,9 @@
 		<th>답글 작성날짜</th>
 		<th> ${vo.ansDate }</th>
 	</tr>
+	<tr>
+		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibnum }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+	</tr>
 </table>
 <a href="${pageContext.request.contextPath }/Member/main.jsp">홈으로</a>
 </body>

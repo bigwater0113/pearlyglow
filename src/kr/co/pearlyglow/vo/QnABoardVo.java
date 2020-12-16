@@ -15,11 +15,14 @@ public class QnABoardVo {
 	private Date ibDate;
 	private String ans;
 	private Date ansDate;
+	private int ref;
+	private int lev;
+	private int step;
 	public QnABoardVo() {
 		super();
 	}
 	public QnABoardVo(int ibNum, String id, int iNum, String qCategory, String qTitle, String ibPwd, String ibContent, String orgName, String saveName, Date ibDate, String ans,
-			Date ansDate) {
+			Date ansDate, int ref, int lev, int step) {
 		super();
 		this.ibNum = ibNum;
 		this.id = id;
@@ -33,6 +36,9 @@ public class QnABoardVo {
 		this.ibDate = ibDate;
 		this.ans = ans;
 		this.ansDate = ansDate;
+		this.ref=ref;
+		this.lev=lev;
+		this.step=step;
 	}
 	public int getIbNum() {
 		return ibNum;
@@ -106,6 +112,22 @@ public class QnABoardVo {
 	public void setAnsDate(Date ansDate) {
 		this.ansDate = ansDate;
 	}
-	
-	
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	public int getLev() {
+		return lev;
+	}
+	public void setLev(int lev) {
+		this.lev = lev;
+	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
 }
