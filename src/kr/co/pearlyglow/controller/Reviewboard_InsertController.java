@@ -19,7 +19,7 @@ public class Reviewboard_InsertController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		
-		String saveDir=req.getServletContext().getRealPath("/upload");
+		String saveDir=req.getServletContext().getRealPath("/review_board/upload");
 		
 		MultipartRequest mr=new MultipartRequest(
 				req,

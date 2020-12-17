@@ -6,7 +6,7 @@ public class MyOrder_Purchase_ItemsVo {
 	private String id;
 	private int pNum;
 	private int iNum;
-	private String imgName;
+	private String iThumbnail;
 	private String iName;
 	private int pTotal;
 	private String pStatus;
@@ -14,13 +14,13 @@ public class MyOrder_Purchase_ItemsVo {
 	public MyOrder_Purchase_ItemsVo() {
 		super();
 	}
-	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String imgName, String iName, int pTotal,
+	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String iThumbnail, String iName, int pTotal,
 			String pStatus, Date pDate) {
 		super();
 		this.id = id;
 		this.pNum = pNum;
 		this.iNum = iNum;
-		this.imgName = imgName;
+		this.iThumbnail = iThumbnail;
 		this.iName = iName;
 		this.pTotal = pTotal;
 		this.pStatus = pStatus;
@@ -44,11 +44,11 @@ public class MyOrder_Purchase_ItemsVo {
 	public void setiNum(int iNum) {
 		this.iNum = iNum;
 	}
-	public String getImgName() {
-		return imgName;
+	public String getiThumbnail() {
+		return iThumbnail;
 	}
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
+	public void setiThumbnail(String iThumbnail) {
+		this.iThumbnail = iThumbnail;
 	}
 	public String getiName() {
 		return iName;

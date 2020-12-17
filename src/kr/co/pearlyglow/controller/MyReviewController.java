@@ -21,6 +21,7 @@ public class MyReviewController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String status=req.getParameter("status");
 		String spageNum=req.getParameter("pageNum");
+		String id=(String)req.getSession().getAttribute("id");
 		int pageNum=1;
 		if(spageNum!=null && !(spageNum.equals(""))){
 			pageNum=Integer.parseInt(spageNum);
@@ -31,9 +32,9 @@ public class MyReviewController extends HttpServlet{
 		int endRow=startRow;
 		myReviewDao dao=myReviewDao.getInstance();
 		ArrayList<MyReviewVo> list=dao.MR_list();
-		list=dao.MR_list_BA(status,startRow,endRow);
+		list=dao.MR_list_BA(status,id,startRow,endRow);
 //			int pageCount=(dao.getCount(status)/10)+1;
-		int pageCount=dao.getCount(status);
+		int pageCount=dao.getCount(status,id);
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
@@ -49,7 +50,7 @@ public class MyReviewController extends HttpServlet{
 			req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=myReview.jsp").forward(req, resp);
 		}
 		if(status.equals("1")) {
-			list=dao.MR_list_BA(status,startRow,endRow);
+			list=dao.MR_list_BA(status,id,startRow,endRow);
 			resp.setContentType("text/xml;charset=utf-8");
 			PrintWriter pw=resp.getWriter();
 			pw.print("<result>");

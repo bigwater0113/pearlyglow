@@ -17,7 +17,7 @@ public class myReviewDao {
 	public static myReviewDao getInstance() {
 		return instance;
 	}
-	public int getCount(String status) {
+	public int getCount(String status,String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -38,7 +38,7 @@ public class myReviewDao {
 					"        on pd.inum=i.inum " + 
 					"        full outer join reviewBoard rb " + 
 					"        on pd.pdnum=rb.pdnum " + 
-					"        where p.id='test' and rb.rDate " + isnull + 
+					"        where p.id=\'"+id+"\' and rb.rDate " + isnull + 
 					"        order by pdate desc " + 
 					"        )";
 			pstmt=con.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class myReviewDao {
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
-	public ArrayList<MyReviewVo> MR_list_BA(String status,int startRow,int endRow){
+	public ArrayList<MyReviewVo> MR_list_BA(String status,String id,int startRow,int endRow){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -118,7 +118,7 @@ public class myReviewDao {
 					"        on pd.inum=i.inum " + 
 					"        full outer join reviewBoard rb " + 
 					"        on pd.pdnum=rb.pdnum " + 
-					"        where p.id='test' and rb.rDate is null " + // is null
+					"        where p.id=\'"+id+"\' and rb.rDate is null " + // is null
 					"        order by pdate desc " + 
 					"    ) a " + 
 					") " + 
@@ -138,7 +138,7 @@ public class myReviewDao {
 						"        on pd.inum=i.inum " + 
 						"        full outer join reviewBoard rb " + 
 						"        on pd.pdnum=rb.pdnum " + 
-						"        where p.id='test' and rb.rDate is not null " + // is not null
+						"        where p.id=\'"+id+"\' and rb.rDate is not null " + // is not null
 						"        order by pdate desc " + 
 						"    ) a " + 
 						") " + 

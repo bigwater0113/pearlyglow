@@ -15,9 +15,30 @@ import kr.co.peralyglow.DAO.myOrderDao;
 public class MyOrderController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String spageNum=req.getParameter("pageNum");
+		String id=(String)req.getSession().getAttribute("id");
+		int pageNum=1;
+		if(spageNum!=null && !(spageNum.equals(""))){
+			pageNum=Integer.parseInt(spageNum);
+		}
+//		int startRow=(pageNum-1)*10+1;
+//		int endRow=startRow+9;
+		int startRow=pageNum;
+		int endRow=startRow;
 		myOrderDao dao=myOrderDao.getInstance();
-		ArrayList<MyOrder_Purchase_ItemsVo> list=dao.PI_list();
+		ArrayList<MyOrder_Purchase_ItemsVo> list=dao.PI_list(id,startRow,endRow);
+//		int pageCount=(dao.getCount(status)/10)+1;
+		int pageCount=dao.getCount(id);
+		int startPageNum=(pageNum-1)/10*10+1;
+		int endPageNum=startPageNum+9;
+		if(endPageNum>pageCount) {
+			endPageNum=pageCount;
+		}
 		req.setAttribute("list", list);
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("pageCount", pageCount);
+		req.setAttribute("startPageNum", startPageNum);
+		req.setAttribute("endPageNum", endPageNum);
 		req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=myOrder.jsp").forward(req, resp);
 	}
 }
