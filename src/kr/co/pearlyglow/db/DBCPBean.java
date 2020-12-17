@@ -14,7 +14,6 @@ public class DBCPBean {
 	private static DataSource ds;
 	static {
 		try {
-			System.out.println("static블록실행...");
 			Context initContext;
 			initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
