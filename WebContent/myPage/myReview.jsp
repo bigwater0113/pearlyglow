@@ -143,7 +143,7 @@
 				}
 				for(let j=startPageNum;j<=endPageNum;j++){
 					if(j==pageNum){
-						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum=j\"><span style=\"color:gray\">[${"+j+"}]</span></a> ";
+						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum="+j+"\"><span style=\"color:gray\">["+j+"]</span></a> ";
 					}else{
 						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum="+j+"\"><span style=\"color:blue\">["+j+"]</span></a> ";
 					}
