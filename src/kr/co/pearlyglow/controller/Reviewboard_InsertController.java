@@ -37,9 +37,9 @@ public class Reviewboard_InsertController extends HttpServlet{
 		ReviewboardDao dao=ReviewboardDao.getInstance();
 		int n=dao.insert(vo);
 		if(n>0) {
-			req.getRequestDispatcher("/purchase_list/purchaselist.jsp").forward(req, resp);
+			req.getRequestDispatcher("index.jsp?spage=purchase_list/purchaselist.jsp").forward(req, resp);
 		}else {
-			req.getRequestDispatcher("/insert.jsp").forward(req, resp);
+			req.getRequestDispatcher("index.jsp?spage=review_board/insert.jsp").forward(req, resp);
 		}
 	}
 }

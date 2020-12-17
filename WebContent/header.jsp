@@ -161,6 +161,8 @@
 				<a href="${pageContext.request.contextPath }/index.jsp?spage=main.jsp">PEARLYGLOW</a>
 			</h2>
 			<a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
+			<a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp">MYPAGE</a>
+			<a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp">SELLERPAGE</a>
 		</div>
 		<div id="h_moreMenu2">
 			<h2>

@@ -34,6 +34,7 @@
 				<th>구매갯수</th>
 				<th>구매날짜</th>
 				<th>금액</th>
+				<th>리뷰작성</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
@@ -43,6 +44,7 @@
 					<td>${vo.pCnt }</td>
 					<td>${vo.pDate }</td>
 					<td>${vo.pPay }</td>
+					<td><a href='${pageContext.request.contextPath}/index.jsp?spage=review_board/insert.jsp&pdNum=${vo.pdNum}'>리뷰작성</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -79,7 +81,7 @@
 </div>
 <script>
 	var xhr=null;
-	var Bthead=['아이디','썸네일','품명','구매갯수','구매날짜','금액'];
+	var Bthead=['아이디','썸네일','품명','구매갯수','구매날짜','금액','리뷰작성'];
 	var Athead=['아이디','썸네일','품명','평가','내용','구매날짜','첨부이미지명','리뷰작성날짜'];
 	function beforeRe(n){
 		xhr=new XMLHttpRequest();
@@ -116,18 +118,22 @@
 					var pCnt=document.createElement("td");
 					var pDate=document.createElement("td");
 					var pPay=document.createElement("td");
+					var insertReview=document.createElement("td");
+					var pdNum=review[i].getElementsByTagName("pdNum")[0].textContent;
 					id.innerHTML=review[i].getElementsByTagName("id")[0].textContent;
 					iThumbnail.innerHTML=review[i].getElementsByTagName("iThumbnail")[0].textContent;
 					iName.innerHTML=review[i].getElementsByTagName("iName")[0].textContent;
 					pCnt.innerHTML=review[i].getElementsByTagName("pCnt")[0].textContent;
 					pDate.innerHTML=review[i].getElementsByTagName("pDate")[0].textContent;
 					pPay.innerHTML=review[i].getElementsByTagName("pPay")[0].textContent;
+					insertReview.innerHTML="<a href='${pageContext.request.contextPath}/index.jsp?spage=review_board/insert.jsp&pdNum="+pdNum+"'>리뷰작성</a> ";
 					tr.appendChild(id);
 					tr.appendChild(iThumbnail);
 					tr.appendChild(iName);
 					tr.appendChild(pCnt);
 					tr.appendChild(pDate);
 					tr.appendChild(pPay);
+					tr.appendChild(insertReview);
 					myReview_BATable.appendChild(tr);
 				}
 				var pageDiv=xml.getElementsByTagName("pageDiv")[0];
@@ -220,19 +226,19 @@
 				var endPageNum=parseInt(respJson.endPageNum);
 				var pageDivStr="";
 				if(startPageNum>10){
-					pageDivStr += "[<a href=\"javascript:beforeRe("+ (startPageNum-1) +")\">이전</a>] ";
+					pageDivStr += "[<a href=\"javascript:afterRe("+ (startPageNum-1) +")\">이전</a>] ";
 				}else{
 					pageDivStr += "[이전] ";
 				}
 				for(let j=startPageNum;j<=endPageNum;j++){
 					if(j==pageNum){
-						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:gray\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:afterRe("+ (j) +")\"><span style=\"color:gray\">["+j+"]</span></a> ";
 					}else{
-						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:blue\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:afterRe("+ (j) +")\"><span style=\"color:blue\">["+j+"]</span></a> ";
 					}
 				}
 				if(endPageNum<pageCount){
-					pageDivStr += "[<a href=\"javascript:beforeRe("+ (endPageNum+1) +")\">다음</a>] ";
+					pageDivStr += "[<a href=\"javascript:afterRe("+ (endPageNum+1) +")\">다음</a>] ";
 				}else{
 					pageDivStr += "[다음]";
 				}
