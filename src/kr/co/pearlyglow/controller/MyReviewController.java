@@ -20,14 +20,36 @@ public class MyReviewController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String status=req.getParameter("status");
+		String spageNum=req.getParameter("pageNum");
+		int pageNum=1;
+		if(spageNum!=null && !(spageNum.equals(""))){
+			pageNum=Integer.parseInt(spageNum);
+		}
+//		int startRow=(pageNum-1)*10+1;
+//		int endRow=startRow+9;
+		int startRow=pageNum;
+		int endRow=startRow;
 		myReviewDao dao=myReviewDao.getInstance();
 		ArrayList<MyReviewVo> list=dao.MR_list();
-		if(status==null || status.equals("")) {
-			req.setAttribute("respStatus", "1");
+		list=dao.MR_list_BA(status,startRow,endRow);
+//			int pageCount=(dao.getCount(status)/10)+1;
+		int pageCount=dao.getCount(status);
+		int startPageNum=(pageNum-1)/10*10+1;
+		int endPageNum=startPageNum+9;
+		if(endPageNum>pageCount) {
+			endPageNum=pageCount;
+		}
+		if(status.trim()==null || status.trim().equals("")) {
+//			req.setAttribute("respStatus", "1");
 			req.setAttribute("list", list);
+			req.setAttribute("pageNum", pageNum);
+			req.setAttribute("pageCount", pageCount);
+			req.setAttribute("startPageNum", startPageNum);
+			req.setAttribute("endPageNum", endPageNum);
 			req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=myReview.jsp").forward(req, resp);
 		}
 		if(status.equals("1")) {
+			list=dao.MR_list_BA(status,startRow,endRow);
 			resp.setContentType("text/xml;charset=utf-8");
 			PrintWriter pw=resp.getWriter();
 			pw.print("<result>");
@@ -47,8 +69,15 @@ public class MyReviewController extends HttpServlet{
 				pw.print("<rbContent>" + vo.getRbContent() + "</rbContent>");
 				pw.print("<saveName>" + vo.getSaveName() + "</saveName>");
 				pw.print("<rDate>" + vo.getrDate() + "</rDate>");
+				
 				pw.print("</review>");
 			}
+			pw.print("<pageDiv>");
+			pw.print("<pageNum>" + pageNum + "</pageNum>");
+			pw.print("<pageCount>" + pageCount + "</pageCount>");
+			pw.print("<startPageNum>" + startPageNum + "</startPageNum>");
+			pw.print("<endPageNum>" + endPageNum + "</endPageNum>");
+			pw.print("</pageDiv>");
 			pw.print("</result>");
 			pw.close();
 		}else if(status.equals("2")) {
@@ -71,9 +100,15 @@ public class MyReviewController extends HttpServlet{
 				json.put("rDate", vo.getrDate());
 				arr.put(json);
 			}
+			JSONObject respJson=new JSONObject();
+			respJson.put("arr", arr);
+			respJson.put("pageNum", pageNum);
+			respJson.put("pageCount", pageCount);
+			respJson.put("startPageNum", startPageNum);
+			respJson.put("endPageNum", endPageNum);
 			resp.setContentType("text/plain;charset=utf-8");
 			PrintWriter pw=resp.getWriter();
-			pw.print(arr.toString());
+			pw.print(respJson.toString());
 			pw.close();
 		}
 	}
