@@ -39,6 +39,6 @@ public class PurchaseListController extends HttpServlet{
 		req.setAttribute("startPageNum", startPageNum);
 		req.setAttribute("endPageNum", endPageNum);
 		req.setAttribute("pageNum", pageNum);
-		req.getRequestDispatcher("/purchase_list/purchaselist.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=../purchase_list/purchaselist.jsp").forward(req, resp);
 		}
 	}

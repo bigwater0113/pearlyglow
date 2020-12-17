@@ -23,7 +23,7 @@
 		<h2><a href="${pageContext.request.contextPath }/myOrder">주문내역</a></h2>
 		<h2><a href="${pageContext.request.contextPath }">장바구니</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/MyReview?status=">내 리뷰</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/Board/boardInfo?id=${id }"">내 문의</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/Board/boardInfo?id=${id }">내 문의</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/recentView">최근본상품</a></h2>
 		<h2><a href="">회원탈퇴</a></h2>
 	</div>

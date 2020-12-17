@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -18,7 +19,7 @@ public class Reviewboard_InsertController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		
+		HttpSession session=req.getSession();
 		String saveDir=req.getServletContext().getRealPath("/review_board/upload");
 		
 		MultipartRequest mr=new MultipartRequest(
@@ -36,6 +37,7 @@ public class Reviewboard_InsertController extends HttpServlet{
 		ReviewBoardVo vo=new ReviewBoardVo(0,pdnum,score,content,orgfileName,savefileName,null);
 		ReviewboardDao dao=ReviewboardDao.getInstance();
 		int n=dao.insert(vo);
+		session.setAttribute("reviewDir", saveDir);
 		if(n>0) {
 			req.getRequestDispatcher("index.jsp?spage=purchase_list/purchaselist.jsp").forward(req, resp);
 		}else {

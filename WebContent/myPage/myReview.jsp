@@ -82,7 +82,7 @@
 <script>
 	var xhr=null;
 	var Bthead=['아이디','썸네일','품명','구매갯수','구매날짜','금액','리뷰작성'];
-	var Athead=['아이디','썸네일','품명','평가','내용','구매날짜','첨부이미지명','리뷰작성날짜'];
+	var Athead=['아이디','썸네일','품명','평가','내용','구매날짜','첨부이미지명','리뷰작성날짜','수정','삭제'];
 	function beforeRe(n){
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
@@ -202,6 +202,9 @@
 					var pDate=document.createElement("td");
 					var saveName=document.createElement("td");
 					var rDate=document.createElement("td");
+					var updateReview=document.createElement("td");
+					var deleteReview=document.createElement("td");
+					var pdNum=respJson.arr[i].pdNum;
 					id.innerHTML=respJson.arr[i].id;
 					iThumbnail.innerHTML=respJson.arr[i].iThumbnail;
 					iName.innerHTML=respJson.arr[i].iName;
@@ -210,6 +213,8 @@
 					pDate.innerHTML=respJson.arr[i].pDate;
 					saveName.innerHTML=respJson.arr[i].saveName;
 					rDate.innerHTML=respJson.arr[i].rDate;
+					updateReview.innerHTML="<a href='${pageContext.request.contextPath}/review_board/update?pdNum="+pdNum+"'>수정</a> ";
+					deleteReview.innerHTML="<a href='${pageContext.request.contextPath}/review_board/delete?pdNum="+pdNum+"'>삭제</a> ";
 					tr.appendChild(id);
 					tr.appendChild(iThumbnail);
 					tr.appendChild(iName);
@@ -218,6 +223,8 @@
 					tr.appendChild(pDate);
 					tr.appendChild(saveName);
 					tr.appendChild(rDate);
+					tr.appendChild(updateReview);
+					tr.appendChild(deleteReview);
 					myReview_BATable.appendChild(tr);
 				}
 				var pageNum=parseInt(respJson.pageNum);

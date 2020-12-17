@@ -34,17 +34,28 @@
 			<div id="insert_num">
 				<label for="insert_pdnum" class="insert_label">구매상세번호</label><input type="text" id="insert_pdnum" name="insert_pdnum" value="${param.pdNum }" readonly="readonly">
 			</div>
-			<label for="insert_score" class="insert_label">평가점수</label><input type="text" id="insert_score" name="insert_score"><br>
+			<label for="insert_score" class="insert_label">평가점수</label><input type="text" id="insert_score" name="insert_score" value="${vo.score }"><br>
 			<label class="insert_label">첨부파일</label>
-			<input type="file" name="insert_addfile" size="80"><br>
-			
-			<label for="insert_content" class="insert_label1">내용</label><textarea id="insert_content" name="insert_content" rows="70" cols="90"></textarea><br>
+			<input type="file" name="insert_addfile" size="80">
+			<c:if test="${!empty vo.saveName }">
+			기존이미지<img src="${pageContext.request.contextPath }/review_board/upload/${vo.saveName}" style="width:100px;height:100px;">
+			</c:if>
+			<br><label for="insert_content" class="insert_label1">내용</label><textarea id="insert_content" name="insert_content" rows="70" cols="90">${vo.rbContent }</textarea><br>
 			
 			<!-- 마이페이지 구매내역 페이지로 x -> 태수 마이리뷰 > 작성하지 않은 리뷰 파트로 -->
 			<input type="button" value="취소" onclick="backPage()" id="insert_back" name="insert_back" class="insert_btn">
 			
 			<!-- /insert.do 컨트롤러로 -->
-			<input type="submit" value="저장" id="insert_save" name="insert_save" class="insert_btn">
+			<c:choose>
+				<c:when test="${isUpdate=='true' }">
+					<input type="submit" value="수정" id="insert_save" name="insert_save" class="insert_btn"
+						formaction="${pageContext.request.contextPath }/review_board/update">
+				</c:when>
+				<c:otherwise>
+					<input type="submit" value="저장" id="insert_save" name="insert_save" class="insert_btn">
+				</c:otherwise>
+			</c:choose>
+			
 		</form>		
 	</div>
 	<div id="insert_right">
