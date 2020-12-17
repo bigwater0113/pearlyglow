@@ -46,7 +46,7 @@
 		
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange=callback;
-		xhr.open('get','idcheck.jsp?id='+id,true);
+		xhr.open('get','${pageContext.request.contextPath}/Member/idcheck.jsp?id='+id,true);
 		xhr.send();
 	}
 	
@@ -55,6 +55,7 @@
 			var xml = xhr.responseXML;
 			var span = document.getElementById("j_idcheck");
 			var using = xml.getElementsByTagName("using")[0].firstChild.nodeValue;
+			//console.log(using);
 			if(eval(using)==true){
 				span.innerHTML="이미 사용중인 아이디입니다.";
 			}else if(using=='false'){

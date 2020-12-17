@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.pearlyglow.vo.QnABoardVo;
 import kr.co.peralyglow.DAO.BoardDao;
 
-@WebServlet("/Member/boardInfo")
+@WebServlet("/Board/boardInfo")
 public class BoardInfoController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,6 +20,6 @@ public class BoardInfoController extends HttpServlet {
 		BoardDao bdao = new BoardDao();
 		ArrayList<QnABoardVo> list = bdao.myinfo(id);
 		req.setAttribute("list",list);
-		req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Member/bmypage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/mypage.jsp").forward(req, resp);
 	}
 }

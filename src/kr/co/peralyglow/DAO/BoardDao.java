@@ -373,8 +373,8 @@ public class BoardDao {
 	         "(" + 
 	          "  select aa.*,rownum rnum from" + 
 	          "  ( " + 
-	          "    select * from QnABoard where ans IS NOT NULL" + 
-	          "    order by ref desc, step asc" + 
+	          "    select * from qnaboard where ref=" + 
+	          "    (select ref from qnaboard where (ref,lev)in(select ref,lev from qnaboard group by ref,lev having lev>0))" + 
 	          "  )aa " + 
 	          ") where rnum>=? and rnum<=?";   
 
@@ -422,8 +422,8 @@ public class BoardDao {
 		         "(" + 
 		          "  select aa.*,rownum rnum from" + 
 		          "  ( " + 
-		          "    select * from QnABoard where ans IS NULL" + 
-		          "    order by ref desc, step asc " + 
+		          "    select * from qnaboard where not ref in" + 
+		          "    (select ref from qnaboard where (ref,lev)in(select ref,lev from qnaboard group by ref,lev having lev>0)) " + 
 		          "  )aa " + 
 		          ") where rnum>=? and rnum<=?";   
 

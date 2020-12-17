@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member/bmypage.jsp</title>
+<title>Board/mypage.jsp</title>
 </head>
 <body>
 <h1>나의 문의글</h1>

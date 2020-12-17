@@ -35,6 +35,6 @@ public class ListDeleteController extends HttpServlet{
 		for(int i=0 ; i<id.length; i++) {
 			n=dao.delete(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 	}
 }

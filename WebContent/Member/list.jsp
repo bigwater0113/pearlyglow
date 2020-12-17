@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>회원목록</h1>
-<form action="${pageContext.request.contextPath }/Member/listDelete" method="post">
+<form method="post" name="form">
 	<table border="1" width="1000">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
@@ -56,7 +56,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="submit" value="선택삭제">
+	<br>
+	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete';">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴먼계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/humanY';">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴먼계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/humanN';">
 </form>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Member/human">200일 이상 접속 없는 명단</a>
