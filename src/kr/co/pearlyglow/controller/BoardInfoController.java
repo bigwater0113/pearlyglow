@@ -17,8 +17,8 @@ public class BoardInfoController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
-		BoardDao bdao = new BoardDao();
-		ArrayList<QnABoardVo> list = bdao.myinfo(id);
+		BoardDao dao = new BoardDao();
+		ArrayList<QnABoardVo> list = dao.myinfo(id);
 		req.setAttribute("list",list);
 		req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/mypage.jsp").forward(req, resp);
 	}

@@ -16,7 +16,7 @@ public class BoardDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			String sql="select * from QnABoard where id=?";
+			String sql="select * from QnABoard where id=? order by ref desc, step asc";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -327,7 +327,60 @@ public class BoardDao {
 		}
 	}
 	
-	public int answer(int num, String ans) {
+	public int answer(QnABoardVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
+		try {
+			con=DBCPBean.getConn();
+			int ibNum=getMaxNum()+1; //등록될 글번호
+			int num = vo.getIbNum();
+			int ref = vo.getRef();
+			int lev = vo.getLev();
+			int step = vo.getStep();
+			if(num==0) { //새글인경우
+				ref=ibNum;
+			}else { //답글인경우
+				String sql1="update QnABoard set step=step+1, ansDate=sysdate where ref=? and step>?";
+				pstmt1=con.prepareStatement(sql1);
+				pstmt1.setInt(1, ref);
+				pstmt1.setInt(2, step);
+				pstmt1.executeUpdate();
+				lev += 1;
+				step += 1;
+			}
+			num=ibNum;
+			
+			String sql = "insert into QnABoard values(?,?,?,?,?,?,?,?,?,null,?,sysdate,?,?,?)";
+			pstmt2=con.prepareStatement(sql);
+			pstmt2.setInt(1, ibNum);
+			pstmt2.setString(2, vo.getId());
+			if(vo.getiNum()==0) {
+				pstmt2.setString(3, null);
+			}else {
+				pstmt2.setInt(3, vo.getiNum());
+			}
+			pstmt2.setString(4, vo.getqCategory());
+			pstmt2.setString(5, vo.getqTitle());
+			pstmt2.setString(6, vo.getIbPwd());
+			pstmt2.setString(7, vo.getIbContent());
+			pstmt2.setString(8, vo.getOrgName());
+			pstmt2.setString(9, vo.getSaveName());
+			pstmt2.setString(10, vo.getAns());
+			pstmt2.setInt(11, ref);
+			pstmt2.setInt(12, lev);
+			pstmt2.setInt(13, step);
+			pstmt2.executeUpdate();
+			return 1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(pstmt1);
+			DBCPBean.close(con, pstmt2, null);
+		}
+	}
+	public int u_answer(int num, String ans) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="update QnABoard set ans=?, ansDate=sysdate where ibNum=?";
@@ -373,8 +426,9 @@ public class BoardDao {
 	         "(" + 
 	          "  select aa.*,rownum rnum from" + 
 	          "  ( " + 
-	          "    select * from qnaboard where ref=" + 
-	          "    (select ref from qnaboard where (ref,lev)in(select ref,lev from qnaboard group by ref,lev having lev>0))" + 
+	          "    select * from qnaboard where ref =" + 
+	          "    (select distinct ref from qnaboard group by ref,lev having lev>0)" + 
+	          "  	order by ref desc, step asc " + 
 	          "  )aa " + 
 	          ") where rnum>=? and rnum<=?";   
 
@@ -417,13 +471,13 @@ public class BoardDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		String sql= "select * from " + 
 		         "(" + 
 		          "  select aa.*,rownum rnum from" + 
 		          "  ( " + 
 		          "    select * from qnaboard where not ref in" + 
-		          "    (select ref from qnaboard where (ref,lev)in(select ref,lev from qnaboard group by ref,lev having lev>0)) " + 
+		          "    (select distinct ref from qnaboard group by ref,lev having lev>0) " + 
+		          "  	order by ref asc, step asc " + 
 		          "  )aa " + 
 		          ") where rnum>=? and rnum<=?";   
 

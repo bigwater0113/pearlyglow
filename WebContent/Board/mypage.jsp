@@ -20,7 +20,6 @@
 		<th width="150">문의 내용 </th>
 		<th>수정</th>
 		<th>삭제</th>
-		<th width="150">답변</th>
 	</tr>
 	
 <c:forEach var="qvo" items="${list }">
@@ -31,17 +30,22 @@
 		<th>${qvo.qCategory }</th>
 		<th>${qvo.qTitle }</th>
 		<th>${qvo.ibPwd }</th>
-		<th><a href="${pageContext.request.contextPath}/Board/detail?ibnum=${qvo.ibNum}">${qvo.ibContent }</a></th>
+		
+		<th style="text-align: left;">
+			<c:choose>
+				<c:when test="${qvo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
+					<c:forEach var="i" begin="1" end="${qvo.lev }">
+						&nbsp;&nbsp;
+					</c:forEach>
+					[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${qvo.ibNum}">${qvo.ans }</a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${qvo.ibNum}">${qvo.ibContent }</a>
+				</c:otherwise>
+			</c:choose>
+		</th>
 		<th><a href="${pageContext.request.contextPath}/Board/update?ibnum=${qvo.ibNum}">수정</a></th>
 		<th><a href="${pageContext.request.contextPath}/Board/delete?ibnum=${qvo.ibNum}">삭제</a></th>
-		<c:choose>
-			<c:when test="${empty qvo.ans }">
-				<th>답변대기중</th>
-			</c:when>
-			<c:otherwise>
-				<th>${qvo.ans }</th>
-			</c:otherwise>
-		</c:choose>
 	</tr>
 </c:forEach>
 </table>

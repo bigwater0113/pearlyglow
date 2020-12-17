@@ -30,7 +30,7 @@ public class BoardA_UpdateController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		int num=Integer.parseInt(req.getParameter("a_num"));
 		BoardDao dao=new BoardDao();
-		int n = dao.answer(num, req.getParameter("a_content"));
+		int n = dao.u_answer(num, req.getParameter("a_content"));
 		if(n>0) {
 			req.setAttribute("code", "success");
 		}else {
