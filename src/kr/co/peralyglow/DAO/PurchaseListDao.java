@@ -17,13 +17,13 @@ public class PurchaseListDao {
 		return instance;
 	}
 	
-	public ArrayList<Items_purchase_pdetailVo> pList(int startrow, int endrow, String p_date){
+	public ArrayList<Items_purchase_pdetailVo> pList(int startrow, int endrow, String p_date1,String p_date2, String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="";
 		ArrayList<Items_purchase_pdetailVo> list=new ArrayList<Items_purchase_pdetailVo>();
-		if(p_date!=null && !p_date.equals("")) {
+		if(p_date1!=null && !p_date1.equals("")&&p_date2!=null && !p_date2.equals("")) {
 			sql="select * \r\n" + 
 					"from\r\n" + 
 					"(" + 
@@ -31,7 +31,7 @@ public class PurchaseListDao {
 					"	from(" + 
 					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
-					"		where '"+p_date+"' = p.pdate \r\n" + 
+					"		where p.id='"+id+"' and p.pdate>=to_date('"+p_date1+"','yyyy/mm/dd') and p.pdate<to_date('"+p_date2+"','yyyy/mm/dd')+1 \r\n" + 
 					"		order by p.pdate desc\r\n" + 
 					"		)aa" + 
 					")\r\n" + 
@@ -43,7 +43,7 @@ public class PurchaseListDao {
 					"	select aa.*,rownum rnum \r\n" + 
 					"	from(" + 
 					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
-					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
+					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum where p.id='"+id+"'" + 
 					"		order by p.pdate desc" + 
 					"		)aa" + 
 					")" + 
@@ -52,6 +52,8 @@ public class PurchaseListDao {
 			try {
 				con=DBCPBean.getConn();
 				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, startrow);
+				pstmt.setInt(2, endrow);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
 				int pnum=rs.getInt("pnum");
@@ -62,7 +64,7 @@ public class PurchaseListDao {
 				int ptotal=rs.getInt("ptotal");
 				String ithumbnail=rs.getString("ithumbnail");
 				Date pdate=rs.getDate("pdate");
-				Items_purchase_pdetailVo vo=new Items_purchase_pdetailVo(pnum,pdnum,iname,pcnt,ppay,ptotal,ithumbnail,pdate);
+				Items_purchase_pdetailVo vo=new Items_purchase_pdetailVo(pnum,pdnum,iname,pcnt,ppay,ptotal,ithumbnail,pdate,id);
 				list.add(vo);
 			}
 			return list;
@@ -73,15 +75,15 @@ public class PurchaseListDao {
 			DBCPBean.close(con, pstmt, rs);
 			}
 		}
-		public int getCount(String p_date) {
+		public int getCount(String p_date1,String p_date2,String id) {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
 			try {
 				con=DBCPBean.getConn();
-				String sql="select NVL(count(pdnum),0) pdnum from pdetail";
-				if(p_date!=null && !p_date.equals("")) {
-					sql += " where "+p_date+"==pdate";
+				String sql="select NVL(count(d.pdnum),0) cnt from pdetail d join purchase p on d.pnum=d.pnum where p.id='"+id+"'";
+				if(p_date1!=null && !p_date1.equals("")&&p_date2!=null && !p_date2.equals("")) {
+					sql += " and p.pdate>=to_date('"+p_date1+"','yyyy/mm/dd') and p.pdate<to_date('"+p_date2+"','yyyy/mm/dd')+1";
 				}
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
