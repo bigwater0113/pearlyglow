@@ -26,16 +26,16 @@ public class PurchaseListDao {
 		if(p_date!=null && !p_date.equals("")) {
 			sql="select * \r\n" + 
 					"from\r\n" + 
-					"(" + 
+					"(\r\n" + 
 					"	select aa.*,rownum rnum \r\n" + 
-					"	from(" + 
+					"	from(\r\n" + 
 					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
-					"		where \"+purchaselist_date+\" == p.pdate \r\n" + 
+					"		where '"+p_date+"'= p.pdate \r\n" + 
 					"		order by p.pdate desc\r\n" + 
-					"		)aa" + 
+					"		)aa\r\n" + 
 					")\r\n" + 
-					"where rnum>=? and rnum<=?";
+					"where rnum>=? and rnum<=?;";
 		}else { 
 			sql="select * \r\n" + 
 					"from\r\n" + 
