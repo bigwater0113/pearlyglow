@@ -197,7 +197,7 @@ public class BoardDao {
 		           "  select aa.*,rownum rnum from" + 
 		           "  ( " + 
 		           "    select * from QnABoard  where "+ field + " like '%" + keyword +"%'" + 
-		           "    order by ibnum desc " + 
+		           "    order by ref desc, step asc " + 
 		           "  )aa " + 
 		           ") where rnum>=? and rnum<=?";                     
 		}else {
@@ -206,7 +206,7 @@ public class BoardDao {
 		          "  select aa.*,rownum rnum from" + 
 		          "  ( " + 
 		          "    select * from QnABoard " + 
-		          "    order by ibnum desc " + 
+		          "    order by ref desc, step asc " + 
 		          "  )aa " + 
 		          ") where rnum>=? and rnum<=?";   
 		}
@@ -374,7 +374,7 @@ public class BoardDao {
 	          "  select aa.*,rownum rnum from" + 
 	          "  ( " + 
 	          "    select * from QnABoard where ans IS NOT NULL" + 
-	          "    order by ibnum desc " + 
+	          "    order by ref desc, step asc" + 
 	          "  )aa " + 
 	          ") where rnum>=? and rnum<=?";   
 
@@ -423,7 +423,7 @@ public class BoardDao {
 		          "  select aa.*,rownum rnum from" + 
 		          "  ( " + 
 		          "    select * from QnABoard where ans IS NULL" + 
-		          "    order by ibnum desc " + 
+		          "    order by ref desc, step asc " + 
 		          "  )aa " + 
 		          ") where rnum>=? and rnum<=?";   
 

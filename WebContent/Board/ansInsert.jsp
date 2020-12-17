@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>답글등록하기</h1>
-<form method="get" action="${pageContext.request.contextPath }/board/insert">
+<form method="get" action="${pageContext.request.contextPath }/Board/insert">
 	<!-- 답글인 경우 부모글에 대한 정보가 파라미터로 서버에 전송된다. -->
 	<input type="hidden" name="ibnum" value="${param.ibnum }">
 	<input type="hidden" name="ref" value="${param.ref }">
