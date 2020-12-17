@@ -8,10 +8,10 @@
 	<div id="purchaselist_table">
 		<table border="1" width="900">
 			<tr>
+				<th>상품이미지</th>
 				<th>구매번호</th>
 				<th>상세 구매번호</th>
 				<th>상품명</th>
-				<th>상품이미지</th>
 				<th>상품별 수량</th>
 				<th>상품별 구매 금액</th>
 				<th>총 구매 금액</th>
@@ -19,6 +19,7 @@
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
+					<td>${vo.ithumbnail }</td>
 					<td>${vo.pnum }</td>
 					<td>${vo.iname}</td>
 					<td>${vo.pcnt}</td>
@@ -30,9 +31,21 @@
 		</table>
 	</div>
 	<div id="purchaselist_paging">
-		페이징처리!!!..ㅋ
+		<c:if test="${startPageNum>10 }">
+			<a href="/purchaselist?pageNum=${startPageNum-1 }">이전</a>
+		</c:if>	
+		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+			<a href="/purchaselist?pageNum=${i }">[${i }]</a>
+		</c:forEach>
+		
+		<c:if test="${endPageNum<pageCount }">
+				<a href="/purchaselist?pageNum=${endPageNum+1 }">다음</a>
+		</c:if>	
 	</div>
 	<div id="purchaselist_search">
-		검색<input type="text" id="purchaselist_searchbox" name="purchaselist_searchbox">
+		<form method="post" action="/purchaselist">
+			날짜선택<input type="date" id="purchaselist_date" name="purchaselist_date">
+		<input type="submit" value="검색">
+		</form>
 	</div>
 </div>
