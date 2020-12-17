@@ -20,7 +20,7 @@ public class HumanYController extends HttpServlet{
 		for(int i=0 ; i<id.length; i++) {
 			n=dao.humanY(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/humanlist").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 	}
 	
 	@Override

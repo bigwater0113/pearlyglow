@@ -34,5 +34,5 @@
 	pw.print("<data>");
 	pw.print("<using>" + using +"</using>");
 	pw.print("</data>");
-	//http://localhost:8081/ajax03/1/idcheck.jsp?id=test
+	
 %>

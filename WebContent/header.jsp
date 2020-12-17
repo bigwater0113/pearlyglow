@@ -150,7 +150,7 @@
 			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>
 			</c:when>
 			<c:otherwise>
-			<a href="${pageContext.request.contextPath}/index.jsp?spage=/Member/logout" id="h_login">LOGOUT</a>
+			<a href="${pageContext.request.contextPath}/Member/logout" id="h_login">LOGOUT</a>
 			</c:otherwise>
 		</c:choose>
 		</div>
