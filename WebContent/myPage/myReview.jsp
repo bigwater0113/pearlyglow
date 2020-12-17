@@ -22,8 +22,8 @@
 		<h1>리뷰페이지</h1>
 	</div>
 	<div>
-		<a href="javascript:beforeRe()">작성 가능한 리뷰</a>|
-		<a href="javascript:afterRe()">내가 작성한 리뷰</a>
+		<a href="javascript:beforeRe(1)">작성 가능한 리뷰</a>|
+		<a href="javascript:afterRe(1)">내가 작성한 리뷰</a>
 	</div>
 	<div id="myReview_table">
 		<table border="1" id="myReview_BATable">
@@ -50,7 +50,7 @@
 	<div id="myReview_pageDiv">
 		<c:choose>
 			<c:when test="${startPageNum>10 }"><%--이전 페이지가 있는 경우 --%>
-				[<a href="${pageContext.request.contextPath}/MyReview?status=&pageNum=${startPageNum-1 }">이전</a>]
+				[<a href="javascript:beforeRe(${startPageNum-1 })">이전</a>]
 			</c:when>
 			<c:otherwise>
 				[이전]
@@ -59,16 +59,16 @@
 		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 			<c:choose>
 				<c:when test="${i==pageNum}"><%-- 현재페이지인경우 (색상 다르게 표시) --%>
-					<a href="${pageContext.request.contextPath}/MyReview?status=&pageNum=${i }"><span style="color:gray">[${i }]</span></a>
+					<a href="javascript:beforeRe(${i })"><span style="color:gray">[${i }]</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/MyReview?status=&pageNum=${i }"><span style="color:blue">[${i }]</span></a>
+					<a href="javascript:beforeRe(${i })"><span style="color:blue">[${i }]</span></a>
 				</c:otherwise>
 			</c:choose> 
 		</c:forEach>
 		<c:choose>
 			<c:when test="${endPageNum<pageCount }"><%--이전 페이지가 있는 경우 --%>
-				[<a href="${pageContext.request.contextPath}/MyReview?status=&pageNum=${endPageNum+1 }">다음</a>]
+				[<a href="javascript:beforeRe(${endPageNum+1 })">다음</a>]
 			</c:when>
 			<c:otherwise>
 				[다음]
@@ -81,7 +81,7 @@
 	var xhr=null;
 	var Bthead=['아이디','썸네일','품명','구매갯수','구매날짜','금액'];
 	var Athead=['아이디','썸네일','품명','평가','내용','구매날짜','첨부이미지명','리뷰작성날짜'];
-	function beforeRe(){
+	function beforeRe(n){
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
@@ -137,29 +137,29 @@
 				var endPageNum=parseInt(pageDiv.getElementsByTagName("endPageNum")[0].textContent);
 				var pageDivStr="";
 				if(startPageNum>10){
-					pageDivStr += "[<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum=${startPageNum-1 }\">이전</a>] ";
+					pageDivStr += "[<a href=\"javascript:beforeRe("+ (startPageNum-1) +")\">이전</a>] ";
 				}else{
-					pageDivStr += "[이전]";
+					pageDivStr += "[이전] ";
 				}
 				for(let j=startPageNum;j<=endPageNum;j++){
 					if(j==pageNum){
-						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum="+j+"\"><span style=\"color:gray\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:gray\">["+j+"]</span></a> ";
 					}else{
-						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum="+j+"\"><span style=\"color:blue\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:blue\">["+j+"]</span></a> ";
 					}
 				}
 				if(endPageNum<pageCount){
-					pageDivStr += "[<a href=\"${pageContext.request.contextPath}/MyReview?status1=&pageNum=${endPageNum+1 }\">다음</a>] ";
+					pageDivStr += "[<a href=\"javascript:beforeRe("+ (endPageNum+1) +") \">다음</a>] ";
 				}else{
 					pageDivStr += "[다음]";
 				}
 				myReview_pageDiv.innerHTML=pageDivStr;
 			}
 		};
-		xhr.open('get','${pageContext.request.contextPath}/MyReview?status=1',true);
+		xhr.open('get','${pageContext.request.contextPath}/MyReview?status=1&pageNum='+n,true);
 		xhr.send();
 	}
-	function afterRe(){
+	function afterRe(n){
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
@@ -220,26 +220,26 @@
 				var endPageNum=parseInt(respJson.endPageNum);
 				var pageDivStr="";
 				if(startPageNum>10){
-					pageDivStr += "[<a href=\"${pageContext.request.contextPath}/MyReview?status=2&pageNum=${startPageNum-1 }\">이전</a>] ";
+					pageDivStr += "[<a href=\"javascript:beforeRe("+ (startPageNum-1) +")\">이전</a>] ";
 				}else{
-					pageDivStr += "[이전]";
+					pageDivStr += "[이전] ";
 				}
 				for(let j=startPageNum;j<=endPageNum;j++){
 					if(j==pageNum){
-						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status=2&pageNum="+j+"\"><span style=\"color:gray\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:gray\">["+j+"]</span></a> ";
 					}else{
-						pageDivStr += "<a href=\"${pageContext.request.contextPath}/MyReview?status=2&pageNum="+j+"\"><span style=\"color:blue\">["+j+"]</span></a> ";
+						pageDivStr += "<a href=\"javascript:beforeRe("+ (j) +")\"><span style=\"color:blue\">["+j+"]</span></a> ";
 					}
 				}
 				if(endPageNum<pageCount){
-					pageDivStr += "[<a href=\"${pageContext.request.contextPath}/MyReview?status2=&pageNum=${endPageNum+1 }\">다음</a>] ";
+					pageDivStr += "[<a href=\"javascript:beforeRe("+ (endPageNum+1) +")\">다음</a>] ";
 				}else{
 					pageDivStr += "[다음]";
 				}
 				myReview_pageDiv.innerHTML=pageDivStr;
 			}
 		};
-		xhr.open('get','${pageContext.request.contextPath}/MyReview?status=2',true);
+		xhr.open('get','${pageContext.request.contextPath}/MyReview?status=2&pageNum='+n,true);
 		xhr.send();
 	}
 </script>
