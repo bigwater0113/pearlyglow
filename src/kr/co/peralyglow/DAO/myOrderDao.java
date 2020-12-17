@@ -26,18 +26,21 @@ public class myOrderDao {
 			String sql="select count(pDate) " + 
 					"from " + 
 					"( " + 
-					"    select p.id,p.pnum,d.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate " + 
-					"    from purchase p join pdetail d  " + 
-					"    on p.pnum=d.pnum " + 
-					"    join items i " + 
-					"    on d.inum=i.inum " + 
-					"    where id=\'"+id+"\' " + 
-					"    order by pdate desc " + 
+					"    select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
+					"	from purchase p join pdetail pd   " + 
+					"	on p.pnum=pd.pnum  " + 
+					"	join items i  " + 
+					"	on pd.inum=i.inum  " + 
+					"	join delivery d " + 
+					"	on p.pnum=d.pnum " + 
+					"   where id=\'"+id+"\' " + 
+					"	order by pdate desc " + 
 					")";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			rs.next();
 			int cnt=rs.getInt("count(pDate)");
+			System.out.println(cnt);
 			return cnt;
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -54,19 +57,21 @@ public class myOrderDao {
 		try {
 			String sql="select * " + 
 					"from " + 
-					"(  " + 
+					"( " + 
 					"    select rownum rnum, a.*  " + 
-					"    from " + 
-					"    ( " + 
-					"        select p.id,p.pnum,d.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate " + 
-					"        from purchase p join pdetail d " + 
-					"        on p.pnum=d.pnum " + 
-					"        join items i " + 
-					"        on d.inum=i.inum " + 
-					"        where id=\'"+id+"\' " + 
+					"    from  " + 
+					"    (  " + 
+					"        select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
+					"        from purchase p join pdetail pd " + 
+					"        on p.pnum=pd.pnum " + 
+					"        join items i  " + 
+					"        on pd.inum=i.inum  " + 
+					"        join delivery d  " + 
+					"        on p.pnum=d.pnum  " + 
+					"        where id='"+id+"' " + 
 					"        order by pdate desc " + 
 					"    ) a " + 
-					") " + 
+					")  " + 
 					"where rnum>=? and rnum<=?";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
@@ -82,8 +87,13 @@ public class myOrderDao {
 						rs.getString("iName"), 
 						rs.getInt("pTotal"), 
 						rs.getString("pStatus"), 
-						rs.getDate("pDate")));
+						rs.getDate("pDate"),
+						rs.getString("dCompany"),
+						rs.getLong("trackingNum")));
+				System.out.println("asdfasdf"+list);
 			}
+			System.out.println("asdfasdf"+list);
+			
 			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();

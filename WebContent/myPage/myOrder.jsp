@@ -45,6 +45,7 @@
 					<td>${vo.pTotal }</td>
 					<td>${vo.pStatus }</td>
 					<td>${vo.pDate }</td>
+					<td><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a></td>
 				</tr>
 			</c:forEach>
 		</table>

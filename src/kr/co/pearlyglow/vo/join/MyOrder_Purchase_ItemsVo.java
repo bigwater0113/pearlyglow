@@ -11,11 +11,13 @@ public class MyOrder_Purchase_ItemsVo {
 	private int pTotal;
 	private String pStatus;
 	private Date pDate;
+	private String dCompany;
+	private long trackingNum;
 	public MyOrder_Purchase_ItemsVo() {
 		super();
 	}
 	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String iThumbnail, String iName, int pTotal,
-			String pStatus, Date pDate) {
+			String pStatus, Date pDate, String dCompany, long trackingNum) {
 		super();
 		this.id = id;
 		this.pNum = pNum;
@@ -25,6 +27,8 @@ public class MyOrder_Purchase_ItemsVo {
 		this.pTotal = pTotal;
 		this.pStatus = pStatus;
 		this.pDate = pDate;
+		this.dCompany = dCompany;
+		this.trackingNum = trackingNum;
 	}
 	public String getId() {
 		return id;
@@ -74,4 +78,17 @@ public class MyOrder_Purchase_ItemsVo {
 	public void setpDate(Date pDate) {
 		this.pDate = pDate;
 	}
+	public String getdCompany() {
+		return dCompany;
+	}
+	public void setdCompany(String dCompany) {
+		this.dCompany = dCompany;
+	}
+	public long getTrackingNum() {
+		return trackingNum;
+	}
+	public void setTrackingNum(long trackingNum) {
+		this.trackingNum = trackingNum;
+	}
+	
 }
