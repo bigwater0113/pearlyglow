@@ -31,7 +31,7 @@ public class PurchaseListDao {
 					"	from(" + 
 					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
-					"		where \"+purchaselist_date+\" == p.pdate \r\n" + 
+					"		where '"+p_date+"' = p.pdate \r\n" + 
 					"		order by p.pdate desc\r\n" + 
 					"		)aa" + 
 					")\r\n" + 
