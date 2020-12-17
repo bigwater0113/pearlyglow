@@ -10,6 +10,75 @@ import kr.co.pearlyglow.db.DBCPBean;
 import kr.co.pearlyglow.vo.MembersVo;
 
 public class MembersDao {
+	public int humanN(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update members set issleep='N' where id=?";
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt,null);
+		}
+	}
+	
+	public int humanY(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update members set issleep='Y' where id=?";
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt,null);
+		}
+	}
+	
+	public ArrayList<MembersVo> human() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="select * from members where sysdate-recentacc>=200";
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			ArrayList<MembersVo> list=new ArrayList<MembersVo>();
+			while(rs.next()) {
+				MembersVo vo=new MembersVo(
+						rs.getString("id"),
+						rs.getString("pwd"),
+						rs.getString("name"),
+						rs.getDate("birth"),
+						rs.getString("gender"),
+						rs.getString("email"),
+						rs.getString("phone"), 
+						rs.getString("address"),
+						rs.getString("isSleep"),
+						rs.getDate("recentAcc"));
+						list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			DBCPBean.close(con, pstmt, rs);
+		}
+	}
+	
 	public ArrayList<MembersVo> list(int startRowNum, int endRowNum,String field,String keyword){
 		Connection con=null;
 		PreparedStatement pstmt=null;
