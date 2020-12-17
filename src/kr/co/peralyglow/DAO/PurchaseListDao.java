@@ -16,7 +16,6 @@ public class PurchaseListDao {
 	public static PurchaseListDao getInstance() {
 		return instance;
 	}
-	
 	public ArrayList<Items_purchase_pdetailVo> pList(int startrow, int endrow, String p_date1,String p_date2, String id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -26,16 +25,16 @@ public class PurchaseListDao {
 		if(p_date1!=null && !p_date1.equals("")&&p_date2!=null && !p_date2.equals("")) {
 			sql="select * \r\n" + 
 					"from\r\n" + 
-					"(" + 
+					"(\r\n" + 
 					"	select aa.*,rownum rnum \r\n" + 
-					"	from(" + 
+					"	from(\r\n" + 
 					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
 					"		where p.id='"+id+"' and p.pdate>=to_date('"+p_date1+"','yyyy/mm/dd') and p.pdate<to_date('"+p_date2+"','yyyy/mm/dd')+1 \r\n" + 
 					"		order by p.pdate desc\r\n" + 
-					"		)aa" + 
+					"		)aa\r\n" + 
 					")\r\n" + 
-					"where rnum>=? and rnum<=?";
+					"where rnum>=? and rnum<=?;";
 		}else { 
 			sql="select * \r\n" + 
 					"from\r\n" + 
