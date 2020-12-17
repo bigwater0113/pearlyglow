@@ -1,40 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
-	#w_textArea p{
-		line-height: 0.em;
-	}
-	#w_wrap {
-		width: 1200px;
-		height:1700px;
-		margin: 0 auto;
-		text-align: center;
-	}
-	#w_itemsArea img{
-		width: 200px;
-		height: 200px;
-		border: 1px solid gray;
-		display: block;
-		margin-top: 20%;
-	}
-	
-	#w_itemsArea div{
-		display: inline-block;
-		margin: 5px;
-		margin-top: 50px;
-		width: 210px;
-		height: 300px;
-		vertical-align: middle;
-	}
-	
-	#w_itemsArea span{
-		border: 1px solid black;
-	}
-	
-	#w_textArea{
-		margin-bottom: 50px;
-	}
+#w_textArea p {
+	line-height: 0.em;
+}
+
+#w_wrap {
+	width: 1200px;
+	height: 1700px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#w_itemsArea img {
+	width: 200px;
+	height: 200px;
+	border: 1px solid gray;
+	display: block;
+	margin-top: 20%;
+}
+
+#w_itemsArea div {
+	display: inline-block;
+	margin: 5px;
+	margin-top: 50px;
+	width: 210px;
+	height: 300px;
+	vertical-align: middle;
+}
+
+#w_itemsArea span {
+	border: 1px solid black;
+}
+
+#w_textArea {
+	margin-bottom: 50px;
+}
+
+#iName {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: box;
+	max-height: 80px;
+	overflow: hidden;
+	vertical-align: top;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2
+}
 </style>
 <div id="w_wrap">
 	<div id="w_textArea">
@@ -48,11 +63,13 @@
 		<p>a tale of adventure and pursuit.</p>
 	</div>
 	<div id="w_itemsArea">
-		<c:forEach var="i" begin="1" end="12">
-			<div id="w_item${i }">
-				<img alt="" src="images/${i }.jpg"> <br>
-				<a href="">item</a> <br>
-				<p>150,000원 </p>
+		<c:set var="i" value="0" />
+		<c:forEach var="list" items="${list }">
+			<c:set var="i" value="${i+1 }" />
+			<div>
+				<img alt="" src="${list.iThumbnail }"> <br>
+				<a href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }" id="iName">${list.iName }</a> <br>
+				<p>${list.price }</p>
 				<c:if test="${i%4==0 }">
 					<span>new</span>
 				</c:if>

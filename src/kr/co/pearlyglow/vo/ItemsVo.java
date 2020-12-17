@@ -15,8 +15,11 @@ public class ItemsVo {
 	private String eDetail;
 	private String iThumbnail;
 	private int total;
+	private String bodyText;
+	private String caution;
 	public ItemsVo(int iNum, String iName, int price, int iSale, String iGender, String iCategory, String color,
-			String iSize, int weight, String material, String kDetail, String eDetail, String iThumbnail, int total) {
+			String iSize, int weight, String material, String kDetail, String eDetail, String iThumbnail, int total,
+			String bodyText, String caution) {
 		super();
 		this.iNum = iNum;
 		this.iName = iName;
@@ -32,6 +35,8 @@ public class ItemsVo {
 		this.eDetail = eDetail;
 		this.iThumbnail = iThumbnail;
 		this.total = total;
+		this.bodyText = bodyText;
+		this.caution = caution;
 	}
 	public int getiNum() {
 		return iNum;
@@ -116,6 +121,18 @@ public class ItemsVo {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public String getBodyText() {
+		return bodyText;
+	}
+	public void setBodyText(String bodyText) {
+		this.bodyText = bodyText;
+	}
+	public String getCaution() {
+		return caution;
+	}
+	public void setCaution(String caution) {
+		this.caution = caution;
 	}
 	
 	

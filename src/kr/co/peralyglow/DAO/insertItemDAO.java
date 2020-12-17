@@ -35,7 +35,7 @@ public class insertItemDAO {
 			}
 			
 			
-			ps = con.prepareStatement("insert into items values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			ps = con.prepareStatement("insert into items values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, items_seq_nextval);
 			ps.setString(2, vo.getiName());
 			ps.setInt(3, vo.getPrice());
@@ -50,6 +50,8 @@ public class insertItemDAO {
 			ps.setString(12, vo.geteDetail());
 			ps.setString(13, vo.getiThumbnail());
 			ps.setInt(14, vo.getTotal());
+			ps.setString(15, vo.getBodyText());
+			ps.setString(16, vo.getCaution());
 			
 			n = ps.executeUpdate();
 		} catch (SQLException e) {

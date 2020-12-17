@@ -101,6 +101,16 @@
 						<td colspan="7"><textarea rows="10" cols="105" id="i_edetail"
 								name="i_edetail">${vo.eDetail }</textarea></td>
 					</tr>
+					<tr>
+						<th>본문 글</th>
+						<td colspan="7"><textarea rows="10" cols="105" id="bodyText"
+								name="bodyText">${vo.bodyText }</textarea></td>
+					</tr>
+					<tr>
+						<th>취급 주의사항</th>
+						<td colspan="7"><textarea rows="10" cols="105" id="caution"
+								name="caution">${vo.caution }</textarea></td>
+					</tr>
 				</table>
 			</div>
 			<c:if test="${work != 'update' }">

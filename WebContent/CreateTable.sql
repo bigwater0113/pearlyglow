@@ -17,7 +17,7 @@ create table members
 create table items
 (
 	iNum number(5,0) primary key,	-- 품번
-	iName varchar2(30) not null,	--상품명
+	iName varchar2(200) not null,	--상품명
 	price number(12,2),	--가격
 	iSale number, --할인율
 	iGender varchar2(10),	--성별
@@ -29,6 +29,8 @@ create table items
 	kDetail varchar2(4000),	--한글설명
 	eDetail varchar2(4000),	--영어설명
 	iThumbnail varchar2(300), -- 썸네일
+	bodyText varchar2(4000), -- 본문 제품설명글
+	caution varchar2(4000), -- 취급주의사항
 	total number	--총수량
 );
 

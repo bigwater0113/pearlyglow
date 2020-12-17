@@ -42,8 +42,10 @@ public class ItemUpdateController extends HttpServlet{
 		String iKdetail = req.getParameter("i_kdetail");
 		String iEdetail = req.getParameter("i_edetail");
 		int total = Integer.parseInt(req.getParameter("total"));
+		String bodyText = req.getParameter("bodyText");
+		String caution = req.getParameter("caution");
 		
-		int n = dao.update(new ItemsVo(iNum, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, null, total));
+		int n = dao.update(new ItemsVo(iNum, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, null, total, bodyText, caution));
 		
 		resp.sendRedirect(req.getContextPath() + "/stockController");
 	}

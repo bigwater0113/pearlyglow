@@ -23,7 +23,7 @@
 		<h2 style="text-align: center;">상품 목록</h2>
 		<form action="${pageContext.request.contextPath }/stockController" method="post">
 			<div id="st_itemArea">
-				<table id="st_itemTable" border="1">
+				<table id="st_itemTable" border="1" style="word-break: break-all">
 					<tr id="st_tableHeader">
 						<th width="150px">상품명</th>
 						<th width="100px">썸네일</th>
@@ -41,7 +41,7 @@
 					</tr>
 					<c:forEach var="list" items="${list }">
 						<tr>
-							<td>${list.iName }</td>
+							<td width="150px">${list.iName }</td>
 							<td><img alt="" src="${list.iThumbnail }" width="100" height="100"></td>
 							<td>${list.price } \</td>
 							<td>${list.iSale } %</td>

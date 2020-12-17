@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.pearlyglow.vo.ItemsVo;
-import kr.co.peralyglow.DAO.StockDAO;
 import kr.co.peralyglow.DAO.itemsDAO;
 
 @WebServlet("/stockController")
@@ -30,6 +29,7 @@ public class StockController extends HttpServlet{
 		
 		ArrayList<ItemsVo> list = dao.selectAll();
 		req.setAttribute("list", list);
+		//req.getRequestDispatcher("/seller/stockControll.jsp").forward(req, resp);
 		req.getRequestDispatcher("/seller/stockControll.jsp").forward(req, resp);
 	}
 }

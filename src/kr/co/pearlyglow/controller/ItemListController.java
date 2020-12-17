@@ -1,8 +1,7 @@
 package kr.co.pearlyglow.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.peralyglow.DAO.itemsDAO;
 
-@WebServlet("/itemDeleteController")
-public class ItemDeleteController extends HttpServlet{
-
+@WebServlet("/itemListController")
+public class ItemListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int iNum = Integer.parseInt(req.getParameter("iNum"));
+		String type = req.getParameter("type");
+			type = "woman";
+		
 		itemsDAO dao = itemsDAO.getInstance();
+		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
+		String url = "";
 		
-		int n1 = dao.deleteImg(iNum);
-		int n2 = dao.delete(iNum);
+		if (type.equals("woman")) {
+			list = dao.selectGender("W");
+			url = "Woman.jsp";
+		}
 		
-		resp.sendRedirect(req.getContextPath() + "/stockController");
-	}
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("/index.jsp?spage=" + url).forward(req, resp);
+	} 
 }

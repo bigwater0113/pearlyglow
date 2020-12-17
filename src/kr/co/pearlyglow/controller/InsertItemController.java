@@ -39,13 +39,15 @@ public class InsertItemController extends HttpServlet {
 		String iKdetail = mr.getParameter("i_kdetail");
 		String iEdetail = mr.getParameter("i_edetail");
 		int total = Integer.parseInt(mr.getParameter("total"));
+		String bodyText = mr.getParameter("bodyText");
+		String caution = mr.getParameter("caution");
 		
 		int items_seq_nextval = 0;
 		
 		if (mr.getOriginalFileName("thumbnail") != null) {
 			String saveFileName = mr.getFilesystemName("thumbnail");
 			String savePath = saveDir = req.getContextPath() + "/basket/upload/" + saveFileName;
-			items_seq_nextval = dao.insert(new ItemsVo(0, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, savePath, total));
+			items_seq_nextval = dao.insert(new ItemsVo(0, iName, iPrice, 0, iGender, iCategory, iColor, iSize, iWeight, iMaterial, iKdetail, iEdetail, savePath, total, bodyText, caution));
 		}
 		
 		String file1SavePath = null;
