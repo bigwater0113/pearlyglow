@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member/list.jsp</title>
+<title>Member/human.jsp</title>
 </head>
 <body>
-<h1>회원목록</h1>
-<form action="${pageContext.request.contextPath }/Member/listDelete" method="post">
+<h1>장기간 미접속 회원 명단</h1>
+<form action="${pageContext.request.contextPath }/Member/humanY" method="post">
 	<table border="1" width="1000">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
@@ -56,35 +56,9 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="submit" value="선택삭제">
+	<input type="submit" value="확인">
 </form>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/human">200일 이상 접속 없는 명단</a>
-<!-- 페이징처리 -->
-<div>
-	<c:if test="${startPageNum>10 }">
-		<a href="${pageContext.request.contextPath}/Member/list?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
-	</c:if>
-	<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-		<a href="${pageContext.request.contextPath}/Member/list?pageNum=${i}&field=${field}&keyword=${keyword}">[${i }]</a> 
-	</c:forEach>
-	<c:if test="${endPageNum<pageCount }">
-		<a href="${pageContext.request.contextPath}/Member/list?pageNum=${endPageNum+1}&field=${field}&keyword=${keyword}">[다음]</a>
-	</c:if>
-</div>
-
-<div>
-	<form method="post" action="${pageContext.request.contextPath}/Member/list">
-		<select name="field">
-			<option value="id" <c:if test="${field=='id' }">selected</c:if>>아이디</option>
-			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>
-			<option value="gender" <c:if test="${field=='gender' }">selected</c:if>>성별(M/W)</option>
-			<option value="issleep" <c:if test="${field=='issleep' }">selected</c:if>>휴먼계정(Y/N)</option>
-		</select>
-		<input type="text" name="keyword" value="${keyword }">
-		<input type="submit" value="검색">
-	</form>
-</div>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/list">회원관리</a>
 
 <script type="text/javascript">
 	var check = 0;
@@ -107,8 +81,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-

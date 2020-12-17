@@ -49,8 +49,10 @@ public class BoardUpdateController extends HttpServlet{
 		}
 		String qCategory = mr.getParameter("u_qCategory");
 		String qTitle = mr.getParameter("u_qTitle");
-		
-		QnABoardVo vo = new QnABoardVo(num, mr.getParameter("u_id"), inum, qCategory, qTitle, mr.getParameter("u_pwd"), mr.getParameter("u_content"), orgfileName, savefileName, null, null, null);
+		int ref = Integer.parseInt(mr.getParameter("u_ref"));
+		int lev = Integer.parseInt(mr.getParameter("u_lev"));
+		int step = Integer.parseInt(mr.getParameter("u_step"));
+		QnABoardVo vo = new QnABoardVo(num, mr.getParameter("u_id"), inum, qCategory, qTitle, mr.getParameter("u_pwd"), mr.getParameter("u_content"), orgfileName, savefileName, null, null, null,ref,lev,step);
 		int n =dao.update(vo);
 		if(n>0) {
 			req.setAttribute("code", "success");

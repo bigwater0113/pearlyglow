@@ -7,34 +7,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.co.peralyglow.DAO.MembersDao;
 
-
-@WebServlet("/Member/listDelete")
-public class ListDeleteController extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("id");
-		MembersDao dao=new MembersDao();
-		int n=dao.delete(id);
-		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/Member/list");
-		}else {
-			req.setAttribute("code","fail");
-			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
-		}
-	}
-	
+@WebServlet("/Member/humanY")
+public class HumanYController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] id = req.getParameterValues("mem");
 		int n = 0;
 		MembersDao dao=new MembersDao();
 		for(int i=0 ; i<id.length; i++) {
-			n=dao.delete(id[i]);
+			n=dao.humanY(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/humanlist").forward(req, resp);
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		MembersDao dao=new MembersDao();
+		int n = dao.humanY(id);
+		if(n>0) {
+			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+			//resp.sendRedirect(req.getContextPath()+"/Member/list");
+		}else {
+			req.setAttribute("code","fail");
+			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
+		}
+		
 	}
 }

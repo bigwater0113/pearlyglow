@@ -26,7 +26,10 @@
 	문의 내용<textarea name="u_content" rows="5" cols="50">${requestScope.board.ibContent}</textarea><br>
 	첨부파일<input type="file" name="u_file"><br>
 	문의글 비밀번호 <input type="password" name="u_pwd" value="${requestScope.board.ibPwd}">
-	<input type="hidden" name="u_ibnum" value="${requestScope.board.ibNum}"><br>
+	<input type="hidden" name="u_ibnum" value="${requestScope.board.ibNum}">
+	<input type="hidden" name="u_ref" value="${requestScope.board.ref}">
+	<input type="hidden" name="u_lev" value="${requestScope.board.lev}">
+	<input type="hidden" name="u_step" value="${requestScope.board.step}"><br>
 	<input type="submit" value="수정">
 </form>
 </body>
