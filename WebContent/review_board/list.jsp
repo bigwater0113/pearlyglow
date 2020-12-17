@@ -8,6 +8,9 @@
 	<div id="reviewlist_table">
 		<table border="1" width="900">
 			<tr>
+			<c:if test="${id == admin }">
+				<th><input type="checkbox"></th>
+			</c:if>
 				<th>구매번호</th>
 				<th>상세 구매번호</th>
 				<th>상품명</th>
@@ -19,6 +22,9 @@
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
+				<c:if test="${id == admin }">
+					<th><input type="checkbox"></th>
+				</c:if>
 						<td>${vo.pnum }</td>
 						<td>${vo.pdnum}</td>
 						<td>${vo.iname}</td>

@@ -19,8 +19,10 @@
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
-					<td>${vo.ithumbnail }</td>
+<%-- 					<td><img src="${saveDir }/${vo.ithumbnail }"></td> --%>
+					<td><img src="${saveDir}/a.jpg" style="width: 200px;"></td>
 					<td>${vo.pnum }</td>
+					<td>${vo.pdnum }</td>
 					<td>${vo.iname}</td>
 					<td>${vo.pcnt}</td>
 					<td>${vo.ppay}</td>
@@ -32,19 +34,18 @@
 	</div>
 	<div id="purchaselist_paging">
 		<c:if test="${startPageNum>10 }">
-			<a href="/purchaselist?pageNum=${startPageNum-1 }">이전</a>
+			<a href="/purchaselist?pageNum=${startPageNum-1 }&id=${id}">이전</a>
 		</c:if>	
 		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-			<a href="/purchaselist?pageNum=${i }">[${i }]</a>
+			<a href="/purchaselist?pageNum=${i }&id=${id}">[${i }]</a>
 		</c:forEach>
-		
 		<c:if test="${endPageNum<pageCount }">
-				<a href="/purchaselist?pageNum=${endPageNum+1 }">다음</a>
+				<a href="/purchaselist?pageNum=${endPageNum+1 }&id=${id}">다음</a>
 		</c:if>	
 	</div>
 	<div id="purchaselist_search">
-		<form method="post" action="/purchaselist">
-			날짜선택<input type="date" id="purchaselist_date" name="purchaselist_date">
+		<form method="post" action="../purchaselist">
+			기간선택<input type="date" id="purchaselist_date" name="purchaselist_date1">~<input type="date" id="purchaselist_date" name="purchaselist_date2">
 		<input type="submit" value="검색">
 		</form>
 	</div>

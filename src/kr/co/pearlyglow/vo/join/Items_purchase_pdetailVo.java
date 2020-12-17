@@ -12,11 +12,10 @@ public class Items_purchase_pdetailVo {
 	private int ptotal;
 	private String ithumbnail;
 	private Date pdate;
-	
+	private String id;
 	public Items_purchase_pdetailVo() {}
-
 	public Items_purchase_pdetailVo(int pnum, int pdnum, String iname, int pcnt, int ppay, int ptotal,
-			String ithumbnail, Date pdate) {
+			String ithumbnail, Date pdate, String id) {
 		super();
 		this.pnum = pnum;
 		this.pdnum = pdnum;
@@ -26,70 +25,62 @@ public class Items_purchase_pdetailVo {
 		this.ptotal = ptotal;
 		this.ithumbnail = ithumbnail;
 		this.pdate = pdate;
+		this.id = id;
 	}
-
 	public int getPnum() {
 		return pnum;
 	}
-
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
-
 	public int getPdnum() {
 		return pdnum;
 	}
-
 	public void setPdnum(int pdnum) {
 		this.pdnum = pdnum;
 	}
-
 	public String getIname() {
 		return iname;
 	}
-
 	public void setIname(String iname) {
 		this.iname = iname;
 	}
-
 	public int getPcnt() {
 		return pcnt;
 	}
-
 	public void setPcnt(int pcnt) {
 		this.pcnt = pcnt;
 	}
-
 	public int getPpay() {
 		return ppay;
 	}
-
 	public void setPpay(int ppay) {
 		this.ppay = ppay;
 	}
-
 	public int getPtotal() {
 		return ptotal;
 	}
-
 	public void setPtotal(int ptotal) {
 		this.ptotal = ptotal;
 	}
-
 	public String getIthumbnail() {
 		return ithumbnail;
 	}
-
 	public void setIthumbnail(String ithumbnail) {
 		this.ithumbnail = ithumbnail;
 	}
-
 	public Date getPdate() {
 		return pdate;
 	}
-
 	public void setPdate(Date pdate) {
 		this.pdate = pdate;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 }
 
