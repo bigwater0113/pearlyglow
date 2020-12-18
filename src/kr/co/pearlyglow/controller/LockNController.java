@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.peralyglow.DAO.MembersDao;
 
-@WebServlet("/Member/humanN")
-public class HumanNController extends HttpServlet{
+@WebServlet("/Member/lockN")
+public class LockNController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] id = req.getParameterValues("mem");
 		int n = 0;
 		MembersDao dao=new MembersDao();
 		for(int i=0 ; i<id.length; i++) {
-			n=dao.humanN(id[i]);
+			n=dao.lockN(id[i]);
 		}
 		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 	}
@@ -27,7 +27,7 @@ public class HumanNController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		MembersDao dao=new MembersDao();
-		int n = dao.humanN(id);
+		int n = dao.lockN(id);
 		if(n>0) {
 			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 			//resp.sendRedirect(req.getContextPath()+"/Member/list");

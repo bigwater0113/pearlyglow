@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member/human.jsp</title>
+<title>Member/lock.jsp</title>
 </head>
 <body>
 <h1>장기간 미접속 회원 명단</h1>
-<form action="${pageContext.request.contextPath }/Member/humanY" method="post">
+<form action="${pageContext.request.contextPath }/Member/lockY" method="post">
 	<table border="1" width="1000">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
@@ -25,7 +25,7 @@
 			<th>최근접속</th>
 			<th>삭제</th>
 			<th>수정</th>
-			<th>휴먼계정변경</th>
+			<th>휴면계정변경</th>
 		</tr>
 		<c:forEach var="vo" items="${requestScope.list }">
 			<tr>
@@ -46,10 +46,10 @@
 				<td>
 					<c:choose>
 						<c:when test="${vo.issleep eq 'Y' }">
-							<a href="${pageContext.request.contextPath}/Member/humanN?id=${vo.id }">휴면계정 해제</a>
+							<a href="${pageContext.request.contextPath}/Member/lockN?id=${vo.id }">휴면계정 해제</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/Member/humanY?id=${vo.id }">휴면계정 등록</a>
+							<a href="${pageContext.request.contextPath}/Member/lockY?id=${vo.id }">휴면계정 등록</a>
 						</c:otherwise>
 					</c:choose>
 				</td>

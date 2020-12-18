@@ -36,14 +36,36 @@
 		<th>${vo.qCategory }</th>
 		<th>${vo.qTitle }</th>
 		<th>${vo.ibPwd }</th>
+
 		<th style="text-align: left;">
-			<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
-				<c:forEach var="i" begin="1" end="${vo.lev }">
-					&nbsp;&nbsp;
-				</c:forEach>
-				[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
-			</c:if>
-			<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
+			<c:choose>
+				<c:when test="${!empty vo.ibPwd }">
+					<c:choose>
+						<c:when test="${vo.id==id || id=='admin' || vo.ibPwd==pwd }">
+							<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
+								<c:forEach var="i" begin="1" end="${vo.lev }">
+									&nbsp;&nbsp;
+								</c:forEach>
+								[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
+							</c:if>
+							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/Board/secret.jsp">비밀글입니다.</a>	
+						</c:otherwise>
+					</c:choose>	
+				</c:when>
+				
+				<c:otherwise>
+					<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
+						<c:forEach var="i" begin="1" end="${vo.lev }">
+							&nbsp;&nbsp;
+						</c:forEach>
+						[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
+					</c:if>
+					<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
+				</c:otherwise>
+			</c:choose>	
 		</th>
 		<th>
 			<c:choose>

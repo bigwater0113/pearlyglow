@@ -25,7 +25,7 @@
 			<th>최근접속</th>
 			<th>삭제</th>
 			<th>수정</th>
-			<th>휴먼계정변경</th>
+			<th>휴면계정변경</th>
 		</tr>
 		<c:forEach var="vo" items="${requestScope.list }">
 			<tr>
@@ -46,10 +46,10 @@
 				<td>
 					<c:choose>
 						<c:when test="${vo.issleep eq 'Y' }">
-							<a href="${pageContext.request.contextPath}/Member/humanN?id=${vo.id }">휴면계정 해제</a>
+							<a href="${pageContext.request.contextPath}/Member/lockN?id=${vo.id }">휴면계정 해제</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/Member/humanY?id=${vo.id }">휴면계정 등록</a>
+							<a href="${pageContext.request.contextPath}/Member/lockY?id=${vo.id }">휴면계정 등록</a>
 						</c:otherwise>
 					</c:choose>
 				</td>
@@ -62,7 +62,7 @@
 	<input type="submit" value="선택휴먼계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/humanN';">
 </form>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/human">200일 이상 접속 없는 명단</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock">200일 이상 접속 없는 명단</a>
 <!-- 페이징처리 -->
 <div>
 	<c:if test="${startPageNum>10 }">

@@ -18,7 +18,7 @@
 	이메일 <input type="email" name="m_email" value="${vo.email}" disabled="disabled"><br>
 	전화번호 <input type="text" name="m_phone" value="${vo.phone}" disabled="disabled"><br>
 	회원주소 <input type="text" name="m_addr" value="${vo.address}" disabled="disabled"><br>
-	휴먼계정 <input type="text" name="m_issleep" value="${vo.issleep}" disabled="disabled"><br>
+	휴면계정 <input type="text" name="m_issleep" value="${vo.issleep}" disabled="disabled"><br>
 	최근접속 <input type="text" name="m_recent" value="${vo.recentAcc}" disabled="disabled"><br>
 	<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/Member/update?id=${vo.id}'">
 	<input type="button" value="회원탈퇴" onclick="location.href='${pageContext.request.contextPath}/Member/delete?id=${vo.id}'">

@@ -40,10 +40,11 @@ public class BoardInsertController extends HttpServlet{
 		String qCategory = mr.getParameter("i_qCategory");
 		String qTitle = mr.getParameter("i_qTitle");
 		String content = mr.getParameter("i_content");
-		String pwd = null;
-		if(req.getParameter("pwd")!=null) {
-			pwd = mr.getParameter("pwd");
-		}
+//		String pwd = null;
+//		if(req.getParameter("pwd")!=null) {
+//			pwd = mr.getParameter("pwd");
+//		}
+		String pwd = mr.getParameter("i_pwd");
 		int ref=0;
 		int lev=0;
 		int step=0;

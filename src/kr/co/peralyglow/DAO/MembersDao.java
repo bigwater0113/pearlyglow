@@ -10,7 +10,7 @@ import kr.co.pearlyglow.db.DBCPBean;
 import kr.co.pearlyglow.vo.MembersVo;
 
 public class MembersDao {
-	public int humanN(String id) {
+	public int lockN(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="update members set issleep='N' where id=?";
@@ -28,7 +28,7 @@ public class MembersDao {
 		}
 	}
 	
-	public int humanY(String id) {
+	public int lockY(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="update members set issleep='Y' where id=?";
@@ -46,7 +46,7 @@ public class MembersDao {
 		}
 	}
 	
-	public ArrayList<MembersVo> human() {
+	public ArrayList<MembersVo> lock() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;

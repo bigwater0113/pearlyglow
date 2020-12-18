@@ -20,6 +20,7 @@ public class BoardListController extends HttpServlet{
 		String spageNum=req.getParameter("pageNum");
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
+		String pwd = req.getParameter("pwd");
 		int pageNum=1;
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
@@ -41,6 +42,7 @@ public class BoardListController extends HttpServlet{
 		req.setAttribute("pageNum",pageNum);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword",keyword);
+		req.setAttribute("pwd", pwd);
 		req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
 	}
 }
