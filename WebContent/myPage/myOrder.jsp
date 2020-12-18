@@ -21,19 +21,27 @@
 	<div id="myOrder_main">
 		<h1>주문내역</h1>
 	</div>
+	<div id="myOrder_search">
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=0">전체</a>|
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=6">최근 6개월</a>|
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=2020">2020</a>|
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=2019">2019</a>
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=2018">2018</a>
+		
+	</div>
 	<div id="myOrder_table">
-		<table border="1">
+		<table border="1" width="900">
 			<tr>
 				<th>아이디</th>	<!-- purchase -->
 				<th>구매번호</th>	<!-- purchase -->
 				<th>품번</th>	<!-- purchase -->
 				<th>이미지명</th> <!-- items_image -->
 				<th>상품 명</th>	<!-- items -->
-				<th>총금액</th>	<!-- purchase -->
+				<th>상품별금액</th>	<!-- purchase -->
 				<th>제품출고상태</th>	<!-- purchase -->
 				<th>날짜</th>	<!-- purchase -->
 				<th>배송정보</th>
-				<th>상세정보</th>
+				<th>배송링크</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
@@ -42,10 +50,11 @@
 					<td>${vo.iNum }</td>
 					<td>${vo.iThumbnail }</td>
 					<td>${vo.iName }</td>
-					<td>${vo.pTotal }</td>
+					<td>${vo.pPay }</td>
 					<td>${vo.pStatus }</td>
 					<td>${vo.pDate }</td>
-					<td><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a></td>
+					<td><a href="${pageContext.request.contextPath }/MyDelivery?pNum=${vo.pNum}">배송조회</a></td>
+					<td><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송링크</a></td>
 				</tr>
 			</c:forEach>
 		</table>

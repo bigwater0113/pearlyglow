@@ -8,7 +8,7 @@ public class MyOrder_Purchase_ItemsVo {
 	private int iNum;
 	private String iThumbnail;
 	private String iName;
-	private int pTotal;
+	private int pPay;
 	private String pStatus;
 	private Date pDate;
 	private String dCompany;
@@ -16,7 +16,7 @@ public class MyOrder_Purchase_ItemsVo {
 	public MyOrder_Purchase_ItemsVo() {
 		super();
 	}
-	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String iThumbnail, String iName, int pTotal,
+	public MyOrder_Purchase_ItemsVo(String id, int pNum, int iNum, String iThumbnail, String iName, int pPay,
 			String pStatus, Date pDate, String dCompany, long trackingNum) {
 		super();
 		this.id = id;
@@ -24,7 +24,7 @@ public class MyOrder_Purchase_ItemsVo {
 		this.iNum = iNum;
 		this.iThumbnail = iThumbnail;
 		this.iName = iName;
-		this.pTotal = pTotal;
+		this.pPay = pPay;
 		this.pStatus = pStatus;
 		this.pDate = pDate;
 		this.dCompany = dCompany;
@@ -60,11 +60,11 @@ public class MyOrder_Purchase_ItemsVo {
 	public void setiName(String iName) {
 		this.iName = iName;
 	}
-	public int getpTotal() {
-		return pTotal;
+	public int getpPay() {
+		return pPay;
 	}
-	public void setpTotal(int pTotal) {
-		this.pTotal = pTotal;
+	public void setpPay(int pPay) {
+		this.pPay = pPay;
 	}
 	public String getpStatus() {
 		return pStatus;

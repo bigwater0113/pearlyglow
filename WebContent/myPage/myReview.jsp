@@ -26,7 +26,7 @@
 		<a href="javascript:afterRe(1)">내가 작성한 리뷰</a>
 	</div>
 	<div id="myReview_table">
-		<table border="1" id="myReview_BATable">
+		<table border="1" id="myReview_BATable" width="900">
 			<tr>
 				<th>아이디</th>
 				<th>썸네일</th>

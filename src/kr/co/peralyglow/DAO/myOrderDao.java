@@ -17,30 +17,39 @@ public class myOrderDao {
 	public static myOrderDao getInstance() {
 		return instance;
 	}
-	public int getCount(String id) {
+	public int getCount(String id,int pDate) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		String ppDate="";
 		try {
 			con=DBCPBean.getConn();
+			if(pDate==6) {
+				ppDate=" and p.pdate>=(sysdate-180) and p.pdate<=(sysdate) ";
+			}else if(pDate==2020){
+				ppDate=" and p.pdate>=to_date('2020/01/01','yyyy/mm/dd') and p.pdate<to_date('2021/01/01','yyyy/mm/dd') ";
+			}else if(pDate==2019) {
+				ppDate=" and p.pdate>=to_date('2019/01/01','yyyy/mm/dd') and p.pdate<to_date('2020/01/01','yyyy/mm/dd') ";
+			}else if(pDate==2018) {
+				ppDate=" and p.pdate>=to_date('2018/01/01','yyyy/mm/dd') and p.pdate<to_date('2019/01/01','yyyy/mm/dd') ";
+			}
 			String sql="select count(pDate) " + 
 					"from " + 
 					"( " + 
-					"    select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
+					"    select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,pd.pPay,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
 					"	from purchase p join pdetail pd   " + 
 					"	on p.pnum=pd.pnum  " + 
 					"	join items i  " + 
 					"	on pd.inum=i.inum  " + 
 					"	join delivery d " + 
 					"	on p.pnum=d.pnum " + 
-					"   where id=\'"+id+"\' " + 
+					"   where id=\'"+id+"\' " + ppDate +
 					"	order by pdate desc " + 
 					")";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			rs.next();
 			int cnt=rs.getInt("count(pDate)");
-			System.out.println(cnt);
 			return cnt;
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -49,26 +58,36 @@ public class myOrderDao {
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
-	public ArrayList<MyOrder_Purchase_ItemsVo> PI_list(String id,int startRow,int endRow){
+	public ArrayList<MyOrder_Purchase_ItemsVo> PI_list(String id,int pDate,int startRow,int endRow){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		ArrayList<MyOrder_Purchase_ItemsVo> list=new ArrayList<MyOrder_Purchase_ItemsVo>();
+		String ppDate="";
 		try {
+			if(pDate==6) {
+				ppDate=" and p.pdate>=(sysdate-180) and p.pdate<=(sysdate) ";
+			}else if(pDate==2020){
+				ppDate=" and p.pdate>=to_date('2020/01/01','yyyy/mm/dd') and p.pdate<to_date('2021/01/01','yyyy/mm/dd') ";
+			}else if(pDate==2019) {
+				ppDate=" and p.pdate>=to_date('2019/01/01','yyyy/mm/dd') and p.pdate<to_date('2020/01/01','yyyy/mm/dd') ";
+			}else if(pDate==2018) {
+				ppDate=" and p.pdate>=to_date('2018/01/01','yyyy/mm/dd') and p.pdate<to_date('2019/01/01','yyyy/mm/dd') ";
+			}
 			String sql="select * " + 
 					"from " + 
 					"( " + 
 					"    select rownum rnum, a.*  " + 
 					"    from  " + 
 					"    (  " + 
-					"        select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,p.ptotal,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
+					"        select p.id,p.pnum,pd.inum,i.ithumbnail,i.iname,pd.pPay,p.pstatus,p.pdate,d.dcompany,d.trackingnum " + 
 					"        from purchase p join pdetail pd " + 
 					"        on p.pnum=pd.pnum " + 
 					"        join items i  " + 
 					"        on pd.inum=i.inum  " + 
 					"        join delivery d  " + 
 					"        on p.pnum=d.pnum  " + 
-					"        where id='"+id+"' " + 
+					"        where id='"+id+"' " + ppDate +
 					"        order by pdate desc " + 
 					"    ) a " + 
 					")  " + 
@@ -85,15 +104,12 @@ public class myOrderDao {
 						rs.getInt("iNum"), 
 						rs.getString("iThumbnail"), 
 						rs.getString("iName"), 
-						rs.getInt("pTotal"), 
+						rs.getInt("pPay"), 
 						rs.getString("pStatus"), 
 						rs.getDate("pDate"),
 						rs.getString("dCompany"),
 						rs.getLong("trackingNum")));
-				System.out.println("asdfasdf"+list);
 			}
-			System.out.println("asdfasdf"+list);
-			
 			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();

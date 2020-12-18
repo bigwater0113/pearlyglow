@@ -20,7 +20,7 @@
 		<h1>마이페이지</h1>
 		<h2><a href="${pageContext.request.contextPath }/Member/info?id=${id }">내 정보</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/purchaselist?id=${id }">구매내역</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/myOrder">주문내역</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/myOrder?pDate=0">주문내역</a></h2>
 		<h2><a href="${pageContext.request.contextPath }">장바구니</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/MyReview?status=">내 리뷰</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/Board/boardInfo?id=${id }">내 문의</a></h2>

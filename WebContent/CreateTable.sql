@@ -88,11 +88,12 @@ create table purchase
 (
 	pNum number primary key,	--구매번호
 	id varchar2(30) references members(id),	--아이디	
+	receiver varchar2(100) 		--수취인
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	
 	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정')),	--제품출고상태
-	pTotal number --총금액
+	pTotal number, --총금액
 );
 
 -- 배송정보/delevery

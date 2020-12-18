@@ -26,15 +26,15 @@ public class MyReviewController extends HttpServlet{
 		if(spageNum!=null && !(spageNum.equals(""))){
 			pageNum=Integer.parseInt(spageNum);
 		}
-//		int startRow=(pageNum-1)*10+1;
-//		int endRow=startRow+9;
-		int startRow=pageNum;
-		int endRow=startRow;
+		int startRow=(pageNum-1)*10+1;
+		int endRow=startRow+9;
+//		int startRow=pageNum;
+//		int endRow=startRow;
 		myReviewDao dao=myReviewDao.getInstance();
 		ArrayList<MyReviewVo> list=dao.MR_list();
 		list=dao.MR_list_BA(status,id,startRow,endRow);
-//			int pageCount=(dao.getCount(status)/10)+1;
-		int pageCount=dao.getCount(status,id);
+			int pageCount=(dao.getCount(status,id)/10)+1;
+//		int pageCount=dao.getCount(status,id);
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
