@@ -35,6 +35,7 @@ public class BoardListController extends HttpServlet{
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
+		req.setAttribute("page", "list");
 		req.setAttribute("list",list);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPageNum",startPageNum);

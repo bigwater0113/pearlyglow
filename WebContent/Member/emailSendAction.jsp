@@ -13,7 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String host ="http://localhost:8081/project/Member/";
+	String host ="http://localhost:8081/a_semi_Project/Member/";
 	String from ="cssimm@gmail.com";
 	String to = request.getParameter("email");
 	String subject = "이메일 인증";
@@ -46,7 +46,6 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이메일 인증 오류!!!')");
-		script.println("<script>");
 		script.println("</script>");
 		//e.printStackTrace();
 	}
