@@ -68,6 +68,8 @@ public class InsertItemController extends HttpServlet {
 		
 		dao.insertImg(file1SavePath, file2SavePath, file3SavePath, items_seq_nextval);
 		
+		resp.sendRedirect(req.getContextPath() + "/stockController");
+		
 		/*
 		Enumeration<String> e = mr.getFileNames();
 		while(e.hasMoreElements()){

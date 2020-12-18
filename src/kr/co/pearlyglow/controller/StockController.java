@@ -29,7 +29,6 @@ public class StockController extends HttpServlet{
 		
 		ArrayList<ItemsVo> list = dao.selectAll();
 		req.setAttribute("list", list);
-		//req.getRequestDispatcher("/seller/stockControll.jsp").forward(req, resp);
-		req.getRequestDispatcher("/seller/stockControll.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/stockControll.jsp").forward(req, resp);
 	}
 }

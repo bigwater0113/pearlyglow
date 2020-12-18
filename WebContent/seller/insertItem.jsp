@@ -9,7 +9,7 @@
 <style type="text/css">
 #i_wrap {
 	/*display: flex;*/
-	width: 900px;
+	width: 898px;
 	border: 1px solid gray;
 	/*justify-content: center;*/
 	/*vertical-align: middle;*/

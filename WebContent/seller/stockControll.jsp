@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#st_wrap {
-		width: 900px;
+		width: 898px;
 		border: 1px solid gray;
 		text-align: center;
 	}
