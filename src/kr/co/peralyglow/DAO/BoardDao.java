@@ -467,6 +467,29 @@ public class BoardDao {
 		}
 	}
 	
+	public int AnsgetCount() {
+		Connection con=null;
+	    PreparedStatement pstmt=null;
+	    ResultSet rs=null;
+	    try {
+	       con=DBCPBean.getConn();
+	       String sql="select NVL(count(ibnum),0) cnt from qnaboard where ref in " + 
+	       		"(select distinct ref from qnaboard group by ref,lev having lev>0) " + 
+	       		"order by ref desc, step asc";
+	       
+	       pstmt=con.prepareStatement(sql);
+	       rs=pstmt.executeQuery();
+	       rs.next();
+	       int cnt=rs.getInt(1);
+	       return cnt;
+	    }catch(SQLException se) {
+	       se.printStackTrace();
+	       return -1;
+	    }finally {
+	       DBCPBean.close(con, pstmt, rs);
+	    }
+	}
+	
 	public ArrayList<QnABoardVo> unAnsList(int startRowNum, int endRowNum){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -514,5 +537,27 @@ public class BoardDao {
 		}finally {
 			DBCPBean.close(con, pstmt, rs);
 		}
+	}
+	
+	public int unAnsgetCount() {
+		Connection con=null;
+	    PreparedStatement pstmt=null;
+	    ResultSet rs=null;
+	    try {
+	       con=DBCPBean.getConn();
+	       String sql="select NVL(count(ibnum),0) cnt from qnaboard where not ref in " + 
+	       		"(select distinct ref from qnaboard group by ref,lev having lev>0) " + 
+	       		"order by ref asc, step asc";
+	       pstmt=con.prepareStatement(sql);
+	       rs=pstmt.executeQuery();
+	       rs.next();
+	       int cnt=rs.getInt(1);
+	       return cnt;
+	    }catch(SQLException se) {
+	       se.printStackTrace();
+	       return -1;
+	    }finally {
+	       DBCPBean.close(con, pstmt, rs);
+	    }
 	}
 }

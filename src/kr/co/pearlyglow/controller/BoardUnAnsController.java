@@ -26,7 +26,7 @@ public class BoardUnAnsController extends HttpServlet{
 		int endRow=startRow+9;
 		BoardDao dao=new BoardDao();
 		ArrayList<QnABoardVo> list=dao.unAnsList(startRow, endRow);
-		int pageCount=(int)Math.ceil(dao.getCount(null,null)/10.0);
+		int pageCount=(int)Math.ceil(dao.unAnsgetCount()/10.0);
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
