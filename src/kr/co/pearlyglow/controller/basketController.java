@@ -28,45 +28,44 @@ public class basketController extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		// test
-		session.setAttribute("id", "admin");
+		//session.setAttribute("id", "admin");
 	
 		String id = (String) session.getAttribute("id");
 
 		
 		if (id == null) {
-			// 로그인 페이지로 이동
-		}
-		
-		String iNumNullCheck = req.getParameter("iNum");
-		
-		// 장바구니 담기
-		if (iNumNullCheck != null) {
-			int iNum = Integer.parseInt(req.getParameter("iNum"));
-			int sbCnt = Integer.parseInt(req.getParameter("sbCnt"));
-			int n = dao.insert(id, iNum, sbCnt);
+			resp.sendRedirect(req.getContextPath() + "/index.jsp?spage=Member/login.jsp");
+		} else {
 			
-			JSONObject json = new JSONObject();
+			String iNumNullCheck = req.getParameter("iNum");
 			
-			// 장바구니 담기 성공
-			if (n > 0) {
-				json.put("result", "true");
+			// 장바구니 담기
+			if (iNumNullCheck != null) {
+				int iNum = Integer.parseInt(req.getParameter("iNum"));
+				int sbCnt = Integer.parseInt(req.getParameter("sbCnt"));
+				int n = dao.insert(id, iNum, sbCnt);
+				
+				JSONObject json = new JSONObject();
+				
+				// 장바구니 담기 성공
+				if (n > 0) {
+					json.put("result", "true");
+				}
+				// 장바구니 담기 실패
+				else {
+					json.put("result", "false");
+				}
+				
+				resp.setContentType("text/plain; charset=utf-8");
+				PrintWriter pw = resp.getWriter();
+				pw.print(json);
 			}
-			// 장바구니 담기 실패
+			// 장바구니 조회
 			else {
-				json.put("result", "false");
+				ArrayList<ShoppingBasket_ItemsVo> list = dao.selectAll(id);
+				req.setAttribute("list", list);
+				req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../basket/basket.jsp").forward(req, resp);
 			}
-			
-			resp.setContentType("text/plain; charset=utf-8");
-			PrintWriter pw = resp.getWriter();
-			pw.print(json);
-		}
-		// 장바구니 조회
-		else {
-			ArrayList<ShoppingBasket_ItemsVo> list = dao.selectAll(id);
-			req.setAttribute("list", list);
-			//req.getRequestDispatcher("/basket/basket.jsp").forward(req, resp);
-			req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../basket/basket.jsp").forward(req, resp);
-			System.out.println("장바구니 조회");
 		}
 	}
 	

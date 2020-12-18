@@ -140,7 +140,7 @@
 			<img alt="" src="${pageContext.request.contextPath}/images/menuIcon.png" id="h_menuBtn" onclick="slide()">
 		</div>
 		<div id="h_center">
-			<img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo">
+			<img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo" onclick="location.href='${pageContext.request.contextPath}/index.jsp?spage=main.jsp'">
 		</div>
 		<div id="h_right">
 			<input type="text" id="h_searchBox" placeholder="SEARCH">
@@ -180,8 +180,10 @@
 			<h2>
 				<a href="">SHOP</a>
 			</h2>
-			<a href="">EARRING</a> <a href="">BRACELET</a> <a href="">NECKLACE</a>
-			<a href="">RING</a>
+			<a href="${pageContext.request.contextPath }/itemListController?type=earring">EARRING</a>
+			<a href="${pageContext.request.contextPath }/itemListController?type=bracelet">BRACELET</a> 
+			<a href="${pageContext.request.contextPath }/itemListController?type=necklace">NECKLACE</a>
+			<a href="${pageContext.request.contextPath }/itemListController?type=ring">RING</a>
 		</div>
 	</div>
 </div>

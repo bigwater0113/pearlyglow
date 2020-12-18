@@ -21,6 +21,10 @@
 	margin-top: 20%;
 }
 
+#w_itemsArea {
+	margin-bottom: 150px;
+}
+
 #w_itemsArea div {
 	display: inline-block;
 	margin: 5px;
@@ -67,7 +71,7 @@
 		<c:forEach var="list" items="${list }">
 			<c:set var="i" value="${i+1 }" />
 			<div>
-				<img alt="" src="${list.iThumbnail }"> <br>
+				<img alt="" src="${list.iThumbnail }" onclick="location.href='${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }'"> <br>
 				<a href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }" id="iName">${list.iName }</a> <br>
 				<p>${list.price }</p>
 				<c:if test="${i%4==0 }">
@@ -82,4 +86,20 @@
 			</c:if>
 		</c:forEach>
 	</div>
+	<c:if test="${page > 10 }">
+		<a href="${pageContext.request.contextPath }/itemListController?page=${startPageNum-1}&type=${type}">이전</a>
+	</c:if>
+	<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+		<c:choose>
+			<c:when test="${page == i }">
+				<span>${i }</span>
+			</c:when>
+			<c:otherwise>
+				<a href="${pageContext.request.contextPath }/itemListController?page=${i}&type=${type}">${i }</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:if test="${endPageNum < maxPageNum }">
+		<a href="${pageContext.request.contextPath }/itemListController?page=${endPageNum+1}&type=${type}">다음</a>
+	</c:if>
 </div>

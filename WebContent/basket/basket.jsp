@@ -30,6 +30,10 @@
 	border-bottom: 1px solid gray;
 	border-top: 1px soild gray;
 }
+
+#s_buttonArea {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -48,14 +52,15 @@
 						<th width="102" height="24">총금액</th>
 					</tr>
 					<c:forEach var="list" items="${list }">
+						<c:set var="totalPrice" value="${totalPrice + list.price }"/>
 						<tr>
 							<td width="30"><input type="checkbox" id="${list.sbNum }"
 								class="ck" name="item" value="${list.sbNum }"></td>
-							<td width="100" height="100"><img alt=""
-								src="${list.iThumbnail }" width="150" height="150"></td>
+							<td width="100" height="100">
+								<img alt="" src="${list.iThumbnail }" width="150" height="150" onclick="location.href='${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }'"></td>
 							<td width="400">
 								<span>분류 : ${list.iCategory }</span>
-								<p><a href="#">${list.iName }</a> </p>
+								<p><a href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }">${list.iName }</a> </p>
 								<span>성별 : ${list.iGender } </span> <br>
 								<span>색상 : ${list.color } </span> <br>
 								<span>사이즈 : ${list.iSize } </span>
@@ -66,10 +71,15 @@
 							</td>
 						</tr>
 					</c:forEach>
+						<tr>
+							<td colspan="6" style="text-align: right;"> 합계 : ${totalPrice } \ </td>
+						</tr>
 				</table>
 			</div>
-			<input type="submit" value="선택삭제" id="deleteChoose">
-			<input type="button" value="주문하기">
+			<div id="s_buttonArea">
+				<input type="submit" value="선택삭제" id="deleteChoose" style="width: 100px; height: 50px;">
+				<input type="button" value="주문하기" style="width: 100px; height: 50px;">
+			</div>
 		</form>
 	</div>
 </body>

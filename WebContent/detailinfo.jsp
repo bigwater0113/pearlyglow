@@ -12,18 +12,21 @@
 	#main #left {width:200px;height:100%;background-color: white;float:left;}
 	#main #middle {width:800px;height:100%;float:left;}
 	#main #right {width:200px;height:100%;background-color: white;float:right;}
-	#main #middle #top{width:100%;height:360px; margin-bottom: 70px;}
+	#main #middle #top{width:100%;height:360px; margin-bottom: 200px;}
 	#main #middle #core{width:100%; background-color: white; text-align: center;}
 	#main #middle #bottom{width:100%; margin-bottom: 300px; margin-top:150px; background-color: white;}
 	#main #middle #top #image1{width: 350px;height: 350px;float: left; /*text-align: center;*/background-color: white;}
 	#main #middle #top #detail{width: 50%;height: 100%; background-color: white;float: right;}
-	#main #middle #top #image1 #img1{ width: 350px; height: 350px; } 
+	#main #middle #top #image1 #img1{ width: 350px; height: auto; } 
  	#main #middle #top #detail #title{width: 100%; background-color: white;} 
  	#main #middle #top #detail #nbso{width: 100%;height: 5%; background-color: white;} 
  	#main #middle #top #detail #nbso li{list-style: none;display: inline-block;font-size: 10px;border:1px solid black;}
- 	#main #middle #top #detail #description{width: 100%;height: 90%; background-color: white;} 
- 	#main #middle #top #detail #description #text{width: 100%;height: 64%; background-color: white;}
+ 	#main #middle #top #detail #description{width: 100%;height: 90%; background-color: white; margin-top: 20px;} 
+ 	#main #middle #top #detail #description #text{width: 100%;height: 100%; background-color: white;}
+ 	#main #middle #top #detail #description #text #detailText {height: 70%;}
+ 	#main #middle #top #detail #description #text #optionText {height: 30%;}
  	#main #middle #top #detail #description #text p{font-size: 11px; } 
+ 	#main #middle #top #detail #description #text span{font-size: 11px; color: gray;} 
  	#main #middle #top #detail #description #option{width: 100%;height: 30%; background-color: white;} 
  	#main #middle #top #detail #description #option #buy{background-color: #333333;color:white;border:none ;width: 150px;height: 40px;} 
  	#main #middle #top #detail #description #option #wish{background-color: white;border:1px solid gray;width: 150px;height: 40px;} 
@@ -60,10 +63,17 @@
 					</div>
 					<div id="description">
 						<div id="text">
-							<br>
-							<p>${vo.kDetail }</p>
-							<br>
-							<p>${vo.eDetail }</p>
+							<div id="detailText">
+								<p>${vo.kDetail }</p>
+								<br>
+								<p>${vo.eDetail }</p>
+							</div>
+							<div id="optionText">
+								<span>Gender: ${vo.iGender } </span> <br>
+								<span>Category: ${vo.iCategory } </span> <br>
+								<span>Color: ${vo.color } </span> <br>
+								<span>Size: ${vo.iSize } / Weight: ${vo.weight } / Material: ${vo.material } </span>
+							</div>
 						</div>
 						<div id="option">
 							<input type="button" value="-"onclick="changeM(event);"id="minus"><input type="text" name="count" value="1" id="count"><input type="button" value="+" onclick="changeP(event);" id="plus">
@@ -124,6 +134,8 @@
 				} else {
 					resultSpan.innerHTML = "내부 오류로 인해 장바구니에 담기 실패..";
 				}
+				
+				
 			}
 		}
 		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=${vo.iNum}&sbCnt=' + sbCnt, true);

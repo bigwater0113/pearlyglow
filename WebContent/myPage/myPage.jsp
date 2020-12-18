@@ -12,7 +12,7 @@
 	#myPage_wrap{width:1200px; margin:auto;}
 	#myPage_Menu{width:260px;height:400px;float:left;padding:20px;}
 	#myPage_Menu a{color:black;text-decoration: none; font-weight:bold;}
-	#myPage_section{width:900px;height:1000px;float:left;}
+	#myPage_section{width:900px; float:left;}
 	
 </style>
 <div id="myPage_wrap">
