@@ -13,6 +13,7 @@ public class DBConnection {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "dlgmlrnjs09", "gmlrnjs0");
+//			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
 			return con;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
