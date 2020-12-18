@@ -22,7 +22,6 @@ public class PurchaseListController extends HttpServlet{
 		String p_date2=req.getParameter("purchaselist_date2");
 //		String id=(String)req.getSession().getAttribute("id");
 		String id="test";
-		String saveDir=req.getServletContext().getRealPath("/img");
 		int pageNum=1;
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
@@ -42,7 +41,6 @@ public class PurchaseListController extends HttpServlet{
 		req.setAttribute("startPageNum", startPageNum);
 		req.setAttribute("endPageNum", endPageNum);
 		req.setAttribute("pageNum", pageNum);
-		req.setAttribute("saveDir", saveDir);
 		req.setAttribute("id", id);
 		req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=../purchase_list/purchaselist.jsp").forward(req, resp);
 //		req.getRequestDispatcher("/purchase_list/purchaselist.jsp").forward(req, resp);

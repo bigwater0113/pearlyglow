@@ -35,7 +35,7 @@ public class PurchaseListDao {
 					"		order by p.pdate desc\r\n" + 
 					"		)aa\r\n" + 
 					")\r\n" + 
-					"where rnum>=? and rnum<=?;";
+					"where rnum>=? and rnum<=?";
 		}else { 
 			sql="select * \r\n" + 
 					"from\r\n" + 
