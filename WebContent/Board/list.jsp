@@ -22,7 +22,9 @@
 		<th>문의 제품 </th>
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>
-		<th>문의글 비밀번호 </th>
+		<c:if test="${id== 'admin' }">
+			<th>문의글 비밀번호 </th>
+		</c:if>
 		<th width="300">문의 내용 </th>
 		<th>수정</th>
 		<th>삭제</th>
@@ -35,7 +37,9 @@
 		<th>${vo.iNum }</th>
 		<th>${vo.qCategory }</th>
 		<th>${vo.qTitle }</th>
-		<th>${vo.ibPwd }</th>
+		<c:if test="${id== 'admin' }">
+			<th>${vo.ibPwd }</th>
+		</c:if>
 
 		<th style="text-align: left;">
 			<c:choose>
@@ -51,7 +55,7 @@
 							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/Board/secret.jsp">비밀글입니다.</a>	
+							<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/secret.jsp">비밀글입니다.</a>	
 						</c:otherwise>
 					</c:choose>	
 				</c:when>
@@ -68,16 +72,22 @@
 			</c:choose>	
 		</th>
 		<th>
-			<c:choose>
-				<c:when test="${empty vo.ans }">
-					<a href="${pageContext.request.contextPath}/Board/update?ibnum=${vo.ibNum}">문의글 수정</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답글 수정</a>
-				</c:otherwise>
-			</c:choose>
+			<c:if test="${vo.id==id || id=='admin'}">
+				<c:choose>
+					<c:when test="${empty vo.ans }">
+						<a href="${pageContext.request.contextPath}/Board/update?ibnum=${vo.ibNum}">문의글 수정</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답글 수정</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 		</th>
-		<th><a href="${pageContext.request.contextPath}/Board/delete?ibnum=${vo.ibNum}">삭제</a></th>
+		<th>
+			<c:if test="${vo.id==id || id=='admin'}">
+				<a href="${pageContext.request.contextPath}/Board/delete?ibnum=${vo.ibNum}">삭제</a>
+			</c:if>
+		</th>
 	</tr>
 </c:forEach>
 </table>

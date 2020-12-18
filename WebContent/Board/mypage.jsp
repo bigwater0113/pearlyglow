@@ -44,8 +44,16 @@
 				</c:otherwise>
 			</c:choose>
 		</th>
-		<th><a href="${pageContext.request.contextPath}/Board/update?ibnum=${qvo.ibNum}">수정</a></th>
-		<th><a href="${pageContext.request.contextPath}/Board/delete?ibnum=${qvo.ibNum}">삭제</a></th>
+		<th>
+			<c:if test="${qvo.id==id || id=='admin'}">
+				<a href="${pageContext.request.contextPath}/Board/update?ibnum=${qvo.ibNum}">수정</a>
+			</c:if>
+		</th>
+		<th>
+			<c:if test="${qvo.id==id || id=='admin'}">
+				<a href="${pageContext.request.contextPath}/Board/delete?ibnum=${qvo.ibNum}">삭제</a>
+			</c:if>	
+		</th>
 	</tr>
 </c:forEach>
 </table>

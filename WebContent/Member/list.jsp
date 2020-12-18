@@ -58,8 +58,8 @@
 	</table>
 	<br>
 	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete';">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴먼계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/humanY';">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴먼계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/humanN';">
+	<input type="submit" value="선택휴면계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockY';">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN';">
 </form>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock">200일 이상 접속 없는 명단</a>
@@ -82,7 +82,7 @@
 			<option value="id" <c:if test="${field=='id' }">selected</c:if>>아이디</option>
 			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>
 			<option value="gender" <c:if test="${field=='gender' }">selected</c:if>>성별(M/W)</option>
-			<option value="issleep" <c:if test="${field=='issleep' }">selected</c:if>>휴먼계정(Y/N)</option>
+			<option value="issleep" <c:if test="${field=='issleep' }">selected</c:if>>휴면계정(Y/N)</option>
 		</select>
 		<input type="text" name="keyword" value="${keyword }">
 		<input type="submit" value="검색">

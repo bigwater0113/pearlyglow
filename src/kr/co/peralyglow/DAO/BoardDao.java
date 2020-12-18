@@ -16,7 +16,7 @@ public class BoardDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			String sql="select * from QnABoard where id=? order by ref desc, step asc";
+			String sql="select * from QnABoard where ref in (select ref from QnABoard where id=? and lev=0) order by ref desc, step asc";
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -426,7 +426,7 @@ public class BoardDao {
 	         "(" + 
 	          "  select aa.*,rownum rnum from" + 
 	          "  ( " + 
-	          "    select * from qnaboard where ref =" + 
+	          "    select * from qnaboard where ref in" + 
 	          "    (select distinct ref from qnaboard group by ref,lev having lev>0)" + 
 	          "  	order by ref desc, step asc " + 
 	          "  )aa " + 
