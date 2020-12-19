@@ -123,6 +123,9 @@ public class ReviewboardDao {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
+	public int avgScore() {
+		
+	}
 	
 	public ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> rList(int startRow, int endRow, String id) {
 		Connection con=null;
@@ -134,7 +137,7 @@ public class ReviewboardDao {
 					"(\r\n" + 
 					"	select aa.*,rownum rnum\r\n" + 
 					"	from(\r\n" + 
-					"		select p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
+					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
 					"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
 					"		)aa\r\n" + 
@@ -148,13 +151,14 @@ public class ReviewboardDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String buyerid=rs.getString("id");
+				int rbnum=rs.getInt("rbdnum");
 				int pdnum=rs.getInt("pdnum");
 				int score=rs.getInt("score");
 				String iname=rs.getString("iname");
 				String savename=rs.getString("savename");
 				String rbcontent=rs.getString("rbcontent");
 				Date rdate=rs.getDate("rdate");
-				Reviewboard_Purchase_pDetail_ItemsVo vo=new Reviewboard_Purchase_pDetail_ItemsVo(buyerid, savename, iname, pdnum, score, rbcontent, rdate);
+				Reviewboard_Purchase_pDetail_ItemsVo vo=new Reviewboard_Purchase_pDetail_ItemsVo(buyerid,rbnum, savename, iname, pdnum, score, rbcontent, rdate);
 				list.add(vo);
 			}
 			return list;
@@ -172,7 +176,7 @@ public class ReviewboardDao {
 			ResultSet rs=null;
 			try {
 				con=DBCPBean.getConn();
-				String sql="select NVL(count(pdnum),0) cnt from pdetail";
+				String sql="select NVL(count(pdnum),0) cnt from reviewboard";
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				rs.next();

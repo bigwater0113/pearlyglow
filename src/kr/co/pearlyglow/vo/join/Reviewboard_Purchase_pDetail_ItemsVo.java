@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Reviewboard_Purchase_pDetail_ItemsVo {
 	private String id;
+	private int rbnum;
 	private String savename;
 	private String iname;
 	private int pdnum;
@@ -11,10 +12,11 @@ public class Reviewboard_Purchase_pDetail_ItemsVo {
 	private String rbcontent;
 	private Date rdate;
 	public Reviewboard_Purchase_pDetail_ItemsVo() {}
-	public Reviewboard_Purchase_pDetail_ItemsVo(String id, String savename, String iname, int pdnum, int score,
+	public Reviewboard_Purchase_pDetail_ItemsVo(String id, int rbnum, String savename, String iname, int pdnum, int score,
 			String rbcontent, Date rdate) {
 		super();
 		this.id = id;
+		this.rbnum = rbnum;
 		this.savename = savename;
 		this.iname = iname;
 		this.pdnum = pdnum;
@@ -27,6 +29,13 @@ public class Reviewboard_Purchase_pDetail_ItemsVo {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public int getRbnum() {
+		return rbnum;
+	}
+	public void setRbnum(int rbnum) {
+		this.rbnum = rbnum;
 	}
 	public String getSavename() {
 		return savename;

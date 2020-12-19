@@ -13,15 +13,18 @@ import kr.co.peralyglow.DAO.ReviewboardDao;
 public class RdeleteController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int pdnum=Integer.parseInt(req.getParameter("pdnum"));
 		ReviewboardDao dao=ReviewboardDao.getInstance();
-		int n=dao.delete(pdnum);
+		String[] params=req.getParameterValues("checkk");
+		int n=0;
+		for(String i : params) {
+			n=dao.delete(Integer.parseInt(i));
+		}
 		if(n>0) {
-			req.getRequestDispatcher("index.jsp?spage=detailinfo.jsp?mpage=review_board/list.jsp").forward(req, resp);
 			req.setAttribute("msg", "삭제성공!");
-		}else {
 			req.getRequestDispatcher("index.jsp?spage=detailinfo.jsp?mpage=review_board/list.jsp").forward(req, resp);
+		}else {
 			req.setAttribute("msg", "삭제실패!");
+			req.getRequestDispatcher("index.jsp?spage=detailinfo.jsp?mpage=review_board/list.jsp").forward(req, resp);
 		}
 	}
 }
