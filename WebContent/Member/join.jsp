@@ -106,9 +106,6 @@
 		if(xhr.readyState==4 && xhr.status==200){
 			var div=document.getElementById("j_emailcheck");
 			div.innerHTML="이메일 인증이 완료되었습니다.";
-		}else{
-			var div=document.getElementById("j_emailcheck");
-			div.innerHTML="이메일 인증에 실패했습니다.";
 		}
 	}
 </script>

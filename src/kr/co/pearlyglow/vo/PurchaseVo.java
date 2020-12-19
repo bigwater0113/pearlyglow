@@ -5,6 +5,7 @@ import java.sql.Date;
 public class PurchaseVo {
 	private int pNum;
 	private String id;
+	private String receiver;
 	private String pAddress;
 	private String pWay;
 	private Date pDate;
@@ -13,16 +14,17 @@ public class PurchaseVo {
 	public PurchaseVo() {
 		super();
 	}
-	public PurchaseVo(int pNum, String id, String pAddress, String pWay, Date pDate, String pStatus, int pTotal) {
+	public PurchaseVo(int pNum, String id, String receiver, String pAddress, String pWay, Date pDate, String pStatus,
+			int pTotal) {
 		super();
 		this.pNum = pNum;
 		this.id = id;
+		this.receiver = receiver;
 		this.pAddress = pAddress;
 		this.pWay = pWay;
 		this.pDate = pDate;
 		this.pStatus = pStatus;
 		this.pTotal = pTotal;
-		
 	}
 	public int getpNum() {
 		return pNum;
@@ -35,6 +37,12 @@ public class PurchaseVo {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 	public String getpAddress() {
 		return pAddress;
@@ -66,6 +74,5 @@ public class PurchaseVo {
 	public void setpTotal(int pTotal) {
 		this.pTotal = pTotal;
 	}
-	
 	
 }

@@ -17,18 +17,19 @@ public class MyOrderController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String spageNum=req.getParameter("pageNum");
 		String id=(String)req.getSession().getAttribute("id");
+		int pDate=Integer.parseInt(req.getParameter("pDate"));
 		int pageNum=1;
 		if(spageNum!=null && !(spageNum.equals(""))){
 			pageNum=Integer.parseInt(spageNum);
 		}
-//		int startRow=(pageNum-1)*10+1;
-//		int endRow=startRow+9;
-		int startRow=pageNum;
-		int endRow=startRow;
+		int startRow=(pageNum-1)*10+1;
+		int endRow=startRow+9;
+//		int startRow=pageNum;
+//		int endRow=startRow;
 		myOrderDao dao=myOrderDao.getInstance();
-		ArrayList<MyOrder_Purchase_ItemsVo> list=dao.PI_list(id,startRow,endRow);
-//		int pageCount=(dao.getCount(status)/10)+1;
-		int pageCount=dao.getCount(id);
+		ArrayList<MyOrder_Purchase_ItemsVo> list=dao.PI_list(id,pDate,startRow,endRow);
+		int pageCount=(dao.getCount(id,pDate)/10)+1;
+//		int pageCount=dao.getCount(id);
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {

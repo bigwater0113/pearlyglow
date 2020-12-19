@@ -94,13 +94,13 @@
 <!-- 페이징처리 -->
 <div>
 	<c:if test="${startPageNum>10 }">
-		<a href="${pageContext.request.contextPath}/Board/list?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
+		<a href="${pageContext.request.contextPath}/Board/${page }?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
 	</c:if>
 	<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-		<a href="${pageContext.request.contextPath}/Board/list?pageNum=${i}&field=${field}&keyword=${keyword}">[${i }]</a> 
+		<a href="${pageContext.request.contextPath}/Board/${page }?pageNum=${i}&field=${field}&keyword=${keyword}">[${i }]</a> 
 	</c:forEach>
 	<c:if test="${endPageNum<pageCount }">
-		<a href="${pageContext.request.contextPath}/Board/list?pageNum=${endPageNum+1}&field=${field}&keyword=${keyword}">[다음]</a>
+		<a href="${pageContext.request.contextPath}/Board/${page }?pageNum=${endPageNum+1}&field=${field}&keyword=${keyword}">[다음]</a>
 	</c:if>
 </div>
 

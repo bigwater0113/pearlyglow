@@ -9,5 +9,6 @@
 <body>
 <h1>이메일 인증이 완료되었습니다...</h1>
 <button type="button" onclick="window.close()"><span>확인</span></button>
+
 </body>
 </html>

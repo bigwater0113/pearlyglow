@@ -32,6 +32,7 @@ public class BoardUnAnsController extends HttpServlet{
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
+		req.setAttribute("page", "unans");
 		req.setAttribute("list",list);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPageNum",startPageNum);
