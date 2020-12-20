@@ -33,7 +33,7 @@
 	response.addCookie(cookie);
 %>
 
-<a href="${pageContext.request.contextPath}/myPage/recentView">최근본상품</a>
-<a href="testview5.jsp">5</a>
+<a href="${pageContext.request.contextPath}/recentView">최근본상품</a>
+<a href="${pageContext.request.contextPath }/myPage/testview5.jsp">5</a>
 </body>
 </html>
