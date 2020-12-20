@@ -22,7 +22,7 @@ public class itemsDAO {
 		return instance;
 	}
 
-	public ArrayList<ItemsVo> selectAll() {
+	public ArrayList<ItemsVo> selectAll(int startItemNum, int endItemnum) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -31,7 +31,19 @@ public class itemsDAO {
 
 		con = DBConnection.getConn();
 		try {
-			ps = con.prepareStatement("select * from items");
+			ps = con.prepareStatement("select *\r\n" + 
+					"from\r\n" + 
+					"(\r\n" + 
+					"    select aa.*, rownum rnum\r\n" + 
+					"    from\r\n" + 
+					"    (\r\n" + 
+					"        select * \r\n" + 
+					"        from items\r\n" + 
+					"    ) aa\r\n" + 
+					")\r\n" + 
+					"where rnum >= ? and rnum <= ?");
+			ps.setInt(1, startItemNum);
+			ps.setInt(2, endItemnum);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int iNum = rs.getInt("iNum");
@@ -178,18 +190,18 @@ public class itemsDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<String> list = new ArrayList<String>();
-		
+
 		try {
 			con = DBCPBean.getConn();
 			if (colunm.equals("color")) {
 				ps = con.prepareStatement("select color from items group by color");
-			} else if (colunm.equals("material")){
+			} else if (colunm.equals("material")) {
 				ps = con.prepareStatement("select material from items group by material");
 			} else {
 				System.out.println("not found colunm");
 				return null;
 			}
-			
+
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(rs.getString(1));
@@ -200,18 +212,27 @@ public class itemsDAO {
 		} finally {
 			DBCPBean.close(con, ps, rs);
 		}
-		
+
 		return list;
 
 	}
-	
-	public ArrayList<ItemsVo> selectSearchItems (String searchCategory, String searchGender, String searchColor, String searchMaterial, String searchStock, String searchText) {
+
+	public ArrayList<ItemsVo> selectSearchItems(String searchCategory, String searchGender, String searchColor,
+			String searchMaterial, String searchStock, String searchText, int startItemNum, int endItemNum) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
-		
-		String sql = "select * from items where inum > 0";
+
+		String sql = "select *\r\n" + 
+				"from\r\n" + 
+				"(\r\n" + 
+				"    select aa.*, rownum rnum\r\n" + 
+				"    from\r\n" + 
+				"    (\r\n" + 
+				"        select * \r\n" + 
+				"        from items\r\n" + 
+				"        where iNum>0";
 		if (!searchCategory.equals("categoryAll")) {
 			sql += " and iCategory = '" + searchCategory + "'";
 		}
@@ -231,10 +252,14 @@ public class itemsDAO {
 			sql += " and iName like '%" + searchText + "%'";
 		}
 		
-		System.out.println(sql);
+		sql += "    ) aa\r\n" + 
+				")\r\n" + 
+				"where rnum >= ? and rnum <= ?";
 		try {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startItemNum);
+			ps.setInt(2, endItemNum);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int iNum = rs.getInt("iNum");
@@ -253,14 +278,65 @@ public class itemsDAO {
 				int total = rs.getInt("total");
 				String bodyText = rs.getString("bodyText");
 				String caution = rs.getString("caution");
-				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail, eDetail, iThumbnail, total, bodyText, caution));
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+
+		return list;
+
+	}
+	
+	public int getSearchMaxNum (String searchCategory, String searchGender, String searchColor,
+			String searchMaterial, String searchStock, String searchText, int startItemNum, int endItemNum) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int maxNum = 0;
+		
+		String sql = "select count(*)\r\n" + 
+				"from items\r\n" + 
+				"where iNum>0";
+		if (!searchCategory.equals("categoryAll")) {
+			sql += " and iCategory = '" + searchCategory + "'";
+		}
+		if (!searchGender.equals("genderAll")) {
+			sql += " and iGender = '" + searchGender + "'";
+		}
+		if (!searchColor.equals("colorAll")) {
+			sql += " and color = '" + searchColor + "'";
+		}
+		if (!searchMaterial.equals("materialAll")) {
+			sql += " and material = '" + searchMaterial + "'";
+		}
+		if (!searchStock.equals("")) {
+			sql += " and total < " + searchStock;
+		}
+		if (!searchText.equals("")) {
+			sql += " and iName like '%" + searchText + "%'";
 		}
 		
-		return list;
+		
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				maxNum = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		
+		return maxNum;
 		
 	}
 
@@ -337,14 +413,14 @@ public class itemsDAO {
 
 		return n;
 	}
-	
-	public int getTotalMaxNum () {
+
+	public int getTotalMaxNum() {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		int n = 0;
-		
+
 		try {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select nvl(count(iNum), 0) count from items");
@@ -352,13 +428,13 @@ public class itemsDAO {
 			if (rs.next()) {
 				n = rs.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBCPBean.close(con, ps, rs);
 		}
-		
+
 		return n;
 	}
 

@@ -24,7 +24,7 @@
 <body>
 	<div id="st_wrap">
 		<h1>상품 관리</h1>
-		<form action="${pageContext.request.contextPath }/stockController" method="post">
+		<form action="${pageContext.request.contextPath }/stockSearchController" method="post">
 			<div id="st_itemSearchArea">
 				<table border="1" id="st_itemSearchTable">
 					<tr>
@@ -108,7 +108,45 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<br>
 		</div>
+		<c:if test="${page > 10 }">
+			<c:choose>
+				<c:when test="${type != 'search' }">
+					<a href="${pageContext.request.contextPath }/stockController?page=${startPageNum-1}">[이전]</a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath }/stockSearchController?page=${startPageNum-1}">[이전]</a>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+			<c:choose>
+				<c:when test="${page == i }">
+					<span>${i }</span>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${type != 'search' }">
+							<a href="${pageContext.request.contextPath }/stockController?page=${i}"> ${i } </a>
+						</c:when>
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath }/stockSearchController?page=${i}"> ${i } </a>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${endPageNum < maxPageNum }">
+			<c:choose>
+				<c:when test="${type != 'search' }">
+					<a href="${pageContext.request.contextPath }/stockController?page=${endPageNum + 1}">[다음]</a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath }/stockSearchController?page=${endPageNum + 1}">[다음]</a>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
 	</div>
 </body>
 </html>
