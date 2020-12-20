@@ -14,7 +14,7 @@
 	#main #right {width:200px;height:100%;background-color: white;float:right;}
 	#main #middle #top{width:100%;height:360px; margin-bottom: 200px;}
 	#main #middle #core{width:100%; background-color: white; text-align: center;}
-	#main #middle #bottom{width:100%; margin-bottom: 300px; margin-top:150px; background-color: white;}
+	#main #middle #bottom{width:100%; margin-bottom: 300px; text-align: center; margin-top:150px; background-color: white;}
 	#main #middle #top #image1{width: 350px;height: 350px;float: left; /*text-align: center;*/background-color: white;}
 	#main #middle #top #detail{width: 50%;height: 100%; background-color: white;float: right;}
 	#main #middle #top #image1 #img1{ width: 350px; height: auto; } 
@@ -38,7 +38,6 @@
 	#main #middle #core #image2 #img3{ width: 800px; height: 800px; /*object-fit: cover;*/}
 	#main #middle #core #image2 #img4{ width: 800px; height: 800px; /*object-fit: cover;*/}
 	/* object-fit: cover ;	가로세로 비율은 유지하면서 컨테이너에 꽉 차도록 설정 */
-	#main #middle #bottom{text-align: center;}
 	#discription {margin-top: 150px;}
 	
 </style>
@@ -46,6 +45,8 @@
 <body>
 	<div id="main">
 		<div id="middle">
+			<div id="revlist">
+			</div>
 			<div id="top">
 				<div id="image1">
 					<img alt="반지상세" src=${vo.iThumbnail } id="img1">
@@ -134,8 +135,6 @@
 				} else {
 					resultSpan.innerHTML = "내부 오류로 인해 장바구니에 담기 실패..";
 				}
-				
-				
 			}
 		}
 		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=${vo.iNum}&sbCnt=' + sbCnt, true);

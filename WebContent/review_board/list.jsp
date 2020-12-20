@@ -51,13 +51,13 @@
 	</div>
 	<div id="reviewlist_paging">
 		<c:if test="${startPageNum>10 }">
-			<a href="${pageContext.request.contextPath }/rlist?pageNum=${startPageNum-1 }&id=${id}">이전</a>
+			<a href="${pageContext.request.contextPath }/rlist?pageNum=${startPageNum-1 }">이전</a>
 		</c:if>	
 		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-			<a href="${pageContext.request.contextPath }/rlist?pageNum=${i }&id=${id}">[${i }]</a>
+			<a href="${pageContext.request.contextPath }/rlist?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<c:if test="${endPageNum<pageCount }">
-				<a href="${pageContext.request.contextPath }/rlist?pageNum=${endPageNum+1 }&id=${id}">다음</a>
+				<a href="${pageContext.request.contextPath }/rlist?pageNum=${endPageNum+1 }">다음</a>
 		</c:if>	
 	</div>
 </div>
