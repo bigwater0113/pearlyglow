@@ -104,10 +104,10 @@
 <br>
 <br>
 <br>
-<a href="testview1.jsp">쿠키넣기1</a><br>
-<a href="testview2.jsp">쿠키넣기2</a><br>
-<a href="testview3.jsp">쿠키넣기3</a><br>
-<a href="testview4.jsp">쿠키넣기4</a><br>
-<a href="testview5.jsp">쿠키넣기5</a><br>
-<a href="testview6.jsp">쿠키넣기6</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview1.jsp">쿠키넣기1</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview2.jsp">쿠키넣기2</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview3.jsp">쿠키넣기3</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview4.jsp">쿠키넣기4</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview5.jsp">쿠키넣기5</a><br>
+<a href="${pageContext.request.contextPath }/myPage/testview6.jsp">쿠키넣기6</a><br>
 </div>

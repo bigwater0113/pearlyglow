@@ -86,7 +86,7 @@ create table stock
 -- 구매내역/purchase
 create table purchase
 (
-	pNum number primary key,	--구매번호
+	pNum number primary key,	--구매번호  nextval
 	id varchar2(30) references members(id),	--아이디	
 	receiver varchar2(100) 		--수취인
 	pAddress varchar2(400),		--배송지
@@ -96,12 +96,12 @@ create table purchase
 	pTotal number, --총금액
 );
 
--- 배송정보/delevery
+-- 배송정보/delivery
 create table delivery
 (
 	dNum number primary key,	--배송번호
 	pNum number references purchase(pnum),	--구매번호
-	dCompany varchar2(30),	--택배사
+	dCompany varchar2(30),	--택배사 우체국택배
 	trackingNum number,	--송장번호
 	dStatus varchar2(400)	--배송상태
 );
@@ -111,7 +111,7 @@ create table pDetail
 (
 	pdNum number primary key,	--구매상세번호
 	iNum number(5,0) references items(inum),	--품번 
-	pNum number references purchase(pnum),	--구매번호
+	pNum number references purchase(pnum),	--구매번호 currval
 	pCnt number,	--구매상품갯수
 	pPay number	--상품별 금액
 );
@@ -128,15 +128,22 @@ create table reviewBoard
 	rDate date --작성날짜
 );
 
--- 접속자수/access
-create table accessr
+--	-- 접속자수/access
+--	create table accessr
+--	(
+--		aDate date primary key,	--날짜
+--		aCnt number	--접속자 수
+--	);
+
+--방문자수/visit
+create table visit
 (
-	aDate date primary key,	--날짜
-	aCnt number	--접속자 수
+	vDate date not null
 );
 
 ---------- drop table ---------- 
-drop table accessr;
+--drop table accessr;
+drop table visit;
 drop table reviewBoard;
 drop table pDetail;
 drop table delivery;
@@ -151,7 +158,7 @@ drop table members;
 
 
 ---------- create sequence -----------
-create SEQUENCE accessr_seq;
+--create SEQUENCE accessr_seq;
 create SEQUENCE reviewBoard_seq;
 create SEQUENCE pDetail_seq;
 create SEQUENCE delevery_seq;
@@ -166,7 +173,7 @@ create SEQUENCE members_seq;
 
 
 ---------- drop sequence -------------
-drop SEQUENCE accessr_seq;
+--drop SEQUENCE accessr_seq;
 drop SEQUENCE reviewBoard_seq;
 drop SEQUENCE pDetail_seq;
 drop SEQUENCE delevery_seq;

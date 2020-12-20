@@ -10,6 +10,11 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  	<!-- sessionlistener -->
+  <listener>
+  	<listener-class>kr.co.pearlyglow.listener.VisitSessionListener</listener-class>
+  </listener>
     <!-- encoding Filter -->
   <filter>
   	<filter-name>encodingFilter</filter-name>
@@ -21,6 +26,17 @@
   </filter>
   <filter-mapping>
   	<filter-name>encodingFilter</filter-name>
+  	<!-- 모든페이지를 요청할때마다 필터가 수행됨 -->
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+    <!-- RecentViewItem Filter -->
+  <filter>
+  	<filter-name>RecentViewItemFilter</filter-name>
+  	<filter-class>kr.co.pearlyglow.filter.RecentViewItemFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>RecentViewItemFilter</filter-name>
   	<!-- 모든페이지를 요청할때마다 필터가 수행됨 -->
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
