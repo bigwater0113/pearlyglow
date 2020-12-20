@@ -81,7 +81,7 @@ public class PurchaseListDao {
 			ResultSet rs=null;
 			try {
 				con=DBCPBean.getConn();
-				String sql="select NVL(count(d.pdnum),0) cnt from pdetail d join purchase p on d.pnum=d.pnum where p.id='"+id+"'";
+				String sql="select NVL(count(d.pdnum),0) cnt from pdetail d join purchase p on p.pnum=d.pnum where p.id='"+id+"'";
 				if(p_date1!=null && !p_date1.equals("")&&p_date2!=null && !p_date2.equals("")) {
 					sql += " and p.pdate>=to_date('"+p_date1+"','yyyy/mm/dd') and p.pdate<to_date('"+p_date2+"','yyyy/mm/dd')+1";
 				}

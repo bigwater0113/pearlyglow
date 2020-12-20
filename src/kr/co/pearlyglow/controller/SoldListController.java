@@ -10,29 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.pearlyglow.vo.join.Items_purchase_pdetailVo;
-import kr.co.peralyglow.DAO.PurchaseListDao;
+import kr.co.peralyglow.DAO.SoldListDao;
 
-@WebServlet("/purchaselist")
-public class PurchaseListController extends HttpServlet{
+@WebServlet("/soldlist")
+public class SoldListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String spageNum=req.getParameter("pageNum");
-		String p_date1=req.getParameter("purchaselist_date1");
-		String p_date2=req.getParameter("purchaselist_date2");
-//		HttpSession session=req.getSession();
-		String id=(String)req.getSession().getAttribute("id");
-//		String id="test";
+		String searchid=req.getParameter("soldlist_idsearch");
 		int pageNum=1;
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
 		}
 		int startRow=(pageNum-1)*10+1;
 		int endRow=startRow+9;
-		PurchaseListDao dao=PurchaseListDao.getInstance();
+		SoldListDao dao=SoldListDao.getInstance();
 		
-		ArrayList<Items_purchase_pdetailVo> list=dao.pList(startRow,endRow,p_date1,p_date2,id);
-		int pageCount=(int)Math.ceil(dao.getCount(p_date1,p_date2,id)/10.0);
+		ArrayList<Items_purchase_pdetailVo> list=dao.sList(startRow,endRow,searchid);
+		int pageCount=(int)Math.ceil(dao.getCount(searchid)/10.0);
+		System.out.println(pageCount);
 		int startPageNum=(pageNum-1)/10*10+1; 
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
@@ -42,8 +39,8 @@ public class PurchaseListController extends HttpServlet{
 		req.setAttribute("startPageNum", startPageNum);
 		req.setAttribute("endPageNum", endPageNum);
 		req.setAttribute("pageNum", pageNum);
-		req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=../purchase_list/purchaselist.jsp").forward(req, resp);
-//		req.getRequestDispatcher("/purchase_list/purchaselist.jsp").forward(req, resp);
+		req.setAttribute("searchid", searchid);
+		req.getRequestDispatcher("index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Sold_list/soldlist.jsp").forward(req, resp);
 		
 		}
 	}

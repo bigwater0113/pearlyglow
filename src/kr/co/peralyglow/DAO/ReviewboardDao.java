@@ -123,8 +123,29 @@ public class ReviewboardDao {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
-	public int avgScore() {
-		
+	public int getAvg() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select sum(score) totscore, count(pdnum) cnt from reviewboard";
+		int totscore=0;
+		int cnt=0;
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				totscore=rs.getInt("totscore");
+				cnt=rs.getInt("cnt");
+			}
+			int avg=totscore/cnt;
+			return avg;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt, rs);
+		}
 	}
 	
 	public ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> rList(int startRow, int endRow, String id) {
@@ -170,13 +191,18 @@ public class ReviewboardDao {
 		}
 	}
 		
-		public int getCount() {
+		public int getCount(String rsDesc,String rsAsc) {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
 			try {
 				con=DBCPBean.getConn();
 				String sql="select NVL(count(pdnum),0) cnt from reviewboard";
+				if(rsDesc!=null && rsAsc==null) {
+					sql+=" order by score desc";
+				}else if(rsAsc!=null && rsDesc==null) {
+					sql+=" order by score asc";
+				}
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				rs.next();

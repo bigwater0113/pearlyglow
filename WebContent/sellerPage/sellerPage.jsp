@@ -23,7 +23,7 @@
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/insertItem.jsp">상품등록</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">회원관리</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">문의</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">판매내역</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/soldlist">판매내역</a></h2>
 	</div>
 	<div id="sellerPage_section">
 		<jsp:include page="<%=mpage %>"/>
