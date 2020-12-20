@@ -51,8 +51,8 @@ public class itemsDAO {
 				String bodyText = rs.getString("bodyText");
 				String caution = rs.getString("caution");
 
-				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail,
-						eDetail, iThumbnail, total, bodyText, caution));
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +62,7 @@ public class itemsDAO {
 
 		return list;
 	}
-	
+
 	public ArrayList<ItemsVo> selectGender(String gender) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -93,8 +93,8 @@ public class itemsDAO {
 				String bodyText = rs.getString("bodyText");
 				String caution = rs.getString("caution");
 
-				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail,
-						eDetail, iThumbnail, total, bodyText, caution));
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -144,7 +144,7 @@ public class itemsDAO {
 
 		return vo;
 	}
-	
+
 	public Items_imageVo selectImg(int iNum) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -173,6 +173,97 @@ public class itemsDAO {
 		return vo;
 	}
 
+	public ArrayList<String> selectOptionList(String colunm) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		
+		try {
+			con = DBCPBean.getConn();
+			if (colunm.equals("color")) {
+				ps = con.prepareStatement("select color from items group by color");
+			} else if (colunm.equals("material")){
+				ps = con.prepareStatement("select material from items group by material");
+			} else {
+				System.out.println("not found colunm");
+				return null;
+			}
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		
+		return list;
+
+	}
+	
+	public ArrayList<ItemsVo> selectSearchItems (String searchCategory, String searchGender, String searchColor, String searchMaterial, String searchStock, String searchText) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
+		
+		String sql = "select * from items where inum > 0";
+		if (!searchCategory.equals("categoryAll")) {
+			sql += " and iCategory = '" + searchCategory + "'";
+		}
+		if (!searchGender.equals("genderAll")) {
+			sql += " and iGender = '" + searchGender + "'";
+		}
+		if (!searchColor.equals("colorAll")) {
+			sql += " and color = '" + searchColor + "'";
+		}
+		if (!searchMaterial.equals("materialAll")) {
+			sql += " and material = '" + searchMaterial + "'";
+		}
+		if (!searchStock.equals("")) {
+			sql += " and total < " + searchStock;
+		}
+		if (!searchText.equals("")) {
+			sql += " and iName like '%" + searchText + "%'";
+		}
+		
+		System.out.println(sql);
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int iNum = rs.getInt("iNum");
+				String iName = rs.getString("iName");
+				int price = rs.getInt("price");
+				int iSale = rs.getInt("iSale");
+				String iGender = rs.getString("iGender");
+				String iCategory = rs.getString("iCategory");
+				String color = rs.getString("color");
+				String iSize = rs.getString("iSize");
+				int weight = rs.getInt("weight");
+				String material = rs.getString("material");
+				String kDetail = rs.getString("kDetail");
+				String eDetail = rs.getString("eDetail");
+				String iThumbnail = rs.getString("iThumbnail");
+				int total = rs.getInt("total");
+				String bodyText = rs.getString("bodyText");
+				String caution = rs.getString("caution");
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail, eDetail, iThumbnail, total, bodyText, caution));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
+
 	public int update(ItemsVo vo) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -181,8 +272,7 @@ public class itemsDAO {
 		int n = 0;
 		con = DBConnection.getConn();
 		try {
-			ps = con.prepareStatement(
-					"update items set iName =  ?, price = ?, iGender = ?, iCategory = ?, color = ?,"
+			ps = con.prepareStatement("update items set iName =  ?, price = ?, iGender = ?, iCategory = ?, color = ?,"
 					+ "iSize = ?, weight = ?, material = ?, Kdetail = ?, eDetail = ?, total = ?, bodyText = ?, caution = ? where iNum = ?");
 			ps.setString(1, vo.getiName());
 			ps.setInt(2, vo.getPrice());
@@ -198,7 +288,7 @@ public class itemsDAO {
 			ps.setString(12, vo.getBodyText());
 			ps.setString(13, vo.getCaution());
 			ps.setInt(14, vo.getiNum());
-			
+
 			n = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -208,12 +298,11 @@ public class itemsDAO {
 
 		return n;
 	}
-	
-	
+
 	public int delete(int iNum) {
 		Connection con = null;
 		PreparedStatement ps = null;
-		
+
 		int n = 0;
 		con = DBConnection.getConn();
 		try {
@@ -225,17 +314,15 @@ public class itemsDAO {
 		} finally {
 			DBConnection.close(con, ps, null);
 		}
-		
+
 		return n;
 	}
-	
-	
-	
-	public int deleteImg (int iNum) {
+
+	public int deleteImg(int iNum) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		int n = 0;
 		con = DBConnection.getConn();
 		try {
@@ -247,22 +334,46 @@ public class itemsDAO {
 		} finally {
 			DBConnection.close(con, ps, null);
 		}
-	
+
 		return n;
 	}
 	
-	public int getGenderMaxNum (String gender) {
+	public int getTotalMaxNum () {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		int n = 0;
+		
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select nvl(count(iNum), 0) count from items");
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				n = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		
+		return n;
+	}
+
+	public int getGenderMaxNum(String gender) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
 		int n = 0;
 		try {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select NVL(count(iNum), 0) count from items where igender = ?");
 			ps.setString(1, gender);
 			rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				n = rs.getInt(1);
 			}
@@ -273,32 +384,23 @@ public class itemsDAO {
 		}
 		return n;
 	}
-	
+
 	public ArrayList<ItemsVo> selectGenderPageContents(int startItemNum, int endItemNum, String gender) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
-		
+
 		try {
 			con = DBCPBean.getConn();
-			ps = con.prepareStatement("select *\r\n" + 
-					"from\r\n" + 
-					"(\r\n" + 
-					"    select tt.*, rownum rnum\r\n" + 
-					"    from \r\n" + 
-					"    (\r\n" + 
-					"            select *\r\n" + 
-					"            from items\r\n" + 
-					"			 where iGender = ?" +
-					"    ) tt\r\n" + 
-					")\r\n" + 
-					"where rnum >= ? and rnum <= ?");
+			ps = con.prepareStatement("select *\r\n" + "from\r\n" + "(\r\n" + "    select tt.*, rownum rnum\r\n"
+					+ "    from \r\n" + "    (\r\n" + "            select *\r\n" + "            from items\r\n"
+					+ "			 where iGender = ?" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
 			ps.setString(1, gender);
 			ps.setInt(2, startItemNum);
 			ps.setInt(3, endItemNum);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				int iNum = rs.getInt("iNum");
 				String iName = rs.getString("iName");
@@ -317,8 +419,8 @@ public class itemsDAO {
 				String bodyText = rs.getString("bodyText");
 				String caution = rs.getString("caution");
 
-				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail,
-						eDetail, iThumbnail, total, bodyText, caution));
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -327,19 +429,19 @@ public class itemsDAO {
 		}
 		return list;
 	}
-	
-	public int getCategoryMaxNum (String category) {
+
+	public int getCategoryMaxNum(String category) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		int n = 0;
 		try {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select NVL(count(iNum), 0) count from items where iCategory = ?");
 			ps.setString(1, category);
 			rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				n = rs.getInt(1);
 			}
@@ -350,32 +452,23 @@ public class itemsDAO {
 		}
 		return n;
 	}
-	
+
 	public ArrayList<ItemsVo> selectCategoryPageContents(int startItemNum, int endItemNum, String category) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
-		
+
 		try {
 			con = DBCPBean.getConn();
-			ps = con.prepareStatement("select *\r\n" + 
-					"from\r\n" + 
-					"(\r\n" + 
-					"    select tt.*, rownum rnum\r\n" + 
-					"    from \r\n" + 
-					"    (\r\n" + 
-					"            select *\r\n" + 
-					"            from items\r\n" + 
-					"			 where iCategory = ?" +
-					"    ) tt\r\n" + 
-					")\r\n" + 
-					"where rnum >= ? and rnum <= ?");
+			ps = con.prepareStatement("select *\r\n" + "from\r\n" + "(\r\n" + "    select tt.*, rownum rnum\r\n"
+					+ "    from \r\n" + "    (\r\n" + "            select *\r\n" + "            from items\r\n"
+					+ "			 where iCategory = ?" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
 			ps.setString(1, category);
 			ps.setInt(2, startItemNum);
 			ps.setInt(3, endItemNum);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				int iNum = rs.getInt("iNum");
 				String iName = rs.getString("iName");
@@ -394,8 +487,8 @@ public class itemsDAO {
 				String bodyText = rs.getString("bodyText");
 				String caution = rs.getString("caution");
 
-				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material, kDetail,
-						eDetail, iThumbnail, total, bodyText, caution));
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -405,9 +498,3 @@ public class itemsDAO {
 		return list;
 	}
 }
-
-
-
-
-
-

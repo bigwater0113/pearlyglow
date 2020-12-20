@@ -1,3 +1,4 @@
+<%@page import="kr.co.peralyglow.DAO.basketDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -133,7 +134,11 @@
 	margin: 20px;
 }
 </style>
-
+<%
+	String id = (String) session.getAttribute("id");
+	basketDAO dao = basketDAO.getInstance();
+	int basketTotalCount = dao.getTotalCount(id);
+%>
 <div id="h_wrap">
 	<div id="h_header">
 		<div id="h_left">
@@ -144,7 +149,7 @@
 		</div>
 		<div id="h_right">
 			<input type="text" id="h_searchBox" placeholder="SEARCH">
-			<a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(0)</a>
+			<a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(<%=basketTotalCount %>)</a>
 		<c:choose>
 			<c:when test="${empty sessionScope.id }">
 			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>

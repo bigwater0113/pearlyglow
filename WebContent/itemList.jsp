@@ -57,7 +57,26 @@
 </style>
 <div id="w_wrap">
 	<div id="w_textArea">
-		<h3>Woman</h3>
+		<c:choose>
+			<c:when test="${type == 'woman' }">
+				<h3>Woman</h3>
+			</c:when>
+			<c:when test="${type == 'man' }">
+				<h3>Man</h3>
+			</c:when>
+			<c:when test="${type == 'earring' }">
+				<h3>Earring</h3>
+			</c:when>
+			<c:when test="${type == 'bracelet' }">
+				<h3>Bracelet</h3>
+			</c:when>
+			<c:when test="${type == 'necklace' }">
+				<h3>Necklace</h3>
+			</c:when>
+			<c:when test="${type == 'ring' }">
+				<h3>Ring</h3>
+			</c:when>
+		</c:choose>
 		<p>Over the course of the last five years,</p>
 		<p>we have been telling the stories of Dante's</p>
 		<p>journey through the afterworld:</p>

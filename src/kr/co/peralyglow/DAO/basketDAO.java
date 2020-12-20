@@ -97,6 +97,28 @@ public class basketDAO {
 		
 		return n;
 	}
+	
+	public int getTotalCount(String id) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int n = 0;
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select count(inum) from shoppingbasket where id = ?");
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				n = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		
+		return n;
+	}
 }
 
 
