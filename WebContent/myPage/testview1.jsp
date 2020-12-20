@@ -26,7 +26,7 @@
 		response.addCookie(c);
 	}
 	}
-	String item=URLEncoder.encode("품번1","utf-8");
+	String item=URLEncoder.encode("11001","utf-8");
 	Cookie cookie=new Cookie("item1",item);
 	cookie.setPath("/");
 	cookie.setMaxAge(30);//쿠키유지시간 30초 text용

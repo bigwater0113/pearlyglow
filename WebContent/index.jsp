@@ -54,19 +54,23 @@
 			<p class="index_visit">전체 방문자${totalCnt }</p>
 			<p class="index_visit">오늘 방문자${todayCnt }</p>
 		</div>
-		<div>
-			<c:choose>
-				<c:when test="${recentViewItem[0]==null }">
-					최근본 상품이 없습니다.
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="str" items="${recentViewItem }">
-						<p class="footer_visit">${str }</p>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			
-		</div>
+		<c:if test="${id!='admin' }">
+			<div>
+				<c:choose>
+					<c:when test="${recentViewItem[0]==null }">
+						최근본 상품이 없습니다.
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="vo" items="${recentViewItem }">
+							<p class="footer_visit">
+								<img src="${pageContext.request.contextPath}/images/${vo.iThumbnail }"
+									onclick="loaction.href=''" style="width:100px; height:100px;">
+							</p>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:if>
 	</div>
 	<div id="index_footer">
 		<%@include file="footer.jsp" %>
