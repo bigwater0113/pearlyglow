@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import kr.co.pearlyglow.db.DBCPBean;
 import kr.co.pearlyglow.vo.ReviewBoardVo;
-import kr.co.pearlyglow.vo.join.Items_purchase_pdetailVo;
 import kr.co.pearlyglow.vo.join.Reviewboard_Purchase_pDetail_ItemsVo;
 
 public class ReviewboardDao {
@@ -25,7 +24,7 @@ public class ReviewboardDao {
 	public int insert(ReviewBoardVo vo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		try { 
+		try {
 			con = DBCPBean.getConn();
 			String sql = "insert into reviewboard values(reviewboard_seq.nextval, ?, ?, ?, ?, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);
@@ -123,13 +122,14 @@ public class ReviewboardDao {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
-	public int getAvg() {
+	public double getAvg() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="select sum(score) totscore, count(pdnum) cnt from reviewboard";
 		int totscore=0;
 		int cnt=0;
+		double avg=0;
 		try {
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
@@ -138,7 +138,11 @@ public class ReviewboardDao {
 				totscore=rs.getInt("totscore");
 				cnt=rs.getInt("cnt");
 			}
-			int avg=totscore/cnt;
+			if(cnt==0) {
+				avg=0;
+			}else {
+				avg=totscore/cnt;
+			}
 			return avg;
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -162,7 +166,7 @@ public class ReviewboardDao {
 					"	from(\r\n" + 
 					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-					"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
+					"		join reviewboard r on r.pdnum=d.pdnum\r\n" + 
 					"		order by score desc)aa\r\n" + 
 					")\r\n" + 
 					"where rnum>=? and rnum<=?";
@@ -174,7 +178,7 @@ public class ReviewboardDao {
 					"	from(\r\n" + 
 					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-					"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
+					"		join reviewboard r on r.pdnum=d.pdnum\r\n" + 
 					"		order by score asc)aa\r\n" + 
 					")\r\n" + 
 					"where rnum>=? and rnum<=?";
@@ -186,7 +190,7 @@ public class ReviewboardDao {
 						"	from(\r\n" + 
 						"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 						"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-						"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
+						"		join reviewboard r on r.pdnum=d.pdnum\r\n" + 
 						"		)aa\r\n" + 
 						")\r\n" + 
 						"where rnum>=? and rnum<=?";
@@ -235,5 +239,5 @@ public class ReviewboardDao {
 			}finally {
 				DBCPBean.close(con, pstmt, rs);
 			}
-	}  
+	}
 }
