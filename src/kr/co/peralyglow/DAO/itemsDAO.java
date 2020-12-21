@@ -23,24 +23,34 @@ public class itemsDAO {
 
 	public ArrayList<String> searchList() {
 		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
 		ArrayList<String> list = new ArrayList<String>();
 
 		try {
-			String sql = "select distinct icategory from items";
+			String sql1 = "select distinct icategory from items";
 			con = DBCPBean.getConn();
-			pstmt=con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				list.add(rs.getString(1));
+			pstmt1=con.prepareStatement(sql1);
+			rs1 = pstmt1.executeQuery();
+			while (rs1.next()) {
+				list.add(rs1.getString(1));
+			}
+			
+			String sql2 = "select distinct iname from items order by iname asc";
+			pstmt2=con.prepareStatement(sql2);
+			rs2 = pstmt2.executeQuery();
+			while (rs2.next()) {
+				list.add(rs2.getString(1));
 			}
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		} finally {
-			DBCPBean.close(con, pstmt, rs);
+			DBCPBean.close(null, pstmt2, rs2);
+			DBCPBean.close(con, pstmt1, rs1);
 		}
 	}
 	

@@ -91,6 +91,15 @@
 		let s = document.getElementById("h_searchBox").value;
 		location.href = "${pageContext.request.contextPath }/itemListController?type="+s;
 	}
+		
+	window.onload = function () {
+		var body = document.getElementsByTagName("body")[0];
+		body.addEventListener("click", function(e) {
+			var div =document.getElementById("h_result");
+			div.style.display="none";
+			div.innerHTML="";
+		}, false);
+	}
 </script>
 <style type="text/css">
 * {

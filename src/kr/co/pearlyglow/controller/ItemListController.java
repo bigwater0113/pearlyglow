@@ -64,6 +64,11 @@ public class ItemListController extends HttpServlet {
 			ArrayList<ItemsVo> list = dao.selectCategoryPageContents(startItemNum, endItemNum, "ring");
 			maxPageNum = (int) Math.ceil(dao.getCategoryMaxNum("ring") / 12.0);
 			req.setAttribute("list", list);
+		} else {
+			//http://localhost:8081/a_semi_Project/detailInfoController?iNum=2
+			type=type.toLowerCase();
+			itemsDAO dao = itemsDAO.getInstance();
+			ArrayList<String> keyword = dao.searchList();
 		}
 		
 		startPageNum = (page - 1) / 10 * 10 + 1;
