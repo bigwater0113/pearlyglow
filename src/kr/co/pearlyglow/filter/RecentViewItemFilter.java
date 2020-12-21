@@ -50,8 +50,8 @@ public class RecentViewItemFilter implements Filter{
 				}
 			}
 			session.setAttribute("recentViewItem", list);
-			chain.doFilter(request, response);
 		}
+		chain.doFilter(request, response);
 	}
 	
 	@Override
