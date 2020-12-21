@@ -1,5 +1,5 @@
 <%@page import="kr.co.peralyglow.DAO.basketDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
@@ -33,10 +33,64 @@
          }, 5)
          state = 0;
       }
-
    }
    
-   
+  
+   var xhr=null;
+	function getList() {
+		var find = document.getElementById("h_searchBox").value;
+		if(find.trim()==""){
+			var div = document.getElementById("result");
+			div.innerHTML="";
+			div.style.display="none";
+			return;
+		}
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=callback;
+		xhr.open('get', '${pageContext.request.contextPath}/SearchList?find='+find, true);
+		xhr.send();
+	}
+	function callback() {
+		if(xhr.readyState==4 && xhr.status==200){
+			//console.log('success');
+			var xml = xhr.responseXML;
+			var list = xml.getElementsByTagName("str");
+			var len = list.length;
+			var str = "";
+			var div = document.getElementById("h_result");
+			if(len>0){
+				for(let i=0; i<len; i++){
+					let sug = list[i].textContent;
+					str += "<a href=\"javascript:insert('"+ sug + "')\">" + sug + "</a><br>";
+				}
+				div.innerHTML=str;
+				div.style.display="block";
+			}else{
+				div.innerHTML="";
+				div.style.display="none";
+			}
+		}
+	}
+	
+	function insert(sug) {
+		document.getElementById("h_searchBox").value=sug;
+		var div =document.getElementById("h_result");
+		div.style.display="none";
+		div.innerHTML="";
+		document.getElementById("h_searchBox").focus();
+	}
+	
+	function onEnter() {
+		var keyCode = window.event.keyCode;
+		if(keyCode==13){
+			search();
+		}
+	}
+	
+	function search() {
+		let s = document.getElementById("h_searchBox").value;
+		location.href = "${pageContext.request.contextPath }/itemListController?type="+s;
+	}
 </script>
 <style type="text/css">
 * {
@@ -112,7 +166,6 @@
 }
 
 #h_right {
-   background-color: orange; 
    display: flex;
    
 }
@@ -120,8 +173,6 @@
 #h_right #h_rleft{
    margin-left: 20px;
    margin-top: 40px;
-   background-color: blue;
-  
 }
 #h_right #h_rleft #h_searchBox {
    margin-left: 20px;
@@ -130,7 +181,6 @@
    border-top: none;
    border-left: none;
    border-right: none;
-   background-color: red;
 }
 #h_right #h_rleft #h_temp{
    width: 180px;
@@ -139,6 +189,7 @@
    width: 180px;
    border: 1px solid blue; 
    height: 100px;
+   font-size: 20px;
    display:none;
 }
 #h_right #h_rcenter{
@@ -177,9 +228,9 @@
       </div>
       <div id="h_right">
          <div id = "h_rleft">
-               <input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"><input type="button" value="검색"><br>
+               <input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"  onkeydown="javascript:onEnter()"><input type="button" value="검색" onclick="search()"><br>
             <div id="h_result"></div>
-         	<div id="h_temp"></div>
+            <div id="h_temp"></div>
          </div>
          
          <div id = "h_rcenter">   
