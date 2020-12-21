@@ -44,16 +44,17 @@
 </head>
 <%
 	String spage=request.getParameter("spage");
+	String mpage=request.getParameter("mpage");
 	if(spage==null){
-		spage="/list.jsp";
+		spage="detailinfo.jsp";
+	}
+	if(mpage==null){
+		mpage="review_board/list.jsp";
 	}
 %>
 <body>
 	<div id="main">
 		<div id="middle">
-			<div id="revlist">
-				<jsp:include page="<%=spage %>"/>
-			</div>
 			<div id="top">
 				<div id="image1">
 					<img alt="반지상세" src=${vo.iThumbnail } id="img1">
@@ -94,6 +95,9 @@
 				</div>
 			</div>
 			<div id="core">
+				<div id="revlist">
+					<jsp:include page="<%=mpage %>"/>
+				</div>
 				<div id="image2">
 					<c:if test="${image.file1 != null }">
 					<img src="${image.file1 }" id="img2">
