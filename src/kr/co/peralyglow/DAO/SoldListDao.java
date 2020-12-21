@@ -31,7 +31,7 @@ public class SoldListDao {
 					"	from(\r\n" + 
 					"		select p.id,p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
-					"		where id='"+searchid+"'\r\n" +	
+					"		where p.id='"+searchid+"'\r\n" +	
 					"		order by p.pdate desc\r\n" + 
 					"		)aa\r\n" + 
 					")\r\n" + 
@@ -42,7 +42,7 @@ public class SoldListDao {
 					"(\r\n" + 
 					"	select aa.*,rownum rnum \r\n" + 
 					"	from(\r\n" + 
-					"		select p.id idd,p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
+					"		select p.id id,p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
 					"		order by p.pdate desc\r\n" + 
 					"		)aa\r\n" + 
@@ -64,7 +64,7 @@ public class SoldListDao {
 					int ptotal=rs.getInt("ptotal");
 					String ithumbnail=rs.getString("ithumbnail");
 					Date pdate=rs.getDate("pdate");
-					String buyerid=rs.getString("idd");
+					String buyerid=rs.getString("id");
 					Items_purchase_pdetailVo vo=new Items_purchase_pdetailVo(pnum,pdnum,iname,pcnt,ppay,ptotal,ithumbnail,pdate,buyerid);
 					list.add(vo);
 			}

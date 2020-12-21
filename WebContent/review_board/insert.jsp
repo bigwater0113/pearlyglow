@@ -25,18 +25,19 @@
 	</div>
 	<div id="insert_middle">
 		<h1>리뷰작성</h1>
-		<form action="${pageContext.request.contextPath }/insert.do" method="post" enctype="multipart/form-data">
+		<form method="post" enctype="multipart/form-data">
 		
 			<!-- 세션에 저장된 아이디 받아오기 -->
 			<label for="insert_id" class="insert_label">아이디</label><input type="text" id="insert_id" name="insert_id" value="${id}" readonly="readonly"><br>
-			
+<%-- 					<label for="insert_id" class="insert_label">ID:</label>${id} --%>
 			<!-- 구매상세내역테이블 >> 구매상세번호 받아오기 -->
 			<div id="insert_num">
 				<label for="insert_pdnum" class="insert_label">구매상세번호</label><input type="text" id="insert_pdnum" name="insert_pdnum" value="${param.pdNum }" readonly="readonly">
+<%-- 					<label for="insert_pdnum" class="insert_label">Num:</label>${param.pdNum } --%>
 			</div>
-			<label for="insert_score" class="insert_label">평가점수</label><input type="text" placeholder="1~5점" id="insert_score" name="insert_score" value="${vo.score }"><br>
+			<label for="insert_score" class="insert_label">평가점수</label><input type="text" placeholder="1~5" id="insert_score" name="insert_score" value="${vo.score }"><br>
 			<label class="insert_label">첨부파일</label>
-			<input type="file" name="insert_addfile" size="80">
+			<input type="file" name="insert_addfile">
 			<c:if test="${!empty vo.saveName }">
 			기존이미지<img src="${pageContext.request.contextPath }/review_board/upload/${vo.saveName}" style="width:100px;height:100px;">
 			</c:if>
@@ -52,7 +53,8 @@
 						formaction="${pageContext.request.contextPath }/review_board/update">
 				</c:when>
 				<c:otherwise>
-					<input type="submit" value="저장" id="insert_save" name="insert_save" class="insert_btn">
+					<input type="submit" value="저장" id="insert_save" name="insert_save" class="insert_btn"
+						formaction="${pageContext.request.contextPath }/insert.do">
 				</c:otherwise>
 			</c:choose>
 			
@@ -65,6 +67,14 @@
 	function backPage(){
 		history.go(-1);
 	}
+// 	function erchk(){
+// 		if(document.getElementById("insert_content").value="" || document.getElementById("insert_score").value=""){
+// 			alert("내용을 모두 입력해주세요.")
+// 			return false;
+// 		}else{
+// 			document.frm.submit();
+// 		}
+// 	}
 </script>
 </body>
 </html>

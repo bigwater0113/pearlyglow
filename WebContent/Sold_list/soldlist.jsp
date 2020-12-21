@@ -38,8 +38,6 @@
 			<a href="${pageContext.request.contextPath }/soldlist?pageNum=${startPageNum-1 }">이전</a>
 		</c:if>	
 		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-			console.log(${startPageNum});
-			console.log(${endPageNum});
 			<a href="${pageContext.request.contextPath }/soldlist?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<c:if test="${endPageNum<pageCount }">

@@ -97,6 +97,8 @@
 			<div id="core">
 				<div id="revlist">
 					<jsp:include page="<%=mpage %>"/>
+					<br>
+					<h2>상세정보</h2>
 				</div>
 				<div id="image2">
 					<c:if test="${image.file1 != null }">
