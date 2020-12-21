@@ -42,11 +42,17 @@
 	
 </style>
 </head>
+<%
+	String spage=request.getParameter("spage");
+	if(spage==null){
+		spage="/list.jsp";
+	}
+%>
 <body>
 	<div id="main">
 		<div id="middle">
 			<div id="revlist">
-			
+				<jsp:include page="<%=spage %>"/>
 			</div>
 			<div id="top">
 				<div id="image1">

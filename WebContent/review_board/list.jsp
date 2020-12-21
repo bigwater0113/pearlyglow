@@ -13,12 +13,12 @@
 		<h3>평점:${avg }</h3>
 	</div>
 	<div id="reviewlist_editlist">
-		<form action="${pageContext.request.contextPath }/rlist" method="post">
+		<form method="post">
 				<c:if test="${id == 'admin' }">
-					<input type="submit" value="삭제" name="reviewlist_delete">
+					<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='/detailInfoController'">
 				</c:if>
-			<input type="submit" value="평점 ▲" name="reviewlist_desc">
-			<input type="submit" value="평점 ▼" name="reviewlist_asc">
+			<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='/detailInfoController'">
+			<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='/detailInfoController'">
 		</form>
 	</div>
 	<div id="reviewlist_table">
