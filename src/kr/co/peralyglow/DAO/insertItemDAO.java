@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.co.pearlyglow.db.DBConnection;
+import kr.co.pearlyglow.db.DBCPBean;
 import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.pearlyglow.vo.Items_imageVo;
 
@@ -26,7 +26,7 @@ public class insertItemDAO {
 		int n = 0;
 		int items_seq_nextval = 0;
 		try {
-			con = DBConnection.getConn();
+			con = DBCPBean.getConn();
 			
 			ps2 = con.prepareStatement("select items_seq.nextval from dual");
 			rs = ps2.executeQuery();
@@ -58,7 +58,7 @@ public class insertItemDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, null);
+			DBCPBean.close(con, ps, null);
 		}
 		
 		return items_seq_nextval;
@@ -70,7 +70,7 @@ public class insertItemDAO {
 		
 		int n = 0;
 		try {
-			con = DBConnection.getConn();
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("insert into items_image values(items_image_seq.nextval, ?, ?, ?, ?)");
 			ps.setInt(1, items_seq_nextval);
 			ps.setString(2, saveFile1Name);
@@ -80,7 +80,7 @@ public class insertItemDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, null);
+			DBCPBean.close(con, ps, null);
 		}
 		
 		return n;

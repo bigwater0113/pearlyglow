@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.co.pearlyglow.db.DBCPBean;
-import kr.co.pearlyglow.db.DBConnection;
 import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.pearlyglow.vo.Items_imageVo;
 
@@ -29,8 +28,8 @@ public class itemsDAO {
 
 		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
 
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select *\r\n" + 
 					"from\r\n" + 
 					"(\r\n" + 
@@ -39,6 +38,7 @@ public class itemsDAO {
 					"    (\r\n" + 
 					"        select * \r\n" + 
 					"        from items\r\n" + 
+					"        order by iNum desc" +
 					"    ) aa\r\n" + 
 					")\r\n" + 
 					"where rnum >= ? and rnum <= ?");
@@ -69,7 +69,7 @@ public class itemsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 
 		return list;
@@ -82,9 +82,9 @@ public class itemsDAO {
 
 		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
 
-		con = DBConnection.getConn();
 		try {
-			ps = con.prepareStatement("select * from items where igender = ?");
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select * from items where igender = ? order by iNum desc");
 			ps.setString(1, gender);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -111,7 +111,7 @@ public class itemsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 
 		return list;
@@ -123,8 +123,8 @@ public class itemsDAO {
 		ResultSet rs = null;
 		ItemsVo vo = null;
 
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select * from items where iNum = ?");
 			ps.setInt(1, iNum);
 			rs = ps.executeQuery();
@@ -151,7 +151,7 @@ public class itemsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 
 		return vo;
@@ -163,8 +163,8 @@ public class itemsDAO {
 		ResultSet rs = null;
 		Items_imageVo vo = null;
 
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select * from items_image where iNum = ?");
 			ps.setInt(1, iNum);
 			rs = ps.executeQuery();
@@ -179,7 +179,7 @@ public class itemsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 
 		return vo;
@@ -252,7 +252,8 @@ public class itemsDAO {
 			sql += " and iName like '%" + searchText + "%'";
 		}
 		
-		sql += "    ) aa\r\n" + 
+		sql +=  " order by iNum desc" +
+				"    ) aa\r\n" + 
 				")\r\n" + 
 				"where rnum >= ? and rnum <= ?";
 		try {
@@ -346,8 +347,8 @@ public class itemsDAO {
 		ResultSet rs = null;
 
 		int n = 0;
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("update items set iName =  ?, price = ?, iGender = ?, iCategory = ?, color = ?,"
 					+ "iSize = ?, weight = ?, material = ?, Kdetail = ?, eDetail = ?, total = ?, bodyText = ?, caution = ? where iNum = ?");
 			ps.setString(1, vo.getiName());
@@ -369,7 +370,7 @@ public class itemsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 
 		return n;
@@ -380,15 +381,15 @@ public class itemsDAO {
 		PreparedStatement ps = null;
 
 		int n = 0;
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("delete from items where inum = ?");
 			ps.setInt(1, iNum);
 			n = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, null);
+			DBCPBean.close(con, ps, null);
 		}
 
 		return n;
@@ -400,15 +401,15 @@ public class itemsDAO {
 		ResultSet rs = null;
 
 		int n = 0;
-		con = DBConnection.getConn();
 		try {
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("delete from items_image where inum = ?");
 			ps.setInt(1, iNum);
 			n = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, null);
+			DBCPBean.close(con, ps, null);
 		}
 
 		return n;
@@ -469,9 +470,9 @@ public class itemsDAO {
 
 		try {
 			con = DBCPBean.getConn();
-			ps = con.prepareStatement("select *\r\n" + "from\r\n" + "(\r\n" + "    select tt.*, rownum rnum\r\n"
+			ps = con.prepareStatement("select *\r\n"+ "from\r\n" + "(\r\n" + "    select tt.*, rownum rnum\r\n"
 					+ "    from \r\n" + "    (\r\n" + "            select *\r\n" + "            from items\r\n"
-					+ "			 where iGender = ?" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
+					+ "			 where iGender = ?" + " order by iNum desc" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
 			ps.setString(1, gender);
 			ps.setInt(2, startItemNum);
 			ps.setInt(3, endItemNum);
@@ -539,7 +540,7 @@ public class itemsDAO {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement("select *\r\n" + "from\r\n" + "(\r\n" + "    select tt.*, rownum rnum\r\n"
 					+ "    from \r\n" + "    (\r\n" + "            select *\r\n" + "            from items\r\n"
-					+ "			 where iCategory = ?" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
+					+ "			 where iCategory = ?" + " order by iNum desc" + "    ) tt\r\n" + ")\r\n" + "where rnum >= ? and rnum <= ?");
 			ps.setString(1, category);
 			ps.setInt(2, startItemNum);
 			ps.setInt(3, endItemNum);

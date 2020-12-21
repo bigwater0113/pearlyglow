@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,15 +67,15 @@
 										href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }">${list.iName }</a>
 								</p> <span>성별 : ${list.iGender } </span> <br> <span>색상 :
 									${list.color } </span> <br> <span>사이즈 : ${list.iSize } </span></td>
-							<td width="100" style="text-align: center">${list.price }\</td>
+							<!-- <td width="100" style="text-align: center">${list.price }\</td> -->
+							<td width="100" style="text-align: center">\<fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원 </td>
 							<td width="50" style="text-align: center">${list.sbCnt }</td>
-							<td width="100" style="text-align: center">${list.price * list.sbCnt }
-								\</td>
+							<td width="100" style="text-align: center">\<fmt:formatNumber value="${list.price * list.sbCnt }" pattern="#,###,###"/>원 </td>
+							<!-- <td width="100" style="text-align: center">${list.price * list.sbCnt }\</td> -->
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="6" style="text-align: right;">합계 : ${totalPrice }
-							\</td>
+						<td colspan="6" style="text-align: right;">합계 : \<fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/>원</td>
 					</tr>
 				</table>
 			</div>

@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import kr.co.pearlyglow.db.DBCPBean;
-import kr.co.pearlyglow.db.DBConnection;
 import kr.co.pearlyglow.vo.join.ShoppingBasket_ItemsVo;
 
 public class basketDAO {
@@ -26,7 +24,7 @@ public class basketDAO {
 		
 		int n = 0;
 		try {
-			con = DBConnection.getConn();
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("insert into shoppingbasket values(shoppingbasket_seq.nextval, ?, ?, ?)");
 			ps.setString(1, id);
 			ps.setInt(2, iNum);
@@ -35,7 +33,7 @@ public class basketDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 		
 		return n;
@@ -48,8 +46,8 @@ public class basketDAO {
 		ArrayList<ShoppingBasket_ItemsVo> ShoppingBasket_ItemsVo = new ArrayList<ShoppingBasket_ItemsVo>();
 		
 		try {
-			con = DBConnection.getConn();
-			ps = con.prepareStatement("select * from shoppingbasket s, items i where id = ? and s.inum = i.inum");
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select * from shoppingbasket s, items i where id = ? and s.inum = i.inum order by s.iNum desc");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			
@@ -72,7 +70,7 @@ public class basketDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, rs);
+			DBCPBean.close(con, ps, rs);
 		}
 		
 		return ShoppingBasket_ItemsVo;
@@ -84,7 +82,7 @@ public class basketDAO {
 		
 		int n = 0;
 		try {
-			con = DBConnection.getConn();
+			con = DBCPBean.getConn();
 			ps = con.prepareStatement("delete from shoppingbasket where sbnum = ?");
 			ps.setInt(1, sbNum);
 			n = ps.executeUpdate();
@@ -92,7 +90,7 @@ public class basketDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnection.close(con, ps, null);
+			DBCPBean.close(con, ps, null);
 		}
 		
 		return n;
