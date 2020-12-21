@@ -34,7 +34,7 @@
 			<div id="insert_num">
 				<label for="insert_pdnum" class="insert_label">구매상세번호</label><input type="text" id="insert_pdnum" name="insert_pdnum" value="${param.pdNum }" readonly="readonly">
 			</div>
-			<label for="insert_score" class="insert_label">평가점수</label><input type="text" id="insert_score" name="insert_score" value="${vo.score }"><br>
+			<label for="insert_score" class="insert_label">평가점수</label><input type="text" placeholder="1~5점" id="insert_score" name="insert_score" value="${vo.score }"><br>
 			<label class="insert_label">첨부파일</label>
 			<input type="file" name="insert_addfile" size="80">
 			<c:if test="${!empty vo.saveName }">

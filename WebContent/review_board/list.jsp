@@ -13,7 +13,7 @@
 		<h3>평점:${avg }</h3>
 	</div>
 	<div id="reviewlist_editlist">
-		<form action="${pageContext.request.contextPath }/rdelete" method="post">
+		<form action="${pageContext.request.contextPath }/rlist" method="post">
 				<c:if test="${id == 'admin' }">
 					<input type="submit" value="삭제" name="reviewlist_delete">
 				</c:if>
@@ -51,13 +51,13 @@
 	</div>
 	<div id="reviewlist_paging">
 		<c:if test="${startPageNum>10 }">
-			<a href="${pageContext.request.contextPath }/rlist?pageNum=${startPageNum-1 }">이전</a>
+			<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${startPageNum-1 }">이전</a>
 		</c:if>	
 		<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-			<a href="${pageContext.request.contextPath }/rlist?pageNum=${i }">[${i }]</a>
+			<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<c:if test="${endPageNum<pageCount }">
-				<a href="${pageContext.request.contextPath }/rlist?pageNum=${endPageNum+1 }">다음</a>
+				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${endPageNum+1 }">다음</a>
 		</c:if>	
 	</div>
 </div>
