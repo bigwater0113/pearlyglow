@@ -235,5 +235,5 @@ public class ReviewboardDao {
 			}finally {
 				DBCPBean.close(con, pstmt, rs);
 			}
-	}
+	}  
 }
