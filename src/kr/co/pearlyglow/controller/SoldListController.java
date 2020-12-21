@@ -29,7 +29,6 @@ public class SoldListController extends HttpServlet{
 		
 		ArrayList<Items_purchase_pdetailVo> list=dao.sList(startRow,endRow,searchid);
 		int pageCount=(int)Math.ceil(dao.getCount(searchid)/10.0);
-		System.out.println(pageCount);
 		int startPageNum=(pageNum-1)/10*10+1; 
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
