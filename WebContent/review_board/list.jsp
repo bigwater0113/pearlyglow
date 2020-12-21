@@ -39,12 +39,12 @@
 					<c:if test="${id == 'admin' }">
 						<td><input type="checkbox" name="checkk" value=${vo.pdnum }></td>
 					</c:if>
-						<td>${vo.buyerid }</td>
+						<td>${vo.id }</td>
 						<td>${vo.iname}</td>
 						<td><img src="${pageContext.request.contextPath}/upload/${vo.savename }" style="width: 200px;"></td>
 						<td>${vo.rbcontent}</td>
 						<td>${vo.score}</td>
-						<td>${vo.pdate}</td>
+						<td>${vo.rdate}</td>
 					</tr>
 			</c:forEach>
 		</table>
