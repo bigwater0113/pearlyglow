@@ -1,10 +1,12 @@
 package kr.co.pearlyglow.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,7 @@ import kr.co.peralyglow.DAO.itemsDAO;
 
 @WebServlet("/detailInfoController")
 public class DetailInfoController extends HttpServlet{
-	
+	private static int cookCnt;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,6 +70,34 @@ public class DetailInfoController extends HttpServlet{
 				req.setAttribute("msg", "삭제실패!");
 			}
 		}
+		
+		//최근본 상품 쿠키 넣기
+		int cookieCnt=0;
+		String[] names=new String[5];
+		Cookie[] cooks=req.getCookies();
+		if(cooks!=null){
+		for(Cookie cook:cooks){
+			String name=cook.getName();
+			if(name.startsWith(id+"item")){
+				names[cookieCnt++]=name;
+			}
+		}
+		if(cookieCnt==5){
+			Cookie c=new Cookie(names[0],null);
+			c.setPath("/");
+			c.setMaxAge(0);
+			resp.addCookie(c);
+		}
+		}
+		String item=URLEncoder.encode(""+iNum,"utf-8");
+		Cookie cookie=new Cookie(id+"item"+cookCnt++,item);
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24*365);//쿠키 유지 1년
+		resp.addCookie(cookie);
+		
+		
+		
+		
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("image", img);

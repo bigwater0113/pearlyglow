@@ -30,6 +30,7 @@ public class RecentViewItemFilter implements Filter{
 			throws IOException, ServletException {
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpSession session=req.getSession();
+		String id=(String)session.getAttribute("id");
 		Cookie[] cooks = req.getCookies();
 		if (cooks != null) {
 			itemsDAO dao = itemsDAO.getInstance();
@@ -39,7 +40,7 @@ public class RecentViewItemFilter implements Filter{
 			for (Cookie cook : cooks) {
 				String name = cook.getName();
 				String value = cook.getValue();
-				if (name.startsWith("item")) {
+				if (name.startsWith(id+"item")) {
 					value = URLDecoder.decode(value, "utf-8");
 					System.out.println(value);
 //					values[index++]=value;

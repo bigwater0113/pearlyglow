@@ -31,7 +31,7 @@
 	String mpage=request.getParameter("mpage");
 	String ppage=request.getParameter("ppage");
 	if(spage==null){
-		spage="myPage/myPage.jsp";
+		spage="main.jsp";
 	}
 	if(mpage==null){
 		mpage="testinfo.jsp";
