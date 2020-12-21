@@ -25,7 +25,7 @@ public class ReviewboardDao {
 	public int insert(ReviewBoardVo vo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		try {
+		try { 
 			con = DBCPBean.getConn();
 			String sql = "insert into reviewboard values(reviewboard_seq.nextval, ?, ?, ?, ?, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);

@@ -104,7 +104,7 @@ public class myReviewDao {
 		String sql="";
 		try {
 			if(status.trim()==null || status.trim().equals("") || status.equals("1")) {
-				sql="select * " + 
+				sql="select * " +  
 					"from " + 
 					"( " + 
 					"    select rownum rnum,a.* " + 
