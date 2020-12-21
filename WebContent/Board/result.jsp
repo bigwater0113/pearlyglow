@@ -16,6 +16,6 @@
 		<h1>요청작업실패!!!</h1>
 	</c:otherwise>
 </c:choose>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/main.jsp">홈</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/list">게시판 목록</a>
 </body>
 </html>

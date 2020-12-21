@@ -41,7 +41,7 @@ public class ListController extends HttpServlet{
 		req.setAttribute("pageNum",pageNum);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword",keyword);
-		req.getRequestDispatcher("/index.jsp?spage=Member/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Member/list.jsp").forward(req, resp);
 	}
 	
 	@Override

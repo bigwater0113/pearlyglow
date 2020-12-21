@@ -143,6 +143,17 @@
 	<div id="h_header">
 		<div id="h_left">
 			<img alt="" src="${pageContext.request.contextPath}/images/menuIcon.png" id="h_menuBtn" onclick="slide()">
+			<c:if test="${!empty sessionScope.id }">
+				<span style="color:red;font-size:1.2em">${id }님 반갑습니다.</span>&nbsp;&nbsp;
+				<c:choose>
+					<c:when test="${id=='admin' }">
+						<a href="${pageContext.request.contextPath}/index.jsp?spage=/sellerPage/sellerPage.jsp">판매자페이지</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/Member/info?id=${id }">마이페이지</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 		</div>
 		<div id="h_center">
 			<img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo" onclick="location.href='${pageContext.request.contextPath}/index.jsp?spage=main.jsp'">
@@ -168,6 +179,7 @@
 			<a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
 			<a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp">MYPAGE</a>
 			<a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp">SELLERPAGE</a>
+			<a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
 		</div>
 		<div id="h_moreMenu2">
 			<h2>

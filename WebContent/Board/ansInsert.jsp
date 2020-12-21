@@ -11,6 +11,13 @@
 <form method="get" action="${pageContext.request.contextPath }/Board/ansInsert">
 	<!-- 답글인 경우 부모글에 대한 정보가 파라미터로 서버에 전송된다. -->
 	<input type="hidden" name="ibnum" value="${param.ibnum }">
+	<input type="hidden" name="inum" value="${param.inum }">
+	<input type="hidden" name="qCategory" value="${param.qCategory }">
+	<input type="hidden" name="ibPwd" value="${param.ibPwd }">
+	<input type="hidden" name="ibContent" value="${param.ibContent }">
+	<input type="hidden" name="orgName" value="${param.orgName}">
+	<input type="hidden" name="saveName" value="${param.saveName }">
+	<input type="hidden" name="ibDate" value="${param.ibDate }">
 	<input type="hidden" name="ref" value="${param.ref }">
 	<input type="hidden" name="lev" value="${param.lev }">
 	<input type="hidden" name="step" value="${param.step }">
