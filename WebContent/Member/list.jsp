@@ -10,7 +10,7 @@
 <body>
 <h1>회원목록</h1>
 <form method="post" name="form">
-	<table border="1" width="1000">
+	<table border="1" width="900">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>

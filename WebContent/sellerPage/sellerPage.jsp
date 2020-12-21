@@ -21,8 +21,8 @@
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">매출관리</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/stockController">상품관리</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/insertItem.jsp">상품등록</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">회원관리</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=testinfo.jsp">문의</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/Member/list">회원관리</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/Board/list">문의</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/soldlist">판매내역</a></h2>
 	</div>
 	<div id="sellerPage_section">

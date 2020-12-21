@@ -10,33 +10,46 @@
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <h1>문의 게시판</h1>
-<a href="${pageContext.request.contextPath}/Board/list">전체 문의글 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="${pageContext.request.contextPath }/index.jsp?spage=Board/insert.jsp">문의등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="${pageContext.request.contextPath}/Board/list">전체 문의글 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/ans">답변글 작성 완료 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/unans">답변글 미작성 목록</a>
 
-<table border="1" width="1000">
+<table border="1" width="900">
 	<tr style="text-align: center">
-		<th>문의글 번호</th>
-		<th>작성자</th>
-		<th>문의 제품 </th>
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>
 		<c:if test="${id== 'admin' }">
 			<th>문의글 비밀번호 </th>
 		</c:if>
-		<th width="300">문의 내용 </th>
+		<th>문의내용</th>
 		<th>수정</th>
 		<th>삭제</th>
 	</tr>
 	
 <c:forEach var="vo" items="${list }">
 	<tr>
-		<th>${vo.ibNum }</th>
-		<th>${vo.id }</th>
-		<th>${vo.iNum }</th>
 		<th>${vo.qCategory }</th>
-		<th>${vo.qTitle }</th>
+		
+		<th>
+			<c:choose>
+				<c:when test="${!empty vo.ibPwd }">
+					<c:choose>
+						<c:when test="${vo.id==id || id=='admin' || vo.ibPwd==pwd }">
+							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.qTitle }</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/secret.jsp">비밀글입니다.</a>	
+						</c:otherwise>
+					</c:choose>	
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.qTitle }</a>
+				</c:otherwise>
+			</c:choose>	
+		</th>
+		
 		<c:if test="${id== 'admin' }">
 			<th>${vo.ibPwd }</th>
 		</c:if>
@@ -46,31 +59,44 @@
 				<c:when test="${!empty vo.ibPwd }">
 					<c:choose>
 						<c:when test="${vo.id==id || id=='admin' || vo.ibPwd==pwd }">
+							<c:choose>
+								<c:when test="${!empty vo.ans }">
+									<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
+										<c:forEach var="i" begin="1" end="${vo.lev }">
+											&nbsp;&nbsp;
+										</c:forEach>
+										[답글]${vo.ans }
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									${vo.ibContent }
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							비밀글입니다.
+						</c:otherwise>
+					</c:choose>	
+				</c:when>
+				
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${!empty vo.ans }">
 							<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
 								<c:forEach var="i" begin="1" end="${vo.lev }">
 									&nbsp;&nbsp;
 								</c:forEach>
 								[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
 							</c:if>
-							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/secret.jsp">비밀글입니다.</a>	
+							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
 						</c:otherwise>
-					</c:choose>	
-				</c:when>
-				
-				<c:otherwise>
-					<c:if test="${vo.lev>0 }"> <%-- 답글인 경우 들여쓰기 하기 --%>
-						<c:forEach var="i" begin="1" end="${vo.lev }">
-							&nbsp;&nbsp;
-						</c:forEach>
-						[답글]<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ans }</a>
-					</c:if>
-					<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.ibContent }</a>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>	
 		</th>
+		
 		<th>
 			<c:if test="${vo.id==id || id=='admin'}">
 				<c:choose>
@@ -108,6 +134,7 @@
 	<form method="post" action="${pageContext.request.contextPath}/Board/list">
 		<select name="field">
 			<option value="id" <c:if test="${field=='id' }">selected</c:if>>작성자</option>
+			<option value="noId" <c:if test="${field=='noId' }">selected</c:if>>비회원</option>
 			<option value="iNum" <c:if test="${field=='iNum' }">selected</c:if>>제품번호</option>
 			<option value="qCategory" <c:if test="${field=='qCategory' }">selected</c:if>>문의종류</option>
 			<option value="ibDate" <c:if test="${field=='ibDate' }">selected</c:if>>작성날짜</option>

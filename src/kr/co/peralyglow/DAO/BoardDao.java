@@ -192,14 +192,25 @@ public class BoardDao {
 		
 		String sql="";
 		if(field!=null && !field.equals("")) {
-			sql="select * from " + 
-		        "(" + 
-		           "  select aa.*,rownum rnum from" + 
-		           "  ( " + 
-		           "    select * from QnABoard  where "+ field + " like '%" + keyword +"%'" + 
-		           "    order by ref desc, step asc " + 
-		           "  )aa " + 
-		           ") where rnum>=? and rnum<=?";                     
+			if(field.equals("noId")) {
+				sql="select * from " + 
+				        "(" + 
+				           "  select aa.*,rownum rnum from" + 
+				           "  ( " + 
+				           "    select * from QnABoard  where id is null" + 
+				           "    order by ref desc, step asc " + 
+				           "  )aa " + 
+				           ") where rnum>=? and rnum<=?";  
+			}else {
+				sql="select * from " + 
+			        "(" + 
+			           "  select aa.*,rownum rnum from" + 
+			           "  ( " + 
+			           "    select * from QnABoard  where "+ field + " like '%" + keyword +"%'" + 
+			           "    order by ref desc, step asc " + 
+			           "  )aa " + 
+			           ") where rnum>=? and rnum<=?";  
+			}
 		}else {
 			sql= "select * from " + 
 		         "(" + 
@@ -351,7 +362,7 @@ public class BoardDao {
 			}
 			num=ibNum;
 			
-			String sql = "insert into QnABoard values(?,?,?,?,?,?,?,?,?,null,?,sysdate,?,?,?)";
+			String sql = "insert into QnABoard values(?,?,?,?,?,?,?,?,?,?,?,sysdate,?,?,?)";
 			pstmt2=con.prepareStatement(sql);
 			pstmt2.setInt(1, ibNum);
 			pstmt2.setString(2, vo.getId());
@@ -366,10 +377,11 @@ public class BoardDao {
 			pstmt2.setString(7, vo.getIbContent());
 			pstmt2.setString(8, vo.getOrgName());
 			pstmt2.setString(9, vo.getSaveName());
-			pstmt2.setString(10, vo.getAns());
-			pstmt2.setInt(11, ref);
-			pstmt2.setInt(12, lev);
-			pstmt2.setInt(13, step);
+			pstmt2.setDate(10, vo.getIbDate());
+			pstmt2.setString(11, vo.getAns());
+			pstmt2.setInt(12, ref);
+			pstmt2.setInt(13, lev);
+			pstmt2.setInt(14, step);
 			pstmt2.executeUpdate();
 			return 1;
 		}catch(SQLException se) {

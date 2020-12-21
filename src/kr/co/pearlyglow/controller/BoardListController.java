@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.peralyglow.DAO.BoardDao;
 import kr.co.pearlyglow.vo.QnABoardVo;
@@ -44,7 +45,18 @@ public class BoardListController extends HttpServlet{
 		req.setAttribute("field", field);
 		req.setAttribute("keyword",keyword);
 		req.setAttribute("pwd", pwd);
-		req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
+		
+		HttpSession session = req.getSession(true);
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
+		if(id==null || id.equals("")) {
+			req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
+		}else if(id.equals("admin")) {
+			req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/list.jsp").forward(req, resp);
+		}
+		else {
+			req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
+		}
 	}
 }
 

@@ -1,6 +1,7 @@
 package kr.co.pearlyglow.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,13 @@ public class BoardAnsInsertController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		String ibnum = req.getParameter("ibnum");
 		String id = req.getParameter("id");
+		int inum = Integer.parseInt(req.getParameter("inum"));
+		String qCategory = req.getParameter("qCategory");
+		String ibPwd = req.getParameter("ibPwd");
+		String ibContent = req.getParameter("ibContent");
+		String orgName = req.getParameter("orgName");
+		String saveName = req.getParameter("saveName");
+		Date ibDate = Date.valueOf(req.getParameter("ibDate"));
 		String ans = req.getParameter("ans");
 		int num=0;
 		int ref=0;
@@ -29,7 +37,7 @@ public class BoardAnsInsertController extends HttpServlet{
 			lev=Integer.parseInt(req.getParameter("lev"));
 			step=Integer.parseInt(req.getParameter("step"));
 		}
-		QnABoardVo vo = new QnABoardVo(num, id, 0, null, null, null, null, null, null, null, ans, null, ref, lev, step);
+		QnABoardVo vo = new QnABoardVo(num, id, inum, qCategory+"에 대한 답글", "답글입니다.", ibPwd, ibContent, orgName, saveName, ibDate, ans, null, ref, lev, step);
 		BoardDao dao = new BoardDao();
 		int n = dao.answer(vo);
 		if(n>0) {

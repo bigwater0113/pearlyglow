@@ -23,6 +23,20 @@
 		<th> ${vo.iNum }</th>
 	</tr>
 	<tr>
+		<th>문의종류</th>
+		<th>${vo.qCategory }</th>
+	</tr>
+	<tr>
+		<th>문의제목</th>
+		<th>${vo.qTitle }</th>
+	</tr>
+	<c:if test="${!empty vo.saveName }">
+		<tr>
+			<th>문의 사진</th>
+			<th><img src="${pageContext.request.contextPath}/Board/upload/${vo.saveName}"></th>
+		</tr>
+	</c:if>
+	<tr>
 		<th>문의글 내용</th>
 		<th><textarea rows="5" cols="50" readonly="readonly">${vo.ibContent }</textarea></th>
 	</tr>
@@ -43,7 +57,7 @@
 		<th> ${vo.ansDate }</th>
 	</tr>
 	<tr>
-		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibNum }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
 	</tr>
 </table>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>
