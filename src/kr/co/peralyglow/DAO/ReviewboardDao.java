@@ -162,7 +162,7 @@ public class ReviewboardDao {
 					"	from(\r\n" + 
 					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-					"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
+					"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
 					"		order by score desc)aa\r\n" + 
 					")\r\n" + 
 					"where rnum>=? and rnum<=?";
@@ -174,7 +174,7 @@ public class ReviewboardDao {
 					"	from(\r\n" + 
 					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-					"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
+					"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
 					"		order by score asc)aa\r\n" + 
 					")\r\n" + 
 					"where rnum>=? and rnum<=?";
@@ -186,7 +186,7 @@ public class ReviewboardDao {
 						"	from(\r\n" + 
 						"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 						"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-						"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
+						"		join reviewboard r on r.pdnum=d.pdnum \r\n" + 
 						"		)aa\r\n" + 
 						")\r\n" + 
 						"where rnum>=? and rnum<=?";
@@ -199,7 +199,7 @@ public class ReviewboardDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String buyerid=rs.getString("id");
-				int rbnum=rs.getInt("rbdnum");
+				int rbnum=rs.getInt("rbnum");
 				int pdnum=rs.getInt("pdnum");
 				int score=rs.getInt("score");
 				String iname=rs.getString("iname");
