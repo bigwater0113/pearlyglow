@@ -76,6 +76,43 @@ public class basketDAO {
 		return ShoppingBasket_ItemsVo;
 	}
 	
+	public ShoppingBasket_ItemsVo select (String id, int sbNum) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ShoppingBasket_ItemsVo vo = null;
+		
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select * from shoppingbasket s, items i where id = ? and s.inum = i.inum and sbNum = ? order by s.iNum desc");
+			ps.setString(1, id);
+			ps.setInt(2, sbNum);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				int sbCnt = rs.getInt("sbCnt");
+				int iNum = rs.getInt("iNum");
+				int iSale = rs.getInt("iSale");
+				String iName = rs.getString("iName");
+				int price = rs.getInt("price");
+				String iGender = rs.getString("iGender");
+				String iCategory = rs.getString("iCategory");
+				String color = rs.getString("color");
+				String iSize = rs.getString("iSize");
+				String iThumbnail = rs.getString("iThumbnail");
+				int total = rs.getInt("total");
+				
+				vo = new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iSale, iName, price, iGender, iCategory, color, iSize, iThumbnail, total);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		
+		return vo;
+	}
+	
 	public int delete (int sbNum) {
 		Connection con = null;
 		PreparedStatement ps = null;

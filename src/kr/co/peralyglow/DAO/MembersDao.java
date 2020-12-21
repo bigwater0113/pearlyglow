@@ -264,6 +264,35 @@ public class MembersDao {
 			DBCPBean.close(con, pstmt,null);
 		}
 	}
+	
+	// **************************** Èñ±Ç **********************************
+	
+	public MembersVo select (String id) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		MembersVo vo = null;
+		
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select * from members where id = ?");
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				vo = new MembersVo(id, null, name, null, null, email, phone, address, null, null);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
+		
+	}
 }
 
 

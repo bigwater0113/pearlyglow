@@ -40,8 +40,7 @@
 <body>
 	<div id="s_wrap">
 		<h2 style="text-align: center;">장바구니 목록</h2>
-		<form action="${pageContext.request.contextPath }/basketController"
-			method="post">
+		<form method="post">
 			<div id="s_itemArea">
 				<table id="s_itemTable">
 					<tr id="s_tableHeader">
@@ -56,10 +55,9 @@
 					<c:forEach var="list" items="${list }">
 						<c:set var="totalPrice" value="${totalPrice + list.price }" />
 						<tr>
-							<td width="30"><input type="checkbox" id="${list.sbNum }"
-								class="ck" name="item" value="${list.sbNum }"></td>
+							<td width="30"><input type="checkbox" id="${list.sbNum }" class="ck" name="item" value="${list.sbNum }" checked></td>
 							<td width="100" height="100"><img alt=""
-								src="${list.iThumbnail }" width="150" height="150"
+								src="${list.iThumbnail }" width="100" height="100"
 								onclick="location.href='${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }'"></td>
 							<td width="400"><span>분류 : ${list.iCategory }</span>
 								<p>
@@ -80,9 +78,8 @@
 				</table>
 			</div>
 			<div id="s_buttonArea">
-				<input type="submit" value="선택삭제" id="deleteChoose"
-					style="width: 100px; height: 50px;"> <input type="button"
-					value="주문하기" style="width: 100px; height: 50px;">
+				<input type="submit" value="선택삭제" id="deleteChoose" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/basketController"> 
+				<input type="submit" value="주문하기" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/orderFormtlsrController">
 			</div>
 		</form>
 	</div>

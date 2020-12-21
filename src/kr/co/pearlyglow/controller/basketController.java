@@ -28,7 +28,7 @@ public class basketController extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		// test
-		//session.setAttribute("id", "admin");
+		session.setAttribute("id", "admin");
 	
 		String id = (String) session.getAttribute("id");
 
