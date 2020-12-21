@@ -18,10 +18,11 @@ import kr.co.peralyglow.DAO.itemsDAO;
 @WebServlet("/detailInfoController")
 public class DetailInfoController extends HttpServlet{
 	
-	itemsDAO dao = itemsDAO.getInstance();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		itemsDAO dao = itemsDAO.getInstance();
+		ReviewboardDao dao1=ReviewboardDao.getInstance();
 		int iNum = Integer.parseInt(req.getParameter("iNum"));
 		
 		ItemsVo vo = dao.select(iNum);
@@ -39,16 +40,15 @@ public class DetailInfoController extends HttpServlet{
 		}
 		int startRow=(pageNum-1)*10+1;
 		int endRow=startRow+9;
-		ReviewboardDao dao=ReviewboardDao.getInstance();
 		
-		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=dao.rList(rsDesc,rsAsc,startRow,endRow,id);
-		int pageCount=(int)Math.ceil(dao.getCount()/10.0);
+		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=dao1.rList(rsDesc,rsAsc,startRow,endRow,id);
+		int pageCount=(int)Math.ceil(dao1.getCount()/10.0);
 		int startPageNum=(pageNum-1)/10*10+1; 
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
-		int avg=dao.getAvg();
+		int avg=dao1.getAvg();
 		req.setAttribute("avg", avg);
 		req.setAttribute("list", list);
 		req.setAttribute("startPageNum", startPageNum);
@@ -60,14 +60,12 @@ public class DetailInfoController extends HttpServlet{
 			String[] params=req.getParameterValues("checkk");
 			int n=0;
 			for(String i : params) {
-				n=dao.delete(Integer.parseInt(i));
+				n=dao1.delete(Integer.parseInt(i));
 			}
 			if(n>0) {
 				req.setAttribute("msg", "삭제성공!");
-				req.getRequestDispatcher("index.jsp?spage=detailinfo.jsp?mpage=review_board/list.jsp").forward(req, resp);
 			}else {
 				req.setAttribute("msg", "삭제실패!");
-				req.getRequestDispatcher("index.jsp?spage=detailinfo.jsp?mpage=review_board/list.jsp").forward(req, resp);
 			}
 		}
 		
