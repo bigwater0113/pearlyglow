@@ -18,7 +18,7 @@
 <div id="sellerPage_wrap">
 	<div id="sellerPage_Menu">
 		<h1>판매자페이지</h1>
-		<h2><a href="${pageContext.request.contextPath }/sales">매출관리</a></h2>
+		<h2><a href="${pageContext.request.contextPath }/sales?group=category&year=2020&month=12">매출관리</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/stockController">상품관리</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/insertItem.jsp">상품등록</a></h2>
 		<h2><a href="${pageContext.request.contextPath }/Member/list">회원관리</a></h2>
