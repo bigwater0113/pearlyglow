@@ -148,12 +148,14 @@ public class ReviewboardDao {
 		}
 	}
 	
-	public ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> rList(int startRow, int endRow, String id) {
+	public ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> rList(String rsDesc, String rsAsc, int startRow, int endRow, String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=new ArrayList<Reviewboard_Purchase_pDetail_ItemsVo>();
-		String sql="select * \r\n" + 
+		String sql="";
+		if(rsDesc!=null && !rsDesc.equals("")) {
+			sql="select * \r\n" + 
 					"from\r\n" + 
 					"(\r\n" + 
 					"	select aa.*,rownum rnum\r\n" + 
@@ -161,9 +163,34 @@ public class ReviewboardDao {
 					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
 					"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
-					"		)aa\r\n" + 
+					"		order by score desc)aa\r\n" + 
 					")\r\n" + 
 					"where rnum>=? and rnum<=?";
+		}else if(rsAsc!=null && !rsAsc.equals("")) {
+			sql="select * \r\n" + 
+					"from\r\n" + 
+					"(\r\n" + 
+					"	select aa.*,rownum rnum\r\n" + 
+					"	from(\r\n" + 
+					"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
+					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
+					"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
+					"		order by score asc)aa\r\n" + 
+					")\r\n" + 
+					"where rnum>=? and rnum<=?";
+		}else {
+			sql="select * \r\n" + 
+						"from\r\n" + 
+						"(\r\n" + 
+						"	select aa.*,rownum rnum\r\n" + 
+						"	from(\r\n" + 
+						"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
+						"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
+						"		join reviewboard r on r.pdnum=d.pdnum;\r\n" + 
+						"		)aa\r\n" + 
+						")\r\n" + 
+						"where rnum>=? and rnum<=?";
+		}
 		try {
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
@@ -190,19 +217,13 @@ public class ReviewboardDao {
 			DBCPBean.close(con, pstmt, rs);
 		}
 	}
-		
-		public int getCount(String rsDesc,String rsAsc) {
+		public int getCount() {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
 			try {
 				con=DBCPBean.getConn();
 				String sql="select NVL(count(pdnum),0) cnt from reviewboard";
-				if(rsDesc!=null && rsAsc==null) {
-					sql+=" order by score desc";
-				}else if(rsAsc!=null && rsDesc==null) {
-					sql+=" order by score asc";
-				}
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				rs.next();

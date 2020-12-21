@@ -28,8 +28,8 @@ public class DetailInfoController extends HttpServlet{
 		Items_imageVo img = dao.selectImg(iNum);
 		
 		String spageNum=req.getParameter("pageNum");
-//		String id=(String)req.getSession().getAttribute("id");
-		String id="admin";
+		String id=(String)req.getSession().getAttribute("id");
+//		String id="admin";
 		String del=req.getParameter("reviewlist_delete");
 		String rsDesc=req.getParameter("reviewlist_desc");
 		String rsAsc=req.getParameter("reviewlist_asc");
@@ -41,8 +41,8 @@ public class DetailInfoController extends HttpServlet{
 		int endRow=startRow+9;
 		ReviewboardDao dao=ReviewboardDao.getInstance();
 		
-		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=dao.rList(startRow,endRow,id);
-		int pageCount=(int)Math.ceil(dao.getCount(rsDesc,rsAsc)/10.0);
+		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=dao.rList(rsDesc,rsAsc,startRow,endRow,id);
+		int pageCount=(int)Math.ceil(dao.getCount()/10.0);
 		int startPageNum=(pageNum-1)/10*10+1; 
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
@@ -56,7 +56,7 @@ public class DetailInfoController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("id", id);
 		
-		if(del!=null) {
+		if(del!=null && !del.equals("")) {
 			String[] params=req.getParameterValues("checkk");
 			int n=0;
 			for(String i : params) {
