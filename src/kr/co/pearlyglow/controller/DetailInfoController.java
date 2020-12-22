@@ -51,8 +51,9 @@ public class DetailInfoController extends HttpServlet{
 			endPageNum=pageCount;
 		}
 		
-		System.out.println();
+		System.out.println(iNum);
 		double avg=dao1.getAvg(iNum);
+		System.out.println(avg);
 		req.setAttribute("avg", avg);
 		req.setAttribute("list", list);
 		req.setAttribute("startPageNum", startPageNum);

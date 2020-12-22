@@ -6,10 +6,16 @@
 	if(msg!=""){
 		alert(msg);
 	}
+	
+// 	var avg=${avg};
+// 	console.log(avg);
 </script>
 <c:choose>
-<c:when test=" ${avg ne '0' } ">
-
+<c:when test="${avg == 0}">
+	<h2>${vo.iName }리뷰</h2>
+	<p>아직 등록된 리뷰가 없습니다!</p>
+</c:when>
+<c:otherwise>
 	<div id="reviewlist_wrap">
 		<div id="reviewlist_main">
 			<h2>${vo.iName }리뷰</h2>
@@ -67,10 +73,6 @@
 		</div>
 	</div>
 
-	</c:when>
-	<c:otherwise>
-		<h2>${vo.iName }리뷰</h2>
-		<p>아직 등록된 리뷰가 없습니다!</p>
 	</c:otherwise>
 </c:choose>
 <script>
