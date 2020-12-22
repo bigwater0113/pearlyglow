@@ -26,13 +26,23 @@
 		history.go(-1);
 	}
 </script>
+<style type="text/css">
+	h1, form{
+		width: 300px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+</style>
 </head>
 <body>
-<h1>아이디 찾기</h1>
-이름 <input type="text" id="i_name"><br>
-이메일 <input type="email" id="i_email"><br>
-<input type="button" value="찾기" onclick="search()">
+<h1>아이디 찾기</h1><br>
+<form>
+이름 <input type="text" id="i_name" autofocus="autofocus"><br><br>
+이메일 <input type="email" id="i_email"><br><br>
+<input type="button" value="찾기" onclick="search()" style="width: 200px;">
  <div id="i_result"></div>
- <input type="button" value="뒤로가기" onclick="backPage()">
+ <input type="button" value="뒤로가기" onclick="backPage()" style="width: 200px;">
+</form>
 </body>
 </html>

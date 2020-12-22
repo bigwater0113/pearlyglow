@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>Member/login.jsp</title>
 <style type="text/css">
+h1, form{
+		width: 600px;
+		margin: 0 auto;
+	}
 .j_h3{
 	display:inline;
 }
@@ -113,7 +117,7 @@
 
 </head>
 <body>
-<h1>회원가입</h1>
+<h1>회원가입</h1><br>
 <form action="${pageContext.request.contextPath}/Member/join" method="post">
 <!-- wrapper -->
 <div id="j_wrapper">
@@ -124,7 +128,7 @@
 	<!-- ID -->
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label">아이디</label></h3>
-		    <span><input type="text" id="j_id" name="j_id" maxlength="20" onkeyup="checkid()"></span>
+		    <span><input type="text" id="j_id" name="j_id" maxlength="20" onkeyup="checkid()" autofocus="autofocus"></span>
 		    <span id="j_idcheck"></span>
 		</div> <br><br>
 	
