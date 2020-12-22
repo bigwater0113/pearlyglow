@@ -122,6 +122,23 @@ public class ReviewboardDao {
 			DBCPBean.close(con, pstmt, null);
 		}
 	}
+	public int deleteRb(int rbnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from reviewboard where rbnum=?";
+			con = DBCPBean.getConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rbnum);
+			int n = pstmt.executeUpdate();
+			return n;
+		} catch (SQLException s) {
+			s.printStackTrace();
+			return -1;
+		} finally {
+			DBCPBean.close(con, pstmt, null);
+		}
+	}
 	public double getAvg() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -158,8 +175,8 @@ public class ReviewboardDao {
 		ResultSet rs=null;
 		String sql="select NVL(sum(r.score),0) totscore, count(r.pdnum) cntt "
 				+ "from reviewboard r join pdetail d on r.pdnum=d.pdnum where d.inum=?";
-		int totscore=0;
-		int cntt=0;
+		double totscore=0;
+		double cntt=0;
 		double avg=0;
 		try {
 			con=DBCPBean.getConn();
@@ -173,7 +190,7 @@ public class ReviewboardDao {
 			if(cntt==0) {
 				avg=0;
 			}else {
-				avg=totscore/cntt;
+				avg=Math.round((totscore/cntt)*10)/10.0;
 			}
 			return avg;
 		}catch(SQLException se) {
