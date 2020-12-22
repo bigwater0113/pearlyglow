@@ -19,8 +19,6 @@ import kr.co.peralyglow.DAO.itemsDAO;
 
 @WebServlet("/detailInfoController")
 public class DetailInfoController extends HttpServlet{
-	private static int cookCnt;
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		itemsDAO dao = itemsDAO.getInstance();
@@ -90,7 +88,7 @@ public class DetailInfoController extends HttpServlet{
 		}
 		}
 		String item=URLEncoder.encode(""+iNum,"utf-8");
-		Cookie cookie=new Cookie(id+"item"+cookCnt++,item);
+		Cookie cookie=new Cookie(id+"item"+iNum,item);
 		cookie.setPath("/");
 		cookie.setMaxAge(60*60*24*365);//쿠키 유지 1년
 		resp.addCookie(cookie);

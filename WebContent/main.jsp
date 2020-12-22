@@ -124,11 +124,11 @@
 					<c:forEach var="i" begin="1" end="6">
 						<td>
 							<div>
-								<img src="images/03${i }.png" onclick="location.href ='${pageContext.request.contextPath }/detailInfoController?iNum=11001'"
+								<img src="images/03${i }.png" onclick="location.href ='${pageContext.request.contextPath }/detailInfoController?iNum=1'"
 									style="border:1px solid grey;width:220px;height:220px;">
 	<!-- 							<input type="button" value="Quick View" style="position:relative; top:-30px;"><br> -->
 								<a href="javascript:popup()" style="position:relative; top:-30px;"
-									onclick="quickBuy(11001)">Quick View</a><br>
+									onclick="quickBuy(1)">Quick View</a><br>
 								<c:choose>
 									<c:when test="${i%3==1 }">
 										<a href="">Coin Layered Set</a><br>
@@ -265,7 +265,7 @@
 				var xml=xhr.responseXML;
 				var img1=document.getElementById("img1");
 // 				img1.setAttribute('src','images/001.png');
-				img1.src="${pageContext.request.contextPath}/images/"+xml.getElementsByTagName("iThumbnail")[0].textContent;
+				img1.src=xml.getElementsByTagName("iThumbnail")[0].textContent;
 				var iName=document.getElementById("title").nextElementSibling;
 				iName.innerHTML=xml.getElementsByTagName("iName")[0].textContent;
 				var detailText=document.getElementById("detailText").childNodes;
