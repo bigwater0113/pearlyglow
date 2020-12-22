@@ -87,7 +87,7 @@ create table stock
 create table purchase
 (
 	pNum number primary key,	--구매번호  nextval
-	id varchar2(30) references members(id),	--아이디	
+	id varchar2(30) references members(id) on delete cascade, 	--아이디	
 	receiver varchar2(100) 		--수취인
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
