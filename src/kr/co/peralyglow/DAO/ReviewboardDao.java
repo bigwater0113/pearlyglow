@@ -156,10 +156,10 @@ public class ReviewboardDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select sum(r.score) totscore, count(r.pdnum) cnt "
+		String sql="select NVL(sum(r.score),0) totscore, count(r.pdnum) cntt "
 				+ "from reviewboard r join pdetail d on r.pdnum=d.pdnum where d.inum=?";
 		int totscore=0;
-		int cnt=0;
+		int cntt=0;
 		double avg=0;
 		try {
 			con=DBCPBean.getConn();
@@ -168,12 +168,12 @@ public class ReviewboardDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				totscore=rs.getInt("totscore");
-				cnt=rs.getInt("cnt");
+				cntt=rs.getInt("cntt");
 			}
-			if(cnt==0) {
+			if(cntt==0) {
 				avg=0;
 			}else {
-				avg=totscore/cnt;
+				avg=totscore/cntt;
 			}
 			return avg;
 		}catch(SQLException se) {

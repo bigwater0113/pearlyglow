@@ -25,7 +25,7 @@ public class Reviewboard_InsertController extends HttpServlet{
 		MultipartRequest mr=new MultipartRequest(
 				req,
 				saveDir,
-				1024*1014*5,
+				1024*1024*5,
 				"utf-8",
 				new DefaultFileRenamePolicy()
 				);
