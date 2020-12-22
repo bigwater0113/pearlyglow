@@ -607,4 +607,75 @@ public class itemsDAO {
 		}
 		return list;
 	}
+	
+	public ArrayList<ItemsVo> selectNamePageContents(int startItemNum, int endItemNum, String name) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
+
+		try {
+			con = DBCPBean.getConn();
+			String sql = "select * from " + 
+			         "(" + 
+			          "  select aa.*,rownum rnum from" + 
+			          "  ( " + 
+			          		"select * from items where iname like '%"+ name +"%'" +
+			          "  )aa " + 
+			         ") where rnum>=? and rnum<=?"; 
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, startItemNum);
+			ps.setInt(2, endItemNum);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int iNum = rs.getInt("iNum");
+				String iName = rs.getString("iName");
+				int price = rs.getInt("price");
+				int iSale = rs.getInt("iSale");
+				String iGender = rs.getString("iGender");
+				String iCategory = rs.getString("iCategory");
+				String color = rs.getString("color");
+				String iSize = rs.getString("iSize");
+				int weight = rs.getInt("weight");
+				String material = rs.getString("material");
+				String kDetail = rs.getString("kDetail");
+				String eDetail = rs.getString("eDetail");
+				String iThumbnail = rs.getString("iThumbnail");
+				int total = rs.getInt("total");
+				String bodyText = rs.getString("bodyText");
+				String caution = rs.getString("caution");
+
+				list.add(new ItemsVo(iNum, iName, price, iSale, iGender, iCategory, color, iSize, weight, material,
+						kDetail, eDetail, iThumbnail, total, bodyText, caution));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		return list;
+	}
+	
+	public int getNameMaxNum(String name) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int n = 0;
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("select NVL(count(iNum), 0) count from items where iname like '%" + name + "%'");
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				n = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
+		}
+		return n;
+	}
 }
