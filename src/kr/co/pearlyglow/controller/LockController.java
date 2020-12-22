@@ -20,6 +20,6 @@ public class LockController extends HttpServlet{
 		ArrayList<MembersVo> list=dao.lock();
 		
 		req.setAttribute("list",list);
-		req.getRequestDispatcher("/index.jsp?spage=Member/lock.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Member/lock.jsp").forward(req, resp);
 	}
 }

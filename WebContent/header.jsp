@@ -220,6 +220,9 @@
    <div id="h_header">
       <div id="h_left">
          <img alt="" src="${pageContext.request.contextPath}/images/menuIcon.png" id="h_menuBtn" onclick="slide()">
+         <c:if test="${empty sessionScope.id }">
+         	<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/join.jsp" style="font-size: 25px; text-decoration: none;">회원가입</a>
+         </c:if>
          <c:if test="${!empty sessionScope.id }">
             <span style="color:red;font-size:1.2em">${id }님 반갑습니다.</span>&nbsp;&nbsp;
             <c:choose>

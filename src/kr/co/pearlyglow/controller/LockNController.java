@@ -15,10 +15,9 @@ public class LockNController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] id = req.getParameterValues("mem");
-		int n = 0;
 		MembersDao dao=new MembersDao();
 		for(int i=0 ; i<id.length; i++) {
-			n=dao.lockN(id[i]);
+			dao.lockN(id[i]);
 		}
 		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 	}

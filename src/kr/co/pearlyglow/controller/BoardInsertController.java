@@ -56,8 +56,8 @@ public class BoardInsertController extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		//req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Member/result.jsp").forward(req, resp);
-		req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -84,6 +84,7 @@ public class BoardInsertController extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 	}
 }
