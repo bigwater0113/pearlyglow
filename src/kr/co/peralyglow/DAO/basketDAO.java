@@ -22,6 +22,9 @@ public class basketDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		System.out.println("¿©±â = " +iNum);
+		System.out.println(id);
+		
 		int n = 0;
 		try {
 			con = DBCPBean.getConn();

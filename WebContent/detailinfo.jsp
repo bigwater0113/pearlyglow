@@ -73,6 +73,8 @@
 					<div id="description">
 						<div id="text">
 							<div id="detailText">
+								<span>${vo.price }</span>
+								<br>
 								<p>${vo.kDetail }</p>
 								<br>
 								<p>${vo.eDetail }</p>
@@ -87,7 +89,7 @@
 						<div id="option">
 							<input type="button" value="-"onclick="changeM(event);"id="minus"><input type="text" name="count" value="1" id="count"><input type="button" value="+" onclick="changeP(event);" id="plus">
 							<br><br>
-							<input type="button" value="구매하기" id="buy">
+							<input type="button" value="구매하기" id="buy" onclick="getForOrderFormController()">
 							<input type="button" value="장바구니" id="wish" onclick="putBasketResult()"><br>
 							<span id="resultSpan"></span>
 						</div>
@@ -152,6 +154,11 @@
 		}
 		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum=${vo.iNum}&sbCnt=' + sbCnt, true);
 		xhr.send();
+	}
+	
+	function getForOrderFormController() {
+		var sbCnt = document.getElementById("count").value;
+		location.href = "${pageContext.request.contextPath}/orderFormController?iNum=${vo.iNum}&sbCnt=" + sbCnt + "&price=${vo.price}";
 	}
 </script>
 </body>

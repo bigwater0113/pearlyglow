@@ -9,16 +9,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.pearlyglow.vo.MembersVo;
 import kr.co.pearlyglow.vo.join.ShoppingBasket_ItemsVo;
 import kr.co.peralyglow.DAO.MembersDao;
 import kr.co.peralyglow.DAO.basketDAO;
+import kr.co.peralyglow.DAO.itemsDAO;
 
 @WebServlet("/orderFormController")
 public class OrderFormController extends HttpServlet{
 	
 	basketDAO dao = basketDAO.getInstance();
+	itemsDAO iDao = itemsDAO.getInstance();
 	MembersDao mDao = new MembersDao();
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int iNum = Integer.parseInt(req.getParameter("iNum"));
+		int sbCnt = Integer.parseInt(req.getParameter("sbCnt"));
+		String id = (String) req.getSession().getAttribute("id");
+		//int price = Integer.parseInt(req.getParameter("price"));
+		
+		MembersVo member = mDao.select(id);
+		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
+		ItemsVo vo = iDao.select(iNum);
+		list.add(vo);
+		
+		req.setAttribute("list", list);
+		req.setAttribute("sbCnt", sbCnt);
+		req.setAttribute("member", member);
+		req.getRequestDispatcher("/index.jsp?spage=orderForm.jsp").forward(req, resp);
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +49,7 @@ public class OrderFormController extends HttpServlet{
 		MembersVo member = mDao.select(id);
 		ArrayList<ShoppingBasket_ItemsVo> list = new ArrayList<ShoppingBasket_ItemsVo>();
 		
+		int sbCnt = 0;
 		for (String item : items) {
 			int sbNum = Integer.parseInt(item);
 			ShoppingBasket_ItemsVo vo = dao.select(id, sbNum);
@@ -41,12 +63,13 @@ public class OrderFormController extends HttpServlet{
 			String iSize = vo.getiSize();
 			String iThumbnail = vo.getiThumbnail();
 			int total = vo.getTotal();
-			int sbCnt = vo.getSbCnt();
+			sbCnt = vo.getSbCnt();
 			
 			list.add(new ShoppingBasket_ItemsVo(sbNum, id, iNum, sbCnt, iSale, iName, price, iGender, iCategory, color, iSize, iThumbnail, total));
 		}
 		
 		req.setAttribute("list", list);
+		req.setAttribute("sbCnt", sbCnt);
 		req.setAttribute("member", member);
 		req.getRequestDispatcher("/index.jsp?spage=orderForm.jsp").forward(req, resp);
 	}

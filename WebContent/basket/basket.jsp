@@ -79,7 +79,7 @@
 			</div>
 			<div id="s_buttonArea">
 				<input type="submit" value="선택삭제" id="deleteChoose" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/basketController"> 
-				<input type="submit" value="주문하기" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/orderFormtlsrController">
+				<input type="submit" value="주문하기" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/orderFormController">
 			</div>
 		</form>
 	</div>

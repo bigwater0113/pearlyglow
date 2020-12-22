@@ -288,6 +288,8 @@ public class MembersDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, rs);
 		}
 		
 		return vo;

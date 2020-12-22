@@ -408,6 +408,30 @@ public class itemsDAO {
 
 		return n;
 	}
+	
+	public int updateTotal (int iNum, int sbCnt) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		ItemsVo vo = instance.select(iNum);
+		int total = vo.getTotal();
+		int modifyTotal = total - sbCnt;
+		
+		int n = 0;
+		try {
+			con = DBCPBean.getConn();
+			ps = con.prepareStatement("update items set total = ? where iNum = ?");
+			ps.setInt(1, modifyTotal);
+			ps.setInt(2, iNum);
+			n = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCPBean.close(con, ps, null);
+		}
+		
+		return n;
+	}
 
 	public int delete(int iNum) {
 		Connection con = null;

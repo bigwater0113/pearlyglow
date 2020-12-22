@@ -89,6 +89,8 @@ create table purchase
 	pNum number primary key,	--구매번호  nextval
 	id varchar2(30) references members(id) on delete cascade, 	--아이디	
 	receiver varchar2(100), 		--수취인
+	receiverEmail varchar2(100),	-- 수취인 이메
+	receiverPhone varchar2(15),	-- 수취인 전화번호
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	

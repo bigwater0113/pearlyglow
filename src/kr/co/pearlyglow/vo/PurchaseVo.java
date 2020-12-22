@@ -6,6 +6,8 @@ public class PurchaseVo {
 	private int pNum;
 	private String id;
 	private String receiver;
+	private String receiverEmail;
+	private String receiverPhone;
 	private String pAddress;
 	private String pWay;
 	private Date pDate;
@@ -14,12 +16,14 @@ public class PurchaseVo {
 	public PurchaseVo() {
 		super();
 	}
-	public PurchaseVo(int pNum, String id, String receiver, String pAddress, String pWay, Date pDate, String pStatus,
-			int pTotal) {
+	public PurchaseVo(int pNum, String id, String receiver, String receiverEmail, String receiverPhone, String pAddress,
+			String pWay, Date pDate, String pStatus, int pTotal) {
 		super();
 		this.pNum = pNum;
 		this.id = id;
 		this.receiver = receiver;
+		this.receiverEmail = receiverEmail;
+		this.receiverPhone = receiverPhone;
 		this.pAddress = pAddress;
 		this.pWay = pWay;
 		this.pDate = pDate;
@@ -43,6 +47,18 @@ public class PurchaseVo {
 	}
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
+	}
+	public String getReceiverEmail() {
+		return receiverEmail;
+	}
+	public void setReceiverEmail(String receiverEmail) {
+		this.receiverEmail = receiverEmail;
+	}
+	public String getReceiverPhone() {
+		return receiverPhone;
+	}
+	public void setReceiverPhone(String receiverPhone) {
+		this.receiverPhone = receiverPhone;
 	}
 	public String getpAddress() {
 		return pAddress;
@@ -74,5 +90,6 @@ public class PurchaseVo {
 	public void setpTotal(int pTotal) {
 		this.pTotal = pTotal;
 	}
+	
 	
 }
