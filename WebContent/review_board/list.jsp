@@ -13,7 +13,6 @@
 	<div id="reviewlist_wrap">
 		<div id="reviewlist_main">
 			<h2>${vo.iName }리뷰</h2>
-			<h2>${list[0].iname }리뷰</h2>
 			<h3>평점:${avg }</h3>
 		</div>
 		<div id="reviewlist_editlist">
@@ -70,7 +69,7 @@
 
 	</c:when>
 	<c:otherwise>
-		<h2>리뷰</h2>
+		<h2>${vo.iName }리뷰</h2>
 		<p>아직 등록된 리뷰가 없습니다!</p>
 	</c:otherwise>
 </c:choose>
