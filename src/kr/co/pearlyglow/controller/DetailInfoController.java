@@ -57,6 +57,7 @@ public class DetailInfoController extends HttpServlet{
 		req.setAttribute("endPageNum", endPageNum);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("id", id);
+		req.setAttribute("inum", iNum);
 		
 		if(del!=null && !del.equals("")) {
 			String[] params=req.getParameterValues("checkk");
