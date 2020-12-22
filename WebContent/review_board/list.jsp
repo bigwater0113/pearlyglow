@@ -40,7 +40,7 @@
 				<c:forEach var="vvo" items="${list }">
 					<tr>
 						<c:if test="${id == 'admin' }">
-							<td><input type="checkbox" name="checkk" value=${vo.pdnum }></td>
+							<td><input type="checkbox" name="checkk" value=${vvo.pdnum }></td>
 						</c:if>
 							<td>${vvo.id }</td>
 							<td>${vvo.iname}</td>
