@@ -39,7 +39,7 @@ public class Reviewboard_InsertController extends HttpServlet{
 		int n=dao.insert(vo);
 		session.setAttribute("reviewDir", saveDir);
 		if(n>0) {
-			req.getRequestDispatcher("index.jsp?spage=myPage/myPage.jsp&mpage=myReview.jsp").forward(req, resp);
+			req.getRequestDispatcher("/MyReview?status=").forward(req, resp);
 		}else {
 			req.getRequestDispatcher("index.jsp?spage=review_board/insert.jsp").forward(req, resp);
 		}
