@@ -12,16 +12,24 @@
 		margin-bottom:20px;
 	}
 	#myReview_main h1{
-		text-shadow:3px 3px 4px black;
+		text-shadow:3px 3px 3px black;
 		color:white;
+	}
+	#myReview_tap a{
+		color:black;
+		font-size:20px;
+		text-decoration: none;
+	}
+	#myReview_tap a:hover{
+		font-weight:bold;
 	}
 	table{margin:auto;}
 </style>
 <div id="myReview_wrap">
 	<div id="myReview_main">
-		<h1>리뷰페이지</h1>
+		<h1>REVIEW</h1>
 	</div>
-	<div>
+	<div id="myReview_tap">
 		<a href="javascript:beforeRe(1)">작성 가능한 리뷰</a>|
 		<a href="javascript:afterRe(1)">내가 작성한 리뷰</a>
 	</div>

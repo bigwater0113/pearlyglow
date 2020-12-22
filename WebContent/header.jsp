@@ -197,9 +197,12 @@
 #h_right #h_rleft #h_result{
    width: 180px;
    border: 1px solid blue; 
-   height: 100px;
+   background-color:white;
+/*    height: 100px; */
    font-size: 20px;
    display:none;
+   overflow:auto;
+   position:absolute;
 }
 #h_right #h_rcenter{
    margin-left: 20px;

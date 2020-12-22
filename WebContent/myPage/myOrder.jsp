@@ -12,20 +12,28 @@
 		margin-bottom:20px;
 	}
 	#myOrder_main h1{
-		text-shadow:3px 3px 4px black;
+		text-shadow:3px 3px 3px black;
 		color:white;
+	}
+	#myOrder_search a{
+		color:black;
+		font-size:20px;
+		text-decoration: none;
+	}
+	#myOrder_search a:hover{
+		font-weight:bold;
 	}
 	table{margin:auto;}
 </style>
 <div id="myOrder_wrap">
 	<div id="myOrder_main">
-		<h1>주문내역</h1>
+		<h1>ORDER</h1>
 	</div>
 	<div id="myOrder_search">
-		<a href="${pageContext.request.contextPath }/myOrder?pDate=0">전체</a>|
-		<a href="${pageContext.request.contextPath }/myOrder?pDate=6">최근 6개월</a>|
-		<a href="${pageContext.request.contextPath }/myOrder?pDate=2020">2020</a>|
-		<a href="${pageContext.request.contextPath }/myOrder?pDate=2019">2019</a>
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=0">전체</a> | 
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=6">최근 6개월</a> | 
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=2020">2020</a> | 
+		<a href="${pageContext.request.contextPath }/myOrder?pDate=2019">2019</a> | 
 		<a href="${pageContext.request.contextPath }/myOrder?pDate=2018">2018</a>
 		
 	</div>

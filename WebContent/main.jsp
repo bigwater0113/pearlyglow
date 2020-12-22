@@ -45,7 +45,7 @@
 	#instagramBanner{width:1200px;height:400px;}
 	#instagramRecommends{margin:auto;}
 	#instagramRecommends td{padding:10px;}
-	#quickView_wrap{width:800px;height:500px;position:relative;z-index: 999;top:-1100px;left:200px;background-color: pink;overflow:auto;display:none;}
+	#quickView_wrap{width:800px;height:500px;position:relative;z-index: 999;top:-1100px;left:200px;background-color: white;overflow:auto;display:none;}
 	#quickView_wrap #image1{width: 350px;height: 350px;float: left; /*text-align: center;*/background-color: white;}
 	#quickView_wrap #detail{width: 50%;height: 100%; background-color: white;float: right;}
 	#quickView_wrap #image1 #img1{ width: 350px; height: auto; } 

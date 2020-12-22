@@ -2,24 +2,37 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- sales.jsp -->
+<style>
+	#sales_title{
+		text-align:center;
+		margin-bottom:20px;
+	}
+	#sales_title h1{
+		text-shadow:2px 2px 3px black;
+		color:white;
+	}
+	#sales_form span{font-size:20px;}
+	.selectBox{height:30px;}
+</style>
 <div id="sales_wrap">
 	<div id="sales_title">
-		<h1>매출관리</h1>
+		<h1>매출</h1>
 	</div>
 	<div id="sales_form">
 		<form action="">
-			<span>분류</span>
-			<select id="group" name="group" onchange="javascript:searchSales()">
+			<span>분류:</span>
+			<select id="group" class="selectBox" name="group" onchange="javascript:searchSales()">
 				<option value="category" <c:if test="${group=='category' }">selected</c:if>>category</option>
 				<option value="gender" <c:if test="${group=='gender' }">selected</c:if>>gender</option>
 			</select>
-			<select id="year" name="year" onchange="javascript:searchSales()">
+			<br><span>날짜:</span>
+			<select id="year" class="selectBox" name="year" onchange="javascript:searchSales()">
 				<c:forEach var="i" begin="2010" end="2020">
 					<option value="${i} " <c:if test="${year==i }">selected</c:if>>${i}</option>
 				</c:forEach>
 			</select>
 			<span>년</span>
-			<select id="month" name="month" onchange="javascript:searchSales()">
+			<select id="month" class="selectBox" name="month" onchange="javascript:searchSales()">
 				<option value="" <c:if test="${month=='' }">selected</c:if>>-</option>
 				<c:forEach var="i" begin="1" end="12">
 					<option value="${i}" <c:if test="${month==i }">selected</c:if>>${i}</option>
