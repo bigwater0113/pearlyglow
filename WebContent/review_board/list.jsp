@@ -8,21 +8,19 @@
 	}
 </script>
 <c:choose>
-
 <c:when test="${avg ne '0' }">
+<form method="post">
 	<div id="reviewlist_wrap">
 		<div id="reviewlist_main">
 			<h2>리뷰</h2>
 			<h3>평점:${avg }</h3>
 		</div>
 		<div id="reviewlist_editlist">
-			<form method="post">
 					<c:if test="${id == 'admin' }">
-						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }'">
+						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
 					</c:if>
-				<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }'">
-				<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }'">
-			</form>
+				<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
+				<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
 		</div>
 		<div id="reviewlist_table">
 			<table border="1" width="900">
@@ -64,6 +62,7 @@
 			</c:if>	
 		</div>
 	</div>
+</form>
 	</c:when>
 	<c:otherwise>
 		<h2>리뷰</h2>
