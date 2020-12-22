@@ -11,7 +11,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <h1>문의 게시판</h1>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
-<a href="${pageContext.request.contextPath }/index.jsp?spage=Board/insert.jsp">문의등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/insert.jsp">문의등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/Board/list">전체 문의글 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/ans">답변글 작성 완료 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/unans">답변글 미작성 목록</a>

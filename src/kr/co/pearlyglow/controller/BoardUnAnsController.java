@@ -38,6 +38,6 @@ public class BoardUnAnsController extends HttpServlet{
 		req.setAttribute("startPageNum",startPageNum);
 		req.setAttribute("endPageNum",endPageNum);
 		req.setAttribute("pageNum",pageNum);
-		req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/list.jsp").forward(req, resp);
 	}
 }

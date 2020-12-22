@@ -48,7 +48,6 @@ public class BoardListController extends HttpServlet{
 		
 		HttpSession session = req.getSession(true);
 		String id = (String)session.getAttribute("id");
-		System.out.println(id);
 		if(id==null || id.equals("")) {
 			req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
 		}else if(id.equals("admin")) {

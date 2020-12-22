@@ -15,12 +15,11 @@ public class LockYController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] id = req.getParameterValues("mem");
-		int n = 0;
 		MembersDao dao=new MembersDao();
 		for(int i=0 ; i<id.length; i++) {
-			n=dao.lockY(id[i]);
+			dao.lockY(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+		req.getRequestDispatcher("/Member/list").forward(req, resp);
 	}
 	
 	@Override
@@ -30,7 +29,6 @@ public class LockYController extends HttpServlet{
 		int n = dao.lockY(id);
 		if(n>0) {
 			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
-			//resp.sendRedirect(req.getContextPath()+"/Member/list");
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
