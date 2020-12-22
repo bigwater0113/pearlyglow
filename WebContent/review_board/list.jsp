@@ -18,7 +18,7 @@
 		<div id="reviewlist_editlist">
 			<form method="post">
 					<c:if test="${id == 'admin' }">
-						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='/detailInfoController'">
+						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController'">
 					</c:if>
 				<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController'">
 				<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController'">
