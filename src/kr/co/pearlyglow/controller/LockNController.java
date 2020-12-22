@@ -28,7 +28,7 @@ public class LockNController extends HttpServlet{
 		MembersDao dao=new MembersDao();
 		int n = dao.lockN(id);
 		if(n>0) {
-			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+			req.getRequestDispatcher("/Member/list").forward(req, resp);
 			//resp.sendRedirect(req.getContextPath()+"/Member/list");
 		}else {
 			req.setAttribute("code","fail");

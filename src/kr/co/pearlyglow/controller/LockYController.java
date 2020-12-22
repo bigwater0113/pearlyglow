@@ -28,7 +28,7 @@ public class LockYController extends HttpServlet{
 		MembersDao dao=new MembersDao();
 		int n = dao.lockY(id);
 		if(n>0) {
-			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+			req.getRequestDispatcher("/Member/list").forward(req, resp);
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);

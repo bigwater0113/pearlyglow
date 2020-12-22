@@ -36,58 +36,58 @@
    }
    
   
-   var xhr=null;
+   var sxhr=null;
 	function getList() {
 		var find = document.getElementById("h_searchBox").value;
 		if(find.trim()==""){
-			var div = document.getElementById("result");
-			div.innerHTML="";
-			div.style.display="none";
+			var sdiv = document.getElementById("h_result");
+			sdiv.innerHTML="";
+			sdiv.style.display="none";
 			return;
 		}
-		xhr=new XMLHttpRequest();
-		xhr.onreadystatechange=callback;
-		xhr.open('get', '${pageContext.request.contextPath}/SearchList?find='+find, true);
-		xhr.send();
+		sxhr=new XMLHttpRequest();
+		sxhr.onreadystatechange=scallback;
+		sxhr.open('get', '${pageContext.request.contextPath}/SearchList?find='+find, true);
+		sxhr.send();
 	}
-	function callback() {
-		if(xhr.readyState==4 && xhr.status==200){
+	function scallback() {
+		if(sxhr.readyState==4 && sxhr.status==200){
 			//console.log('success');
-			var xml = xhr.responseXML;
-			var list = xml.getElementsByTagName("str");
+			var sxml = sxhr.responseXML;
+			var list = sxml.getElementsByTagName("str");
 			var len = list.length;
 			var str = "";
-			var div = document.getElementById("h_result");
+			var sdiv = document.getElementById("h_result");
 			if(len>0){
 				for(let i=0; i<len; i++){
 					let sug = list[i].textContent;
 					str += "<a href=\"javascript:insert('"+ sug + "')\">" + sug + "</a><br>";
 				}
-				div.innerHTML=str;
-				div.style.display="block";
+				sdiv.innerHTML=str;
+				sdiv.style.display="block";
 			}else{
-				div.innerHTML="";
-				div.style.display="none";
+				sdiv.innerHTML="";
+				sdiv.style.display="none";
 			}
 		}
 	}
 	
 	function insert(sug) {
 		document.getElementById("h_searchBox").value=sug;
-		var div =document.getElementById("h_result");
-		div.style.display="none";
-		div.innerHTML="";
+		var sdiv =document.getElementById("h_result");
+		sdiv.style.display="none";
+		sdiv.innerHTML="";
 		document.getElementById("h_searchBox").focus();
 	}
 	
 	function onEnter() {
 		var keyCode = window.event.keyCode;
 		if(keyCode==13){
-			search();
+			hsearch();
 		}
 	}
 	
-	function search() {
+	function hsearch() {
 		let s = document.getElementById("h_searchBox").value;
 		location.href = "${pageContext.request.contextPath }/itemListController?type="+s;
 	}
@@ -95,9 +95,9 @@
 	window.onload = function () {
 		var body = document.getElementsByTagName("body")[0];
 		body.addEventListener("click", function(e) {
-			var div =document.getElementById("h_result");
-			div.style.display="none";
-			div.innerHTML="";
+			var sdiv =document.getElementById("h_result");
+			sdiv.style.display="none";
+			sdiv.innerHTML="";
 		}, false);
 	}
 </script>
@@ -240,7 +240,7 @@
       </div>
       <div id="h_right">
          <div id = "h_rleft">
-               <input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"  onkeydown="javascript:onEnter()"><input type="button" value="검색" onclick="search()"><br>
+               <input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"  onkeydown="javascript:onEnter()"><input type="button" value="검색" onclick="hsearch()"><br>
             <div id="h_result"></div>
             <div id="h_temp"></div>
          </div>
