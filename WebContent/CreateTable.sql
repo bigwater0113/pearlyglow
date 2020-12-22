@@ -29,9 +29,9 @@ create table items
 	kDetail varchar2(4000),	--한글설명
 	eDetail varchar2(4000),	--영어설명
 	iThumbnail varchar2(300), -- 썸네일
+	total number,	--총수량
 	bodyText varchar2(4000), -- 본문 제품설명글
-	caution varchar2(4000), -- 취급주의사항
-	total number	--총수량
+	caution varchar2(4000) -- 취급주의사항
 );
 
 -- 장바구니/ShoppingBasket
