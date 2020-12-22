@@ -19,7 +19,7 @@ public class LockNController extends HttpServlet{
 		for(int i=0 ; i<id.length; i++) {
 			dao.lockN(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+		req.getRequestDispatcher("/Member/list").forward(req, resp);
 	}
 	
 	@Override

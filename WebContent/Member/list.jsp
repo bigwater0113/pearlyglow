@@ -57,9 +57,9 @@
 		</c:forEach>
 	</table>
 	<br>
-	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete';">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴면계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockY';">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN';">
+	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete'">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴면계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockY'">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN'">
 </form>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock">200일 이상 접속 없는 명단</a>

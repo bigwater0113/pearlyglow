@@ -16,7 +16,7 @@
  	*/
  	*{margin:0px;padding:0px;}
  	div#index_wrap{margin:auto;width:1400px;overflow:hidden;} 
- 	#index_header{width:1200px;height:100px;} 
+ 	#index_header{width:1200px;height:100px; margin-bottom: 50px;} 
  	#index_main{width:1200px;float:left;}
  	#index_aside{margin-left:10px;width:130px;height:600px;position:relative;top:00px;background-color: pink;
  		float:left;}

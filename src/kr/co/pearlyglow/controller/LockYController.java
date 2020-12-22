@@ -19,8 +19,7 @@ public class LockYController extends HttpServlet{
 		for(int i=0 ; i<id.length; i++) {
 			dao.lockY(id[i]);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Member/list").forward(req, resp);
-		//req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
+		req.getRequestDispatcher("/Member/list").forward(req, resp);
 	}
 	
 	@Override
@@ -30,7 +29,6 @@ public class LockYController extends HttpServlet{
 		int n = dao.lockY(id);
 		if(n>0) {
 			req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
-			//resp.sendRedirect(req.getContextPath()+"/Member/list");
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
