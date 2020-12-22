@@ -48,8 +48,8 @@ create table items_image
 (
 	imgNum number primary key,	--이미지 번호
 	iNum number(5,0) references items(inum),	--품번
-	file1 varchar2(500)	--상품 이미지파일명
-	file2 varchar2(500)	--상품 이미지파일명
+	file1 varchar2(500),	--상품 이미지파일명
+	file2 varchar2(500),	--상품 이미지파일명
 	file3 varchar2(500)	--상품 이미지파일명
 );
 
@@ -88,12 +88,12 @@ create table purchase
 (
 	pNum number primary key,	--구매번호  nextval
 	id varchar2(30) references members(id) on delete cascade, 	--아이디	
-	receiver varchar2(100) 		--수취인
+	receiver varchar2(100), 		--수취인
 	pAddress varchar2(400),		--배송지
 	pWay varchar2(30) check(pway in('카드', '현금')),	--결제수단
 	pDate date,	--구매날짜	
 	pStatus varchar2(30) check(pStatus in('결제취소', '반품', '상품준비중', '배송시작', '배송중', '배송완료', '구매확정')),	--제품출고상태
-	pTotal number, --총금액
+	pTotal number --총금액
 );
 
 -- 배송정보/delivery
