@@ -21,7 +21,7 @@
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>
 		<c:if test="${id== 'admin' }">
-			<th>문의글 비밀번호 </th>
+			<th>비밀번호 </th>
 		</c:if>
 		<th>문의내용</th>
 		<th>수정</th>
@@ -101,7 +101,7 @@
 			<c:if test="${vo.id==id || id=='admin'}">
 				<c:choose>
 					<c:when test="${empty vo.ans }">
-						<a href="${pageContext.request.contextPath}/Board/update?ibnum=${vo.ibNum}">문의글 수정</a>
+						<a href="${pageContext.request.contextPath}/Board/update?ibnum=${vo.ibNum}">문의 수정</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${pageContext.request.contextPath}/Board/A_update?ibnum=${vo.ibNum}">답글 수정</a>

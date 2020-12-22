@@ -20,7 +20,7 @@ public class ListDeleteController extends HttpServlet{
 		MembersDao dao=new MembersDao();
 		int n=dao.delete(id);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/Member/list");
+			req.getRequestDispatcher("/Member/list").forward(req, resp);
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/index.jsp?spage=Member/result.jsp").forward(req, resp);
@@ -30,11 +30,14 @@ public class ListDeleteController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] id = req.getParameterValues("mem");
-		int n = 0;
-		MembersDao dao=new MembersDao();
-		for(int i=0 ; i<id.length; i++) {
-			n=dao.delete(id[i]);
+		if(id==null || id.equals("")) {
+			resp.sendRedirect(req.getContextPath()+"/Member/list");
+		}else {
+			MembersDao dao=new MembersDao();
+			for(int i=0 ; i<id.length; i++) {
+				dao.delete(id[i]);
+			}
+			req.getRequestDispatcher("/Member/list").forward(req, resp);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Member/list").forward(req, resp);
 	}
 }

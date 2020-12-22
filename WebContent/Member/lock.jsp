@@ -10,7 +10,7 @@
 <body>
 <h1>장기간 미접속 회원 명단</h1>
 <form action="${pageContext.request.contextPath }/Member/lockY" method="post">
-	<table border="1" width="1000">
+	<table border="1" width="900">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>
