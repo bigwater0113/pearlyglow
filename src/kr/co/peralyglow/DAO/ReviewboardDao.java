@@ -152,6 +152,38 @@ public class ReviewboardDao {
 		}
 	}
 	
+	public double getAvg(int inum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select sum(r.score) totscore, count(r.pdnum) cnt "
+				+ "from reviewboard r join pdetail d on r.pdnum=d.pdnum where d.inum=?";
+		int totscore=0;
+		int cnt=0;
+		double avg=0;
+		try {
+			con=DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, inum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				totscore=rs.getInt("totscore");
+				cnt=rs.getInt("cnt");
+			}
+			if(cnt==0) {
+				avg=0;
+			}else {
+				avg=totscore/cnt;
+			}
+			return avg;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			DBCPBean.close(con, pstmt, rs);
+		}
+	}
+	
 	public ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> rList(String rsDesc, String rsAsc, int startRow, int endRow, String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -190,7 +222,7 @@ public class ReviewboardDao {
 						"	from(\r\n" + 
 						"		select r.rbnum,p.id,i.iname,r.savename,r.pdnum,r.score,r.rbcontent,r.rdate \r\n" + 
 						"		from purchase p join pdetail d on p.pnum=d.pnum join items i on d.inum=i.inum \r\n" + 
-						"		join reviewboard r on r.pdnum=d.pdnum\r\n" + 
+						"		join reviewboard r on r.pdnum=d.pdnum order by r.rdate desc\r\n" + 
 						"		)aa\r\n" + 
 						")\r\n" + 
 						"where rnum>=? and rnum<=?";
@@ -201,7 +233,7 @@ public class ReviewboardDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				String buyerid=rs.getString("id");
 				int rbnum=rs.getInt("rbnum");
 				int pdnum=rs.getInt("pdnum");
