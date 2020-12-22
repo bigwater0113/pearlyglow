@@ -8,19 +8,22 @@
 	}
 </script>
 <c:choose>
-<c:when test="${avg ne '0' }">
-<form method="post">
+<c:when test=" ${avg ne '0' } ">
+
 	<div id="reviewlist_wrap">
 		<div id="reviewlist_main">
-			<h2>리뷰</h2>
+			<h2>${vo.iName }리뷰</h2>
+			<h2>${list[0].iname }리뷰</h2>
 			<h3>평점:${avg }</h3>
 		</div>
 		<div id="reviewlist_editlist">
+		<form method="post">
 					<c:if test="${id == 'admin' }">
 						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
 					</c:if>
 				<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
 				<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
+		</form>
 		</div>
 		<div id="reviewlist_table">
 			<table border="1" width="900">
@@ -36,6 +39,7 @@
 					<th>리뷰날짜</th>
 				</tr>
 				<c:forEach var="vvo" items="${list }">
+					<c:if test="${vo.iName == vvo.iname }">
 					<tr>
 						<c:if test="${id == 'admin' }">
 							<td><input type="checkbox" name="checkk" value=${vvo.pdnum }></td>
@@ -47,22 +51,23 @@
 							<td>${vvo.score}</td>
 							<td>${vvo.rdate}</td>
 						</tr>
+						</c:if>
 				</c:forEach>
 			</table>
 		</div>
 		<div id="reviewlist_paging">
 			<c:if test="${startPageNum>10 }">
-				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${startPageNum-1 }">이전</a>
+				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${startPageNum-1 }&iNum=${inum }">이전</a>
 			</c:if>	
 			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${i }">[${i }]</a>
+				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${i }&iNum=${inum }">[${i }]</a>
 			</c:forEach>
 			<c:if test="${endPageNum<pageCount }">
-					<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${endPageNum+1 }">다음</a>
+					<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${endPageNum+1 }&iNum=${inum }">다음</a>
 			</c:if>	
 		</div>
 	</div>
-</form>
+
 	</c:when>
 	<c:otherwise>
 		<h2>리뷰</h2>

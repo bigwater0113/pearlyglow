@@ -28,6 +28,8 @@ public class DetailInfoController extends HttpServlet{
 		ItemsVo vo = dao.select(iNum);
 		Items_imageVo img = dao.selectImg(iNum);
 		
+		System.out.println(vo.getiName());
+		
 		String spageNum=req.getParameter("pageNum");
 		String id=(String)req.getSession().getAttribute("id");
 //		String id="admin";
@@ -38,17 +40,19 @@ public class DetailInfoController extends HttpServlet{
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
 		}
-		int startRow=(pageNum-1)*10+1;
-		int endRow=startRow+9;
+		int startRow=(pageNum-1)*5+1;
+		int endRow=startRow+4;
 		
 		ArrayList<Reviewboard_Purchase_pDetail_ItemsVo> list=dao1.rList(rsDesc,rsAsc,startRow,endRow,id);
-		int pageCount=(int)Math.ceil(dao1.getCount()/10.0);
-		int startPageNum=(pageNum-1)/10*10+1; 
-		int endPageNum=startPageNum+9;
+		int pageCount=(int)Math.ceil(dao1.getCount()/5.0);
+		int startPageNum=(pageNum-1)/5*5+1; 
+		int endPageNum=startPageNum+4;
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
-		double avg=dao1.getAvg();
+		
+		System.out.println();
+		double avg=dao1.getAvg(iNum);
 		req.setAttribute("avg", avg);
 		req.setAttribute("list", list);
 		req.setAttribute("startPageNum", startPageNum);
