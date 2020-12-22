@@ -42,7 +42,6 @@ public class RecentViewItemFilter implements Filter{
 				String value = cook.getValue();
 				if (name.startsWith(id+"item")) {
 					value = URLDecoder.decode(value, "utf-8");
-					System.out.println(value);
 //					values[index++]=value;
 					if(value!=null) {
 						ItemsVo vo = dao.select(Integer.parseInt(value));
