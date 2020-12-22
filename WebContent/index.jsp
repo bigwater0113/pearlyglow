@@ -57,13 +57,13 @@
 		<c:if test="${id!='admin' }">
 			<div>
 				<c:choose>
-					<c:when test="${recentViewItem[0]==null }">
+					<c:when test="${recentViewItem.size()==0 }">
 						최근본 상품이 없습니다.
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="vo" items="${recentViewItem }">
 							<p class="footer_visit">
-								<img src="${pageContext.request.contextPath}/images/${vo.iThumbnail }"
+								<img src="${vo.iThumbnail }"
 									onclick="loaction.href=''" style="width:100px; height:100px;">
 							</p>
 						</c:forEach>
