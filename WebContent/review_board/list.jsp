@@ -21,14 +21,16 @@
 			<h2>${vo.iName }리뷰</h2>
 			<h3>평점:${avg }</h3>
 		</div>
+<form method="post">
 		<div id="reviewlist_editlist">
-		<form method="post">
+		<input type="hidden" name="iNum" value="${inum }" >
+		<input type="hidden" name="pageNum" value="${pageNum }" >
 					<c:if test="${id == 'admin' }">
-						<input type="submit" value="삭제" name="reviewlist_delete" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
+						<input type="submit" value="삭제" name="reviewlist_delete" formaction="${pageContext.request.contextPath }/detailInfoController">
 					</c:if>
-				<input type="submit" value="평점 ▲" name="reviewlist_desc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
-				<input type="submit" value="평점 ▼" name="reviewlist_asc" onclick="javascript:form.action='${pageContext.request.contextPath }/detailInfoController?iNum=${inum }&pageNum=${pageNum }'">
-		</form>
+				<input type="submit" value="평점 ▲" name="reviewlist_desc" formaction="${pageContext.request.contextPath }/detailInfoController">
+				<input type="submit" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
+		
 		</div>
 		<div id="reviewlist_table">
 			<table border="1" width="900">
@@ -47,7 +49,7 @@
 					<c:if test="${vo.iName == vvo.iname }">
 					<tr>
 						<c:if test="${id == 'admin' }">
-							<td><input type="checkbox" name="checkk" value=${vvo.pdnum }></td>
+							<td><input type="checkbox" name="checkk" value=${vvo.rbnum }></td>
 						</c:if>
 							<td>${vvo.id }</td>
 							<td>${vvo.iname}</td>
@@ -60,6 +62,7 @@
 				</c:forEach>
 			</table>
 		</div>
+</form>
 		<div id="reviewlist_paging">
 			<c:if test="${startPageNum>10 }">
 				<a href="${pageContext.request.contextPath }/detailInfoController?pageNum=${startPageNum-1 }&iNum=${inum }">이전</a>
@@ -72,7 +75,6 @@
 			</c:if>	
 		</div>
 	</div>
-
 	</c:otherwise>
 </c:choose>
 <script>

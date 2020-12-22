@@ -24,7 +24,7 @@ public class DetailInfoController extends HttpServlet{
 		itemsDAO dao = itemsDAO.getInstance();
 		ReviewboardDao dao1=ReviewboardDao.getInstance();
 		int iNum = Integer.parseInt(req.getParameter("iNum"));
-		
+		boolean a=true;
 		ItemsVo vo = dao.select(iNum);
 		Items_imageVo img = dao.selectImg(iNum);
 		
@@ -62,17 +62,25 @@ public class DetailInfoController extends HttpServlet{
 		req.setAttribute("id", id);
 		req.setAttribute("inum", iNum);
 		
+		System.out.println(req.getParameterValues("checkk"));
+		
 		if(del!=null && !del.equals("")) {
 			String[] params=req.getParameterValues("checkk");
 			int n=0;
 			for(String i : params) {
-				n=dao1.delete(Integer.parseInt(i));
+				n=dao1.deleteRb(Integer.parseInt(i));
 			}
-			if(n>0) {
-				req.setAttribute("msg", "삭제성공!");
-			}else {
-				req.setAttribute("msg", "삭제실패!");
-			}
+				if(n>0) {
+					req.setAttribute("msg", "삭제성공!");
+				}else {
+					req.setAttribute("msg", "삭제실패!");
+				}
+			a=false;
+//			System.out.println(iNum);
+//			req.getRequestDispatcher("/detailInfoController?iNum=4").forward(req, resp);
+			
+			resp.sendRedirect(req.getContextPath()+"/detailInfoController?iNum="+iNum);
+	
 		}
 		
 		//최근본 상품 쿠키 넣기
@@ -105,6 +113,10 @@ public class DetailInfoController extends HttpServlet{
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("image", img);
-		req.getRequestDispatcher("/index.jsp?spage=detailinfo.jsp").forward(req, resp);
+		
+		if(a) {
+			req.getRequestDispatcher("/index.jsp?spage=detailinfo.jsp?").forward(req, resp);
+		}
+	
 	}
 }
