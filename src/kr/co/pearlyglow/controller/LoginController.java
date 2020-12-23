@@ -27,7 +27,7 @@ public class LoginController extends HttpServlet{
 		if(a) {
 			HttpSession session = req.getSession();
 			session.setAttribute("id", id);
-			resp.sendRedirect(req.getContextPath()+"/index.jsp?spage=main.jsp");
+			resp.sendRedirect(req.getContextPath()+"/Main");
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않아요!");
 			req.getRequestDispatcher("/index.jsp?spage=Member/login.jsp").forward(req, resp);

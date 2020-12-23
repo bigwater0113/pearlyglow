@@ -12,9 +12,15 @@
 <h1>문의글 수정</h1>
 <form method="post" action="${pageContext.request.contextPath }/Board/update" enctype="multipart/form-data">
 	작성자 <input type="text" name="u_id" value="${requestScope.board.id }" readonly="readonly"><br>
-	문의 제품 <input type="text" name="u_num" value="${requestScope.board.iNum}"><br>
+	문의 제품 
+	<select id="u_num" name="u_num">
+		<option <c:if test="${empty requestScope.board.qCategory}">selected </c:if>>일반문의</option>
+		<c:forEach var="vo" items="${list }">
+			<option value="${vo.iNum }" <c:if test="${requestScope.board.iNum eq vo.iNum }">selected </c:if>>상품번호:${vo.iNum } / 상품명:${vo.iName }</option>
+		</c:forEach>
+	</select><br>
 	<select id="u_qCategory" name="u_qCategory">
-          <option value="배송문의" <c:if test="${requestScope.board.qCategory eq '배송문의' }"></c:if>>배송문의</option>
+          <option value="배송문의" <c:if test="${requestScope.board.qCategory eq '배송문의' }">selected </c:if>>배송문의</option>
           <option value="상품문의" <c:if test="${requestScope.board.qCategory eq '상품문의' }">selected </c:if>>상품문의</option>
           <option value="반품문의" <c:if test="${requestScope.board.qCategory eq '반품문의' }">selected </c:if>>반품문의</option>
           <option value="교환문의" <c:if test="${requestScope.board.qCategory eq '교환문의' }">selected </c:if>>교환문의</option>

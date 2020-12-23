@@ -1,5 +1,6 @@
 package kr.co.pearlyglow.controller;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -7,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.peralyglow.DAO.BoardDao;
+import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.pearlyglow.vo.QnABoardVo;
 
 
@@ -25,7 +28,18 @@ public class BoardUpdateController extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		QnABoardVo vo = dao.getinfo(num);
 		req.setAttribute("board", vo);
-		req.getRequestDispatcher("/index.jsp?spage=Board/updateForm.jsp").forward(req, resp);
+		ArrayList<ItemsVo> list = dao.iNumList();
+		req.setAttribute("list",list);
+		
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("id");
+		if(id==null || id.equals("")) {
+			req.getRequestDispatcher("../index.jsp?spage=Board/updateForm.jsp").forward(req, resp);
+		}else if(id.equals("admin")) {
+			req.getRequestDispatcher("../index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/updateForm.jsp").forward(req, resp);
+		}else {
+			req.getRequestDispatcher("../index.jsp?spage=myPage/myPage.jsp&mpage=../Board/updateForm.jsp").forward(req, resp);
+		}
 	}
 	
 	@Override
@@ -56,11 +70,21 @@ public class BoardUpdateController extends HttpServlet{
 		QnABoardVo vo = new QnABoardVo(num, mr.getParameter("u_id"), inum, qCategory, qTitle, mr.getParameter("u_pwd"), mr.getParameter("u_content"), orgfileName, savefileName, null, null, null, ref, lev, step);
 		int n =dao.update(vo);
 		if(n>0) {
-			req.setAttribute("code", "success");
+			HttpSession session = req.getSession();
+			String id = (String)session.getAttribute("id");
 			req.getRequestDispatcher("/Board/list").forward(req, resp);
 		}else {
 			req.setAttribute("code","fail");
-			req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
+			HttpSession session = req.getSession(true);
+			String id = (String)session.getAttribute("id");
+			if(id==null || id.equals("")) {
+				req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
+			}else if(id.equals("admin")) {
+				req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
+			}
+			else {
+				req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
+			}
 		}
 	}
 }
