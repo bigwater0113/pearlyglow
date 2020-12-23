@@ -239,7 +239,7 @@
          </c:if>
       </div>
       <div id="h_center">
-         <img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo" onclick="location.href='${pageContext.request.contextPath}/index.jsp?spage=main.jsp'">
+         <img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo" onclick="location.href='${pageContext.request.contextPath}/Main'">
       </div>
       <div id="h_right">
          <div id = "h_rleft">
@@ -266,7 +266,7 @@
    <div id="h_menu">
       <div id="h_moreMenu1">
          <h2>
-            <a href="${pageContext.request.contextPath }/index.jsp?spage=main.jsp">PEARLYGLOW</a>
+            <a href="${pageContext.request.contextPath }/Main">PEARLYGLOW</a>
          </h2>
          <a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
          <a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp">MYPAGE</a>
