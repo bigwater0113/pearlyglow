@@ -39,7 +39,10 @@ public class PurchaseDao {
 			ps.executeUpdate();
 			
 			ps2 = con.prepareStatement("select purchase_seq.currval from dual");
-			nextVal = ps2.executeUpdate();
+			rs = ps2.executeQuery();
+			if (rs.next()) {
+				nextVal = rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

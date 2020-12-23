@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.peralyglow.DAO.DeliveryDAO;
 import kr.co.peralyglow.DAO.PurchaseDao;
 import kr.co.peralyglow.DAO.StockDao;
+import kr.co.peralyglow.DAO.basketDAO;
 import kr.co.peralyglow.DAO.itemsDAO;
 import kr.co.peralyglow.DAO.pDetailDao;
 
@@ -18,8 +20,10 @@ public class OrderController extends HttpServlet{
 	
 	StockDao sDao = StockDao.getInstance();
 	itemsDAO iDao = itemsDAO.getInstance();
+	basketDAO bDao = basketDAO.getInstance();
 	PurchaseDao pDao = PurchaseDao.getInstance();
 	pDetailDao pdDao = pDetailDao.getInstance();
+	DeliveryDAO dDao = new DeliveryDAO();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,24 +39,49 @@ public class OrderController extends HttpServlet{
 		String pAddress = req.getParameter("rAddr");
 		String pWay = req.getParameter("way");
 		
+		
+		int pTotal = 0;
+		
+		for (String total : pTotalArray) {
+			pTotal += Integer.parseInt(total);
+		}
+		
+		// 구매내역테이블 추가
+		int purchaseNextVal = pDao.insertAndReturnSeqVal(id, receiver, receiverEmail, receiverPhone, pAddress, pWay, pTotal);
+		// 배송정보테이블 추가
+		int n4 = dDao.insert(purchaseNextVal);
+		
+		int n1=0, n2=0, n3=0;
+		
 		for (int i=0; i<iNumArray.length; i++) {
 			
 			int iNum = Integer.parseInt(iNumArray[i]);
 			int sbCnt = Integer.parseInt(sbCntArray[i]);
 			int price = Integer.parseInt(priceArray[i]);
-			int pTotal = Integer.parseInt(pTotalArray[i]);
 			
 			// 재고테이블 추가 (출고)
-			sDao.insert(iNum, 2, sbCnt);
+			n1 = sDao.insert(iNum, 2, sbCnt);
 			// 상품테이블 수정 (총 수량)
-			iDao.updateTotal(iNum, sbCnt);
-			// 구매내역테이블 추가
-			int purchaseNextVal = pDao.insertAndReturnSeqVal(id, receiver, receiverEmail, receiverPhone, pAddress, pWay, pTotal);
+			n2 = iDao.updateTotal(iNum, sbCnt);
 			// 구매내역 상세테이블 추가
-			pdDao.insert(purchaseNextVal, iNum, sbCnt, price);
+			n3 = pdDao.insert(purchaseNextVal, iNum, sbCnt, price);
+
 		}
 		
-		
+		if (n1>0 && n2>0 && n3>0 && n4>0) {
+			// 장바구니에서 왔을때 장바구니에 주문한 상품 삭제
+			if (req.getParameterValues("sbNum") != null && !req.getParameterValues("sbNum").equals("")) {
+				String[] sbNums = req.getParameterValues("sbNum");
+				
+				for (String sb : sbNums) {
+					int sbNum = Integer.parseInt(sb);
+					bDao.delete(sbNum);
+				}
+			}
+			resp.sendRedirect(req.getContextPath() + "/orderSucessPage.jsp");
+		} else {
+			// 오류페이지로 이동
+		}
 		
 	}
 }
