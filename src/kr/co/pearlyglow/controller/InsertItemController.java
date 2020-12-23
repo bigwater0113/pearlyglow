@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.peralyglow.DAO.StockDao;
 import kr.co.peralyglow.DAO.insertItemDAO;
+import kr.co.peralyglow.DAO.itemsDAO;
 
 @WebServlet("/insertItemController")
 public class InsertItemController extends HttpServlet {
@@ -26,6 +27,7 @@ public class InsertItemController extends HttpServlet {
 		String saveDir = req.getServletContext().getRealPath("/basket/upload");
 		insertItemDAO dao = insertItemDAO.getInstance();
 		StockDao sDao = StockDao.getInstance();
+		itemsDAO iDao = itemsDAO.getInstance();
 		MultipartRequest mr = new MultipartRequest(req, saveDir, 1024 * 1024 * 10, "utf-8",
 				new DefaultFileRenamePolicy());
 		

@@ -349,7 +349,7 @@ public class itemsDAO {
 			sql += " and material = '" + searchMaterial + "'";
 		}
 		if (!searchStock.equals("")) {
-			sql += " and total < " + searchStock;
+			sql += " and total <= " + searchStock;
 		}
 		if (!searchText.equals("")) {
 			sql += " and iName like '%" + searchText + "%'";

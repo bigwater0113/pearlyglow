@@ -64,7 +64,7 @@ public class OrderController extends HttpServlet{
 			// 상품테이블 수정 (총 수량)
 			n2 = iDao.updateTotal(iNum, sbCnt);
 			// 구매내역 상세테이블 추가
-			n3 = pdDao.insert(purchaseNextVal, iNum, sbCnt, price);
+			n3 = pdDao.insert(purchaseNextVal, iNum, sbCnt, price * sbCnt);
 
 		}
 		

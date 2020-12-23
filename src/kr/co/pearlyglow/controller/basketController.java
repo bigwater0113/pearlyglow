@@ -26,8 +26,6 @@ public class basketController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		
-		// test
 	
 		String id = (String) session.getAttribute("id");
 
@@ -75,7 +73,6 @@ public class basketController extends HttpServlet{
 		int n = 0;
 		
 		for (String i : params) {
-			System.out.println(i);
 			n = dao.delete(Integer.parseInt(i));
 		}
 		
