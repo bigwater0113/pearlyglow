@@ -271,7 +271,7 @@
          <a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
          <a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp">MYPAGE</a>
          <a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp">SELLERPAGE</a>
-         <a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
+   		 <a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
       </div>
       <div id="h_moreMenu2">
          <h2>

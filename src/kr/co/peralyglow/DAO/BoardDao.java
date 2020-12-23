@@ -8,9 +8,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.co.pearlyglow.db.DBCPBean;
+import kr.co.pearlyglow.vo.ItemsVo;
 import kr.co.pearlyglow.vo.QnABoardVo;
 
 public class BoardDao {
+	public ArrayList<ItemsVo> iNumList(){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ItemsVo> list = new ArrayList<ItemsVo>();
+		
+		try {
+			String sql = "select inum,iname from items";
+			con = DBCPBean.getConn();
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemsVo vo = new ItemsVo(Integer.parseInt(rs.getString("iNum")), rs.getString("iName"), 0, 0, null, null, null, null, 0, null, null, null, null, 0, null, null);
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			DBCPBean.close(con, pstmt, rs);
+		}
+	}
+	
 	public ArrayList<QnABoardVo> myinfo(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
