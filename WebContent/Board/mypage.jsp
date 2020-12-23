@@ -9,14 +9,13 @@
 </head>
 <body>
 <h1>나의 문의글</h1>
+<a href="${pageContext.request.contextPath }/Board/InsertPage">문의등록</a> 
 <table border="1">
 	<tr style="text-align: center">
-		<th>문의글 번호</th>
-		<th>작성자</th>
 		<th>문의 제품 </th>
 		<th>문의 종류 </th>
 		<th width="100">문의 제목 </th>
-		<th>문의글 비밀번호 </th>
+		<th>비밀번호 </th>
 		<th width="150">문의 내용 </th>
 		<th>수정</th>
 		<th>삭제</th>
@@ -24,8 +23,6 @@
 	
 <c:forEach var="qvo" items="${list }">
 	<tr>
-		<th>${qvo.ibNum }</th>
-		<th>${qvo.id }</th>
 		<th>${qvo.iNum }</th>
 		<th>${qvo.qCategory }</th>
 		<th>${qvo.qTitle }</th>

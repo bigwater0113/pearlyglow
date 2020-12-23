@@ -54,7 +54,7 @@ public class BoardListController extends HttpServlet{
 			req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/list.jsp").forward(req, resp);
 		}
 		else {
-			req.getRequestDispatcher("/index.jsp?spage=Board/list.jsp").forward(req, resp);
+			req.getRequestDispatcher("/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/list.jsp").forward(req, resp);
 		}
 	}
 }

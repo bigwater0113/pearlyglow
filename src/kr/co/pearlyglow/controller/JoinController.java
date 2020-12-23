@@ -39,6 +39,6 @@ public class JoinController extends HttpServlet{
 		}
 		
 		req.setAttribute("code", resultCode);
-		req.getRequestDispatcher("/index.jsp?spage=Member/joinResult.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp?spage=Member/login.jsp").forward(req, resp);
 	}
 }
