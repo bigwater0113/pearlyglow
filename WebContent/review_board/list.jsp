@@ -10,6 +10,9 @@
 // 	var avg=${avg};
 // 	console.log(avg);
 </script>
+<style>
+	#reviewlist_editlist{float:right;}
+</style>
 <c:choose>
 <c:when test="${avg == 0}">
 	<h2>${vo.iName }리뷰</h2>
@@ -23,17 +26,16 @@
 		</div>
 <form method="post">
 		<div id="reviewlist_editlist">
-		<input type="hidden" name="iNum" value="${inum }" >
-		<input type="hidden" name="pageNum" value="${pageNum }" >
-					<c:if test="${id == 'admin' }">
-						<input type="submit" value="삭제" name="reviewlist_delete" formaction="${pageContext.request.contextPath }/detailInfoController">
-					</c:if>
-				<input type="submit" value="평점 ▲" name="reviewlist_desc" formaction="${pageContext.request.contextPath }/detailInfoController">
-				<input type="submit" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
-		
+			<input type="hidden" name="iNum" value="${inum }" >
+			<input type="hidden" name="pageNum" value="${pageNum }" >
+			<c:if test="${id == 'admin' }">
+				<input type="submit" value="삭제" name="reviewlist_delete" formaction="${pageContext.request.contextPath }/detailInfoController">
+			</c:if>
+			<input type="submit" value="평점 ▲" name="reviewlist_desc" formaction="${pageContext.request.contextPath }/detailInfoController">
+			<input type="submit" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
 		</div>
 		<div id="reviewlist_table">
-			<table border="1" width="900">
+			<table border="1" width="800">
 				<tr>
 				<c:if test="${id == 'admin' }">
 					<th><input type="checkbox" id="allcheck"></th>
@@ -53,7 +55,8 @@
 						</c:if>
 							<td>${vvo.id }</td>
 							<td>${vvo.iname}</td>
-							<td><img src="${pageContext.request.contextPath}/review_board/upload/${vvo.savename }" style="width: 100px; height: 100px;"></td>
+							<td><img src="${pageContext.request.contextPath}/review_board/upload/${vvo.savename }" 
+											style="width: auto; height: 100px; background-size: cover;"></td>
 							<td>${vvo.rbcontent}</td>
 							<td>${vvo.score}</td>
 							<td>${vvo.rdate}</td>
