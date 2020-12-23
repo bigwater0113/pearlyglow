@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.8</zoom>
-	<x>612</x>
-	<y>83</y>
+	<zoom>1.0</zoom>
+	<x>0</x>
+	<y>0</y>
 	<default_color>
 		<r>255</r>
 		<g>255</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>true</display>
 			<creation_date>2020-12-08 22:04:49</creation_date>
-			<updated_date>2020-12-22 20:38:47</updated_date>
+			<updated_date>2020-12-23 12:25:55</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value>pearlyglow</value>
@@ -339,7 +339,7 @@
 			<binary>false</binary>
 			<args></args>
 			<char_semantics>false</char_semantics>
-			<description>배송상태</description>
+			<description>&apos;상품인수&apos;, &apos;배송시작&apos;, &apos;배송중&apos;, &apos;배송완료&apos;</description>
 			<logical_name>배송상태</logical_name>
 			<physical_name>dStatus</physical_name>
 			<type>varchar(n)</type>
@@ -1859,7 +1859,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>9</source>
+					<source>4</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1881,7 +1881,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>4</source>
+					<source>9</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1945,7 +1945,7 @@
 				<normal_column>
 					<id>13</id>
 					<referenced_column>16</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1979,7 +1979,7 @@
 				<normal_column>
 					<id>14</id>
 					<referenced_column>56</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3109,7 +3109,7 @@
 			<connections>
 				<relation>
 					<id>8</id>
-					<source>9</source>
+					<source>4</source>
 					<target>8</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3131,7 +3131,7 @@
 				</relation>
 				<relation>
 					<id>9</id>
-					<source>4</source>
+					<source>9</source>
 					<target>8</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3195,7 +3195,7 @@
 				<normal_column>
 					<id>42</id>
 					<referenced_column>16</referenced_column>
-					<relation>9</relation>
+					<relation>8</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>아이디(작성자)</logical_name>
@@ -3229,7 +3229,7 @@
 				<normal_column>
 					<id>43</id>
 					<referenced_column>56</referenced_column>
-					<relation>8</relation>
+					<relation>9</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4226,12 +4226,12 @@
 		</table>
 		<table>
 			<id>10</id>
-			<height>170</height>
-			<width>233</width>
+			<height>238</height>
+			<width>291</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>380</x>
-			<y>612</y>
+			<x>351</x>
+			<y>540</y>
 			<color>
 				<r>0</r>
 				<g>0</g>

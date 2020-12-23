@@ -8,8 +8,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#itemsArea {
+	#o_wrap {
+		width: 1100px;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
+	}
+	#itemsArea {
+		padding: 15px;
+		display: inline-block;
 	}
 	#itemsTable {
 		width: 1000px;
@@ -17,7 +24,8 @@
 		margin-right: auto;
 	}
 	#personArea {
-		text-align: center;
+		padding: 15px;
+		display: inline-block;
 	}
 	#personTable {
 		width: 1000px;
@@ -25,12 +33,24 @@
 		margin-right: auto;
 	}
 	#orderPriceArea {
-		text-align: center;
+		padding: 15px;
+		display: inline-block;
 	}
 	#orderPriceTable {
 		width: 1000px;
-		margin-left: auto;
-		margin-right: auto;
+	}
+	
+	#name_tr input{
+		width: 100px;
+	}
+	#phone_tr input {
+		width: 40px;
+	}
+	#email_tr input {
+		width: 100px;
+	}
+	#addr_tr input {
+		width: 400px;
 	}
 </style>
 </head>
@@ -49,21 +69,24 @@
 						<th width="150">상품금액</th>
 						<th width="150">주문금액</th>
 					</tr>
-					<c:forEach var="list" items="${list }">
+					<c:forEach var="list" items="${list }" varStatus="status">
 						<tr>
 							<td style="display: none;">
 								<input type="text" name="iNum" value="${list.iNum }">
-								<input type="text" name="sbCnt" value="${sbCnt }">
+								<input type="text" name="sbCnt" value="${sbCnt[status.index] }">
 								<input type="text" name="price" value="${list.price }">
-								<input type="text" name="pTotal" value="${sbCnt * list.price }">
+								<input type="text" name="pTotal" value="${sbCnt[status.index] * list.price }">
+								<c:if test="${before == 'basket' }">
+									<input type="text" name="sbNum" value="${list.sbNum }">
+								</c:if>
 							</td>	
 							<td><img alt="" src="${list.iThumbnail }" style="width: 100px; height: 100px;"></td>
 							<td>${list.iName }</td>
-							<td>${sbCnt }</td>
+							<td>${sbCnt[status.index] }</td>
 							<td>${list.iSale }%</td>
 							<td>\ ${list.price }원</td>
-							<td>\ ${sbCnt * list.price }원</td>
-							<c:set var="totalPrice" value="${totalPrice + (sbCnt * list.price) }"/>
+							<td>\ ${sbCnt[status.index] * list.price }원</td>
+							<c:set var="totalPrice" value="${totalPrice + (sbCnt[status.index] * list.price) }"/>
 						</tr>
 					</c:forEach>
 				</table>
@@ -76,22 +99,22 @@
 						<th width="450">수령인 정보 </th>
 						<th width="450">구매자 정보 </th>
 					</tr>
-					<tr>
+					<tr id="name_tr">
 						<th>수령인 </th>
 						<td><input type="text" name="receiverName"> </td>
 						<td><input type="text" name="senderName" value="${member.name }"> </td>
 					</tr>
-					<tr>
+					<tr id="phone_tr">
 						<th>휴대전화 </th>
 						<td><input type="text" value="010" name="rPhone1">-<input type="text" name="rPhone2">-<input type="text" name="rPhone3"> </td>
 						<td><input type="text" value="${fn:substring(member.phone,0,3) }" name="sPhone1">-<input type="text" value="${fn:substring(member.phone,3,7) }" name="sPhone2">-<input type="text" value="${fn:substring(member.phone,7,11) }" name="sPhone3"> </td>
 					</tr>
-					<tr>
+					<tr id="email_tr">
 						<th>이메일 </th>
 						<td><input type="text" name="rEmail1">@<input type="text" name="rEmail2"> </td>
 						<td><input type="text" value="${fn:split(member.email,'@')[0] }" name="sEmail1">@<input type="text" value="${fn:split(member.email,'@')[1] }" name="sEmail2"> </td>
 					</tr>
-					<tr>
+					<tr id="addr_tr">
 						<th>배송 주소</th>
 						<td>
 							<input type="text" placeholder="상세 주소를 입력해주세요" name="rAddr">
@@ -101,7 +124,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3"> <input type="checkbox" id="sameInfo">구매자 정보와 수령인 정보 일치 </td>
+						<td colspan="3"> <input type="checkbox" id="sameInfo">구매자 정보와 수령인 정보가 일치합니다. </td>
 					</tr>
 				</table>
 			</fieldset>
@@ -123,12 +146,13 @@
 					<tr>
 						<th>결제수단 </th>
 						<td>
-							<input type="radio" name="way" value="현금">계좌이체
+							<input type="radio" name="way" value="현금" checked="checked">계좌이체
 							<input type="radio" name="way" value="카드">신용/체크카드
 						</td>
 					</tr>
 				</table>
 			</fieldset>
+			<br>
 			<input type="submit" value="주문완료">
 		</form>
 	</div>

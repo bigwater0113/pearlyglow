@@ -15,6 +15,7 @@ public class pDetailDao {
 	}
 	
 	public int insert (int pNum, int iNum, int pCnt, int pPay) {
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		
@@ -22,8 +23,8 @@ public class pDetailDao {
 		try {
 			con = DBCPBean.getConn();
 			ps = con.prepareStatement("insert into pDetail values(pDetail_seq.nextval, ?, ?, ?, ?)");
-			ps.setInt(1, pNum);
-			ps.setInt(2, iNum);
+			ps.setInt(1, iNum);
+			ps.setInt(2, pNum);
 			ps.setInt(3, pCnt);
 			ps.setInt(4, pPay);
 			n = ps.executeUpdate();
