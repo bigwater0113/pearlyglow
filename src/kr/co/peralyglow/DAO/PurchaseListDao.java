@@ -29,7 +29,7 @@ public class PurchaseListDao {
 					"(\r\n" + 
 					"	select aa.*,rownum rnum \r\n" + 
 					"	from(\r\n" + 
-					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
+					"		select p.pnum, d.pdnum, i.inum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum\r\n" + 
 					"		where p.id='"+id+"' and p.pdate>=to_date('"+p_date1+"','yyyy/mm/dd') and p.pdate<to_date('"+p_date2+"','yyyy/mm/dd')+1 \r\n" + 
 					"		order by p.pdate desc\r\n" + 
@@ -42,7 +42,7 @@ public class PurchaseListDao {
 					"(\r\n" + 
 					"	select aa.*,rownum rnum \r\n" + 
 					"	from(" + 
-					"		select p.pnum, d.pdnum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
+					"		select p.pnum, d.pdnum, i.inum, i.iname, d.pcnt, d.ppay, p.ptotal,i.ithumbnail,p.pdate \r\n" + 
 					"		from purchase p join pdetail d on p.pnum=d.pnum join items i on i.inum=d.inum where p.id='"+id+"'" + 
 					"		order by p.pdate desc" + 
 					"		)aa" + 
@@ -64,7 +64,8 @@ public class PurchaseListDao {
 				int ptotal=rs.getInt("ptotal");
 				String ithumbnail=rs.getString("ithumbnail");
 				Date pdate=rs.getDate("pdate");
-				Items_purchase_pdetailVo vo=new Items_purchase_pdetailVo(pnum,pdnum,iname,pcnt,ppay,ptotal,ithumbnail,pdate,id);
+				int inum=rs.getInt("inum");
+				Items_purchase_pdetailVo vo=new Items_purchase_pdetailVo(pnum,pdnum,iname,pcnt,ppay,ptotal,ithumbnail,pdate,id,inum);
 				list.add(vo);
 			}
 			return list;

@@ -6,6 +6,7 @@ public class Items_purchase_pdetailVo {
 
 	private int pnum;
 	private int pdnum;
+	private int inum;
 	private String iname;
 	private int pcnt;
 	private int ppay;
@@ -15,7 +16,7 @@ public class Items_purchase_pdetailVo {
 	private String id;
 	public Items_purchase_pdetailVo() {}
 	public Items_purchase_pdetailVo(int pnum, int pdnum, String iname, int pcnt, int ppay, int ptotal,
-			String ithumbnail, Date pdate, String id) {
+			String ithumbnail, Date pdate, String id, int inum) {
 		super();
 		this.pnum = pnum;
 		this.pdnum = pdnum;
@@ -26,6 +27,7 @@ public class Items_purchase_pdetailVo {
 		this.ithumbnail = ithumbnail;
 		this.pdate = pdate;
 		this.id = id;
+		this.inum = inum;
 	}
 	public int getPnum() {
 		return pnum;
@@ -81,6 +83,13 @@ public class Items_purchase_pdetailVo {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public int getInum() {
+		return inum;
+	}
+	public void setInum(int inum) {
+		this.inum = inum;
+	}
+	
 	
 }
 

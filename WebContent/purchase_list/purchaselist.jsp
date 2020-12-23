@@ -19,8 +19,8 @@
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/purchase_list/upload/${vo.ithumbnail }" style="width: 200px;"></td>
-<%-- 					<td><img src="웹상의경로 주기/a.jpg" style="width: 200px;"></td> --%>
+					<td><img src="${vo.ithumbnail }" style="width: 100px; height: 100px;"
+					 onclick="location.href='${pageContext.request.contextPath}/detailInfoController?iNum=${vo.inum }';"></td>
 					<td>${vo.pnum }</td>
 					<td>${vo.pdnum }</td>
 					<td>${vo.iname}</td>
@@ -45,7 +45,7 @@
 	</div>
 	<div id="purchaselist_search">
 		<form method="post" action="${pageContext.request.contextPath }/purchaselist">
-			기간선택<input type="date" id="purchaselist_date" name="purchaselist_date1">~<input type="date" id="purchaselist_date" name="purchaselist_date2">
+			기간선택<input type="date" value="${p_date1 }" id="purchaselist_date" name="purchaselist_date1">~<input type="date" value="${p_date2 }" id="purchaselist_date" name="purchaselist_date2">
 		<input type="submit" value="검색">
 		</form>
 	</div>
