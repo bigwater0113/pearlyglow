@@ -21,7 +21,7 @@
 			<c:forEach var="vo" items="${list }">
 				<tr>
 					<td>${vo.id}</td>
-					<td><img src="${pageContext.request.contextPath}/Sold_list/upload/${vo.ithumbnail }" style="width: 200px;"></td>
+					<td><img src="${vo.ithumbnail }" style="width: 200px;"></td>
 					<td>${vo.pnum}</td>
 					<td>${vo.pdnum}</td>
 					<td>${vo.iname}</td>
