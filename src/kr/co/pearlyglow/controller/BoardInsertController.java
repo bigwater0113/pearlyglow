@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -52,11 +53,20 @@ public class BoardInsertController extends HttpServlet{
 		BoardDao dao = new BoardDao();
 		int n = dao.insert(vo);
 		if(n>0) {
-			req.setAttribute("code", "success");
+			HttpSession session = req.getSession();
+			String id1 = (String)session.getAttribute("id");
+			if(id1==null || id1.equals("")) {
+				req.getRequestDispatcher("/Board/list").forward(req, resp);
+			}else if(id1.equals("admin")) {
+				req.getRequestDispatcher("/Board/list").forward(req, resp);
+			}else {
+				req.getRequestDispatcher("/Board/list").forward(req, resp);
+			}
 		}else {
 			req.setAttribute("code", "fail");
+			req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/result.jsp").forward(req, resp);
 		//req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 	}
 	

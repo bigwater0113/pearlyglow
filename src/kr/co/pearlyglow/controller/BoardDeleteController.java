@@ -19,7 +19,7 @@ public class BoardDeleteController extends HttpServlet{
 		BoardDao dao = new BoardDao();
 		int n=dao.delete(num);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/Board/list");
+			req.getRequestDispatcher("/Board/list").forward(req, resp);
 		}else {
 			req.setAttribute("code","fail");
 			req.getRequestDispatcher("/Board/result.jsp").forward(req, resp);

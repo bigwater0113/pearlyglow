@@ -22,7 +22,9 @@ public class BoardInsertPageController extends HttpServlet{
 		req.setAttribute("list",list);
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		if(id.equals("admin")) {
+		if(id==null || id.equals("")) {
+			req.getRequestDispatcher("../index.jsp?spage=Board/insert.jsp").forward(req, resp);
+		}else if(id.equals("admin")) {
 			req.getRequestDispatcher("../index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/insert.jsp").forward(req, resp);
 		}else {
 			req.getRequestDispatcher("../index.jsp?spage=myPage/myPage.jsp&mpage=../Board/insert.jsp").forward(req, resp);
