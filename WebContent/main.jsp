@@ -385,10 +385,7 @@ if (ppage == null) {
 			</div>
 			<div id="description">
 				<div id="text">
-					<div id="detailText">
-						<p></p>
-						<br>
-						<p></p>
+					<div id="detailText"><p></p><br><p></p><span></span>
 					</div>
 					<div id="optionText">
 						<span>Gender: </span><br>
@@ -402,8 +399,8 @@ if (ppage == null) {
 						type="text" name="count" value="1" id="count"><input
 						type="button" value="+" onclick="changeP(event)" id="plus">
 					<br> <br> <input type="button" value="구매하기" id="buy"
-						onclick="getForOrderFormController()"> <input
-						type="button" value="장바구니" id="wish" onclick="putBasketResult(${vo.iNum})"><br>
+						onclick="getForOrderFormController(1)"> <input
+						type="button" value="장바구니" id="wish" onclick="putBasketResult(1)"><br>
 					<span id="resultSpan"></span>
 				</div>
 			</div>
@@ -466,6 +463,15 @@ if (ppage == null) {
 			if(xhr.readyState==4 && xhr.status==200){
 				var xml=xhr.responseXML;
 				var img1=document.getElementById("img1");
+				var iNum=xml.getElementsByTagName("iNum")[0].textContent;
+				var buy=document.getElementById("buy");
+				var wish=document.getElementById("wish");
+				buy.onclick=function(){
+					getForOrderFormController(iNum);
+				};
+				wish.onclick=function(){
+					putBasketResult(iNum);
+				};
 // 				img1.setAttribute('src','images/001.png');
 				img1.src=xml.getElementsByTagName("iThumbnail")[0].textContent;
 				var iName=document.getElementById("title").nextElementSibling;
@@ -473,6 +479,7 @@ if (ppage == null) {
 				var detailText=document.getElementById("detailText").childNodes;
 				detailText.item(0).innerHTML=xml.getElementsByTagName("kDetail")[0].textContent;
 				detailText.item(2).innerHTML=xml.getElementsByTagName("eDetail")[0].textContent;
+				detailText.item(3).innerHTML=xml.getElementsByTagName("price")[0].textContent;
 				var optionText=document.getElementById("optionText").childNodes;
 				optionText.item(0).innerHTML="Gender: "+xml.getElementsByTagName("iGender")[0].textContent;
 				optionText.item(2).innerHTML="Category: "+xml.getElementsByTagName("iCategory")[0].textContent;
@@ -487,6 +494,7 @@ if (ppage == null) {
 	// 장바구니 json
 	function putBasketResult(iNum) {
 		var sbCnt = document.getElementById("count").value;
+		console.log(iNum);
 		console.log(sbCnt);
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function () {
@@ -505,8 +513,8 @@ if (ppage == null) {
 		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum='+iNum+'&sbCnt=' + sbCnt, true);
 		xhr.send();
 	}
-	function getForOrderFormController() {
+	function getForOrderFormController(iNum) {
 		var sbCnt = document.getElementById("count").value;
-		location.href = "${pageContext.request.contextPath}/orderFormController?iNum=1&sbCnt=" + sbCnt + "&price=${vo.price}";
+		location.href = "${pageContext.request.contextPath}/orderFormController?iNum="+iNum+"&sbCnt=" + sbCnt + "&price=${vo.price}";
 	}
 </script>

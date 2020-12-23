@@ -12,6 +12,6 @@ public class HomeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		getServletContext().setAttribute("cp", req.getContextPath());
-		resp.sendRedirect(req.getContextPath() + "/index.jsp");
+		resp.sendRedirect(req.getContextPath() + "/Main");
 	}
 }
