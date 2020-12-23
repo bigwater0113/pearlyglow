@@ -53,7 +53,7 @@
 						</c:if>
 							<td>${vvo.id }</td>
 							<td>${vvo.iname}</td>
-							<td><img src="${pageContext.request.contextPath}/upload/${vvo.savename }" style="width: 200px;"></td>
+							<td><img src="${pageContext.request.contextPath}/upload/${vvo.savename }" style="width: 100px; height: 100px;"></td>
 							<td>${vvo.rbcontent}</td>
 							<td>${vvo.score}</td>
 							<td>${vvo.rdate}</td>
