@@ -16,7 +16,7 @@
 	작성자 <input type="text" name="i_id" value="${id }" readonly="readonly"><br>
 	문의 제품
 	<select id="i_num" name="i_num">
-		<option>일반문의</option>
+		<option value="0">일반문의</option>
 		<c:forEach var="vo" items="${list }">
 			<option value="${vo.iNum }">상품번호:${vo.iNum } / 상품명:${vo.iName }</option>
 		</c:forEach>
