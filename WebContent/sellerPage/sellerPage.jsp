@@ -10,9 +10,9 @@
 <style>
 	*{margin:0px;padding:0px;}
 	#sellerPage_wrap{width:1200px; margin:auto;}
-	#sellerPage_Menu{width:260px;height:400px;float:left;padding:20px;}
+	#sellerPage_Menu{width:200px;height:400px;float:left;padding:20px;}
 	#sellerPage_Menu a{color:black;text-decoration: none; font-weight:bold;}
-	#sellerPage_section{width:900px; float:left;}
+	#sellerPage_section{width:960px; float:left;}
 	
 </style>
 <div id="sellerPage_wrap">

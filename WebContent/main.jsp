@@ -126,7 +126,7 @@
 							<div>
 								<img src="images/03${i }.png" onclick="location.href ='${pageContext.request.contextPath }/detailInfoController?iNum=1'"
 									style="border:1px solid grey;width:220px;height:220px;">
-	<!-- 							<input type="button" value="Quick View" style="position:relative; top:-30px;"><br> -->
+	<!-- 							<input type="button" value="Quick View" style="position:relative; top:-30px;"><br> 넌 뭐냐-->
 								<a href="javascript:popup()" style="position:relative; top:-30px;"
 									onclick="quickBuy(1)">Quick View</a><br>
 								<c:choose>
@@ -198,10 +198,10 @@
 				<div id="option">
 					<input type="button" value="-" onclick="changeM(event);" id="minus"><input
 						type="text" name="count" value="1" id="count"><input
-						type="button" value="+" onclick="changeP(event);" id="plus">
+						type="button" value="+" onclick="changeP(event)" id="plus">
 					<br>
-					<br> <input type="button" value="구매하기" id="buy"> <input
-						type="button" value="장바구니" id="wish" onclick="putBasketResult(11001)"><br>
+					<br> <input type="button" value="구매하기" id="buy" onclick="getForOrderFormController()"> <input
+						type="button" value="장바구니" id="wish" onclick="putBasketResult(1)"><br>
 					<span id="resultSpan"></span>
 				</div>
 			</div>
@@ -302,5 +302,9 @@
 		}
 		xhr.open('get', '${pageContext.request.contextPath}/basketController?iNum='+iNum+'&sbCnt=' + sbCnt, true);
 		xhr.send();
+	}
+	function getForOrderFormController() {
+		var sbCnt = document.getElementById("count").value;
+		location.href = "${pageContext.request.contextPath}/orderFormController?iNum=1&sbCnt=" + sbCnt + "&price=${vo.price}";
 	}
 </script>
