@@ -8,25 +8,27 @@
 <title>Insert title here</title>
 
 <style>
+/* 	* {font-size: 14px;} */
  	#main{width:1200px; display: flex; justify-content: center;} 
-	#main #left {width:200px;height:100%;background-color: white;float:left;}
-	#main #middle {width:800px;height:100%;float:left;}
-	#main #right {width:200px;height:100%;background-color: white;float:right;}
-	#main #middle #top{width:100%;height:360px; margin-bottom: 200px;}
-	#main #middle #core{width:100%; background-color: white; text-align: center;}
+ 	#main #left {width:200px;background-color: white;float:left;}
+	#main #middle {width:800px;float:left;}
+	#main #right {width:200px;background-color: white;float:right;}
+	#main #middle #top{width:100%; margin-bottom: 650px;}
+	#main #middle #core{width:100%; height: auto;background-color: white; text-align: center;}
+	#main #middle #core #revlist{width:100%; height: auto;}
 	#main #middle #bottom{width:100%; margin-bottom: 300px; text-align: center; margin-top:150px; background-color: white;}
-	#main #middle #top #image1{width: 350px;height: 350px;float: left; /*text-align: center;*/background-color: white;}
-	#main #middle #top #detail{width: 50%;height: 100%; background-color: white;float: right;}
-	#main #middle #top #image1 #img1{ width: 350px; height: auto; } 
+	#main #middle #top #image1{width: 350px; height:100%; float: left; background-color: white;}
+	#main #middle #top #detail{width: 50%; background-color: white;float: right;}
+	#main #middle #top #image1 #img1{ width: 350px;  } 
  	#main #middle #top #detail #title{width: 100%; background-color: white;} 
- 	#main #middle #top #detail #nbso{width: 100%;height: 5%; background-color: white;} 
+ 	#main #middle #top #detail #nbso{width: 100%; background-color: white;} 
  	#main #middle #top #detail #nbso li{list-style: none;display: inline-block;font-size: 10px;border:1px solid black;}
  	#main #middle #top #detail #description{width: 100%;height: 90%; background-color: white; margin-top: 20px;} 
  	#main #middle #top #detail #description #text{width: 100%;height: 100%; background-color: white;}
  	#main #middle #top #detail #description #text #detailText {height: 70%;}
  	#main #middle #top #detail #description #text #optionText {height: 30%;}
- 	#main #middle #top #detail #description #text p{font-size: 11px; } 
- 	#main #middle #top #detail #description #text span{font-size: 11px; color: gray;} 
+ 	#main #middle #top #detail #description #text p{font-size: 16px; } 
+ 	#main #middle #top #detail #description #text span{font-size: 13px; color: gray;} 
  	#main #middle #top #detail #description #option{width: 100%;height: 30%; background-color: white;} 
  	#main #middle #top #detail #description #option #buy{background-color: #333333;color:white;border:none ;width: 150px;height: 40px;} 
  	#main #middle #top #detail #description #option #wish{background-color: white;border:1px solid gray;width: 150px;height: 40px;} 
@@ -34,9 +36,9 @@
  	#main #middle #top #detail #description #option #count{background-color: white;border: 1px solid lightgray;width: 80px;height: 40px;} 
  	#main #middle #top #detail #description #option #minus{background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
 	#main #middle #core #image2{width: 100%;height: auto; background-color: white;}
-	#main #middle #core #image2 #img2{ width: 800px; height: 800px; /*object-fit: cover;*/} 
-	#main #middle #core #image2 #img3{ width: 800px; height: 800px; /*object-fit: cover;*/}
-	#main #middle #core #image2 #img4{ width: 800px; height: 800px; /*object-fit: cover;*/}
+ 	#main #middle #core #image2 #img2{ width: 800px; height: 800px; object-fit: cover;}
+	#main #middle #core #image2 #img3{ width: 800px; height: 800px; object-fit: cover;}
+	#main #middle #core #image2 #img4{ width: 800px; height: 800px; object-fit: cover;}
 	/* object-fit: cover ;	가로세로 비율은 유지하면서 컨테이너에 꽉 차도록 설정 */
 	#discription {margin-top: 150px;}
 	
@@ -57,11 +59,11 @@
 		<div id="middle">
 			<div id="top">
 				<div id="image1">
-					<img alt="반지상세" src=${vo.iThumbnail } id="img1">
+					<img alt="제품이미지" src=${vo.iThumbnail } id="img1">
 				</div>
 				<div id="detail">
 					<div id="title">
-						<h4>${vo.iName }</h4>
+						<h2>${vo.iName }</h2>
 					</div>
 					<div id="nbso"> <!-- new best soldout -->
 						<ul>
@@ -73,18 +75,34 @@
 					<div id="description">
 						<div id="text">
 							<div id="detailText">
-								<span>${vo.price }</span>
+								<span>\ ${vo.price }</span>
+								<br><br>
+<%-- 								<p>${vo.kDetail }</p> --%>
+								<p>아리아리랑 스리스리랑
+								아라리가 났네~~아리랑 고개로
+								아라리가 났네 아리랑 고개로 가신 님은
+								아리아리랑 스리스리랑
+								아라리가 났네~~아리랑 고개로
+								아라리가 났네 아리랑 고개로 가신 님은</p>
 								<br>
-								<p>${vo.kDetail }</p>
-								<br>
-								<p>${vo.eDetail }</p>
-							</div>
+<%-- 								<p>${vo.eDetail }</p> --%>
+								<p>hello my name is daeun!
+								I like kyochon.
+								i like gyul. When will CoronaVirus be gone..
+								hello my name is daeun!
+								I like kyochon.
+								i like gyul.When will CoronaVirus be gone..
+								I like kyochon.
+								i like gyul.When will CoronaVirus be gone..I like kyochon.
+								i like gyul.When will CoronaVirus be gone..I like kyochon.
+								i like gyul.When will CoronaVirus be gone..</p>
+							</div><br>
 							<div id="optionText">
 								<span>Gender: ${vo.iGender } </span> <br>
 								<span>Category: ${vo.iCategory } </span> <br>
 								<span>Color: ${vo.color } </span> <br>
-								<span>Size: ${vo.iSize } / Weight: ${vo.weight } / Material: ${vo.material } </span>
-							</div>
+								<span>Size: ${vo.iSize } / Weight: ${vo.weight } / Material: ${vo.material } </span> <br>
+							</div><br>
 						</div>
 						<div id="option">
 							<input type="button" value="-"onclick="changeM(event);"id="minus"><input type="text" name="count" value="1" id="count"><input type="button" value="+" onclick="changeP(event);" id="plus">
@@ -96,6 +114,7 @@
 					</div>
 				</div>
 			</div>
+<!-- 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 			<div id="core">
 				<div id="revlist">
 					<jsp:include page="<%=mpage %>"/>
