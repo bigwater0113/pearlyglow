@@ -46,20 +46,21 @@ public class BoardUpdateController extends HttpServlet{
 		int inum=0;
 		if(mr.getParameter("i_num")!=null && !(mr.getParameter("i_num").equals(""))) {
 			inum =Integer.parseInt(mr.getParameter("i_num"));
+			
 		}
 		String qCategory = mr.getParameter("u_qCategory");
 		String qTitle = mr.getParameter("u_qTitle");
-		int ref = Integer.parseInt(mr.getParameter("ref"));
-		int lev = Integer.parseInt(mr.getParameter("lev"));
-		int step = Integer.parseInt(mr.getParameter("step"));
-		
+		int ref = Integer.parseInt(mr.getParameter("u_ref"));
+		int lev = Integer.parseInt(mr.getParameter("u_lev"));
+		int step = Integer.parseInt(mr.getParameter("u_step"));
 		QnABoardVo vo = new QnABoardVo(num, mr.getParameter("u_id"), inum, qCategory, qTitle, mr.getParameter("u_pwd"), mr.getParameter("u_content"), orgfileName, savefileName, null, null, null, ref, lev, step);
 		int n =dao.update(vo);
 		if(n>0) {
 			req.setAttribute("code", "success");
+			req.getRequestDispatcher("/Board/list").forward(req, resp);
 		}else {
 			req.setAttribute("code","fail");
+			req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Board/result.jsp").forward(req, resp);
 	}
 }
