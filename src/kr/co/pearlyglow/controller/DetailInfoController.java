@@ -28,7 +28,7 @@ public class DetailInfoController extends HttpServlet{
 		ItemsVo vo = dao.select(iNum);
 		Items_imageVo img = dao.selectImg(iNum);
 		
-		System.out.println(vo.getiName());
+//		System.out.println(vo.getiName());
 		
 		String spageNum=req.getParameter("pageNum");
 		String id=(String)req.getSession().getAttribute("id");
