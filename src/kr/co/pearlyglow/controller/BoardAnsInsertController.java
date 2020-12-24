@@ -45,6 +45,6 @@ public class BoardAnsInsertController extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		req.getRequestDispatcher("/index.jsp?spage=Board/list").forward(req, resp);
+		req.getRequestDispatcher("/Board/list").forward(req, resp);
 	}
 }

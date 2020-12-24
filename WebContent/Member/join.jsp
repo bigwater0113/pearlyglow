@@ -6,20 +6,24 @@
 <meta charset="UTF-8">
 <title>Member/login.jsp</title>
 <style type="text/css">
-h1, form{
-		width: 600px;
+form{
 		margin: 0 auto;
+		padding-left: 300px;
 	}
+h1{
+	text-align: center;
+}
+
 .j_h3{
 	display:inline;
 }
 .j_div{
-	padding-bottom:100px;
-	display:inline;
+	/*padding-bottom:100px;*/
+	display:inline
 }
 .j_label{
 	display:inline-block;
-	width: 200px;
+	width: 300px;
 }
 </style>
 
@@ -128,7 +132,7 @@ h1, form{
 	<!-- ID -->
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label">아이디</label></h3>
-		    <span><input type="text" id="j_id" name="j_id" maxlength="20" onkeyup="checkid()" autofocus="autofocus"></span>
+		    <span><input type="text" id="j_id" name="j_id" maxlength="20" onkeyup="checkid()" autofocus="autofocus" class="form-control" style="width: 300px; padding: 0px; display: inline-block;"></span>
 		    <span id="j_idcheck"></span>
 		</div> <br><br>
 	
@@ -136,7 +140,7 @@ h1, form{
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label">비밀번호</label></h3>
 		    <span>
-		        <input type="password" id="j_pwd1" name="j_pwd1"maxlength="20" onkeyup="checkpwd1()">
+		        <input type="password" id="j_pwd1" name="j_pwd1"maxlength="20" onkeyup="checkpwd1()"  class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 				<span id="j_pwd1check"></span>
 		    </span>
 		</div><br><br>
@@ -145,7 +149,7 @@ h1, form{
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label">비밀번호 재확인</label></h3>
 		    <span>
-		        <input type="password" id="j_pwd2" name="j_pwd2" maxlength="20" onkeyup="checkpwd2()">
+		        <input type="password" id="j_pwd2" name="j_pwd2" maxlength="20" onkeyup="checkpwd2()"  class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 		    </span>
 		    <span id="j_pwd2check"></span>
 		</div><br><br>
@@ -154,7 +158,7 @@ h1, form{
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label">이름</label></h3>
 		    <span>
-		        <input type="text" id="j_name" name="j_name" maxlength="20"> 
+		        <input type="text" id="j_name" name="j_name" maxlength="20"  class="form-control" style="width: 300px; padding: 0px; display: inline-block;"> 
 		    </span>
 		</div><br><br>
 	
@@ -162,7 +166,7 @@ h1, form{
 		<div class="j_div">
 		    <h3 class="j_h3"><label class="j_label" style="vertical-align: top;">주소</label></h3>
 		    <span>
-		    	<textarea rows="3" cols="30" id="j_addr" name="j_addr" style="resize: none;"></textarea>
+		    	<textarea rows="3" cols="30" id="j_addr" name="j_addr" style="resize: none; width: 300px; padding: 0px; display: inline-block;"  class="form-control"></textarea>
 		    </span>
 		</div><br><br>	
 	
@@ -174,14 +178,14 @@ h1, form{
 		        <!-- BIRTH_YY -->
 				<div class="j_div">
 				    <span>
-				        <input type="text" id="j_yy" name="j_yy" maxlength="4" placeholder="년(4자)">
+				        <input type="text" id="j_yy" name="j_yy" maxlength="4" placeholder="년(4자)"  class="form-control" style="width: 140px; padding: 0px; display: inline-block;">
 				    </span>
 				</div>
 	
 				<!-- BIRTH_MM -->
 				<div class="j_div">
 				    <span>
-				        <select id="j_mm" name="j_mm">
+				        <select id="j_mm" name="j_mm"  class="form-control" style="width: 50px; padding: 0px; display: inline-block;">
 				            <option>월</option>
 				            <option value="01">1</option>
 				            <option value="02">2</option>
@@ -202,7 +206,7 @@ h1, form{
 				<!-- BIRTH_DD -->
 			    <div class="j_div">
 			        <span>
-			            <input type="text" id="j_dd" name="j_dd" maxlength="2" placeholder="일">
+			            <input type="text" id="j_dd" name="j_dd" maxlength="2" placeholder="일"  class="form-control" style="width: 100px; padding: 0px; display: inline-block;">
 			        </span>
 			    </div>
 			</div>
@@ -212,7 +216,7 @@ h1, form{
 	    <div class="j_div">
 	        <h3 class="j_h3"><label class="j_label">성별</label></h3>
 	        <span>
-	            <select id="j_gender" name="j_gender">
+	            <select id="j_gender" name="j_gender"  class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 	                <option>성별</option>
 	                <option value="M">남자</option>
 	                <option value="W">여자</option>
@@ -224,9 +228,9 @@ h1, form{
 	    <div class="j_div">
 	        <h3 class="j_h3"><label class="j_label">본인확인 이메일</label></h3>
 	        <span>
-	            <input type="email" id="j_email" name="j_email" maxlength="100">
+	            <input type="email" id="j_email" name="j_email" class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 	        </span>
-	      	<button type="button" id="j_btnEmail", onclick="sendEmail()"><span>이메일 인증</span></button>
+	      	<button type="button" id="j_btnEmail", onclick="sendEmail()" class="btn btn-secondary"><span>이메일 인증</span></button>
 	    	<span id="j_emailcheck"></span>
 	    </div><br><br>
 	
@@ -234,13 +238,13 @@ h1, form{
 	    <div class="j_div"> 
 	        <h3 class="j_h3"><label class="j_label">휴대전화</label></h3>
 	        <span>
-	            <input type="tel" id="j_phone" name="j_phone" maxlength="16" placeholder="전화번호 입력">
+	            <input type="tel" id="j_phone" name="j_phone" maxlength="16" placeholder="전화번호 입력"  class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 	        </span> 
 	    </div><br><br>
 	
 	    <!-- JOIN BTN-->
 	    <div class="j_div">
-	        <input type="submit" id="j_btnJoin" value="가입하기">
+	        <input type="submit" id="j_btnJoin" value="Sign Up" class="btn btn-black" style="width: 500px; margin-left: 50px;">
 	    </div>
 	    
 	</div> 

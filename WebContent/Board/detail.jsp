@@ -57,7 +57,19 @@
 		<th> ${vo.ansDate }</th>
 	</tr>
 	<tr>
-		<td colspan="2"><a href="${pageContext.request.contextPath }/Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+		<c:if test="${empty id }">
+			<td colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+		</c:if>
+		<c:if test="${!empty id }">
+			<c:choose>
+				<c:when test="${id=='admin' }">
+					<td colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+				</c:when>
+				<c:otherwise>
+					<td colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
 	</tr>
 </table>
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>

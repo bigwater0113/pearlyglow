@@ -8,9 +8,11 @@
 <title>Member/list.jsp</title>
 </head>
 <body>
-<h1>회원목록</h1>
+<h1 style="text-align: center;">회원목록</h1>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp" style="font-size: 20px; margin-left: 650px;">홈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock" style="font-size: 20px;">200일 이상 접속 없는 명단</a>
 <form method="post" name="form">
-	<table border="1" width="900">
+	<table border="1" class="table table-hover">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>
@@ -56,13 +58,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<br>
-	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete'">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴면계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockY'">&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN'">
+	<input type="submit" value="선택삭제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/listDelete'" class="btn btn-secondary">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴면계정 등록" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockY'" class="btn btn-secondary">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN'" class="btn btn-secondary">
 </form>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock">200일 이상 접속 없는 명단</a>
 <!-- 페이징처리 -->
 <div>
 	<c:if test="${startPageNum>10 }">

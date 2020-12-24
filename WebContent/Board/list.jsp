@@ -9,15 +9,15 @@
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<h1>문의 게시판</h1>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+<h1 style="text-align: center;">문의 게시판</h1>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp" style="margin-left: 200px;">홈</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/Board/InsertPage">문의등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/Board/list">전체 문의글 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/ans">답변글 작성 완료 목록</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Board/unans">답변글 미작성 목록</a>
 
-<table border="1" width="900">
-	<tr style="text-align: center">
+<table border="1" width="950" class="table table-hover" style="text-align: center;">
+	<tr style="text-align: center;">
 		<th>작성자 </th>
 		<th>문의 종류 </th>
 		<th>문의 제목 </th>

@@ -36,15 +36,44 @@ public class BoardDao {
 		}
 	}
 	
-	public ArrayList<QnABoardVo> myinfo(String id) {
+	public int myinfoGetCount(String id) {
+		Connection con=null;
+	    PreparedStatement pstmt=null;
+	    ResultSet rs=null;
+	    try {
+	       con=DBCPBean.getConn();
+	       String sql="select count(ibNum) from QnABoard where ref in (select ref from QnABoard where id=? and lev=0) order by ref desc, step asc";
+	       pstmt=con.prepareStatement(sql);
+	       pstmt.setString(1, id);
+	       rs=pstmt.executeQuery();
+	       rs.next();
+	       int cnt=rs.getInt(1);
+	       return cnt;
+	    }catch(SQLException se) {
+	       se.printStackTrace();
+	       return -1;
+	    }finally {
+	       DBCPBean.close(con, pstmt, rs);
+	    }
+	}
+	
+	public ArrayList<QnABoardVo> myinfo(String id,int startRowNum, int endRowNum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			String sql="select * from QnABoard where ref in (select ref from QnABoard where id=? and lev=0) order by ref desc, step asc";
+			String sql="select * from " + 
+			         "(" + 
+			          "  select aa.*,rownum rnum from" + 
+			          "  ( " + 
+			          "select * from QnABoard where ref in (select ref from QnABoard where id=? and lev=0) order by ref desc, step asc"+
+			          "  )aa " + 
+			          ") where rnum>=? and rnum<=?";   
 			con=DBCPBean.getConn();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setInt(2, startRowNum);
+			pstmt.setInt(3, endRowNum);
 			rs=pstmt.executeQuery();
 			ArrayList<QnABoardVo> list = new ArrayList<QnABoardVo>();
 			while(rs.next()) {
