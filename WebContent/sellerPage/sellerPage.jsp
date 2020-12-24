@@ -10,7 +10,7 @@
 <style>
 	*{margin:0px;padding:0px;}
 	#sellerPage_wrap{width:1200px; margin:auto;}
-	#sellerPage_Menu{width:200px;height:400px;float:left;padding:20px;}
+	#sellerPage_Menu{width:200px;height:400px;float:left;padding:20px;border-bottom:2px solid #DDDDDD;border-right:2px solid #DDDDDD;border-radius: 10px; }
 	#sellerPage_Menu h2{font-weight:bold; color:#555555;font-family: 'Noto Serif KR', serif;}
 	#sellerPage_Menu a{color:black;text-decoration: none; font-weight:bold;
 		 color:#CCCCCC;font-family: 'Noto Serif KR', serif;}
