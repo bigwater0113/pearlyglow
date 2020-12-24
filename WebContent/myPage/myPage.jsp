@@ -10,12 +10,12 @@
 <style>
 	*{margin:0px;padding:0px;}
 	#myPage_wrap{width:1200px; margin:auto;}
-	#myPage_Menu{width:200px;height:400px;float:left;padding:20px;}
-	#myPage_Menu h2{font-weight:bold; text-shadow:2px 2px 2px black; color:#555555;}
+	#myPage_Menu{width:200px;height:400px;float:left;padding:20px;border-bottom:2px solid #DDDDDD;border-right:2px solid #DDDDDD;border-radius: 10px;  }
+	#myPage_Menu h2{font-weight:bold; color:#555555;font-family: 'Noto Serif KR', serif;}
 	#myPage_Menu a{color:black;text-decoration: none; font-weight:bold;
-		text-shadow:1px 1px 2px black; color:#CCCCCC;}
+		 color:#CCCCCC;font-family: 'Noto Serif KR', serif;}
 	#myPage_Menu a:hover{color:#888888;}
-	#myPage_section{width:960px; float:left;}
+	#myPage_section{width:960px; float:left;padding-top:20px;}
 	
 </style>
 <div id="myPage_wrap">

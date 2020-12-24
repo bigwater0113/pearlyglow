@@ -11,8 +11,8 @@
 		margin-bottom:20px;
 	}
 	#myOrder_main h1{
-		text-shadow:3px 3px 3px black;
-		color:white;
+		font-weight:bold;
+		color:#555555;
 	}
 	#myOrder_search a{
 		color:black;
@@ -22,8 +22,10 @@
 	#myOrder_search a:hover{
 		font-weight:bold;
 	}
-	table{margin:auto;text-align:center;}
-	#myOrder_table th{background-color: #AAAAAA;height:30px;border:4px solid white;}
+	#myOrder_search{margin-left:20px;margin-bottom:15px;}
+	table{margin-left:20px;text-align:center;}
+	#myOrder_table th{background-color: #AAAAAA;height:30px;}
+	#myOrder_pageDiv{text-align:center;}
 </style>
 <div id="myOrder_wrap">
 	<div id="myOrder_main">
@@ -38,7 +40,7 @@
 		
 	</div>
 	<div id="myOrder_table">
-		<table width="960">
+		<table class="table table-hover" width="960">
 			<tr>
 <!--  				<th>아이디</th>	 -->
 				<th>구매번호</th>	
@@ -55,7 +57,7 @@
 			<c:forEach var="vo" items="${list }">
 				<c:if test="${vo.pNum!=pNumEq }">
 					<tr>
-						<td colspan="8" style="border-top:1px solid black"></td>
+						<td colspan="8" style="border-top:1px solid #555555; border-bottom:1px solid #555555;height:1px;"></td>
 					</tr>
 				</c:if>
 				<tr>
@@ -95,6 +97,7 @@
 			</c:forEach>
 		</table>
 	</div>
+	<br>
 	<div id="myOrder_pageDiv">
 		<c:choose>
 			<c:when test="${startPageNum>10 }"><%--이전 페이지가 있는 경우 --%>
@@ -123,4 +126,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<br>
+	<br>
+	<br>
 </div>

@@ -11,8 +11,8 @@
 		margin-bottom:20px;
 	}
 	#myReview_main h1{
-		text-shadow:3px 3px 3px black;
-		color:white;
+		font-weight:bold;
+		color:#555555;
 	}
 	#myReview_tap a{
 		color:black;
@@ -22,19 +22,21 @@
 	#myReview_tap a:hover{
 		font-weight:bold;
 	}
-	table{margin:auto;text-align:center;}
-	#myReview_BATable th{height:30px; background-color: #AAAAAA;border:4px solid white;}
+	#myReview_tap{margin-left:20px; margin-bottom:15px;}
+	table{margin-left:20px;text-align:center;}
+	#myReview_BATable th{background-color: #AAAAAA;height:30px;}
+	#myReview_pageDiv{text-align:center;}
 </style>
 <div id="myReview_wrap">
 	<div id="myReview_main">
 		<h1>REVIEW</h1>
 	</div>
 	<div id="myReview_tap">
-		<a href="javascript:beforeRe(1)">작성 가능한 리뷰</a>|
+		<a href="javascript:beforeRe(1)">작성 가능한 리뷰</a> |
 		<a href="javascript:afterRe(1)">내가 작성한 리뷰</a>
 	</div>
 	<div id="myReview_table">
-		<table id="myReview_BATable" width="960">
+		<table id="myReview_BATable"  class="table table-hover" width="960">
 			<tr>
 <!-- 				<th>아이디</th> -->
 				<th>이미지</th>
@@ -45,7 +47,7 @@
 				<th>리뷰작성</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
-				<tr style="border-bottom:1px solid black;">
+				<tr>
 <%-- 					<td>${vo.id }</td> --%>
 					<td><img src="${vo.iThumbnail }" style="width:100px;height:100px"></td>
 					<td>${vo.iName }</td>
@@ -57,6 +59,7 @@
 			</c:forEach>
 		</table>
 	</div>
+	<br>
 	<div id="myReview_pageDiv">
 		<c:choose>
 			<c:when test="${startPageNum>10 }"><%--이전 페이지가 있는 경우 --%>
@@ -85,6 +88,9 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<br>
+	<br>
+	<br>
 	
 </div>
 <script>

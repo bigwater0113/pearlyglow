@@ -3,17 +3,32 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-#purchaselist_wrap {font-family: 'Noto Serif KR', serif;}
+#purchaselist_wrap {width:1000px;}
+.table{width:960px;margin:auto;}
 .table td, .table th{
 	padding: 0px;
+}
+#purchaselist_main{
+	text-align:center;
+	font-weight:bold;
+    color:#555555;
+}
+#purchaselist_table{
+	margin:auto;
+}
+#purchaselist_paging{
+	text-align:center;
+}
+#purchaselist_search{
+	text-align:right;
 }
 </style>
 <div id="purchaselist_wrap">
 	<div id="purchaselist_main">
-		<h2>${sessionScope.id}님의 구매 내역</h2>
+		<h1>${sessionScope.id}님의 구매 내역</h1>
 	</div>
 	<div id="purchaselist_table">
-		<table class="table table-hover" border="1" width="900">
+		<table class="table table-hover" >
 <!-- 		class="table table-hover" -->
 			<tr>
 				<th>구매번호</th>

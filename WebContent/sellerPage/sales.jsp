@@ -3,19 +3,21 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- sales.jsp -->
 <style>
+	#sales_wrap{width:1000px;font-family: 'Noto Serif KR', serif;}
 	#sales_title{
 		text-align:center;
 		margin-bottom:20px;
 	}
 	#sales_title h1{
-		text-shadow:2px 2px 3px black;
-		color:white;
+		font-weight:bold;
+		color:#555555;
 	}
+	#sales_form{margin-left:20px;}
 	#sales_form span{font-size:20px;}
 	.selectBox{height:30px;}
-	#myOrder_table{margin:auto;font-weight:bold;}
-	#myOrder_table th{padding-left:5px;padding-right:5px;border:4px solid white;background-color: #5D5D5D;text-align:center;color:white;font-size:18px;}
-	#myOrder_table td{padding-right:5px;border:3px solid white;background-color: #8C8C8C;text-align:right;color:white;}
+ 	#myOrder_table {margin-left:20px;font-weight:bold;} 
+ 	#myOrder_table th{padding-left:5px;padding-right:5px;text-align:center;font-size:18px;background-color: #DDDDDD;} 
+ 	#myOrder_table td{padding-right:5px;text-align:right;} 
 	
 </style>
 <div id="sales_wrap">
@@ -48,7 +50,7 @@
 	<div id="myOrder_table">
 	<c:choose>
 		<c:when test="${group=='category' }">
-			<table width="960">
+			<table width="960" class="table table-hover">
 				<tr>
 					<th width="120" rowspan="2">날짜</th>
 					<th colspan="4">카테고리</th>
@@ -79,7 +81,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<table border="1" width="960">
+			<table  width="960">
 				<tr>
 					<th rowspan="2">날짜</th>
 					<th colspan="2">Gender</th>

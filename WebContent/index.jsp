@@ -13,6 +13,7 @@
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <title>index.jsp</title>
 <style>
 /*
@@ -23,7 +24,7 @@
  	#footer{width:100%;height:400px;background-color: lightpink;} 
  	*/
  	*{margin:0px;padding:0px;}
- 	div#index_wrap{margin:auto;width:1400px;overflow:hidden;} 
+ 	div#index_wrap{margin:auto;width:1400px;overflow:hidden;font-family: 'Noto Serif KR', serif;} 
  	#index_header{width:1200px;height:100px; margin-bottom: 50px;} 
  	#index_main{width:1200px;float:left;}
  	#index_aside{margin-left:10px;width:130px;height:600px;position:relative;top:00px;
