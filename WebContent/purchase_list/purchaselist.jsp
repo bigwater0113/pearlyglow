@@ -27,6 +27,7 @@
 	<div id="purchaselist_main">
 		<h1>${sessionScope.id}님의 구매 내역</h1>
 	</div>
+	<br>
 	<div id="purchaselist_table">
 		<table class="table table-hover" >
 <!-- 		class="table table-hover" -->

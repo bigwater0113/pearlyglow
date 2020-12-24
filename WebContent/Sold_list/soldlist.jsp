@@ -3,13 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-#soldlist_wrap {font-family: 'Noto Serif KR', serif;}
+#soldlist_wrap {width:1000px;}
+.table{width:960px;margin:auto;}
 .table td, .table th{
 	padding: 0px;
 }
 #soldlist_main{
 	font-weight:bold;
-	font-align
+	text-align:center;
     color:#555555;
 }
 #soldlist_paging{
@@ -23,6 +24,7 @@
 	<div id="soldlist_main">
 		<h1>판매 내역</h1>
 	</div>
+	<br>
 	<div id="soldlist_table">
 		<table class="table table-hover">
 			<tr>
