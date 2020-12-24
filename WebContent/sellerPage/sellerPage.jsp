@@ -11,19 +11,23 @@
 	*{margin:0px;padding:0px;}
 	#sellerPage_wrap{width:1200px; margin:auto;}
 	#sellerPage_Menu{width:200px;height:400px;float:left;padding:20px;}
-	#sellerPage_Menu a{color:black;text-decoration: none; font-weight:bold;}
+	#sellerPage_Menu h2{font-weight:bold; text-shadow:2px 2px 2px black; color:#555555;}
+	#sellerPage_Menu a{color:black;text-decoration: none; font-weight:bold;
+		text-shadow:1px 1px 2px black; color:#CCCCCC;}
+	#sellerPage_Menu a:hover{color:#888888;}
 	#sellerPage_section{width:960px; float:left;}
 	
 </style>
 <div id="sellerPage_wrap">
 	<div id="sellerPage_Menu">
-		<h1>판매자페이지</h1>
-		<h2><a href="${pageContext.request.contextPath }/sales?group=category&year=2020&month=12">매출관리</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/soldlist">판매내역</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/stockController">상품관리</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/insertItem.jsp">상품등록</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/Member/list">회원관리</a></h2>
-		<h2><a href="${pageContext.request.contextPath }/Board/list">문의</a></h2>
+		<h2>SellerPage</h2>
+		<br>
+		<h4><a href="${pageContext.request.contextPath }/sales?group=category&year=2020&month=12">매출관리</a></h4>
+		<h4><a href="${pageContext.request.contextPath }/soldlist">판매내역</a></h4>
+		<h4><a href="${pageContext.request.contextPath }/stockController">상품관리</a></h4>
+		<h4><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../seller/insertItem.jsp">상품등록</a></h4>
+		<h4><a href="${pageContext.request.contextPath }/Member/list">회원관리</a></h4>
+		<h4><a href="${pageContext.request.contextPath }/Board/list">문의</a></h4>
 	</div>
 	<div id="sellerPage_section">
 		<jsp:include page="<%=mpage %>"/>
