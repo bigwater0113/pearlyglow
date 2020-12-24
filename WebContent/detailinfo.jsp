@@ -14,7 +14,7 @@
  	#main #left {width:200px;background-color: white;float:left;}
 	#main #middle {width:800px;float:left;}
 	#main #right {width:200px;background-color: white;float:right;}
-	#main #middle #top{width:100%; margin-bottom: 750px;}
+	#main #middle #top{width:100%; margin-bottom: 800px;}
 	#main #middle #core{width:100%; height: auto;background-color: white; text-align: center;}
 	#main #middle #core #revlist{width:100%; height: auto;}
 	#main #middle #bottom{width:100%; margin-bottom: 300px; text-align: center; margin-top:150px; background-color: white;}

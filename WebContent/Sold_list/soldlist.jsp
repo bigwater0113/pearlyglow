@@ -7,6 +7,17 @@
 .table td, .table th{
 	padding: 0px;
 }
+#soldlist_main{
+	font-weight:bold;
+	font-align
+    color:#555555;
+}
+#soldlist_paging{
+	text-align: center;
+	}
+#soldlist_search{
+	text-align: right;
+}
 </style>
 <div id="soldlist_wrap">
 	<div id="soldlist_main">
