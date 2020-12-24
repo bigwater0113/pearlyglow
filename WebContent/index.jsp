@@ -68,7 +68,7 @@
 					<c:otherwise>
 						<c:forEach var="vo" items="${recentViewItem }">
 							<div id="brief${vo.iNum }" 
-								style="width:100px; height:100px;position:relative;overflow:hidden;text-align: right;" 
+								style="width:100px; height:100px;position:relative;overflow:hidden;text-align: right;margin:auto;" 
 								onmouseover="javascript:briefIn(${vo.iNum})"
 								onmouseout="javascript:briefOut(${vo.iNum})"
 								onclick="location.href='${pageContext.request.contextPath}/detailInfoController?iNum=${vo.iNum }'">
