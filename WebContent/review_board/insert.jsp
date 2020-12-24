@@ -11,11 +11,11 @@
  	#insert_main #insert_left {width:200px; height:100%; background-color: white;float:left;}
 	#insert_main #insert_middle {width:800px; height:100%; background-color: white;float:left;}
 	#insert_main #insert_right {width:200px; height:100%; background-color: white;float:right;} 
-	.insert_label {width: 100px;display:inline-block; }
-	.insert_label1 {width: 70px;display:inline-block; position:relative; top: -1030px;}
-	#insert_main #insert_id{ width: 200px; height: 20px;}
-	#insert_main #insert_pdnum{ width: 200px; height: 20px;}
-	#insert_main #insert_score{ width: 200px; height: 20px;}
+ 	.insert_label {width: 100px;display:inline-block; } 
+ 	.insert_label1 {width: 70px;display:inline-block; position:relative;} 
+	#insert_main #insert_id{ width: 200px; height: 20px; display: inline-block;}
+	#insert_main #insert_pdnum{ width: 200px; height: 20px;  display: inline-block;}
+	#insert_main #insert_score{ width: 200px; height: 20px;  display: inline-block;}
 	#insert_main #insert_save{position:relative; float: right; right: 80px;}
 </style>
 </head>
@@ -24,7 +24,7 @@
 	<div id="insert_left">
 	</div>
 	<div id="insert_middle">
-		<h1>리뷰작성</h1>
+		<h2>리뷰작성</h2>
 		<form method="post" enctype="multipart/form-data">
 		
 			<!-- 세션에 저장된 아이디 받아오기 -->

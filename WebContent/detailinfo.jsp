@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 
 <style>
 /* 	* {font-size: 14px;} */
- 	#main{width:1200px; display: flex; justify-content: center;} 
+ 	#main{width:1200px; display: flex; justify-content: center; font-family: 'Noto Serif KR', serif;} 
  	#main #left {width:200px;background-color: white;float:left;}
 	#main #middle {width:800px;float:left;}
 	#main #right {width:200px;background-color: white;float:right;}
