@@ -24,7 +24,7 @@
 		<h1>판매 내역</h1>
 	</div>
 	<div id="soldlist_table">
-		<table class="table table-hover" border="1" width="900">
+		<table class="table table-hover">
 			<tr>
 				<th>구매번호</th>
 				<th>상세번호</th>
