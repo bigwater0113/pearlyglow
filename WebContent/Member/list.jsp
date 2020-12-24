@@ -12,7 +12,7 @@
 <a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp" style="font-size: 20px; margin-left: 650px;">홈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
 <a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock" style="font-size: 20px;">200일 이상 접속 없는 명단</a>
 <form method="post" name="form">
-	<table border="1" class="table table-hover">
+	<table border="1" class="table table-hover" style="text-align: center;">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>
@@ -23,11 +23,11 @@
 			<th>이메일</th>
 			<th>핸드폰</th>
 			<th>주소</th>
-			<th>휴먼계정</th>
+			<th>휴면</th>
 			<th>최근접속</th>
 			<th>삭제</th>
 			<th>수정</th>
-			<th>휴면계정변경</th>
+			<th>휴면변경</th>
 		</tr>
 		<c:forEach var="vo" items="${requestScope.list }">
 			<tr>
@@ -48,10 +48,10 @@
 				<td>
 					<c:choose>
 						<c:when test="${vo.issleep eq 'Y' }">
-							<a href="${pageContext.request.contextPath}/Member/lockN?id=${vo.id }">휴면계정 해제</a>
+							<a href="${pageContext.request.contextPath}/Member/lockN?id=${vo.id }">휴면계정N</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/Member/lockY?id=${vo.id }">휴면계정 등록</a>
+							<a href="${pageContext.request.contextPath}/Member/lockY?id=${vo.id }">휴면계정Y</a>
 						</c:otherwise>
 					</c:choose>
 				</td>
