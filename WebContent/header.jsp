@@ -121,7 +121,7 @@
 
 #h_header {
    background-color: #ffffff;
-   height: 100px;
+   height: 150px;
    position: relative;
    z-index: 500;
 }
@@ -261,6 +261,8 @@
                </c:otherwise>
             </c:choose>
          </div>
+      </div>
+      <div style="background-color: red; width: 1200px; height: 50px;">
       </div>
    </div>
    <div id="h_menu">

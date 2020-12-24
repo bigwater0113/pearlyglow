@@ -8,9 +8,10 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
+
 #s_wrap {
-	border: 1px solid gray;
 	width: 898px;
+	font-family: 'Noto Serif KR', serif;
 }
 
 #s_itemArea {
@@ -19,12 +20,18 @@
 }
 
 #s_tableHeader {
-	background-color: #d3d3d3;
+	
 }
 
 #s_itemTable td {
 	border-bottom: 1px solid gray;
 	border-top: 1px soild gray;
+	font-size: 14px;
+}
+
+#s_itemTable span {
+	font-size: 12px;
+	color: solid gray;
 }
 
 #s_itemTable th {
@@ -35,6 +42,7 @@
 #s_buttonArea {
 	text-align: center;
 }
+
 </style>
 </head>
 <body>
@@ -42,7 +50,7 @@
 		<h2 style="text-align: center;">장바구니 목록</h2>
 		<form method="post">
 			<div id="s_itemArea">
-				<table id="s_itemTable">
+				<table id="s_itemTable" class="table table-hover">
 					<tr id="s_tableHeader">
 						<th width="32" height="24"><input type="checkbox" id="s_selectAll" checked="checked"></th>
 						<th width="100" height="24">이미지</th>
@@ -58,26 +66,28 @@
 							<td width="100" height="100"><img alt=""
 								src="${list.iThumbnail }" width="100" height="100"
 								onclick="location.href='${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }'"></td>
-							<td width="400"><span>분류 : ${list.iCategory }</span>
-								<p>
-									<a
-										href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }">${list.iName }</a>
-								</p> <span>성별 : ${list.iGender } </span> <br> <span>색상 :
-									${list.color } </span> <br> <span>사이즈 : ${list.iSize } </span></td>
-							<td width="100" style="text-align: center">\<fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원 </td>
+							<td width="400">
+								<strong>
+									<a id="iName" href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }">${list.iName }</a>
+								</strong> <br>
+								<span>Category : ${list.iCategory }</span> <br>
+								<span>Gender : ${list.iGender } </span> <br>
+								<span>Color : ${list.color } </span> <br>
+								<span>Size : ${list.iSize } </span></td>
+							<td width="100" style="text-align: center"><fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원 </td>
 							<td style="display: none"> <input type="text" name="sbCnt" value="${list.sbCnt }"> </td>
 							<td width="50" style="text-align: center">${list.sbCnt }</td>
-							<td width="100" style="text-align: center">\<fmt:formatNumber value="${list.price * list.sbCnt }" pattern="#,###,###"/>원 </td>
+							<td width="100" style="text-align: center"><fmt:formatNumber value="${list.price * list.sbCnt }" pattern="#,###,###"/>원 </td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="6" style="text-align: right;">합계 : \<fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/>원</td>
+						<td colspan="6" style="text-align: right;">합계 : <fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/>원</td>
 					</tr>
 				</table>
 			</div>
 			<div id="s_buttonArea">
-				<input type="submit" value="선택삭제" id="deleteChoose" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/basketController" onclick="isChecked(event)"> 
-				<input type="submit" value="주문하기" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/orderFormController" onclick="isChecked(event)">
+				<input type="submit" value="선택삭제" id="deleteChoose" class="btn btn-secondary" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/basketController" onclick="isChecked(event)"> 
+				<input type="submit" value="주문하기" class="btn btn-light" style="width: 100px; height: 50px;" formaction="${pageContext.request.contextPath }/orderFormController" onclick="isChecked(event)">
 			</div>
 		</form>
 	</div>

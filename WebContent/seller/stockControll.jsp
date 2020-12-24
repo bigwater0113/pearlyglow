@@ -10,6 +10,7 @@
 <style type="text/css">
 #st_wrap {
 	width: 898px;
+	font-family: 'Noto Serif KR', serif;
 }
 
 #st_itemArea {
@@ -19,6 +20,14 @@
 
 #st_itemSearchTable {
 	width: 882px;
+}
+
+#st_itemSearchTable td {
+	width: 341px;
+}
+#st_itemSearchTable th {
+	width: 100px;
+	text-align: center;
 }
 </style>
 </head>
@@ -30,7 +39,7 @@
 				<table border="1" id="st_itemSearchTable">
 					<tr>
 						<th>카테고리</th>
-						<td><select name="searchCategory">
+						<td><select name="searchCategory" class="form-control form-control-sm">
 								<option value="categoryAll">:: 선택 ::</option>
 								<option value="earring" <c:if test="${searchCategory == 'earring' }"> selected </c:if>> Earring</option>
 								<option value="bracelet" <c:if test="${searchCategory == 'bracelet' }"> selected </c:if>>Bracelet</option>
@@ -38,7 +47,7 @@
 								<option value="ring" <c:if test="${searchCategory == 'ring' }"> selected </c:if>>Ring</option>
 						</select></td>
 						<th>성별</th>
-						<td><select name="searchGender">
+						<td><select name="searchGender" class="form-control form-control-sm">
 								<option value="genderAll">:: 선택 ::</option>
 								<option value="W" <c:if test="${searchGender == 'woman' }"> selected </c:if>>W</option>
 								<option value="M" <c:if test="${searchGender == 'man' }"> selected </c:if>>M</option>
@@ -46,14 +55,14 @@
 					</tr>
 					<tr>
 						<th>색상</th>
-						<td><select name="searchColor">
+						<td><select name="searchColor" class="form-control form-control-sm">
 								<option value="colorAll">:: 선택 ::</option>
 								<c:forEach var="color" items="${colorList }">
 									<option value="${color }" <c:if test="${searchColor == color }"> selected </c:if>>${color }</option>
 								</c:forEach>
 						</select></td>
 						<th>재질</th>
-						<td><select name="searchMaterial">
+						<td><select name="searchMaterial" class="form-control form-control-sm">
 								<option value="materialAll">:: 선택 ::</option>
 								<c:forEach var="material" items="${materialList }">
 									<option value="${material }" <c:if test="${searchMaterial == material }"> selected </c:if>>${material }</option>
@@ -62,12 +71,13 @@
 					</tr>
 					<tr>
 						<th>검색조건</th>
-						<td><select>
+						<td>
+						<select class="form-control form-control-sm" style="width: 100px; display: inline-block;">
 								<option>상품명</option>
 						</select> 
-						<input type="text" name="searchText" value="${searchText }"> <input type="submit" value="검색"></td>
+						<input type="text" name="searchText" value="${searchText }" style="width: 200px;"> <input type="submit" value="검색"></td>
 						<th>재고여부</th>
-						<td><input type="text" name="searchStock" value="${searchStock }">개 이하</td>
+						<td><input type="text" name="searchStock" value="${searchStock }" style="width: 50px;">개 이하</td>
 					</tr>
 				</table>
 			</div>

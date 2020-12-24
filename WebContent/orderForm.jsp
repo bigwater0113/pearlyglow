@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
+		font-family: 'Noto Serif KR', serif;
 	}
 	#itemsArea {
 		padding: 15px;
@@ -24,13 +26,15 @@
 		margin-right: auto;
 	}
 	#personArea {
-		padding: 15px;
 		display: inline-block;
 	}
 	#personTable {
 		width: 1000px;
 		margin-left: auto;
 		margin-right: auto;
+	}
+	#personTable td {
+		text-align: left;
 	}
 	#orderPriceArea {
 		padding: 15px;
@@ -59,8 +63,7 @@
 		<h2>주문/결제</h2>
 		<form action="${pageContext.request.contextPath }/orderController" method="post">
 			<fieldset id="itemsArea">
-				<legend style="font-size: 20px;">주문목록</legend>
-				<table border="1" id="itemsTable">
+				<table id="itemsTable" class="table table-hover">
 					<tr>
 						<th width="100">썸네일</th>
 						<th width="400">상품정보</th>
@@ -82,18 +85,17 @@
 							</td>	
 							<td><img alt="" src="${list.iThumbnail }" style="width: 100px; height: 100px;"></td>
 							<td>${list.iName }</td>
-							<td>${sbCnt[status.index] }</td>
+							<td>${sbCnt[status.index] }</td> 
 							<td>${list.iSale }%</td>
-							<td>\ ${list.price }원</td>
-							<td>\ ${sbCnt[status.index] * list.price }원</td>
+							<td><fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원</td>
+							<td><fmt:formatNumber value="${sbCnt[status.index] * list.price }" pattern="#,###,###"/>원</td> 
 							<c:set var="totalPrice" value="${totalPrice + (sbCnt[status.index] * list.price) }"/>
 						</tr>
 					</c:forEach>
 				</table>
 			</fieldset>
 			<fieldset id="personArea">
-				<legend style="font-size: 20px;">수령/구매자 정보</legend>
-				<table border="1" id="personTable">
+				<table id="personTable" class="table table-hover">
 					<tr>
 						<th width="100"> </th>
 						<th width="450">수령인 정보 </th>
@@ -129,11 +131,10 @@
 				</table>
 			</fieldset>
 			<fieldset id="orderPriceArea">
-				<legend style="font-size: 20px;">결제정보</legend>
-				<table border="1" id="orderPriceTable">
+				<table id="orderPriceTable" class="table table-hover">
 					<tr>
 						<th>총 상품가격 </th>
-						<td> ${totalPrice }원 </td>
+						<td> <fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/>원 </td>
 					</tr>
 					<tr>
 						<th>할인금액 </th>
@@ -141,7 +142,7 @@
 					</tr>
 					<tr>
 						<th>총 결제금액 </th>
-						<td> ${totalPrice }원 </td>
+						<td> <fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/>원 </td>
 					</tr>
 					<tr>
 						<th>결제수단 </th>
@@ -153,7 +154,7 @@
 				</table>
 			</fieldset>
 			<br>
-			<input type="submit" value="주문완료">
+			<input type="submit" value="주문완료" class="btn btn-secondary btn-lg">
 		</form>
 	</div>
 </body>
