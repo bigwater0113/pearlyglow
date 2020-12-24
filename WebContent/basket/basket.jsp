@@ -10,7 +10,7 @@
 <style type="text/css">
 
 #s_wrap {
-	width: 898px;
+	width: 960px;
 	font-family: 'Noto Serif KR', serif;
 }
 
@@ -41,6 +41,9 @@
 
 #s_buttonArea {
 	text-align: center;
+}
+
+#iName {
 }
 
 </style>
@@ -74,10 +77,10 @@
 								<span>Gender : ${list.iGender } </span> <br>
 								<span>Color : ${list.color } </span> <br>
 								<span>Size : ${list.iSize } </span></td>
-							<td width="100" style="text-align: center"><fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원 </td>
+							<td width="100"><fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원 </td>
 							<td style="display: none"> <input type="text" name="sbCnt" value="${list.sbCnt }"> </td>
-							<td width="50" style="text-align: center">${list.sbCnt }</td>
-							<td width="100" style="text-align: center"><fmt:formatNumber value="${list.price * list.sbCnt }" pattern="#,###,###"/>원 </td>
+							<td width="50">${list.sbCnt }</td>
+							<td width="100"><fmt:formatNumber value="${list.price * list.sbCnt }" pattern="#,###,###"/>원 </td>
 						</tr>
 					</c:forEach>
 					<tr>

@@ -121,7 +121,7 @@
 
 #h_header {
    background-color: #ffffff;
-   height: 150px;
+   height: 100px;
    position: relative;
    z-index: 500;
 }
@@ -144,7 +144,7 @@
 
 #h_menu div {
    float: left;
-   width: 292px;
+   width: 300px;
    height: 200px;
    display: flex;
    flex-direction: column;
@@ -176,25 +176,30 @@
 
 #h_right {
    display: flex;
-   
+   align-items: center;
+   flex-direction: row-reverse;
 }
 
 #h_right #h_rleft{
    margin-left: 20px;
    margin-top: 40px;
 }
-#h_right #h_rleft #h_searchBox {
+#h_right #h_searchBox {
    margin-left: 20px;
-   width: 130px;
+   width: 330px;
    height: 30px;
    border-top: none;
    border-left: none;
    border-right: none;
 }
+#h_right input {
+   width: 36px;
+   height: 30px;
+}
 #h_right #h_rleft #h_temp{
    width: 180px;
 }
-#h_right #h_rleft #h_result{
+#h_right #h_result{
    width: 180px;
    border: 1px solid blue; 
    background-color:white;
@@ -203,6 +208,7 @@
    display:none;
    overflow:auto;
    position:absolute;
+   margin-top: 130px;
 }
 #h_right #h_rcenter{
    margin-left: 20px;
@@ -213,6 +219,31 @@
    margin-left: 20px;
    margin-top: 40px;
 }
+
+#header_bottomBar {
+	width: 1200px;
+	height: 30px; 
+	z-index: 1; 
+	position: relative;
+}
+
+#header_bottomBar .hb {
+	width: 400px; 
+	height:30px; 
+	float: left;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#hb_right div{
+	width: 100px;
+	height: 30px;
+	float: left;
+	display: inline-block;
+	text-align: center;
+}
+
+
 </style>
 <%
    String id = (String) session.getAttribute("id");
@@ -223,47 +254,62 @@
    <div id="h_header">
       <div id="h_left">
          <img alt="" src="${pageContext.request.contextPath}/images/menuIcon.png" id="h_menuBtn" onclick="slide()">
-         <c:if test="${empty sessionScope.id }">
-         	<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/join.jsp" style="font-size: 25px; text-decoration: none;">회원가입</a>
-         </c:if>
-         <c:if test="${!empty sessionScope.id }">
-            <span style="color:red;font-size:1.2em">${id }님 반갑습니다.</span>&nbsp;&nbsp;
-            <c:choose>
-               <c:when test="${id=='admin' }">
-                  <a href="${pageContext.request.contextPath}/index.jsp?spage=/sellerPage/sellerPage.jsp">판매자페이지</a>
-               </c:when>
-               <c:otherwise>
-                  <a href="${pageContext.request.contextPath}/Member/info?id=${id }">마이페이지</a>
-               </c:otherwise>
-            </c:choose>
-         </c:if>
+         
       </div>
       <div id="h_center">
          <img alt="" src="${pageContext.request.contextPath}/images/logo.PNG" id="h_logo" onclick="location.href='${pageContext.request.contextPath}/Main'">
       </div>
       <div id="h_right">
-         <div id = "h_rleft">
-               <input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"  onkeydown="javascript:onEnter()"><input type="button" value="검색" onclick="hsearch()"><br>
+         	<input type="text" id="h_searchBox" placeholder="SEARCH" style="margin: 0" onkeyup="getList()"  onkeydown="javascript:onEnter()">
+         	 <!-- <input type="button" value="검색" onclick="hsearch()" width="36" height="30"><br> -->
             <div id="h_result"></div>
-            <div id="h_temp"></div>
-         </div>
-         
-         <div id = "h_rcenter">   
-            <a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(<%=basketTotalCount %>)</a>
-         </div>
-         <div id = "h_rright">   
-            <c:choose>
-               <c:when test="${empty sessionScope.id }">
-               <a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>
-               </c:when>
-               <c:otherwise>
-               <a href="${pageContext.request.contextPath}/Member/logout" id="h_login">LOGOUT</a>
-               </c:otherwise>
-            </c:choose>
-         </div>
+            <div id="h_temp"></div>   
       </div>
-      <div style="background-color: red; width: 1200px; height: 50px;">
-      </div>
+   </div>
+   <div id="header_bottomBar">
+   		<div id="hb_right" class="hb">
+   		</div>
+   		<div id="hb_center" class="hb">
+   		</div>
+   		<div id="hb_right" class="hb">
+   			<div>
+   				<c:if test="${!empty sessionScope.id }">
+		            <span style="color:red;font-size:16px;">${id }님</span>&nbsp;&nbsp;
+		         </c:if>
+   			</div>
+   			<div>
+   			<c:choose>
+   				<c:when test="${empty sessionScope.id }">
+         			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/join.jsp" style="font-size: 16px; text-decoration: none;">회원가입</a>
+         		</c:when>
+         		<c:otherwise>
+         			<c:choose>
+		               <c:when test="${id=='admin' }">
+		                  <a href="${pageContext.request.contextPath}/index.jsp?spage=/sellerPage/sellerPage.jsp">판매자페이지</a>
+		               </c:when>
+		               <c:otherwise>
+		                  <a href="${pageContext.request.contextPath}/Member/info?id=${id }">마이페이지</a>
+		               </c:otherwise>
+		            </c:choose>
+         		</c:otherwise>
+         	</c:choose>
+   			</div>
+   			<div>
+   				<a href="${pageContext.request.contextPath}/basketController" id="h_bag">BAG(<%=basketTotalCount %>)</a>
+   			</div>
+   			<div>
+   				<c:choose>
+              		<c:when test="${empty sessionScope.id }">
+               			<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/login.jsp" id="h_login">LOGIN</a>
+              		</c:when>
+              		<c:otherwise>
+               			<a href="${pageContext.request.contextPath}/Member/logout" id="h_login">LOGOUT</a>
+              		</c:otherwise>
+           		</c:choose>
+   			</div>
+   		</div>
+   		
+   		
    </div>
    <div id="h_menu">
       <div id="h_moreMenu1">
