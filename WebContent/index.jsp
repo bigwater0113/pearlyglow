@@ -116,7 +116,7 @@
 			var iName=xml.getElementsByTagName("iName")[0].textContent;
 			console.log(iName);
 			var price=xml.getElementsByTagName("price")[0].textContent;
-			briefDiv.style.left="-150px";
+			briefDiv.style.left="-141px";
 			briefDiv.style.width="250px";
 			briefDiv.style.backgroundColor="white";
 			spanTitle.innerHTML=iName;

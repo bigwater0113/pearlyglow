@@ -35,6 +35,7 @@ public class MyOrderController extends HttpServlet{
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
+		req.setAttribute("pDate", pDate);
 		req.setAttribute("list", list);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageCount", pageCount);

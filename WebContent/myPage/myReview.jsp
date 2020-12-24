@@ -4,8 +4,7 @@
 <!-- myReview.jsp -->
 <style>
 	#myReview_wrap{
-		width:900px;
-		height:700px;
+		width:960px;
 	}
 	#myReview_main{
 		text-align:center;
@@ -23,7 +22,8 @@
 	#myReview_tap a:hover{
 		font-weight:bold;
 	}
-	table{margin:auto;}
+	table{margin:auto;text-align:center;}
+	#myReview_BATable th{height:30px; background-color: #AAAAAA;border:4px solid white;}
 </style>
 <div id="myReview_wrap">
 	<div id="myReview_main">
@@ -34,24 +34,24 @@
 		<a href="javascript:afterRe(1)">내가 작성한 리뷰</a>
 	</div>
 	<div id="myReview_table">
-		<table border="1" id="myReview_BATable" width="900">
+		<table id="myReview_BATable" width="960">
 			<tr>
-				<th>아이디</th>
-				<th>썸네일</th>
+<!-- 				<th>아이디</th> -->
+				<th>이미지</th>
 				<th>품명</th>
 				<th>구매갯수</th>
 				<th>구매날짜</th>
-				<th>금액</th>
+<!-- 				<th>금액</th> -->
 				<th>리뷰작성</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
-				<tr>
-					<td>${vo.id }</td>
-					<td>${vo.iThumbnail }</td>
+				<tr style="border-bottom:1px solid black;">
+<%-- 					<td>${vo.id }</td> --%>
+					<td><img src="${vo.iThumbnail }" style="width:100px;height:100px"></td>
 					<td>${vo.iName }</td>
 					<td>${vo.pCnt }</td>
 					<td>${vo.pDate }</td>
-					<td>${vo.pPay }</td>
+<%-- 					<td>${vo.pPay }</td> --%>
 					<td><a href='${pageContext.request.contextPath}/index.jsp?spage=review_board/insert.jsp&pdNum=${vo.pdNum}'>리뷰작성</a></td>
 				</tr>
 			</c:forEach>
@@ -89,8 +89,8 @@
 </div>
 <script>
 	var xhr=null;
-	var Bthead=['아이디','썸네일','품명','구매갯수','구매날짜','금액','리뷰작성'];
-	var Athead=['아이디','썸네일','품명','평가','내용','구매날짜','첨부이미지명','리뷰작성날짜','수정','삭제'];
+	var Bthead=['이미지','품명','구매갯수','구매날짜','리뷰작성'];
+	var Athead=['이미지','품명','평가','내용','구매날짜','리뷰첨부','리뷰작성날짜','수정','삭제'];
 	function beforeRe(n){
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
@@ -120,27 +120,32 @@
 				myReview_BATable.appendChild(tr);
 				for(let i=0;i<review.length;i++){
 					var tr=document.createElement("tr");
-					var id=document.createElement("td");
+					tr.style.borderBottom="1px solid black";
+// 					var id=document.createElement("td");
 					var iThumbnail=document.createElement("td");
+					var iThumbnail_img=document.createElement("img");
 					var iName=document.createElement("td");
 					var pCnt=document.createElement("td");
 					var pDate=document.createElement("td");
-					var pPay=document.createElement("td");
+// 					var pPay=document.createElement("td");
 					var insertReview=document.createElement("td");
 					var pdNum=review[i].getElementsByTagName("pdNum")[0].textContent;
-					id.innerHTML=review[i].getElementsByTagName("id")[0].textContent;
-					iThumbnail.innerHTML=review[i].getElementsByTagName("iThumbnail")[0].textContent;
+// 					id.innerHTML=review[i].getElementsByTagName("id")[0].textContent;
+					iThumbnail_img.src=review[i].getElementsByTagName("iThumbnail")[0].textContent;
+					iThumbnail_img.style.width="100px";
+					iThumbnail_img.style.height="100px";
+					iThumbnail.appendChild(iThumbnail_img);
 					iName.innerHTML=review[i].getElementsByTagName("iName")[0].textContent;
 					pCnt.innerHTML=review[i].getElementsByTagName("pCnt")[0].textContent;
 					pDate.innerHTML=review[i].getElementsByTagName("pDate")[0].textContent;
-					pPay.innerHTML=review[i].getElementsByTagName("pPay")[0].textContent;
+// 					pPay.innerHTML=review[i].getElementsByTagName("pPay")[0].textContent;
 					insertReview.innerHTML="<a href='${pageContext.request.contextPath}/index.jsp?spage=review_board/insert.jsp&pdNum="+pdNum+"'>리뷰작성</a> ";
-					tr.appendChild(id);
+// 					tr.appendChild(id);
 					tr.appendChild(iThumbnail);
 					tr.appendChild(iName);
 					tr.appendChild(pCnt);
 					tr.appendChild(pDate);
-					tr.appendChild(pPay);
+// 					tr.appendChild(pPay);
 					tr.appendChild(insertReview);
 					myReview_BATable.appendChild(tr);
 				}
@@ -202,28 +207,39 @@
 				myReview_BATable.appendChild(tr);
 				for(let i=0;i<respJson.arr.length;i++){
 					var tr=document.createElement("tr");
-					var id=document.createElement("td");
+					tr.style.borderBottom="1px solid black";
+// 					var id=document.createElement("td");
 					var iThumbnail=document.createElement("td");
+					var iThumbnail_img=document.createElement("img");
 					var iName=document.createElement("td");
 					var score=document.createElement("td");
 					var rbContent=document.createElement("td");
 					var pDate=document.createElement("td");
 					var saveName=document.createElement("td");
+					var saveName_img=document.createElement("img");
 					var rDate=document.createElement("td");
 					var updateReview=document.createElement("td");
 					var deleteReview=document.createElement("td");
 					var pdNum=respJson.arr[i].pdNum;
-					id.innerHTML=respJson.arr[i].id;
-					iThumbnail.innerHTML=respJson.arr[i].iThumbnail;
+// 					id.innerHTML=respJson.arr[i].id;
+// 					iThumbnail.innerHTML=respJson.arr[i].iThumbnail;
+					iThumbnail_img.src=respJson.arr[i].iThumbnail;
+					iThumbnail_img.style.width="100px";
+					iThumbnail_img.style.height="100px";
+					iThumbnail.appendChild(iThumbnail_img);
 					iName.innerHTML=respJson.arr[i].iName;
 					score.innerHTML=respJson.arr[i].score;
 					rbContent.innerHTML=respJson.arr[i].rbContent;
 					pDate.innerHTML=respJson.arr[i].pDate;
-					saveName.innerHTML=respJson.arr[i].saveName;
+// 					saveName.innerHTML=respJson.arr[i].saveName;
+					saveName_img.src="${pageContext.request.contextPath}/review_board/upload/"+respJson.arr[i].saveName;
+					saveName_img.style.width="100px";
+					saveName_img.style.height="100px";
+					saveName.appendChild(saveName_img);
 					rDate.innerHTML=respJson.arr[i].rDate;
 					updateReview.innerHTML="<a href='${pageContext.request.contextPath}/review_board/update?pdNum="+pdNum+"'>수정</a> ";
 					deleteReview.innerHTML="<a href='${pageContext.request.contextPath}/review_board/delete?pdNum="+pdNum+"'>삭제</a> ";
-					tr.appendChild(id);
+// 					tr.appendChild(id);
 					tr.appendChild(iThumbnail);
 					tr.appendChild(iName);
 					tr.appendChild(score);
