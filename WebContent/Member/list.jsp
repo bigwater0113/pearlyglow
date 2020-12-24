@@ -9,25 +9,23 @@
 </head>
 <body>
 <h1 style="text-align: center;">회원목록</h1>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp" style="font-size: 20px; margin-left: 650px;">홈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/lock" style="font-size: 20px;">200일 이상 접속 없는 명단</a>
+<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp" style="font-size: 20px; margin-left: 700px;">홈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="${pageContext.request.contextPath}/Member/lock" style="font-size: 20px;">200일 이상 접속 없는 명단</a>
 <form method="post" name="form">
-	<table border="1" class="table table-hover" style="text-align: center;">
+	<table border="1" class="table table-hover" style="text-align: center; font-size: 14px;">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>
 			<th>비밀번호</th>
-			<th>이름</th>
-			<th>생년원일</th>
+			<th width="80px;">이름</th>
+			<th>생년월일</th>
 			<th>성별</th>
 			<th>이메일</th>
 			<th>핸드폰</th>
 			<th>주소</th>
 			<th>휴면</th>
 			<th>최근접속</th>
-			<th>삭제</th>
 			<th>수정</th>
-			<th>휴면변경</th>
 		</tr>
 		<c:forEach var="vo" items="${requestScope.list }">
 			<tr>
@@ -43,18 +41,7 @@
 				<td>${vo.issleep }</td>
 				<td>${vo.recentAcc }</td>
 				<!-- 번호에 해당하는 회원을 삭제하고 목록페이지로 이동하기 -->
-				<td><a href="${pageContext.request.contextPath}/Member/listDelete?id=${vo.id}">삭제</a></td>
 				<td><a href="${pageContext.request.contextPath}/Member/update?id=${vo.id}">수정</a></td>
-				<td>
-					<c:choose>
-						<c:when test="${vo.issleep eq 'Y' }">
-							<a href="${pageContext.request.contextPath}/Member/lockN?id=${vo.id }">휴면계정N</a>
-						</c:when>
-						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/Member/lockY?id=${vo.id }">휴면계정Y</a>
-						</c:otherwise>
-					</c:choose>
-				</td>
 			</tr>
 		</c:forEach>
 	</table>

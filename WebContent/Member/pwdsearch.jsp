@@ -29,8 +29,6 @@
 </script>
 <style type="text/css">
 	h1, form{
-		width: 300px;
-		margin: 0 auto;
 		text-align: center;
 	}
 	
@@ -38,13 +36,13 @@
 </head>
 <body>
 <h1>비밀번호찾기</h1><br>
-<form>
-아이디 <input type="text" id="p_id" autofocus="autofocus"><br><br>
-이름 <input type="text" id="p_name"><br><br>
-이메일 <input type="email" id="p_email"><br><br>
-<input type="button" value="찾기" onclick="search()" style="width: 200px;">
- <div id="p_result"></div>
-  <input type="button" value="뒤로가기" onclick="backPage()" style="width: 200px;">
+<form style="text-align: center;">
+<label style="width: 100px;">아이디</label><input type="text" id="p_id" autofocus="autofocus" class="form-control" style="width: 300px; display: inline-block;"><br><br>
+<label style="width: 100px;">이름</label><input type="text" id="p_name" class="form-control" style="width: 300px; display: inline-block;"><br><br>
+<label style="width: 100px;">이메일</label><input type="email" id="p_email" class="form-control" style="width: 300px; display: inline-block;"><br><br>
+<div id="p_result" style="width: 500px; margin-left: 350px;" ></div>
+<input type="button" value="찾기" onclick="search()" style="width: 200px; height:50px; inline-block;" class="btn btn-black">
+<input type="button" value="뒤로가기" onclick="backPage()" style="width: 200px; height:50px; display: inline-block;" class="btn btn-secondary btn-lg">
 </form>
 </body>
 </html>

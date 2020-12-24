@@ -8,8 +8,8 @@
 <title>/board/detail.jsp</title>
 </head>
 <body>
-<h1>상세글보기</h1>
-<table border="1" width="600">
+<h1 style="text-align: center;">상세글보기</h1>
+<table border="1" class="table table-hover" style="text-align: center;">
 	<tr>
 		<th>문의글 번호</th>
 		<th>${vo.ibNum }</th>
@@ -38,7 +38,7 @@
 	</c:if>
 	<tr>
 		<th>문의글 내용</th>
-		<th><textarea rows="5" cols="50" readonly="readonly">${vo.ibContent }</textarea></th>
+		<th><textarea rows="5" cols="70" readonly="readonly">${vo.ibContent }</textarea></th>
 	</tr>
 	<tr>
 		<th>비밀글 비밀번호</th>
@@ -50,7 +50,7 @@
 	</tr>
 	<tr>
 		<th>문의글 답변</th>
-		<th><textarea rows="5" cols="50" readonly="readonly">${vo.ans }</textarea></th>
+		<th><textarea rows="5" cols="70" readonly="readonly">${vo.ans }</textarea></th>
 	</tr>
 	<tr>
 		<th>답글 작성날짜</th>
@@ -63,15 +63,15 @@
 		<c:if test="${!empty id }">
 			<c:choose>
 				<c:when test="${id=='admin' }">
-					<td colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+					<td  colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
 				</c:when>
 				<c:otherwise>
-					<td colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
+					<td  colspan="2"><a href="${pageContext.request.contextPath }/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/ansInsert.jsp?ibnum=${vo.ibNum }&inum=${vo.iNum }&qCategory=${vo.qCategory }&ibPwd=${vo.ibPwd }&ibContent=${vo.ibContent }&orgName=${vo.orgName }&saveName=${vo.saveName }&ibDate=${vo.ibDate }&ref=${vo.ref }&lev=${vo.lev }&step=${vo.step }">답글</a></td>
 				</c:otherwise>
 			</c:choose>
 		</c:if>
+		<td><a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a></td>
 	</tr>
 </table>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=main.jsp">홈</a>
 </body>
 </html>

@@ -32,11 +32,11 @@
 	}
 	if(id!=null){
 %>
-	<h1>회원님의 비밀번호 : <%=pwd %></h1>
+	<h1 style="text-align: center;">회원님의 비밀번호 : <%=pwd %></h1>
 <%
 	}else{
 %>
-	<h1>조회하신 정보는 없습니다.</h1>
+	<h1 style="text-align: center;">조회하신 정보는 없습니다.</h1>
 <%
 	}
 %>

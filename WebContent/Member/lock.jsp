@@ -10,22 +10,22 @@
 <body>
 <h1>장기간 미접속 회원 명단</h1>
 <form action="${pageContext.request.contextPath }/Member/lockY" method="post">
-	<table border="1" width="900">
+	<table border="1" class="table table-hover" style="text-align: center; font-size: 14px;">
 		<tr>
 			<th><input type="checkbox" id="allMember"></th>
 			<th>아이디</th>
-			<th>비밀번호</th>
-			<th>이름</th>
-			<th>생년원일</th>
+			<th>비밀<br>번호</th>
+			<th width="80px;">이름</th>
+			<th>생년<br>월일</th>
 			<th>성별</th>
 			<th>이메일</th>
 			<th>핸드폰</th>
 			<th>주소</th>
-			<th>휴먼계정</th>
-			<th>최근접속</th>
+			<th>휴면</th>
+			<th>최근<br>접속</th>
 			<th>삭제</th>
 			<th>수정</th>
-			<th>휴면계정변경</th>
+			<th>휴면<br>변경</th>
 		</tr>
 		<c:forEach var="vo" items="${requestScope.list }">
 			<tr>
@@ -56,9 +56,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="submit" value="확인">
+	<input type="submit" value="확인"><a href="${pageContext.request.contextPath}/index.jsp?spage=Member/list" style="font-size: 20px; margin-left: 880px;">회원관리</a>
 </form>
-<a href="${pageContext.request.contextPath}/index.jsp?spage=Member/list">회원관리</a>
 
 <script type="text/javascript">
 	var check = 0;

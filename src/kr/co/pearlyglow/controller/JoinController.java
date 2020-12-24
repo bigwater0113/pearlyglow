@@ -19,7 +19,6 @@ public class JoinController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		String id = req.getParameter("j_id");
 		String pwd1 = req.getParameter("j_pwd1");
-		String pwd2 = req.getParameter("j_pwd2");
 		String name= req.getParameter("j_name");
 		String yy = req.getParameter("j_yy");
 		String mm = req.getParameter("j_mm");

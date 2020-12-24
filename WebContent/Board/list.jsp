@@ -42,7 +42,17 @@
 							<a href="${pageContext.request.contextPath}/Board/detail?ibnum=${vo.ibNum}">${vo.qTitle }</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/secret.jsp">비밀글입니다.</a>	
+							<c:choose>
+								<c:when test="${empty id }">
+									<a href="${pageContext.request.contextPath}/index.jsp?spage=Board/secret.jsp">비밀글입니다.</a>	
+								</c:when>
+								<c:when test="${id=='admin' }">
+									<a href="${pageContext.request.contextPath}/index.jsp?spage=sellerPage/sellerPage.jsp&mpage=../Board/secret.jsp">비밀글입니다.</a>	
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/index.jsp?spage=myPage/myPage.jsp&mpage=../Board/secret.jsp">비밀글입니다.</a>
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>	
 				</c:when>
