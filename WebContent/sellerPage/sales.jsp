@@ -12,7 +12,7 @@
 		font-weight:bold;
 		color:#555555;
 	}
-	#sales_form{margin-left:20px;}
+	#sales_form{margin-left:20px;margin-bottom:20px;}
 	#sales_form span{font-size:20px;}
 	.selectBox{height:30px;}
  	#myOrder_table {margin-left:20px;font-weight:bold;} 
@@ -81,7 +81,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<table  width="960">
+			<table  width="960"  class="table table-hover">
 				<tr>
 					<th rowspan="2">날짜</th>
 					<th colspan="2">Gender</th>
