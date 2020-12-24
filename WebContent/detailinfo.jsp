@@ -13,7 +13,7 @@
  	#main #left {width:200px;background-color: white;float:left;}
 	#main #middle {width:800px;float:left;}
 	#main #right {width:200px;background-color: white;float:right;}
-	#main #middle #top{width:100%; margin-bottom: 650px;}
+	#main #middle #top{width:100%; margin-bottom: 750px;}
 	#main #middle #core{width:100%; height: auto;background-color: white; text-align: center;}
 	#main #middle #core #revlist{width:100%; height: auto;}
 	#main #middle #bottom{width:100%; margin-bottom: 300px; text-align: center; margin-top:150px; background-color: white;}
@@ -30,11 +30,11 @@
  	#main #middle #top #detail #description #text p{font-size: 16px; } 
  	#main #middle #top #detail #description #text span{font-size: 13px; color: gray;} 
  	#main #middle #top #detail #description #option{width: 100%;height: 30%; background-color: white;} 
- 	#main #middle #top #detail #description #option #buy{background-color: #333333;color:white;border:none ;width: 150px;height: 40px;} 
- 	#main #middle #top #detail #description #option #wish{background-color: white;border:1px solid gray;width: 150px;height: 40px;} 
- 	#main #middle #top #detail #description #option #plus{background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
- 	#main #middle #top #detail #description #option #count{background-color: white;border: 1px solid lightgray;width: 80px;height: 40px;} 
- 	#main #middle #top #detail #description #option #minus{background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
+ 	#main #middle #top #detail #description #option #buy{border-radius: 8px; background-color: #333333;color:white;border:none ;width: 150px;height: 40px;} 
+ 	#main #middle #top #detail #description #option #wish{border-radius: 8px; background-color: white;border:1px solid gray;width: 150px;height: 40px;} 
+ 	#main #middle #top #detail #description #option #plus{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
+ 	#main #middle #top #detail #description #option #count{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 80px;height: 40px;} 
+ 	#main #middle #top #detail #description #option #minus{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
 	#main #middle #core #image2{width: 100%;height: auto; background-color: white;}
  	#main #middle #core #image2 #img2{ width: 800px; height: 800px; object-fit: cover;}
 	#main #middle #core #image2 #img3{ width: 800px; height: 800px; object-fit: cover;}
@@ -114,7 +114,6 @@
 					</div>
 				</div>
 			</div>
-<!-- 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 			<div id="core">
 				<div id="revlist">
 					<jsp:include page="<%=mpage %>"/>

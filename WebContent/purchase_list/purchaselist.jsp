@@ -6,7 +6,7 @@
 		<h1>${sessionScope.id}님의 구매 내역</h1>
 	</div>
 	<div id="purchaselist_table">
-		<table border="1" width="900">
+		<table class="table table-hover" border="1" width="900">
 			<tr>
 				<th>상품이미지</th>
 				<th>구매번호</th>

@@ -29,13 +29,13 @@
 			<input type="hidden" name="iNum" value="${inum }" >
 			<input type="hidden" name="pageNum" value="${pageNum }" >
 			<c:if test="${id == 'admin' }">
-				<input type="submit" value="삭제" name="reviewlist_delete" formaction="${pageContext.request.contextPath }/detailInfoController">
+				<input type="submit" class="btn btn-secondary btn-sm" value="삭제" name="reviewlist_delete" formaction="${pageContext.request.contextPath }/detailInfoController">
 			</c:if>
-			<input type="submit" value="평점 ▲" name="reviewlist_desc" formaction="${pageContext.request.contextPath }/detailInfoController">
-			<input type="submit" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
+			<input type="submit" class="btn btn-secondary btn-sm" value="평점 ▲" name="reviewlist_desc" formaction="${pageContext.request.contextPath }/detailInfoController">
+			<input type="submit" class="btn btn-secondary btn-sm" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
 		</div>
 		<div id="reviewlist_table">
-			<table border="1" width="800">
+			<table class="table table-hover" border="1" width="800">
 				<tr>
 				<c:if test="${id == 'admin' }">
 					<th><input type="checkbox" id="allcheck"></th>
