@@ -76,7 +76,7 @@
 								onmouseover="javascript:briefIn(${vo.iNum})"
 								onmouseout="javascript:briefOut(${vo.iNum})"
 								onclick="location.href='${pageContext.request.contextPath}/detailInfoController?iNum=${vo.iNum }'">
-								<img src="${vo.iThumbnail }" style="width:100px; height:100px;"><br><br>
+								<img id="brief_img${vo.iNum }" src="${vo.iThumbnail }" style="position:relative;left:-5px;top:-5px;width:100px; height:100px;"><br><br>
 								<div id="textSpan${vo.iNum }_title" 
 									Style="position:relative;left:0px;top:0px;text-align: left;border:0px;">
 								</div>
@@ -111,6 +111,8 @@
 			console.log(iNum);
 			var spanTitle=document.getElementById("textSpan"+iNum+"_title");
 			var spanPrice=document.getElementById("textSpan"+iNum+"_price");
+			var brief_img=document.getElementById("brief_img"+iNum);
+			brief_img.style.left="8px";
 			var briefDiv=document.getElementById("brief"+iNum);
 			console.log(spanTitle);
 			console.log(briefDiv);
@@ -137,6 +139,8 @@
 		var spanTitle=document.getElementById("textSpan"+iNum+"_title");
 		var spanPrice=document.getElementById("textSpan"+iNum+"_price");
 		var briefDiv=document.getElementById("brief"+iNum);
+		var brief_img=document.getElementById("brief_img"+iNum);
+		brief_img.style.left="-5px";
 		briefDiv.style.left="0px";
 		briefDiv.style.width="100px";
 // 		briefDiv.style.backgroundColor="pink";
