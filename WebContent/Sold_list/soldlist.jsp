@@ -6,22 +6,22 @@
 		<h1>판매 내역</h1>
 	</div>
 	<div id="soldlist_table">
-		<table border="1" width="900">
+		<table class="table table-hover" border="1" width="900">
 			<tr>
 				<th>구매자ID</th>
-				<th>상품이미지</th>
+				<th>이미지</th>
 				<th>구매번호</th>
-				<th>상세 구매번호</th>
+				<th>상세번호</th>
 				<th>상품명</th>
-				<th>상품별 수량</th>
-				<th>상품별 구매 금액</th>
-				<th>총 구매 금액</th>
+				<th>수량</th>
+				<th>구매 금액</th>
+				<th>총 금액</th>
 				<th>구매날짜</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
 					<td>${vo.id}</td>
-					<td><img src="${vo.ithumbnail }" style="width: 200px;"></td>
+					<td><img src="${vo.ithumbnail }" style="width: 100px; height: 100px;"></td>
 					<td>${vo.pnum}</td>
 					<td>${vo.pdnum}</td>
 					<td>${vo.iname}</td>
