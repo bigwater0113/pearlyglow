@@ -30,7 +30,6 @@ public class BoardInfoController extends HttpServlet {
 		BoardDao dao = new BoardDao();
 		ArrayList<QnABoardVo> list = dao.myinfo(id,startRow,endRow);
 		int pageCount=(int)Math.ceil(dao.myinfoGetCount(id)/10.0);
-		System.out.println("pageCouont:"+pageCount);
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) {
