@@ -35,7 +35,7 @@
 			<input type="submit" class="btn btn-secondary btn-sm" value="평점 ▼" name="reviewlist_asc" formaction="${pageContext.request.contextPath }/detailInfoController">
 		</div>
 		<div id="reviewlist_table">
-			<table class="table table-hover" border="1" width="800">
+			<table class="table table-hover" >
 				<tr>
 				<c:if test="${id == 'admin' }">
 					<th><input type="checkbox" id="allcheck"></th>
