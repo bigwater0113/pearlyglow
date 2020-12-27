@@ -316,7 +316,7 @@
          <h2>
             <a href="${pageContext.request.contextPath }/Main">PEARLYGLOW</a>
          </h2>
-         <a href="">ABOUT</a> <a href="">INSTARGRAM</a> <a href="">FACEBOOK</a>
+         <a href="">ABOUT</a> <a href="https://www.pearlyglow.com/">INSTARGRAM</a> <a href="https://www.facebook.com/pearlyglow.official">FACEBOOK</a>
    		 <a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
       </div>
       <div id="h_moreMenu2">
