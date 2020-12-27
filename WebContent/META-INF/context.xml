@@ -5,5 +5,5 @@
               url="jdbc:oracle:thin:@218.234.230.209:1521:xe"
               username="dlgmlrnjs09" password="gmlrnjs0" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
-              <!--               	    		최대 커넥션 갯수              남은 커넥션 갯수 유지 -->
+              <!--                            최대 커넥션 갯수              남은 커넥션 갯수 유지 -->
 </Context>

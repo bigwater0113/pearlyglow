@@ -1,7 +1,7 @@
 -- 회원/MEMBER
 create table members
 (
-	id varchar2(30) primary key,	--아이디
+	id varchar2(30) primary key ,	--아이디
 	pwd varchar2(30) not null,	--비밀번호
 	name varchar2(30) not null,	--이름
 	birth date not null,	--생년월일
@@ -39,7 +39,7 @@ create table shoppingBasket
 (
 	sbNum number primary key,	--번호
 	id varchar2(30) references members(id) on delete cascade,	--아이디
-	iNum number(5,0) references items(inum),	--품번
+	iNum number(5,0) references items(inum)  on delete cascade,	--품번
 	sbCnt number	--수량
 );
 
@@ -47,7 +47,7 @@ create table shoppingBasket
 create table items_image
 (
 	imgNum number primary key,	--이미지 번호
-	iNum number(5,0) references items(inum),	--품번
+	iNum number(5,0) references items(inum) on delete cascade,	--품번
 	file1 varchar2(500),	--상품 이미지파일명
 	file2 varchar2(500),	--상품 이미지파일명
 	file3 varchar2(500)	--상품 이미지파일명
@@ -58,7 +58,7 @@ create table QnABoard
 (
 	ibNum number primary key,	--게시글번호
 	id varchar2(30) references members(id) on delete cascade, --아이디
-	iNum number(5,0) references items(inum),	--품번
+	iNum number(5,0) references items(inum) on delete cascade,	--품번
 	qCategory varchar2(100),	--카테고리
 	qTitle varchar2(100),	--제목
 	ibPwd varchar2(20),	--게시글비밀번호
@@ -77,7 +77,7 @@ create table QnABoard
 create table stock
 (
 	sNum number primary key,	--재고번호
-	iNum number(5,0) references items(inum),	--품번
+	iNum number(5,0) references items(inum) on delete cascade,	--품번
 	rs number check(rs in('1', '2')),	--입출고
 	cnt number,	--입출고수량
 	sDate date	--입출고날짜
@@ -102,7 +102,7 @@ create table purchase
 create table delivery
 (
 	dNum number primary key,	--배송번호
-	pNum number references purchase(pnum),	--구매번호
+	pNum number references purchase(pnum) on delete cascade,	--구매번호
 	dCompany varchar2(30),	--택배사 우체국택배
 	trackingNum number,	--송장번호
 	dStatus varchar2(400)	--배송상태
@@ -112,8 +112,8 @@ create table delivery
 create table pDetail
 (
 	pdNum number primary key,	--구매상세번호
-	iNum number(5,0) references items(inum),	--품번 
-	pNum number references purchase(pnum),	--구매번호 currval
+	iNum number(5,0) references items(inum) on delete cascade,	--품번 
+	pNum number references purchase(pnum) on delete cascade,	--구매번호 currval
 	pCnt number,	--구매상품갯수
 	pPay number	--상품별 금액
 );
@@ -122,7 +122,7 @@ create table pDetail
 create table reviewBoard
 (
 	rbNum number primary key,	--리뷰번호
-	pdNum number references pDetail(pdNum),	--구매상세번호
+	pdNum number references pDetail(pdNum) on delete cascade,	--구매상세번호
 	score number,	--평가점수
 	rbContent varchar2(1000),	--리뷰내용
 	orgName varchar2(50),	--원본사진명

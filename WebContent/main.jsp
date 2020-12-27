@@ -137,115 +137,24 @@
 	overflow: auto;
 	display: none;
 }
-
-#quickView_wrap #image1 {
-	width: 350px;
-	height: 350px;
-	float: left; /*text-align: center;*/
-	background-color: white;
-}
-
-#quickView_wrap #detail {
-	width: 50%;
-	height: 100%;
-	background-color: white;
-	float: right;
-}
-
-#quickView_wrap #image1 #img1 {
-	width: 350px;
-	height: auto;
-}
-
-#quickView_wrap #detail #title {
-	width: 100%;
-	background-color: white;
-}
-
-#quickView_wrap #detail #nbso {
-	width: 100%;
-	height: 5%;
-	background-color: white;
-}
-
-#quickView_wrap #detail #nbso li {
-	list-style: none;
-	display: inline-block;
-	font-size: 10px;
-	border: 1px solid black;
-}
-
-#quickView_wrap #detail #description {
-	width: 100%;
-	height: 90%;
-	background-color: white;
-	margin-top: 20px;
-}
-
-#quickView_wrap #detail #description #text {
-	width: 100%;
-	height: 100%;
-	background-color: white;
-}
-
-#quickView_wrap #detail #description #text #detailText {
-	height: 70%;
-}
-
-#quickView_wrap #detail #description #text #optionText {
-	height: 30%;
-}
-
-#quickView_wrap #detail #description #text p {
-	font-size: 11px;
-}
-
-#quickView_wrap #detail #description #text span {
-	font-size: 11px;
-	color: gray;
-}
-
-#quickView_wrap #detail #description #option {
-	width: 100%;
-	height: 30%;
-	background-color: white;
-}
-
-#quickView_wrap #detail #description #option #buy {
-	background-color: #333333;
-	color: white;
-	border: none;
-	width: 150px;
-	height: 40px;
-}
-
-#quickView_wrap #detail #description #option #wish {
-	background-color: white;
-	border: 1px solid gray;
-	width: 150px;
-	height: 40px;
-}
-
-#quickView_wrap #detail #description #option #plus {
-	background-color: white;
-	border: 1px solid lightgray;
-	width: 30px;
-	height: 44px;
-}
-
-#quickView_wrap #detail #description #option #count {
-	background-color: white;
-	border: 1px solid lightgray;
-	width: 80px;
-	height: 40px;
-}
-
-#quickView_wrap #detail #description #option #minus {
-	background-color: white;
-	border: 1px solid lightgray;
-	width: 30px;
-	height: 44px;
-}
+   #quickView_wrap #image1{width: 350px; height:100%; float: left; background-color: white;}
+   #quickView_wrap #detail{width: 50%; background-color: white;float: right;}
+   #quickView_wrap #image1 #img1{ width: 350px;  } 
+   #quickView_wrap #detail #title{width: 100%; background-color: white;} 
+   #quickView_wrap #detail #nbso{width: 100%; background-color: white;} 
+   #quickView_wrap #detail #nbso li{list-style: none;display: inline-block;font-size: 10px;border:1px solid black;}
+   #quickView_wrap #detail #description{width: 100%;height: 90%; background-color: white; margin-top: 20px;} 
+   #quickView_wrap #detail #description #text{width: 100%;height: 100%; background-color: white;}
+   #quickView_wrap #detail #description #text #detailText {height: 70%;}
+   #quickView_wrap #detail #description #text #optionText {height: 30%;}
+   #quickView_wrap #detail #description #text p{font-size: 16px; } 
+   #quickView_wrap #detail #description #text span{font-size: 13px; color: gray;} 
+   #quickView_wrap #detail #description #option{width: 100%;height: 30%; background-color: white;} 
+   #quickView_wrap #detail #description #option #buy{border-radius: 8px; background-color: #333333;color:white;border:none ;width: 150px;height: 40px;} 
+   #quickView_wrap #detail #description #option #wish{border-radius: 8px; background-color: white;border:1px solid gray;width: 150px;height: 40px;} 
+   #quickView_wrap #detail #description #option #plus{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
+   #quickView_wrap #detail #description #option #count{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 80px;height: 40px;} 
+   #quickView_wrap #detail #description #option #minus{border-radius:4px; background-color: white;border: 1px solid lightgray;width: 30px;height: 44px;} 
 
 #main_body {
 	display: white;
@@ -385,7 +294,7 @@ if (ppage == null) {
 			</div>
 			<div id="description">
 				<div id="text">
-					<div id="detailText"><p></p><br><p></p><span></span>
+					<div id="detailText"><h6></h6><br><br><p></p><br><p></p><br>
 					</div>
 					<div id="optionText">
 						<span>Gender: </span><br>
@@ -477,9 +386,11 @@ if (ppage == null) {
 				var iName=document.getElementById("title").nextElementSibling;
 				iName.innerHTML=xml.getElementsByTagName("iName")[0].textContent;
 				var detailText=document.getElementById("detailText").childNodes;
-				detailText.item(0).innerHTML=xml.getElementsByTagName("kDetail")[0].textContent;
-				detailText.item(2).innerHTML=xml.getElementsByTagName("eDetail")[0].textContent;
-				detailText.item(3).innerHTML=xml.getElementsByTagName("price")[0].textContent;
+				var price=xml.getElementsByTagName("price")[0].textContent;
+				console.log(price);
+				detailText.item(0).innerHTML="가격 : "+price+"원";
+				detailText.item(3).innerHTML=xml.getElementsByTagName("kDetail")[0].textContent;
+				detailText.item(5).innerHTML=xml.getElementsByTagName("eDetail")[0].textContent;
 				var optionText=document.getElementById("optionText").childNodes;
 				optionText.item(0).innerHTML="Gender: "+xml.getElementsByTagName("iGender")[0].textContent;
 				optionText.item(2).innerHTML="Category: "+xml.getElementsByTagName("iCategory")[0].textContent;
