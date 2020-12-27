@@ -10,6 +10,6 @@
 
 </body>
 <script type="text/javascript">
-	location.href="${pageContext.request.contextPath}/home";
+	 location.href="${pageContext.request.contextPath}/home";
 </script>
 </html>

@@ -42,7 +42,7 @@
 			<c:forEach var="vo" items="${list }">
 				<c:if test="${vo.pnum!=pNumEq }">
 					<tr>
-						<td colspan="8" style="border-top:1px solid black"></td>
+						<td colspan="9" style="border-top:1px solid black"></td>
 					</tr>
 				</c:if>
 				<tr>
@@ -60,11 +60,11 @@
 					<td>${vo.pcnt}</td>
 					<c:choose>
 						<c:when test="${vo.pnum!=pNumEq }">
-					<td>${vo.ppay}</td>
-					<td>${vo.ptotal}</td>
-					<td>${vo.id}</td>
-					<td>${vo.pdate}</td>
-					</c:when>
+							<td>${vo.ppay}</td>
+							<td>${vo.ptotal}</td>
+							<td>${vo.id}</td>
+							<td>${vo.pdate}</td>
+						</c:when>
 						<c:otherwise>
 							<td></td>
 							<td></td>
