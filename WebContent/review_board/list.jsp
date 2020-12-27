@@ -15,7 +15,7 @@
 </style>
 <c:choose>
 <c:when test="${avg == 0}">
-	<h2>${vo.iName }리뷰</h2>
+	<h2>${vo.iName } 리뷰</h2>
 	<p>아직 등록된 리뷰가 없습니다!</p>
 </c:when>
 <c:otherwise>
