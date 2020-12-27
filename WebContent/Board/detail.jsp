@@ -33,7 +33,7 @@
 	<c:if test="${!empty vo.saveName }">
 		<tr>
 			<th>문의 사진</th>
-			<th><img src="${pageContext.request.contextPath}/Board/upload/${vo.saveName}"></th>
+			<th><img src="${pageContext.request.contextPath}/Board/upload/${vo.saveName}" style="width: 700px; height: 700px;"></th>
 		</tr>
 	</c:if>
 	<tr>

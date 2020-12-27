@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,27 +77,27 @@
 					<div id="description">
 						<div id="text">
 							<div id="detailText">
-								<span>\ ${vo.price }</span>
+								<h6><fmt:formatNumber value="${vo.price }" pattern="#,###,###"/>원 </h6>
 								<br><br>
-<%-- 								<p>${vo.kDetail }</p> --%>
-								<p>아리아리랑 스리스리랑
-								아라리가 났네~~아리랑 고개로
-								아라리가 났네 아리랑 고개로 가신 님은
-								아리아리랑 스리스리랑
-								아라리가 났네~~아리랑 고개로
-								아라리가 났네 아리랑 고개로 가신 님은</p>
+								<p>${vo.kDetail }</p> 
+<!-- 								<p>아리아리랑 스리스리랑 -->
+<!-- 								아라리가 났네~~아리랑 고개로 -->
+<!-- 								아라리가 났네 아리랑 고개로 가신 님은 -->
+<!-- 								아리아리랑 스리스리랑 -->
+<!-- 								아라리가 났네~~아리랑 고개로 -->
+<!-- 								아라리가 났네 아리랑 고개로 가신 님은</p> -->
 								<br>
-<%-- 								<p>${vo.eDetail }</p> --%>
-								<p>hello my name is daeun!
-								I like kyochon.
-								i like gyul. When will CoronaVirus be gone..
-								hello my name is daeun!
-								I like kyochon.
-								i like gyul.When will CoronaVirus be gone..
-								I like kyochon.
-								i like gyul.When will CoronaVirus be gone..I like kyochon.
-								i like gyul.When will CoronaVirus be gone..I like kyochon.
-								i like gyul.When will CoronaVirus be gone..</p>
+								<p>${vo.eDetail }</p>
+<!-- 								<p>hello my name is daeun! -->
+<!-- 								I like kyochon. -->
+<!-- 								i like gyul. When will CoronaVirus be gone.. -->
+<!-- 								hello my name is daeun! -->
+<!-- 								I like kyochon. -->
+<!-- 								i like gyul.When will CoronaVirus be gone.. -->
+<!-- 								I like kyochon. -->
+<!-- 								i like gyul.When will CoronaVirus be gone..I like kyochon. -->
+<!-- 								i like gyul.When will CoronaVirus be gone..I like kyochon. -->
+<!-- 								i like gyul.When will CoronaVirus be gone..</p> -->
 							</div><br>
 							<div id="optionText">
 								<span>Gender: ${vo.iGender } </span> <br>
