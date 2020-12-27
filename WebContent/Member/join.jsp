@@ -13,7 +13,6 @@ form{
 h1{
 	text-align: center;
 }
-
 .j_h3{
 	display:inline;
 }
@@ -110,10 +109,27 @@ h1{
 		xhr.open('get','${pageContext.request.contextPath}/Member/emailSendAction.jsp?email='+email,true);
 		xhr.send();
 	}
+	var code;
 	function ecallback() {
 		if(xhr.readyState==4 && xhr.status==200){
-			var div=document.getElementById("j_emailcheck");
-			div.innerHTML="이메일 인증이 완료되었습니다.";
+			var emailxml = xhr.responseXML;
+			var div=document.getElementById("j_emailSend");
+			div.innerHTML="이메일 전송 완료!!!";
+			code = emailxml.getElementsByTagName("code")[0].firstChild.nodeValue;
+		}
+	}
+	
+	function EmailCheck() {
+		var email = document.getElementById("j_email").value;
+		var emailCheck = document.getElementById("j_emailCheck").value;
+		var msg = document.getElementById("j_CheckMsg");
+		var check = document.getElementById("j_emailCheck").value;
+		if(check == null || check== ""){
+			msg.innerHTML="";
+		}else if(code==check){
+			msg.innerHTML="이메일 인증 완료!!!";
+		}else{
+			msg.innerHTML="이메일 인증 실패!!!";
 		}
 	}
 </script>
@@ -230,8 +246,18 @@ h1{
 	        <span>
 	            <input type="email" id="j_email" name="j_email" class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
 	        </span>
-	      	<button type="button" id="j_btnEmail", onclick="sendEmail()" class="btn btn-secondary"><span>이메일 인증</span></button>
-	    	<span id="j_emailcheck"></span>
+	      	<button type="button" id="j_btnEmail" onclick="sendEmail()" class="btn btn-secondary"><span>이메일 전송</span></button>
+	    	<span id="j_emailSend"></span>
+	    </div><br><br>
+	
+		<!-- EMAIL Check-->
+	    <div class="j_div">
+	        <h3 class="j_h3"><label class="j_label">이메일 인증번호</label></h3>
+	        <span>
+	            <input type="text" id="j_emailCheck" name="j_emailCheck" class="form-control" style="width: 300px; padding: 0px; display: inline-block;">
+	        </span>
+	      	<button type="button" id="j_btnEmailCheck" onclick="EmailCheck()" class="btn btn-secondary"><span>이메일 인증</span></button>
+	    	<span id="j_CheckMsg"></span>
 	    </div><br><br>
 	
 	    <!-- MOBILE -->
@@ -243,6 +269,7 @@ h1{
 	    </div><br><br>
 	
 	    <!-- JOIN BTN-->
+	    
 	    <div class="j_div">
 	        <input type="submit" id="j_btnJoin" value="Sign Up" class="btn btn-black" style="width: 500px; margin-left: 50px;">
 	    </div>
