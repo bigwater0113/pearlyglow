@@ -15,7 +15,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String host ="http://localhost:8081/a_semi_Project/Member/";
-	String from ="cssimm@gmail.com";
+	String from ="aa";
 	String to = request.getParameter("email");
 	String subject = "이메일 인증";
 	int code = SHA256.getSHA256(to).hashCode();
