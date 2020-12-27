@@ -135,11 +135,15 @@
 					var pDate=document.createElement("td");
 // 					var pPay=document.createElement("td");
 					var insertReview=document.createElement("td");
+					var iNum=review[i].getElementsByTagName("iNum")[0].textContent;
 					var pdNum=review[i].getElementsByTagName("pdNum")[0].textContent;
 // 					id.innerHTML=review[i].getElementsByTagName("id")[0].textContent;
 					iThumbnail_img.src=review[i].getElementsByTagName("iThumbnail")[0].textContent;
 					iThumbnail_img.style.width="100px";
 					iThumbnail_img.style.height="100px";
+					iThumbnail_img.addEventListener('click', function(e) {
+						location.href='${pageContext.request.contextPath }/detailInfoController?iNum='+iNum;
+					}, false);
 					iThumbnail.appendChild(iThumbnail_img);
 					iName.innerHTML=review[i].getElementsByTagName("iName")[0].textContent;
 					pCnt.innerHTML=review[i].getElementsByTagName("pCnt")[0].textContent;
@@ -226,12 +230,16 @@
 					var rDate=document.createElement("td");
 					var updateReview=document.createElement("td");
 					var deleteReview=document.createElement("td");
+					var iNum=respJson.arr[i].iNum;
 					var pdNum=respJson.arr[i].pdNum;
 // 					id.innerHTML=respJson.arr[i].id;
 // 					iThumbnail.innerHTML=respJson.arr[i].iThumbnail;
 					iThumbnail_img.src=respJson.arr[i].iThumbnail;
 					iThumbnail_img.style.width="100px";
 					iThumbnail_img.style.height="100px";
+					iThumbnail_img.addEventListener('click', function(e) {
+						location.href='${pageContext.request.contextPath }/detailInfoController?iNum='+iNum;
+					}, false);
 					iThumbnail.appendChild(iThumbnail_img);
 					iName.innerHTML=respJson.arr[i].iName;
 					score.innerHTML=respJson.arr[i].score;
