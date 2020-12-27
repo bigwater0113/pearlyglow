@@ -10,7 +10,7 @@
 <style type="text/css">
 
 #s_wrap {
-	width: 960px;
+	width: 1000px;
 	font-family: 'Noto Serif KR', serif;
 }
 
@@ -21,6 +21,10 @@
 
 #s_tableHeader {
 	
+}
+
+#s_itemTable  {
+	width: 900px;
 }
 
 #s_itemTable td {

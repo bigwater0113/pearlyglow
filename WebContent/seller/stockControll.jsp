@@ -9,17 +9,28 @@
 <title>Insert title here</title>
 <style type="text/css">
 #st_wrap {
-	width: 898px;
+	width: 1000px;
 	font-family: 'Noto Serif KR', serif;
+	font-size: 14px;
 }
 
 #st_itemArea {
 	display: flex;
 	text-align: center;
+	justify-content: center;
+}
+
+#st_itemTable {
+	width: 950px;
+}
+
+#st_itemSearchArea {
+	display: flex;
+	justify-content: center;
 }
 
 #st_itemSearchTable {
-	width: 882px;
+	width: 950px;
 }
 
 #st_itemSearchTable td {
@@ -33,7 +44,7 @@
 </head>
 <body>
 	<div id="st_wrap">
-		<h1>상품 관리</h1>
+		<h1 style="text-align: center;">상품 관리</h1>
 		<form action="${pageContext.request.contextPath }/stockSearchController" method="post">
 			<div id="st_itemSearchArea">
 				<table border="1" id="st_itemSearchTable">
@@ -75,7 +86,7 @@
 						<select class="form-control form-control-sm" style="width: 100px; display: inline-block;">
 								<option>상품명</option>
 						</select> 
-						<input type="text" name="searchText" value="${searchText }" style="width: 200px;"> <input type="submit" value="검색"></td>
+						<input type="text" name="searchText" value="${searchText }" style="width: 190px;"> <input type="submit" value="검색"></td>
 						<th>재고여부</th>
 						<td><input type="text" name="searchStock" value="${searchStock }" style="width: 50px;">개 이하</td>
 					</tr>
@@ -105,7 +116,7 @@
 						<td width="150px">${list.iName }</td>
 						<td><img alt="" src="${list.iThumbnail }" width="100"
 							height="100"></td>
-						<td>\<fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원
+						<td><fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원
 						<!-- <td>${list.price }\</td>-->
 						<td>${list.iSale }%</td>
 						<td>${list.iGender }</td>

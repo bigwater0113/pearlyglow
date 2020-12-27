@@ -3,42 +3,43 @@
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- footer.jsp -->
 <%-- top 값만 바꿔주기  --%>
-<div style="width: 1200px; height: 200px; text-align: center;left top pos">
+<div style="width: 1200px; height: 200px; text-align: center;left top pos; font-family: 'Noto Serif KR', serif;">
 	<div></div>
-		<h1>중앙 HTA</h1>
-		<h1>SEMI PROJECT</h1>
-		<br> <br> <br>
-		<div
-			style="width: 290px; height: 390px; text-align: center; float: left;">
-			<h1>윤태수</h1>
-			<br> <br>
-			<h2>010</h2>
-			<h2>2672</h2>
-			<h2>3749</h2>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/char.PNG">
+			<br>
+			<p>이희권 </p>
+			<span>☎ 010-9984-0867</span>
+			<span>ⓕ facebook.com/dlgmlrnjs09</span>
+			<span>ⓘinstagram.com/dlgmlrnjs09</span>
 		</div>
-		<div
-			style="width: 290px; height: 390px; text-align: center; float: left;">
-			<h1>정다은</h1>
-			<br> <br>
-			<h2>010</h2>
-			<h2>3403</h2>
-			<h2>9411</h2>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/char.PNG">
+			<br>
+			<p>이희권 </p>
+			<span>☎ 010-9984-0867</span> <br>
+			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
+			<span>ⓘinstagram.com/dlgmlrnjs09</span>
 		</div>
-		<div
-			style="width: 290px; height: 390px; text-align: center; float: left;">
-			<h1>이희권</h1>
-			<br> <br>
-			<h2>010</h2>
-			<h2>9984</h2>
-			<h2>0867</h2>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/char.PNG">
+			<br>
+			<p>이희권 </p>
+			<span>☎ 010-9984-0867</span><br>
+			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
+			<span>ⓘinstagram.com/dlgmlrnjs09</span>
 		</div>
-		<div
-			style="width: 290px; height: 390px; text-align: center; float: left;">
-			<h1>심재우</h1>
-			<br> <br>
-			<h2>010</h2>
-			<h2>4446</h2>
-			<h2>6037</h2>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/char.PNG">
+			<br>
+			<p>이희권 </p>
+			<span>☎ 010-9984-0867</span> <br>
+			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
+			<span>ⓘinstagram.com/dlgmlrnjs09</span>
 		</div>
 	</div>
 </div>
