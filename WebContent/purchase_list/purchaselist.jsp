@@ -62,14 +62,13 @@
 					 onclick="location.href='${pageContext.request.contextPath}/detailInfoController?iNum=${vo.inum }';"></td>
 					<td>${vo.iname}</td>
 					<td>${vo.pcnt}</td>
+					<td>${vo.ppay}</td>
 					<c:choose>
 						<c:when test="${vo.pnum!=pNumEq }">
-					<td>${vo.ppay}</td>
-					<td>${vo.ptotal}</td>
-					<td>${vo.pdate}</td>
-					</c:when>
+							<td>${vo.ptotal}</td>
+							<td>${vo.pdate}</td>
+						</c:when>
 						<c:otherwise>
-							<td></td>
 							<td></td>
 							<td></td>
 						</c:otherwise>

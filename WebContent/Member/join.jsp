@@ -124,12 +124,32 @@ h1{
 		var emailCheck = document.getElementById("j_emailCheck").value;
 		var msg = document.getElementById("j_CheckMsg");
 		var check = document.getElementById("j_emailCheck").value;
+		//console.log("등록전"+msg.textContent);
 		if(check == null || check== ""){
 			msg.innerHTML="";
 		}else if(code==check){
 			msg.innerHTML="이메일 인증 완료!!!";
+			//console.log("등록후"+msg.textContent);
 		}else{
 			msg.innerHTML="이메일 인증 실패!!!";
+		}
+	}
+	
+	function Submit() {
+		var pw1 = document.getElementById("j_pwd1").value;
+		var pw2 = document.getElementById("j_pwd2").value;
+		if(document.getElementById("j_idcheck").textContent != "사용 가능 한 아이디입니다."){
+			alert("중복된 아이디 입니다. 아이디는 영문 숫자조합 4~10자리로 다시 입력해주세요.");
+			return false;
+		}else if(document.getElementById("j_pwd1check").textContent != "사용가능한 비밀번호입니다."){
+			alert("비밀번호는 영문과 숫자조합 4~8자리로 설정 다시 입력해주세요.");
+			return false;
+		}else if(pw1 != pw2){
+			alert("비밀번호가 일치하지 않습니다!!!");
+			return false;
+		}else if(document.getElementById("j_CheckMsg").textContent != "이메일 인증 완료!!!"){
+			alert("이메일 인증에 실패하였습니다!!!");
+			return false;
 		}
 	}
 </script>
@@ -138,7 +158,7 @@ h1{
 </head>
 <body>
 <h1>회원가입</h1><br>
-<form action="${pageContext.request.contextPath}/Member/join" method="post">
+<form action="${pageContext.request.contextPath}/Member/join" method="post" onsubmit="return Submit();">
 <!-- wrapper -->
 <div id="j_wrapper">
 
