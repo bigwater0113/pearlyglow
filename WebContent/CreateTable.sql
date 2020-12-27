@@ -38,7 +38,7 @@ create table items
 create table shoppingBasket
 (
 	sbNum number primary key,	--번호
-	id varchar2(30) references members(id),	--아이디
+	id varchar2(30) references members(id) on delete cascade,	--아이디
 	iNum number(5,0) references items(inum),	--품번
 	sbCnt number	--수량
 );
