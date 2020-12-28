@@ -27,7 +27,7 @@
 		<h4><a href="${pageContext.request.contextPath }/myOrder?pDate=0">주문내역</a></h4>
 		<h4><a href="${pageContext.request.contextPath }/basketController">장바구니</a></h4>
 		<h4><a href="${pageContext.request.contextPath }/MyReview?status=">내 리뷰</a></h4>
-		<h4><a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a></h4>
+<%-- 		<h4><a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a></h4> --%>
 		<h4><a href="${pageContext.request.contextPath }/Board/boardInfo?id=${id }">내 문의</a></h4>
 		<h4><a href="${pageContext.request.contextPath }/Member/delete?id=${id}">회원탈퇴</a></h4>
 	</div>

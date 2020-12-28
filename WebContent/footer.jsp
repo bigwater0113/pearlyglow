@@ -7,39 +7,35 @@
 	<div></div>
 		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
 		<br><br>
-			<img alt="" src="images/char.PNG">
+			<img alt="" src="images/태수.PNG" width="110" height="150">
 			<br>
-			<p>이희권 </p>
-			<span>☎ 010-9984-0867</span>
-			<span>ⓕ facebook.com/dlgmlrnjs09</span>
-			<span>ⓘinstagram.com/dlgmlrnjs09</span>
+			<p>윤태수 </p>
+			<span>☎ 010-2672-3749</span> <br>
+			<span>ⓘ yountaesu</span>
 		</div>
 		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
 		<br><br>
-			<img alt="" src="images/char.PNG">
+			<img alt="" src="images/다은.PNG" width="110" height="150">
+			<br>
+			<p>정다은 </p>
+			<span>☎ 010-3403-9411</span> <br>
+			<span>ⓘ  allsilver11</span>
+		</div>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/재우.PNG" width="110" height="150">
+			<br>
+			<p>심재우 </p>
+			<span>☎ 010-4446-6039</span><br>
+			<span>ⓘ  jaeu279</span>
+		</div>
+		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
+		<br><br>
+			<img alt="" src="images/희권.PNG" width="110" height="150">
 			<br>
 			<p>이희권 </p>
 			<span>☎ 010-9984-0867</span> <br>
-			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
-			<span>ⓘinstagram.com/dlgmlrnjs09</span>
-		</div>
-		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
-		<br><br>
-			<img alt="" src="images/char.PNG">
-			<br>
-			<p>이희권 </p>
-			<span>☎ 010-9984-0867</span><br>
-			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
-			<span>ⓘinstagram.com/dlgmlrnjs09</span>
-		</div>
-		<div style="width: 290px; height: 390px; text-align: center; float: left; border-top: 1px solid #DDDDDD;">
-		<br><br>
-			<img alt="" src="images/char.PNG">
-			<br>
-			<p>이희권 </p>
-			<span>☎ 010-9984-0867</span> <br>
-			<span>ⓕ facebook.com/dlgmlrnjs09</span> <br>
-			<span>ⓘinstagram.com/dlgmlrnjs09</span>
+			<span>ⓘ  h__kwon_97</span>
 		</div>
 	</div>
 </div>
