@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- main.jsp -->
 <style>
 /*
@@ -244,7 +245,7 @@ if (ppage == null) {
 								<a href="javascript:popup()"
 									style="position: relative; top: -30px;"
 									onclick="quickBuy(${vo.iNum})">Quick View</a><br> <a
-									href="${pageContext.request.contextPath }/detailInfoController?iNum=${vo.iNum }">${vo.iName }</a><br> <span>${vo.price }</span>
+									href="${pageContext.request.contextPath }/detailInfoController?iNum=${vo.iNum }">${vo.iName }</a><br> <span><fmt:formatNumber value="${vo.price }" pattern="#,###,###"/>원</span>
 							</div>
 						</td>
 						<c:set var="i" value="${i+1 }" />
