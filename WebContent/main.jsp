@@ -231,7 +231,7 @@ if (ppage == null) {
 		<div id="mdPick">
 			<table id="mainItemList" width="800">
 				<caption
-					style="height: 20px; padding: 30px; font-weight: bold; font-size: 20px; text-align:center;">MD's
+					style="height: 20px; padding: 30px; font-weight: bold; font-size: 20px; text-align:center; caption-side: top;margin-bottom:20px;">MD's
 					PICK</caption>
 				<c:set var="i" value="0" />
 				<tr>
@@ -259,7 +259,7 @@ if (ppage == null) {
 		<div id="instagramBanner">
 			<table id="instagramRecommends" width="800">
 				<caption
-					style="height: 50px; padding: 30px; font-weight: bold; font-size: 20px;text-align:center;">
+					style="height: 50px; padding: 30px; font-weight: bold; font-size: 20px;text-align:center;caption-side: top;margin-bottom:60px;">
 					#pearlyglow<br> recommends
 				</caption>
 				<tr>
