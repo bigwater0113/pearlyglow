@@ -50,7 +50,7 @@
 	<input type="submit" value="선택휴면계정 해제" onclick="javascript: form.action='${pageContext.request.contextPath }/Member/lockN'" class="btn btn-secondary">
 </form>
 <!-- 페이징처리 -->
-<div>
+<div style="text-align: center;">
 	<c:if test="${startPageNum>10 }">
 		<a href="${pageContext.request.contextPath}/Member/list?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
 	</c:if>
@@ -62,7 +62,7 @@
 	</c:if>
 </div>
 
-<div>
+<div style="text-align: right;">
 	<form method="post" action="${pageContext.request.contextPath}/Member/list">
 		<select name="field">
 			<option value="id" <c:if test="${field=='id' }">selected</c:if>>아이디</option>

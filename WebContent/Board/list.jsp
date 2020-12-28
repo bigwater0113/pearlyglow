@@ -130,7 +130,7 @@
 </c:forEach>
 </table>
 <!-- 페이징처리 -->
-<div>
+<div style="text-align: center;">
 	<c:if test="${startPageNum>10 }">
 		<a href="${pageContext.request.contextPath}/Board/${page }?pageNum=${startPageNum-1}&field=${field}&keyword=${keyword}">[이전]</a>
 	</c:if>
@@ -142,7 +142,7 @@
 	</c:if>
 </div>
 
-<div>
+<div style="text-align: right;">
 	<form method="post" action="${pageContext.request.contextPath}/Board/list">
 		<select name="field">
 			<option value="id" <c:if test="${field=='id' }">selected</c:if>>작성자</option>

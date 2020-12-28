@@ -55,7 +55,7 @@
 </c:forEach>
 </table>
 <!-- 페이징처리 -->
-<div>
+<div style="text-align: center;">
 	<c:if test="${startPageNum>10 }">
 		<a href="${pageContext.request.contextPath}/Board/boardInfo?pageNum=${startPageNum-1}">[이전]</a>
 	</c:if>
