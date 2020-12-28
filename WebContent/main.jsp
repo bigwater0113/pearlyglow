@@ -231,7 +231,7 @@ if (ppage == null) {
 		<div id="mdPick">
 			<table id="mainItemList" width="800">
 				<caption
-					style="height: 20px; padding: 30px; font-weight: bold; font-size: 20px; text-align:center;">MD's
+					style="height: 20px; padding: 30px; font-weight: bold; font-size: 20px; text-align:center; caption-side: top;margin-bottom:20px;">MD's
 					PICK</caption>
 				<c:set var="i" value="0" />
 				<tr>
@@ -244,7 +244,7 @@ if (ppage == null) {
 								<a href="javascript:popup()"
 									style="position: relative; top: -30px;"
 									onclick="quickBuy(${vo.iNum})">Quick View</a><br> <a
-									href="">${vo.iName }</a><br> <span>${vo.price }</span>
+									href="${pageContext.request.contextPath }/detailInfoController?iNum=${vo.iNum }">${vo.iName }</a><br> <span>${vo.price }</span>
 							</div>
 						</td>
 						<c:set var="i" value="${i+1 }" />
@@ -259,7 +259,7 @@ if (ppage == null) {
 		<div id="instagramBanner">
 			<table id="instagramRecommends" width="800">
 				<caption
-					style="height: 50px; padding: 30px; font-weight: bold; font-size: 20px;text-align:center;">
+					style="height: 50px; padding: 30px; font-weight: bold; font-size: 20px;text-align:center;caption-side: top;margin-bottom:60px;">
 					#pearlyglow<br> recommends
 				</caption>
 				<tr>
