@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
 #w_textArea p {
 	line-height: 0.em;
@@ -89,7 +90,7 @@
 					<td width="250" height="330" valign="top">
 					<img alt="" src="${list.iThumbnail }" onclick="location.href='${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }'"> <br>
 					<a href="${pageContext.request.contextPath }/detailInfoController?iNum=${list.iNum }" id="iName">${list.iName }</a> <br>
-					<p>${list.price }</p>
+					<p> <fmt:formatNumber value="${list.price }" pattern="#,###,###"/>원</p>
 					<c:if test="${i%4==0 }">
 						<span>new</span>
 					</c:if>
