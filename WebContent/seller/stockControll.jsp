@@ -133,6 +133,7 @@
 			</table>
 			<br>
 		</div>
+		
 		<c:if test="${page > 10 }">
 			<c:choose>
 				<c:when test="${type != 'search' }">

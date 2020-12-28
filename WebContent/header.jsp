@@ -267,7 +267,16 @@
       </div>
    </div>
    <div id="header_bottomBar">
-   		<div id="hb_right" class="hb">
+   		<div id="hb_left" class="hb">
+   			<div>
+   			</div>
+   			<div>
+   			</div>
+   			<div>
+   			</div>
+   			<div>
+   				<a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
+   			</div>
    		</div>
    		<div id="hb_center" class="hb">
    		</div>
@@ -285,10 +294,10 @@
          		<c:otherwise>
          			<c:choose>
 		               <c:when test="${id=='admin' }">
-		                  <a href="${pageContext.request.contextPath}/index.jsp?spage=/sellerPage/sellerPage.jsp">판매자페이지</a>
+		                  <a href="${pageContext.request.contextPath }/sales?group=category&year=2020&month=12">판매자페이지</a>
 		               </c:when>
 		               <c:otherwise>
-		                  <a href="${pageContext.request.contextPath}/Member/info?id=${id }">마이페이지</a>
+		                  <a href="${pageContext.request.contextPath }/Member/info?id=${id }">마이페이지</a>
 		               </c:otherwise>
 		            </c:choose>
          		</c:otherwise>
@@ -317,7 +326,6 @@
             <a href="${pageContext.request.contextPath }/Main">PEARLYGLOW</a>
          </h2>
          <a href="">ABOUT</a> <a href="https://www.pearlyglow.com/">INSTARGRAM</a> <a href="https://www.facebook.com/pearlyglow.official">FACEBOOK</a>
-   		 <a href="${pageContext.request.contextPath }/Board/list">QnA게시판</a>
       </div>
       <div id="h_moreMenu2">
          <h2>
