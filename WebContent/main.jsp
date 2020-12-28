@@ -244,7 +244,7 @@ if (ppage == null) {
 								<a href="javascript:popup()"
 									style="position: relative; top: -30px;"
 									onclick="quickBuy(${vo.iNum})">Quick View</a><br> <a
-									href="location.href ='${pageContext.request.contextPath }/detailInfoController?iNum=${vo.iNum }'">${vo.iName }</a><br> <span>${vo.price }</span>
+									href="${pageContext.request.contextPath }/detailInfoController?iNum=${vo.iNum }">${vo.iName }</a><br> <span>${vo.price }</span>
 							</div>
 						</td>
 						<c:set var="i" value="${i+1 }" />
